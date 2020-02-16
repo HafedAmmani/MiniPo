@@ -3,20 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.minipo.Utils;
+package com.esprit.Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+
 /**
  *
- * @author hafed
+ * @author House
  */
+
 public class DataBase {
-    String url = "jdbc:mysql://localhost:3306/minipot?useTimezone=true&serverTimezone=UTC";
-    String login = "root";
-    String pwd = "";
+     String url = "jdbc:mysql://localhost:3308/minipot?useTimezone=true&serverTimezone=UTC";
+     String login = "root";
+     String pwd = "";
     public  static DataBase db;
     public Connection con;
     private DataBase() {
@@ -36,5 +39,9 @@ public class DataBase {
     {if(db==null)
         db=new DataBase();
     return db;
-    }
+    }     
+     
+     
+     
+     
 }

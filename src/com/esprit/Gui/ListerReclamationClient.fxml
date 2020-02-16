@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ListerReclamationClientController">
+   <children>
+      <HBox fx:id="Hbox" layoutY="21.0" prefHeight="63.0" prefWidth="600.0">
+         <children>
+            <Label prefHeight="33.0" prefWidth="87.0" text="      Recherche" />
+            <ComboBox fx:id="RechCmbBox" prefWidth="150.0">
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ComboBox>
+            <TextField fx:id="TextField" alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="260.0" translateX="30.0" translateY="5.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <TableView fx:id="TableViewRec" layoutX="1.0" layoutY="62.0" prefHeight="287.0" prefWidth="600.0">
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" text="Modifier" />
+                  <MenuItem mnemonicParsing="false" text="Supprimer" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+   </children>
+</AnchorPane>
