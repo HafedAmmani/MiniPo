@@ -14,11 +14,11 @@ public class Employe {
     private String nom;
     private String prenom;
     private String adresse;
-    private int tel;
+    private String tel;
     private String email;
     private String salaire;
 
-    public Employe(String nom, String prenom, String adresse, int tel, String email, String salaire) {
+    public Employe(String nom, String prenom, String adresse, String tel, String email, String salaire) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -27,7 +27,7 @@ public class Employe {
         this.salaire = salaire;
     }
 
-    public Employe(int idemp, String nom, String prenom, String adresse, int tel, String email, String salaire) {
+    public Employe(int idemp, String nom, String prenom, String adresse, String tel, String email, String salaire) {
         this.idemp = idemp;
         this.nom = nom;
         this.prenom = prenom;
@@ -69,11 +69,11 @@ public class Employe {
         this.adresse = adresse;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

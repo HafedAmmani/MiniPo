@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchorpane_parent" prefHeight="558.0" prefWidth="979.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane id="anchorpane_parent" prefHeight="558.0" prefWidth="979.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.minipo.gui.EmployeController">
     <stylesheets>
         <URL value="@employe.css" />
     </stylesheets>
@@ -28,16 +29,17 @@
          <children>
             <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="267.0">
                <children>
-                  <TextField id="txt_nom" fx:id="txt_nom" layoutX="40.0" layoutY="30.0" promptText="Nom" />
-                  <TextField id="txt_prenom" fx:id="txt_prenom" layoutX="40.0" layoutY="71.0" promptText="Prenom" />
-                  <TextField id="txt_adresse" fx:id="txt_adresse" layoutX="40.0" layoutY="111.0" promptText="Adresse" />
-                  <TextField id="txt_tel" fx:id="txt_tel" layoutX="40.0" layoutY="150.0" promptText="Telephone" />
-                  <TextField id="txt_email" fx:id="txt_email" layoutX="40.0" layoutY="189.0" promptText="Email" />
-                  <TextField id="txt_salaire" fx:id="txt_salaire" layoutX="40.0" layoutY="227.0" promptText="Salaire" />
-                  <Button id="btn_save" fx:id="btn_save" layoutX="88.0" layoutY="269.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Enregistrer" />
-                  <Button id="btn_add_new" fx:id="btn_add_new" layoutX="18.0" layoutY="337.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Ajouter" />
-                  <Button id="btn_edit" fx:id="btn_edit" layoutX="143.0" layoutY="337.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Modifier" />
-                  <Button id="btn_delete" fx:id="btn_delete" layoutX="61.0" layoutY="389.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" text="Supprimer" />
+                  <JFXTextField fx:id="txt_nom" labelFloat="true" layoutX="40.0" layoutY="22.0" prefHeight="26.0" prefWidth="149.0" promptText="Nom" />
+                  <JFXTextField fx:id="txt_prenom" labelFloat="true" layoutX="39.0" layoutY="73.0" prefHeight="26.0" prefWidth="149.0" promptText="Prenom" />
+                  <JFXTextField fx:id="txt_adresse" labelFloat="true" layoutX="39.0" layoutY="121.0" prefHeight="26.0" prefWidth="149.0" promptText="Adresse" />
+                  <JFXTextField fx:id="txt_tel" labelFloat="true" layoutX="41.0" layoutY="166.0" prefHeight="26.0" prefWidth="149.0" promptText="Telephone" />
+                  <JFXTextField fx:id="txt_email" labelFloat="true" layoutX="40.0" layoutY="210.0" prefHeight="26.0" prefWidth="149.0" promptText="Email" />
+                  <JFXTextField fx:id="txt_salaire" labelFloat="true" layoutX="41.0" layoutY="252.0" prefHeight="26.0" prefWidth="149.0" promptText="Salaire" />
+                  <JFXButton id="btn_save" fx:id="btn_save" layoutX="17.0" layoutY="305.0" prefHeight="26.0" prefWidth="98.0" text="Enregistrer" />
+                  <JFXButton id="btn_add_new" fx:id="btn_add_new" layoutX="139.0" layoutY="305.0" prefHeight="26.0" prefWidth="98.0" text="Ajouter" />
+                  <JFXButton id="btn_edit" fx:id="btn_edit" layoutX="17.0" layoutY="349.0" prefHeight="26.0" prefWidth="98.0" text="Modifier" />
+                  <JFXButton id="btn_delete" fx:id="btn_delete" layoutX="140.0" layoutY="349.0" prefHeight="26.0" prefWidth="98.0" text="Supprimer" />
+                  <JFXTextField fx:id="idfld" editable="false" layoutX="213.0" layoutY="20.0" prefHeight="26.0" prefWidth="42.0" promptText="ID" visible="false" />
                </children>
             </AnchorPane>
             <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">
@@ -45,11 +47,12 @@
                   <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="662.0">
                     <columns>
                       <TableColumn id="col_nom" fx:id="col_nom" prefWidth="100.00006103515625" text="Nom" />
-                      <TableColumn id="col_prenom" fx:id="col_prenom" prefWidth="105.60003662109375" text="Prenom" />
-                        <TableColumn id="col_adresse" fx:id="col_adresse" prefWidth="124.79998779296875" text="Adresse" />
-                        <TableColumn id="col_telephone" fx:id="col_telephone" prefWidth="100.0" text="Telephone" />
-                        <TableColumn id="col_email" fx:id="col_email" prefWidth="125.60003662109375" text="Email" />
-                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="108.0" text="Salaire" />
+                      <TableColumn id="col_prenom" fx:id="col_prenom" prefWidth="88.00006103515625" text="Prenom" />
+                        <TableColumn id="col_adresse" fx:id="col_adresse" prefWidth="131.199951171875" text="Adresse" />
+                        <TableColumn id="col_telephone" fx:id="col_telephone" prefWidth="99.20001220703125" text="Telephone" />
+                        <TableColumn id="col_email" fx:id="col_email" prefWidth="140.00006103515625" text="Email" />
+                        <TableColumn id="col_id" fx:id="id" prefWidth="55.1998291015625" text="ID_hidden" visible="false" />
+                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="103.20004882812498" text="Salaire" />
                     </columns>
                   </TableView>
                   <TextField id="btn_recherche" fx:id="btn_recherche" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="656.0" promptText="Recherche" />
