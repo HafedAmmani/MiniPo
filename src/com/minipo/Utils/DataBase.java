@@ -9,14 +9,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+
 /**
  *
- * @author hafed
+ * @author House
  */
+
 public class DataBase {
-    String url = "jdbc:mysql://localhost:3306/minipot?useTimezone=true&serverTimezone=UTC";
-    String login = "root";
-    String pwd = "";
+     String url = "jdbc:mysql://localhost:3306/minipot";
+     String login = "root";
+     String pwd = "";
     public  static DataBase db;
     public Connection con;
     private DataBase() {
@@ -36,5 +39,9 @@ public class DataBase {
     {if(db==null)
         db=new DataBase();
     return db;
-    }
+    }     
+     
+     
+     
+     
 }
