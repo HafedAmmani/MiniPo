@@ -31,7 +31,8 @@ public class DataBase {
     public Connection  getConnection()
     {
     return con;
-    }     
+    }   
+    //fza mt3 l prof single ton 
     public static DataBase getInstance()
     {if(db==null)
         db=new DataBase();
