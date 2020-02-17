@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -92,7 +94,7 @@ public class EmployeController implements Initializable {
     private TableColumn<Employe, Integer> id;
 
     @FXML
-    private javafx.scene.control.TextField btn_recherche;
+    private JFXTextField fil_recherche;
     
     private ServiceEmploye ser = new ServiceEmploye();
     private int ID;
@@ -129,7 +131,7 @@ public class EmployeController implements Initializable {
                 Logger.getLogger(EmployeController.class.getName()).log(Level.SEVERE, null, ex);
             }
 		});
-        
+        recherche();
         
     }    
     private void SaveEmploye() throws SQLException{
@@ -185,12 +187,39 @@ public class EmployeController implements Initializable {
             id.setCellValueFactory(new PropertyValueFactory<>("idemp"));
             tblview.setItems(oblist);
 	}
-	
-//	private void refreshTable() throws SQLException {
-//            initTable();
-//            
-//            tblview.setItems((ObservableList<Employe>) ser.readAll());
-//            
-//	}
+      private void recherche(){
+      
+        // 1. Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Employe> filteredData = new FilteredList<>(oblist, p -> true);
         
+        // 2. Set the filter Predicate whenever the filter changes.
+        fil_recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+                
+                if (person.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                } else if (person.getPrenom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches last name.
+                }
+                return false; // Does not match.
+            });
+        });
+        
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<Employe> sortedData = new SortedList<>(filteredData);
+        
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(tblview.comparatorProperty());
+        
+        // 5. Add sorted (and filtered) data to the table.
+        tblview.setItems(sortedData);
+    }
+      
 }
