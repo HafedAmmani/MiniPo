@@ -13,9 +13,12 @@ import java.awt.Button;
 import java.awt.TextField;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -25,6 +28,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Cell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -134,19 +140,31 @@ public class EmployeController implements Initializable {
         recherche();
         
     }    
-    private void SaveEmploye() throws SQLException{
+    private void SaveEmploye() throws SQLException{ //modifier employe
+                Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Employe modifier avex sucess !.");
+		alert.setHeaderText(null);
             int id = Integer.parseInt(idfld.getText());
             Employe p1;
             p1 = new Employe(id,txt_nom.getText(), txt_prenom.getText(), txt_adresse.getText(), txt_tel.getText(), txt_email.getText(), txt_salaire.getText());
             ser.update(p1);
+            alert.setContentText("The Employe "+txt_nom.getText()+" "+txt_prenom.getText() +" has been updated.");
+            alert.showAndWait();
+            clear();
             initTable();
         
     }
     private void deleteEmploye() throws SQLException{
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Are you sure you want to delete selected?");
+		Optional<ButtonType> action = alert.showAndWait();
         Employe selected = tblview.getSelectionModel().getSelectedItem();
         ID = selected.getIdemp();
             Employe p1;
             p1 = new Employe(ID,txt_nom.getText(), txt_prenom.getText(), txt_adresse.getText(), txt_tel.getText(), txt_email.getText(), txt_salaire.getText());
+            if(action.get() == ButtonType.OK)
             ser.delete(p1);
             initTable();
     }
@@ -163,17 +181,26 @@ public class EmployeController implements Initializable {
     }
     
     private void insertNewEmploye() throws SQLException{ // for adding new Employe
-        
+                Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Employe enregistrer avec succes.");
+		alert.setHeaderText(null);
+        if(validate("Nom", txt_nom.getText(), "[a-zA-Z]+") && 
+             validate("Prenom", txt_prenom.getText(), "[a-zA-Z]+") &&
+               validate("Addresse", txt_adresse.getText(), "[a-zA-Z]+") &&
+                validate("Telephone", txt_tel.getText(), "[0-9]+") && 
+                 validate("Email", txt_email.getText(), "[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+") &&
+                  validate("Salaire", txt_salaire.getText(), "[0-9]+") )  
+    	   {
+
         Employe p1;
         p1 = new Employe(txt_nom.getText(), txt_prenom.getText(), txt_adresse.getText(), txt_tel.getText(), txt_email.getText(), txt_salaire.getText());
         ser.ajouter(p1);
-        txt_nom.setText("");
-        txt_prenom.setText("");
-        txt_adresse.setText("");
-        txt_tel.setText("");
-        txt_email.setText("");
-        txt_salaire.setText("");
+            alert.setContentText("Employe "+txt_nom.getText()+" "+txt_prenom.getText() +" est ajouté.");
+            alert.showAndWait();
+        clear();
         initTable();
+                        
+        }
     }
     
     private void initTable() {
@@ -187,6 +214,14 @@ public class EmployeController implements Initializable {
             id.setCellValueFactory(new PropertyValueFactory<>("idemp"));
             tblview.setItems(oblist);
 	}
+    private void clear(){
+            txt_nom.clear();
+            txt_prenom.clear();
+            txt_adresse.clear();
+            txt_tel.clear();
+            txt_email.clear();
+            txt_salaire.clear();
+    }
       private void recherche(){
       
         // 1. Wrap the ObservableList in a FilteredList (initially display all data).
@@ -222,4 +257,45 @@ public class EmployeController implements Initializable {
         tblview.setItems(sortedData);
     }
       
+      
+      
+        /*
+	 * Validations
+	 */
+	private boolean validate(String field, String value, String pattern){
+		if(!value.isEmpty()){
+		Pattern p = Pattern.compile(pattern);
+	        Matcher m = p.matcher(value);
+	        if(m.find() && m.group().equals(value)){
+	            return true;
+	        }else{
+	        	validationAlert(field, false);            
+	            return false;            
+	        }
+		}else{
+			validationAlert(field, true);            
+            return false;
+		}        
+    }
+	
+	private boolean emptyValidation(String field, boolean empty){
+        if(!empty){
+            return true;
+        }else{
+        	validationAlert(field, true);            
+            return false;            
+        }
+    }	
+	
+	private void validationAlert(String field, boolean empty){
+	Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Validation Error");
+        alert.setHeaderText(null);
+        if(field.equals("Role")) alert.setContentText("Please Select "+ field);
+        else{
+        	if(empty) alert.setContentText("Please Enter "+ field);
+        	else alert.setContentText("Please Enter Valid "+ field);
+        }
+        alert.showAndWait();
+	}  
 }
