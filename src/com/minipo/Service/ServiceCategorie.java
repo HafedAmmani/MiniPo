@@ -29,6 +29,12 @@ public class ServiceCategorie implements IService<Categorie> {
         con = DataBase.getInstance().getConnection();
     }
     
+    public boolean existeCategorie(Categorie t)  throws SQLException {
+        ste=con.createStatement();
+        ResultSet rs=ste.executeQuery("select * from categorie where `idcateg`="+t.getIdcateg()+";");
+        return rs.isBeforeFirst();
+    }
+    
     @Override
     public void ajouter(Categorie t) throws SQLException {
         PreparedStatement pre = con.prepareStatement("INSERT INTO `minipot`.`categorie` ( `idcateg`, `nom`) VALUES ( ?, ?);");
@@ -39,18 +45,25 @@ public class ServiceCategorie implements IService<Categorie> {
 
     @Override
     public boolean delete(Categorie t) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`categorie` WHERE idcateg=?");
-        pre.setInt(1, t.getIdcateg());
-        int  ex=pre.executeUpdate();
-        return ex!=0;    }
+       if (existeCategorie(t)) return false;
+       else {
+           ste= con.createStatement();
+           String deleteRequest ="DELETE FROM `categorie` WHERE `idcateg`="+t.getIdcateg()+";";
+           ste.executeUpdate(deleteRequest);
+           return true;
+       }
+    }
 
     @Override
     public boolean update(Categorie t) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("UPDATE `categorie` SET nom = ?");
-        
+        PreparedStatement pre=con.prepareStatement("UPDATE `categorie` SET nom = ? where idcateg=?");
         pre.setString(1, t.getNom());
-        int ex=pre.executeUpdate();
-        return ex==1;
+        pre.setInt(2, t.getIdcateg());
+        int rows=pre.executeUpdate();
+        return rows!=0;
+        
+        
+        
     }
 
     @Override

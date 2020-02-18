@@ -26,43 +26,32 @@ public class MiniPo {
     public static void main(String[] args) {
         
         //TEST ajout produit
-        ServiceProduit ser = new ServiceProduit();
-        
+        //ServiceProduit ser = new ServiceProduit();
+        /*
         Produit p1 = new Produit("designation", 44, 10,5,5);
         
         try {
-//         
+       
             ser.ajouter(p1);
             List<Produit> list = ser.readAll();
             System.out.println(list);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        //TEST ajout fournisseur
-        ServiceFournisseur four = new ServiceFournisseur();
+        */
+        ServiceProduit ser = new ServiceProduit();
         
-        Fournisseur p2 = new Fournisseur("Mohamed Ali", "12 rue christophe colomb nkilette", "93812351", "yacine.ezdini@gmail.com");
-        
+        Produit p1 = new Produit("une autre designation", 40, 50, 1, 1);
         try {
-            four.ajouter(p2);
-            List<Fournisseur> listF = four.readAll();
-            System.out.println(listF);
-        } catch (SQLException exx) {
-            System.out.println(exx);
+            ser.ajouter(p1);
+            List<Produit> list = ser.readAll();
+            System.out.println(list);
+            ser.delete(p1);
+            System.out.println(list);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
-        // Test ajout Categorie
-        ServiceCategorie catg = new ServiceCategorie();
         
-        Categorie p3= new Categorie("Huawei");
-        
-        try{
-            
-            catg.delete(p3);
-            List<Categorie> listC = catg.readAll();
-            System.out.println(listC);
-        } catch (SQLException exxx) {
-            System.out.println(exxx);
-        }
         
     }
 }

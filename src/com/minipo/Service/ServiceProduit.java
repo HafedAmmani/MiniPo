@@ -31,6 +31,12 @@ public class ServiceProduit implements IService<Produit>{
 
     }
     
+    public boolean existeProduit(Produit t)  throws SQLException {
+        ste=con.createStatement();
+        ResultSet rs=ste.executeQuery("select * from produit where `idcateg`="+t.getIdcateg()+";");
+        return rs.isBeforeFirst();
+    }
+    
     @Override
     public void ajouter(Produit t) throws SQLException {
         PreparedStatement pre=con.prepareStatement("INSERT INTO `minipot`.`produit` ( `idprod`, `designation`, `qtestock`, `prix`, `idcateg`, `idf`) VALUES ( ?, ?, ?, ?, ?, ?);");
@@ -45,13 +51,18 @@ public class ServiceProduit implements IService<Produit>{
 
     @Override
     public boolean delete(Produit t) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`produit` WHERE idprod='1'");
-        int  ex=pre.executeUpdate();
-        return ex!=0;
+        if (existeProduit(t)) return false;
+       else {
+           ste= con.createStatement();
+           String deleteRequest ="DELETE FROM produit WHERE idprod="+t.getIdprod()+";";
+           ste.executeUpdate(deleteRequest);
+           return true;
+       }
     }
 
     @Override
     public boolean update(Produit t) throws SQLException {
+        /*
         PreparedStatement pre=con.prepareStatement("UPDATE `produit` SET designation = ? , qtestock = ? , prix = ?, idcateg = ?, idf= ?");
         
         pre.setString(1, t.getDesignation());
@@ -61,6 +72,16 @@ public class ServiceProduit implements IService<Produit>{
         pre.setInt(5, t.getIdf());
         int ex=pre.executeUpdate();
         return ex==1;
+        */
+        
+        PreparedStatement pre=con.prepareStatement("UPDATE `produit` SET designation = ? , qtestock = ? , prix = ?, idcateg = ?, idf= ?");
+        pre.setString(1, t.getDesignation());
+        pre.setInt(2, t.getQtestock());
+        pre.setFloat(3, t.getPrix());
+        pre.setInt(4, t.getIdcateg());
+        pre.setInt(5, t.getIdf());
+        int rows=pre.executeUpdate();
+        return rows!=0;
     }
 
     @Override
