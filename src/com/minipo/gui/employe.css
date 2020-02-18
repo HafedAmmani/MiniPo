@@ -26,6 +26,9 @@
 #btn_print_preview{
 	-fx-background-color: rgb(54,119,171);
 }
+#btn_add_eq{
+    -fx-text-fill:#000;
+}
 
 .button{
 	-fx-opacity: 0.9;

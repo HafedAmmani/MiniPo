@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -16,14 +18,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.minipo.gui.EmployeController">
+<AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.minipo.gui.EquipeController">
     <stylesheets>
         <URL value="@employe.css" />
     </stylesheets>
    <children>
       <Pane id="pane_top" layoutX="195.0" prefHeight="56.0" prefWidth="986.0">
          <children>
-            <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Ajouter Employe">
+            <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Affectation des equipes">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
@@ -32,36 +34,46 @@
       </Pane>
       <AnchorPane id="anchorpane_center" layoutX="204.0" layoutY="70.0" prefHeight="482.0" prefWidth="965.0">
          <children>
-            <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="267.0">
+            <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="254.0">
                <children>
-                  <JFXTextField fx:id="txt_nom" labelFloat="true" layoutX="40.0" layoutY="22.0" prefHeight="26.0" prefWidth="149.0" promptText="Nom" />
-                  <JFXTextField fx:id="txt_prenom" labelFloat="true" layoutX="39.0" layoutY="73.0" prefHeight="26.0" prefWidth="149.0" promptText="Prenom" />
-                  <JFXTextField fx:id="txt_adresse" labelFloat="true" layoutX="39.0" layoutY="121.0" prefHeight="26.0" prefWidth="149.0" promptText="Adresse" />
-                  <JFXTextField fx:id="txt_tel" labelFloat="true" layoutX="41.0" layoutY="166.0" prefHeight="26.0" prefWidth="149.0" promptText="Telephone" />
-                  <JFXTextField fx:id="txt_email" labelFloat="true" layoutX="40.0" layoutY="210.0" prefHeight="26.0" prefWidth="149.0" promptText="Email" />
-                  <JFXTextField fx:id="txt_salaire" labelFloat="true" layoutX="41.0" layoutY="252.0" prefHeight="26.0" prefWidth="149.0" promptText="Salaire" />
-                  <JFXButton id="btn_save" fx:id="btn_save" layoutX="17.0" layoutY="305.0" prefHeight="26.0" prefWidth="98.0" text="Enregistrer" />
-                  <JFXButton id="btn_add_new" fx:id="btn_add_new" layoutX="139.0" layoutY="305.0" prefHeight="26.0" prefWidth="98.0" text="Ajouter" />
-                  <JFXButton id="btn_edit" fx:id="btn_edit" layoutX="17.0" layoutY="349.0" prefHeight="26.0" prefWidth="98.0" text="Modifier" />
-                  <JFXButton id="btn_delete" fx:id="btn_delete" layoutX="140.0" layoutY="349.0" prefHeight="26.0" prefWidth="98.0" text="Supprimer" />
+                  <JFXButton fx:id="btn_add_new" layoutX="38.0" layoutY="232.0" prefHeight="26.0" prefWidth="98.0" text="Affecter" />
                   <JFXTextField fx:id="idfld" editable="false" layoutX="213.0" layoutY="20.0" prefHeight="26.0" prefWidth="42.0" promptText="ID" visible="false" />
+                  <Label layoutX="17.0" layoutY="25.0" prefHeight="26.0" prefWidth="171.0" text="Affecter Equipe">
+                     <font>
+                        <Font name="Footlight MT Light" size="23.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox labelFloat="true" layoutX="17.0" layoutY="88.0" prefHeight="26.0" prefWidth="171.0" promptText="Nom Employe" />
+                  <JFXComboBox labelFloat="true" layoutX="14.0" layoutY="168.0" prefHeight="26.0" prefWidth="171.0" promptText="Nom Equipe" />
+                  <JFXButton id="btn_add_eq" layoutX="205.0" layoutY="170.0" prefHeight="26.0" prefWidth="22.0" style="-fx-background-color: #D9D9D9;" text="+">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  
                </children>
             </AnchorPane>
-            <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">
+            <AnchorPane id="anchorpane_right" layoutX="280.0" layoutY="16.0" prefHeight="450.0" prefWidth="290.0">
                <children>
-                  <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="662.0">
+                  <Label layoutX="107.0" layoutY="26.0" prefHeight="26.0" prefWidth="98.0" text="Goné " textAlignment="CENTER">
+                     <font>
+                        <Font name="Footlight MT Light" size="23.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox labelFloat="true" layoutX="21.0" layoutY="86.0" prefHeight="26.0" prefWidth="171.0" promptText="Nom Employe" />
+                  <JFXTextField labelFloat="true" layoutX="21.0" layoutY="163.0" prefHeight="26.0" prefWidth="171.0" promptText="Durée" />
+                  <JFXTextArea labelFloat="true" layoutX="21.0" layoutY="225.0" prefHeight="36.0" prefWidth="207.0" promptText="Raison" />
+                  <JFXButton id="btn_add_new" fx:id="btn_add_new1" layoutX="75.0" layoutY="292.0" prefHeight="26.0" prefWidth="98.0" text="Enregistrer" />
+               </children></AnchorPane>
+            <AnchorPane id="anchorpane_right" layoutX="594.0" layoutY="16.0" prefHeight="450.0" prefWidth="354.0">
+               <children>
+                  <TableView layoutX="23.0" layoutY="104.0" prefHeight="331.0" prefWidth="314.0">
                     <columns>
-                      <TableColumn id="col_nom" fx:id="col_nom" prefWidth="100.00006103515625" text="Nom" />
-                      <TableColumn id="col_prenom" fx:id="col_prenom" prefWidth="88.00006103515625" text="Prenom" />
-                        <TableColumn id="col_adresse" fx:id="col_adresse" prefWidth="131.199951171875" text="Adresse" />
-                        <TableColumn id="col_telephone" fx:id="col_telephone" prefWidth="99.20001220703125" text="Telephone" />
-                        <TableColumn id="col_email" fx:id="col_email" prefWidth="140.00006103515625" text="Email" />
-                        <TableColumn id="col_id" fx:id="id" prefWidth="55.1998291015625" text="ID_hidden" visible="false" />
-                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="103.20004882812498" text="Salaire" />
+                      <TableColumn prefWidth="157.5999755859375" text="Employe" />
+                      <TableColumn prefWidth="156.0" text="Equipe" />
                     </columns>
                   </TableView>
-                  <JFXTextField id="fil_recherche" fx:id="fil_recherche" layoutX="26.0" layoutY="14.0" onKeyTyped="#recherche" opacity="0.56" prefHeight="26.0" prefWidth="177.0" promptText="Recherhce" />
-                  <JFXButton id="btn_print_preview" layoutX="574.0" layoutY="14.0" prefHeight="26.0" prefWidth="98.0" text="Imprimer" />
+                  <JFXComboBox labelFloat="true" layoutX="23.0" layoutY="46.0" prefHeight="26.0" prefWidth="171.0" promptText="Nom Equipe" />
                </children>
             </AnchorPane>
          </children>
@@ -78,7 +90,7 @@
                </children>
             </Pane>
             <Pane id="pane_top" prefHeight="14.0" prefWidth="214.0" />
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="216.0" stylesheets="@fullpackstyling.css" text="Ajouter Emlpoye">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#redirectToEmp" prefHeight="56.0" prefWidth="216.0" stylesheets="@fullpackstyling.css" text="Ajouter Emlpoye">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -93,7 +105,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#redirectToEq" prefHeight="56.0" prefWidth="217.0" stylesheets="@fullpackstyling.css" text="Affectation">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#redirectToEmp" prefHeight="56.0" prefWidth="217.0" stylesheets="@fullpackstyling.css" text="Affectation">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

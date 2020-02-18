@@ -11,6 +11,7 @@ import com.minipo.Entite.Employe;
 import com.minipo.Service.ServiceEmploye;
 import java.awt.Button;
 import java.awt.TextField;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -28,11 +29,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Cell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 
 
@@ -137,8 +143,19 @@ public class EmployeController implements Initializable {
                 Logger.getLogger(EmployeController.class.getName()).log(Level.SEVERE, null, ex);
             }
 		});
-        recherche();
+        //recherche();
         
+    }
+    @FXML
+    private void redirectToEq(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("Equipe.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
     }    
     private void SaveEmploye() throws SQLException{ //modifier employe
                 Alert alert = new Alert(AlertType.INFORMATION);
@@ -222,6 +239,7 @@ public class EmployeController implements Initializable {
             txt_email.clear();
             txt_salaire.clear();
     }
+    @FXML
       private void recherche(){
       
         // 1. Wrap the ObservableList in a FilteredList (initially display all data).
