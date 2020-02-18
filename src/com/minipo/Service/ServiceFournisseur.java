@@ -29,12 +29,6 @@ public class ServiceFournisseur implements IService<Fournisseur>{
         con = DataBase.getInstance().getConnection();
     }
     
-    public boolean existeFournisseur(Fournisseur r)  throws SQLException {
-        ste=con.createStatement();
-        ResultSet rs=ste.executeQuery("select * from fournisseur where `idh`="+r.getIdf()+";");
-        return rs.isBeforeFirst();
-    }
-    
     @Override
     public void ajouter(Fournisseur t) throws SQLException {
         PreparedStatement pre = con.prepareStatement("INSERT INTO `minipot`.`fournisseur` ( `idf`, `nom`, `adresse`, `tel`, `email`) VALUES ( ?, ?, ?, ?, ?);");
@@ -49,7 +43,8 @@ public class ServiceFournisseur implements IService<Fournisseur>{
 
     @Override
     public boolean delete(Fournisseur t) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`fournisseur` WHERE idf='1'");
+        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`fournisseur` WHERE idf=?;");
+        pre.setInt(1, t.getIdf());
         int ex=pre.executeUpdate();
         return ex!=0;
     }

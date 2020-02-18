@@ -25,33 +25,6 @@ public class MiniPo {
      */
     public static void main(String[] args) {
         
-        //TEST ajout produit
-        //ServiceProduit ser = new ServiceProduit();
-        /*
-        Produit p1 = new Produit("designation", 44, 10,5,5);
-        
-        try {
-       
-            ser.ajouter(p1);
-            List<Produit> list = ser.readAll();
-            System.out.println(list);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        */
-        ServiceProduit ser = new ServiceProduit();
-        
-        Produit p1 = new Produit("une autre designation", 40, 50, 1, 1);
-        try {
-            ser.ajouter(p1);
-            List<Produit> list = ser.readAll();
-            System.out.println(list);
-            ser.delete(p1);
-            System.out.println(list);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        
         
     }
 }
