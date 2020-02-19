@@ -5,8 +5,11 @@
  */
 package com.minipo.Utils;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -19,7 +22,7 @@ public class DataBase {
     String pwd = "";
     public  static DataBase db;
     public Connection con;
-    private DataBase() {
+    public DataBase() {
          try {
              con=DriverManager.getConnection(url, login, pwd);
              System.out.println("connexion etablie");
@@ -37,4 +40,24 @@ public class DataBase {
         db=new DataBase();
     return db;
     }
+    private ResultSet rs;
+    private PreparedStatement pstmt;
+    public InputStream getReport(String report_name, String column_name) {
+		InputStream input = null;
+		String query = "SELECT "+column_name+" FROM report WHERE report_name='"+report_name+"'";
+		try {
+			
+			con = db.getConnection();
+			pstmt = con.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				input = rs.getBinaryStream(1);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return input;
+	}
 }

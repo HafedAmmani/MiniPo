@@ -81,6 +81,8 @@ public class EmployeController implements Initializable {
 
     @FXML
     private JFXButton btn_delete;
+    @FXML
+    private JFXButton btn_print_preview;
     
     @FXML
     private TableView<Employe> tblview;
@@ -143,6 +145,9 @@ public class EmployeController implements Initializable {
                 Logger.getLogger(EmployeController.class.getName()).log(Level.SEVERE, null, ex);
             }
 		});
+        btn_print_preview.setOnAction(e->{
+			printReport();
+		});
         //recherche();
         
     }
@@ -157,6 +162,9 @@ public class EmployeController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }    
+    public void printReport() {
+        ser.printReport();
+    }
     private void SaveEmploye() throws SQLException{ //modifier employe
                 Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Employe modifier avex sucess !.");

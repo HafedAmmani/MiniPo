@@ -8,13 +8,17 @@ package com.minipo.Service;
 import com.minipo.Entite.Employe;
 import com.minipo.IService.IService;
 import com.minipo.Utils.DataBase;
+import com.minipo.gui.Report;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -86,6 +90,16 @@ public class ServiceEmploye implements IService<Employe>{
      }
     return arr;
     }
+   
+    private Map<String, Object> map;
+    DataBase dao = new DataBase();
+    public void printReport() {
+		
+		map = new HashMap<String, Object>();
+		
+		Report.createReport(con, map, dao.getReport("Emlpoye_report", "report_jasper"));
+		Report.showReport();
+	}
 //    private ResultSet rs;
 //    private PreparedStatement pstmt;
 //    public ObservableList<Employe> getAllEmployeData(){

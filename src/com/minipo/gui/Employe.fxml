@@ -61,7 +61,7 @@
                     </columns>
                   </TableView>
                   <JFXTextField id="fil_recherche" fx:id="fil_recherche" layoutX="26.0" layoutY="14.0" onKeyTyped="#recherche" opacity="0.56" prefHeight="26.0" prefWidth="177.0" promptText="Recherhce" />
-                  <JFXButton id="btn_print_preview" layoutX="574.0" layoutY="14.0" prefHeight="26.0" prefWidth="98.0" text="Imprimer" />
+                  <JFXButton id="btn_print_preview" fx:id="btn_print_preview" layoutX="574.0" layoutY="14.0" prefHeight="26.0" prefWidth="98.0" text="Imprimer" />
                </children>
             </AnchorPane>
          </children>
