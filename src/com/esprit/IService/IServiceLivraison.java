@@ -14,10 +14,11 @@ import java.util.List;
  * @author House
  */
 public interface IServiceLivraison<T> {
+   
     void ajouterLivraison(T t) throws SQLException;
     boolean deleteLivraison(T t) throws SQLException;
     boolean updateLivraison(T t) throws SQLException;
-    List<T> RechercheParCommande() throws SQLException;
+    List<T> RechercheLivraisonParDate() throws SQLException;
     List<T> readAllLivraison() throws SQLException;
 }
 

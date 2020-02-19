@@ -13,9 +13,9 @@ import java.util.List;
 import java.sql.*;
 import com.minipo.Utils.DataBase;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import com.esprit.IService.IServiceCommande;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -24,7 +24,7 @@ import com.esprit.IService.IServiceCommande;
 
 public class ServiceCommande implements IServiceCommande<Commande> {
 
-    private Connection con;
+    private final Connection con;
     private Statement ste;
 
     public ServiceCommande() {
@@ -69,5 +69,34 @@ public class ServiceCommande implements IServiceCommande<Commande> {
      arr.add(p);
      }
     return arr;
+    }
+
+    @Override
+    public List<Commande> readIdCommande() throws SQLException {
+         List<Commande> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select idcmd from commande where etatc='validéé'");
+     while (rs.next()) {                
+               Integer idcmd=rs.getInt("idcmd");
+               Commande p=new Commande(idcmd);
+     arr.add(p);
+     }
+    return arr;
+    }
+    
+    public ObservableList<String> getIdCommande() {
+        ObservableList list = FXCollections.observableArrayList();
+        ResultSet rs;//   obList.clear();
+         try {
+	    PreparedStatement st= con.prepareStatement("select idcmd from commande");
+	    ResultSet res= st.executeQuery();
+     while (res.next()) {        
+               int idcmd=res.getInt("idcmd");
+                list.add(String.valueOf(idcmd));
+     }
+     st.close();
+      } catch (SQLException ex) {
+        }
+         return list;
     }
 }

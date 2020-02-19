@@ -33,6 +33,10 @@ public class Commande {
         this.idfact = idfact;
     }
 
+    public Commande(Integer idc) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getIdcmd() {
         return idcmd;
     }

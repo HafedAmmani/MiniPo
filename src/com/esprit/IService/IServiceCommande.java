@@ -18,5 +18,6 @@ public interface IServiceCommande<T> {
     boolean deleteCommande(T t) throws SQLException;
     boolean updateCommande(T t) throws SQLException;
     List<T> readAllCommande() throws SQLException;
+    List<T> readIdCommande() throws SQLException;
 }
 

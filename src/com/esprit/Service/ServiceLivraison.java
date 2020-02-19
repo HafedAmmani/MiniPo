@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.esprit.IService.IServiceLivraison;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -40,10 +42,12 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
 
     @Override
     public boolean deleteLivraison(Livraison liv) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`livraison` WHERE `idl` = '5'");
-        pre.executeUpdate();
-        return true;
+        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`livraison` WHERE `idl` = ? ");
+        pre.setInt(1, liv.getIdl());
+        int ex=pre.executeUpdate();
+        return ex!=0;
     }
+    
 
     @Override
     public boolean updateLivraison(Livraison liv) throws SQLException {
@@ -70,7 +74,7 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
     }
 
     @Override
-    public List<Livraison> RechercheParCommande() throws SQLException {
+    public List<Livraison> RechercheLivraisonParDate() throws SQLException {
         List<Livraison> list=new ArrayList<>();
     ste=con.createStatement();
     ResultSet rs=ste.executeQuery("select * from livraison liv,commande c WHERE c.idcmd=liv.idc ORDER BY c.datec ASC");
@@ -85,4 +89,42 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
      }
     return list; 
     }
+    public ObservableList<Livraison> getAllLivraison() {
+        
+        ObservableList obList = FXCollections.observableArrayList();
+        
+         try {
+             PreparedStatement st=con.prepareStatement("select * from livraison");
+//	    PreparedStatement st= con.prepareStatement("select * from livraison liv,commande c WHERE c.idcmd=liv.idc ORDER BY c.datec ASC");
+	    ResultSet res= st.executeQuery();
+     while (res.next()) {        
+               Integer idliv=res.getInt("idliv");
+               String destination=res.getString("destination");
+               String etatl=res.getString("etatl");
+               Integer idc=res.getInt("idc");
+               Integer idl=res.getInt("idl");
+                obList.add(new Livraison(idliv, destination, etatl, idc, idl));
+                
+     }
+     st.close();
+      } catch (SQLException ex) {
+        }
+         return obList;
+    }
+    public ObservableList<String> getIdLivreur() {
+        ObservableList list = FXCollections.observableArrayList();
+        ResultSet rs;//   obList.clear();
+         try {
+	    PreparedStatement st= con.prepareStatement("select idliv from livraison");
+	    ResultSet res= st.executeQuery();
+     while (res.next()) {        
+               int idliv=res.getInt("idliv");
+                list.add(String.valueOf(idliv));
+     }
+     st.close();
+      } catch (SQLException ex) {
+        }
+         return list;
+    }
+    
 }

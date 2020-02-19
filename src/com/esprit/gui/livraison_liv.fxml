@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="845.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.LivraisonController">
+    <stylesheets>
+        <URL value="@employe.css" />
+    </stylesheets>
+   <children>
+      <Pane id="pane_top" prefHeight="56.0" prefWidth="1181.0">
+         <children>
+            <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Ajouter une livraison">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <AnchorPane id="anchorpane_center" layoutX="76.0" layoutY="70.0" prefHeight="482.0" prefWidth="1004.0">
+         <children>
+            <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="481.0">
+               <children>
+                  <TextField fx:id="destinantion" layoutX="25.0" layoutY="138.0" promptText="Destination" />
+                  <ComboBox fx:id="id_cmd" layoutX="25.0" layoutY="65.0" prefHeight="31.0" prefWidth="187.0" promptText="Commande" />
+                  <ComboBox fx:id="id_liv" layoutX="26.0" layoutY="284.0" prefHeight="31.0" prefWidth="194.0" promptText="Livreur" />
+                  <DatePicker fx:id="id_date" layoutX="25.0" layoutY="210.0" prefHeight="31.0" prefWidth="215.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">
+               <children>
+                  <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="662.0">
+                    <columns>
+                      <TableColumn id="col_nom" fx:id="col_idliv" prefWidth="100.00006103515625" text="Id livraison" />
+                      <TableColumn id="col_prenom" fx:id="col_dest" prefWidth="137.0" text="Destination" />
+                        <TableColumn id="col_adresse" fx:id="col_etatl" prefWidth="153.0" text="Etat livraison" />
+                        <TableColumn id="col_email" fx:id="col_idc" prefWidth="122.0" text="Id commande" />
+                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="148.0" text="Id livreur" />
+                    </columns>
+                  </TableView>
+                  
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

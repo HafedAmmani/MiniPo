@@ -29,7 +29,6 @@ public class MAIN {
 //         
             //ser.ajouter1(l2);
             //ser.ajouterLivreur(l1);
-            ser.updateLivreur(l2);
             List<Livreur> list = ser.readAllLivreur();
             List<Livraison> listliv = serliv.readAllLivraison();
             System.out.println(list);
