@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ReclamationEmployeController">
+   <children>
+      <TextField fx:id="sujetRec" layoutX="34.0" layoutY="76.0" />
+      <TextArea fx:id="description" layoutX="34.0" layoutY="115.0" prefHeight="200.0" prefWidth="315.0" />
+      <Label layoutX="173.0" layoutY="26.0" prefHeight="50.0" prefWidth="273.0" text="Reclamation  Employe">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnReclamer" layoutX="395.0" layoutY="334.0" mnemonicParsing="false" onAction="#AjouterReclamationEmploye" text="Reclamer" />
+      <Button fx:id="btnAnnuler" layoutX="482.0" layoutY="334.0" mnemonicParsing="false" onAction="#AnnulerReclamation" text="Annuler" />
+   </children>
+</AnchorPane>

@@ -14,13 +14,31 @@ import java.sql.Date;
 public class Reclamationemploye {
     private int idRemp ;
     private int idemp;
+    private String objet;
     private String description;
     private Date dateRemp;
     private String etatRemp;
 
     public Reclamationemploye() {
     }
-    
+
+    public Reclamationemploye(int idRemp, String objet, String description,String etatRemp, Date dateRemp ) {
+        this.idRemp = idRemp;
+        this.objet = objet;
+        this.description = description;
+        this.etatRemp = etatRemp;
+        this.dateRemp = dateRemp;
+        
+    }
+
+    public Reclamationemploye(int idemp, String objet, String description, Date dateRemp, String etatRemp) {
+        this.idemp = idemp;
+        this.objet = objet;
+        this.description = description;
+        this.dateRemp = dateRemp;
+        this.etatRemp = etatRemp;
+    }
+
     
 
     public Reclamationemploye(int idRemp,int idemp, String description, Date dateRemp, String etatRemp) {
@@ -45,11 +63,13 @@ public class Reclamationemploye {
         this.etatRemp = etatRemp;
     }
 
-    public Reclamationemploye(int idemp, String description, String etatRemp) {
+    public Reclamationemploye(int idemp, String objet, String description) {
         this.idemp = idemp;
+        this.objet = objet;
         this.description = description;
-        this.etatRemp = etatRemp;
     }
+
+    
 
     public void setIdemp(int idemp) {
         this.idemp = idemp;
@@ -91,6 +111,13 @@ public class Reclamationemploye {
         this.etatRemp = etatRemp;
     }
     
+       public String getObjet() {
+        return objet;
+    }
+
+    public void setObjet(String objet) {
+        this.objet = objet;
+    }
     
     
     

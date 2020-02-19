@@ -6,6 +6,7 @@
 package com.esprit.Service;
 
 
+import com.esprit.Entite.Reclamation;
 import com.esprit.Entite.Reclamationemploye;
 import com.esprit.Utils.DataBase;
 import java.sql.Connection;
@@ -16,8 +17,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
-import java.util.Date; 
 import java.sql.Time;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -34,12 +36,13 @@ public class ServiceReclamationEmploye {
     }
     public void ajouterReclamationEmploye(Reclamationemploye r) throws SQLException
     {
-    PreparedStatement ps=con.prepareStatement("INSERT INTO `minipot`.`reclamationemploye` ( `idRemp`,`idemp`, `description`, `dateRemp`,`etatRemp`) VALUES ( ?,?, ?, ?, ?);");
-    ps.setInt(1, r.getIdRemp());
-    ps.setInt(2, r.getIdemp());
+    PreparedStatement ps=con.prepareStatement("INSERT INTO `minipot`.`reclamationemploye` ( `id`, `objet`, `description`) VALUES ( ?,?,?);");
+    //ps.setInt(1, r.getIdRemp());
+    ps.setInt(1, r.getIdemp());
+    ps.setString(2,r.getObjet());
     ps.setString(3,r.getDescription());
-    ps.setDate(4, r.getDateRemp());
-    ps.setString(5, r.getEtatRemp());
+    //ps.setDate(5, r.getDateRemp());
+    //ps.setString(6, r.getEtatRemp());
     ps.executeUpdate();
     }
     
@@ -82,6 +85,40 @@ public class ServiceReclamationEmploye {
      }
     return rec;
     }
+       
+        public ObservableList<Object> ListertoutesLesReclamations() throws SQLException{
+             //List<Reclamation> rec=new ArrayList<>();
+             ObservableList oblist = FXCollections.observableArrayList();
+             ste=con.createStatement();
+             
+             
+             //ResultSet rs=ste.executeQuery("select r.idr,r.type,r.objet,r.description,r.etatr,r.dater,u.Firstname,u.Lastname from reclamation r ,user u where r.id=u.id;");
+             ResultSet rs=ste.executeQuery("select r.idRemp,r.objet,r.objet,r.description,r.etatRemp,r.dateRemp,u.firstname,u.lastname from reclamation r inner join user u on  (r.id=u.id);");
+             while (rs.next()) {
+                //ResultSet rsu=ste.executeQuery("select * from user where id= "+rs.getInt("id"));
+                //String nom="";
+                //String prenom="";
+                /*while (rsu.next()) {
+                    nom=rsu.getString("firstname");
+                    prenom=rsu.getString("lastname");
+                }*/
+                
+         //Reclamation r=new Reclamation();
+             int idr= rs.getInt("idr");
+             //String type= rs.getString("type");
+             String objet= rs.getString("objet");
+             String description= rs.getString("description");
+             String etatr= rs.getString("etatr");
+             String nom=rs.getString("firstname");
+             String prenom=rs.getString("lastname");
+             java.sql.Date dateR=rs.getDate("dateRemp");
+             oblist.add(new Reclamation(idr, objet, description, etatr, dateR));
+  
+     }
+            
+        return oblist;
+            
+        }
        
        public List<Reclamationemploye> ChercherReclamationParIdId(int idemp ) throws SQLException {
     List<Reclamationemploye> rec=new ArrayList<>();

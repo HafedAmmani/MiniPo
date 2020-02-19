@@ -7,6 +7,8 @@ package com.esprit.Entite;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Objects;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -14,15 +16,91 @@ import java.time.LocalDate;
  */
 public class Reclamation {
     private int idR;
-    private int idclt;
     private int idcmd;
+    private int id;
+    private String type;
+    private String objet;
     private String description;
-    private Date dateR;
     private String  etatr;
+    private String firstname;
+    private String lastname;
+    private Date dateR;
+    //private Button button;
+    //private User client;
+
+    public Reclamation(String type, String objet, String description) {
+        this.type = type;
+        this.objet = objet;
+        this.description = description;
+    }
+ public Reclamation(int idR, String type, String objet, String description, String etatr, String nom, String prenom, Date dateR) {
+        this.idR = idR;
+        this.type = type;
+        this.objet = objet;
+        this.description = description;
+        this.etatr = etatr;
+        this.dateR = dateR;
+        //this.button=new Button("traiter");
+    }
+    public Reclamation(int idR, String type, String objet, String description, String etatr, String nom, String prenom, Date dateR,Button button) {
+        this.idR = idR;
+        this.type = type;
+        this.objet = objet;
+        this.description = description;
+        this.etatr = etatr;
+        this.dateR = dateR;
+        //this.button=new Button("traiter");
+    }
+
+    public Reclamation(String type, String objet, String description, String etatr, Date dateR) {
+        this.type = type;
+        this.objet = objet;
+        this.description = description;
+        this.etatr = etatr;
+        this.dateR = dateR;
+    }
+    
+
+    /*public User getClient() {
+        return client;
+    }
+
+    public void setClient(User client) {
+        this.client = client;
+    }*/
+
+    public Reclamation(int idR, int idclt, int idcmd, String type, String objet, String description, String etatr, String nom, String prenom, Date dateR) {
+        this.idR = idR;
+        this.id = idclt;
+        this.idcmd = idcmd;
+        this.type = type;
+        this.objet = objet;
+        this.description = description;
+        this.etatr = etatr;
+        this.dateR = dateR;
+        //this.client = client;
+        //this.firstname=nom;
+        //this.lastname=prenom;
+        
+        
+    }
+
+    public Reclamation(int idR, String type, String objet, String description, String etatr, Date dateR, User client) {
+        this.idR = idR;
+        this.type = type;
+        this.objet = objet;
+        this.description = description;
+        this.etatr = etatr;
+        this.dateR = dateR;
+        //this.client = client;
+    }
+
+   
+    
 
     public Reclamation(int idR, int idclt, int idcmd, String description, Date dateR, String etat) {
         this.idR = idR;
-        this.idclt = idclt;
+        //this.idclt = idclt;
         this.idcmd = idcmd;
         this.description = description;
         this.dateR = dateR;
@@ -30,7 +108,7 @@ public class Reclamation {
     }
 
     public Reclamation(int idclt, int idcmd, String description, Date dateR, String etat) {
-        this.idclt = idclt;
+        ///this.idclt = idclt;
         this.idcmd = idcmd;
         this.description = description;
         this.dateR = dateR;
@@ -39,7 +117,7 @@ public class Reclamation {
 
     public Reclamation(int idR, int idclt, int idcmd, String description, String etatr) {
         this.idR = idR;
-        this.idclt = idclt;
+        //this.idclt = idclt;
         this.idcmd = idcmd;
         this.description = description;
         this.etatr = etatr;
@@ -54,7 +132,7 @@ public class Reclamation {
         this.description = description;
         this.dateR = dateR;
         this.etatr = etatr;
-        this.idclt = idclt;
+        //this.idclt = idclt;
         this.idcmd = idcmd;
         
         
@@ -62,13 +140,30 @@ public class Reclamation {
        
     }
 
+    
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getObjet() {
+        return objet;
+    }
+
+    public void setObjet(String objet) {
+        this.objet = objet;
+    }
+    
+
     public int getIdR() {
         return idR;
     }
 
-    public int getIdclt() {
-        return idclt;
-    }
+   
 
     public int getIdcmd() {
         return idcmd;
@@ -90,9 +185,7 @@ public class Reclamation {
         this.idR = idR;
     }
 
-    public void setIdclt(int idclt) {
-        this.idclt = idclt;
-    }
+   
 
     public void setIdcmd(int idcmd) {
         this.idcmd = idcmd;
@@ -110,9 +203,59 @@ public class Reclamation {
         this.etatr = etat;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+    
+    
+
     @Override
     public String toString() {
-        return "Reclamation{" + "idR=" + idR + ", idclt=" + idclt + ", idcmd=" + idcmd + ", description=" + description + ", dateR=" + dateR + ", etat=" + etatr + '}';
+        return "Reclamation{" + "idR=" + idR + ", idcmd=" + idcmd + ", description=" + description + ", dateR=" + dateR + ", etat=" + etatr + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Reclamation other = (Reclamation) obj;
+        if (!Objects.equals(this.etatr, other.etatr)) {
+            return false;
+        }
+        return true;
     }
 
     

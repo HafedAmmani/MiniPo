@@ -30,21 +30,12 @@ import javafx.stage.StageStyle;
  */
 public class Test {
     
-    public void start(Stage stage) throws IOException{
-        Parent root=FXMLLoader.load(getClass().getResource("/Gui/chart.fxml"));
-        Scene scene = new Scene(root);
-        //Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        
-        
-    }
     
     public static void main(String[] args) throws SQLException {
-        launch(args);
-        ServiceReclamation ser = new ServiceReclamation();
+        //launch(args);
+       // ServiceReclamation ser = new ServiceReclamation();
         
-        Reclamation p1 = new Reclamation(1,1,1,"probleme de ....","en cours ");
+        /*Reclamation p1 = new Reclamation(1,1,1,"probleme de ....","en cours ");
         Reclamation p2 = new Reclamation(2,2,2,"bbbbbbbb","en cours ");
         Reclamation p3 = new Reclamation(3,3,3,"ccccc","en cours ");
         Reclamation p4 = new Reclamation(4,4,4,"ddddd","en cours ");
@@ -53,7 +44,7 @@ public class Test {
         p1.setDateR(d2);
         p2.setDateR(d2);
         p3.setDateR(d2);
-        p4.setDateR(d2);
+        p4.setDateR(d2);*/
         //ser.ajouterReclamation(p1);
         //ser.ajouterReclamation(p2);
         //ser.ajouterReclamation(p3);
@@ -72,7 +63,7 @@ public class Test {
         //ser.ChercherReclamationParId(1);
         //ser.Delete(1);
         
-        ServiceReclamationEmploye seremp = new ServiceReclamationEmploye();
+       /* ServiceReclamationEmploye seremp = new ServiceReclamationEmploye();
         Reclamationemploye e1=new Reclamationemploye(1,1,"Probleme de ...","en cours");
         Reclamationemploye e2=new Reclamationemploye(2,2,"aaaaaa","en cours");
         Reclamationemploye e3=new Reclamationemploye(3,3,"bbbbbbbbbb","valider");
@@ -93,7 +84,7 @@ public class Test {
         System.out.println (seremp.readAll());
         
         
-    }
+    }*/
         
         
         //Reclamation p2 = new Reclamation("Karray", "Gargouri", 10);
@@ -110,6 +101,14 @@ public class Test {
         }
     }*/
     
-    
+       Reclamation r =new Reclamation("hhh","hhh","hhh");
+        Reclamationemploye re =new Reclamationemploye(1, "gghthhy", "hjjjkjkgj");
+       ServiceReclamation sr=new ServiceReclamation();
+        ServiceReclamationEmploye sre=new ServiceReclamationEmploye();
+       sre.ajouterReclamationEmploye(re);
+       //sr.ajouterReclamation(r);
+       System.out.println(sr.Lister());
+       
+    } 
     
 }

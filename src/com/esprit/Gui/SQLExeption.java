@@ -9,6 +9,6 @@ package com.esprit.Gui;
  *
  * @author darra
  */
-public class ServicesReclamation {
+class SQLExeption {
     
 }

@@ -5,6 +5,7 @@
  */
 package com.esprit.Gui;
 
+import com.esprit.Entite.Reclamationemploye;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -23,25 +25,37 @@ import javafx.util.Duration;
  *
  * @author darra
  */
-public class ListesReclamationsController implements Initializable {
-  @FXML
-    private AnchorPane RecCltEmp;
+public class ListerReclamationEmployeController implements Initializable {
 
     @FXML
-    private Button RecClient;
+    private TableColumn<Reclamationemploye, Integer> col_IdRec;
     @FXML
-    private Button RecEmpBtn;
+    private TableColumn<Reclamationemploye, String> col_Obj;
+    @FXML
+    private TableColumn<?, ?> col_description;
+    @FXML
+    private TableColumn<?, ?> col_etat;
+    @FXML
+    private TableColumn<?, ?> col_nom;
+    @FXML
+    private TableColumn<?, ?> col_prenom;
+    @FXML
+    private TableColumn<?, ?> col_DateRec;
+    @FXML
+    private Button btnRetour;
+    @FXML
+    private AnchorPane RecEmp;
 
+    /**
+     * Initializes the controller class.
+     */
     @Override
-    
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
         // TODO
-    }
-private void setNode(Node node) {
-        RecCltEmp.getChildren().clear();
-        RecCltEmp.getChildren().add((Node) node);
+    }    
+     private void setNode(Node node) {
+        RecEmp.getChildren().clear();
+        RecEmp.getChildren().add((Node) node);
         FadeTransition ft = new FadeTransition(Duration.seconds(1));//dure de la translation
         ft.setNode(node);
         ft.setFromValue(0.10);//dispartion 
@@ -49,13 +63,10 @@ private void setNode(Node node) {
         ft.setCycleCount(1);
         ft.setAutoReverse(true);
         ft.play();
-    }  
-  @FXML
-    void ListerRecEmployes(ActionEvent event) throws IOException {
-              setNode(FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationEmploye.fxml")));
     }
     @FXML
-    void ListerRecClient(ActionEvent event) throws IOException {
-             setNode(FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationClient.fxml")));
+    private void BoutonRetour(ActionEvent event) throws IOException {
+        FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListesReclamations.fxml"));
     }
+    
 }

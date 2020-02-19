@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ListerReclamationClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ListerReclamationClientController">
    <children>
-      <HBox fx:id="Hbox" layoutY="21.0" prefHeight="63.0" prefWidth="600.0">
+      <HBox fx:id="Hbox" layoutY="66.0" prefHeight="63.0" prefWidth="633.0">
          <children>
             <Label prefHeight="33.0" prefWidth="87.0" text="      Recherche" />
-            <ComboBox fx:id="RechCmbBox" prefWidth="150.0">
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </ComboBox>
-            <TextField fx:id="TextField" alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="260.0" translateX="30.0" translateY="5.0">
+            <TextField fx:id="TextField" alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="173.0" translateX="30.0" translateY="5.0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <TableView fx:id="TableViewRec" layoutX="1.0" layoutY="62.0" prefHeight="287.0" prefWidth="600.0">
-         <contextMenu>
-            <ContextMenu>
-              <items>
-                <MenuItem mnemonicParsing="false" text="Modifier" />
-                  <MenuItem mnemonicParsing="false" text="Supprimer" />
-              </items>
-            </ContextMenu>
-         </contextMenu>
+      <TableView fx:id="TableViewRec" editable="true" layoutY="170.0" prefHeight="293.0" prefWidth="695.0">
+        <columns>
+          <TableColumn fx:id="col_IdRec" prefWidth="108.66668963432312" text="Numero Reclamation" />
+          <TableColumn fx:id="col_Type" prefWidth="41.999961853027344" text="Type" />
+            <TableColumn fx:id="col_Obj" prefWidth="75.0" text="Objet " />
+            <TableColumn fx:id="col_description" prefWidth="75.0" text="Description" />
+            <TableColumn fx:id="col_image" prefWidth="75.0" text="Image" />
+            <TableColumn fx:id="col_etat" prefWidth="58.66668701171875" text="Etat" />
+            <TableColumn fx:id="col_nom" prefWidth="62.0" text="Nom" />
+            <TableColumn fx:id="col_prenom" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="col_DateRec" prefWidth="118.0" text="Date Reclamation" />
+        </columns>
       </TableView>
+      <ComboBox fx:id="etat" layoutX="366.0" layoutY="130.0" prefWidth="150.0" />
+      <Label layoutX="338.0" layoutY="134.0" prefHeight="17.0" prefWidth="40.0" text="Etat" />
+      <Button fx:id="BtnModifier" layoutX="525.0" layoutY="130.0" mnemonicParsing="false" onAction="#ModifierEtat" text="modifier" />
+      <Label layoutX="170.0" layoutY="14.0" prefHeight="35.0" prefWidth="355.0" text="Liste des Reclamations Client ">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
