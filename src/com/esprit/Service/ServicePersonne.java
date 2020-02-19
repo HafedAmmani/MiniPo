@@ -81,7 +81,7 @@ public class ServicePersonne  {
     }
     
     
-    public void Modifier(String firstname, String lastname, int id,String genre,String email,String username,String role,String password) throws SQLException
+   public void Modifier(String firstname, String lastname, int id,String genre,String email,String username,String role,String password) throws SQLException
     {
         ste = con.createStatement();
         //String requeteModify= "UPDATE client SET login="+login+", password="+password+", cin="+cin+", nom="+nom+", prenom="+prenom+", adresse="+adresse+", tel="+tel+", email="+email+" WHERE idclt="+idclt;
@@ -97,11 +97,21 @@ public class ServicePersonne  {
         
         ste.executeUpdate(requeteModify);
         System.out.println("Données bien modifier");
-        
-        
     }
     
-    
+     public ResultSet listerUser1(String name) throws SQLException{
+        ste = con.createStatement();
+        String requeteList = "SELECT * FROM user where username='"+name+"'";
+        ResultSet rs = ste.executeQuery(requeteList);
+        return rs;
+
+    }
+     public ResultSet listerUserpass(String pass) throws SQLException{
+        ste = con.createStatement();
+        String requeteList = "SELECT * FROM user where password='"+pass+"'";
+        ResultSet rs = ste.executeQuery(requeteList);
+        return rs;
+    }
     
     
     
@@ -126,5 +136,9 @@ public class ServicePersonne  {
             
 
         }
+    }
+     public void Updatepass(String pass,String nom ) throws SQLException {
+        PreparedStatement pre=con.prepareStatement ("UPDATE user  SET password='"+pass+"' where username='"+nom+"';");
+        pre.executeUpdate();
     }
 }
