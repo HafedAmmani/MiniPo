@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="202.0" prefWidth="427.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.esprit.Gui.BoitteDialogueController">
+   <children>
+      <Pane layoutY="-6.0" prefHeight="266.0" prefWidth="486.0" style="-fx-background-color: #005c96;">
+         <children>
+            <Text fill="#f8f7f7" layoutX="24.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouté au panier !" wrappingWidth="255.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtdiag" fill="#f8f8f8" layoutX="39.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- a été ajouté à votre panier." wrappingWidth="401.13671875" />
+            <Button layoutX="261.0" layoutY="177.0" mnemonicParsing="false" onAction="#btnValiderCmdAction" prefHeight="41.0" prefWidth="172.0" style="-fx-background-color: #f0c300;" text="FINALISER LA COMMANDE" textFill="#fcfcfc" />
+            <Button layoutX="59.0" layoutY="177.0" mnemonicParsing="false" onAction="#btnRetourAction" prefHeight="41.0" prefWidth="172.0" style="-fx-background-color: #FFFFFF;" text="POURSUIVRE VOS ACHATS" textFill="#f0c300" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
