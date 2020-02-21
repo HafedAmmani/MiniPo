@@ -6,10 +6,20 @@
 package com.minipo.gui;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import com.minipo.Entite.Affectation;
+import com.minipo.Service.ServiceAffectation;
+import com.minipo.Service.ServiceEmploye;
+import com.minipo.Service.ServiceEquipe;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +27,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -27,26 +41,38 @@ import javafx.stage.Stage;
 public class EquipeController implements Initializable {
 
     @FXML
-    private JFXTextField txt_nom;
-    @FXML
-    private JFXTextField txt_nom1;
-    @FXML
-    private JFXTextField txt_nom11;
-    @FXML
-    private JFXTextField txt_nom111;
-    @FXML
-    private JFXButton btn_save;
-    @FXML
     private JFXButton btn_add_new;
     @FXML
     private JFXTextField idfld;
+    @FXML
+    private JFXComboBox<String> com_Eq;
+    @FXML
+    private JFXButton btn_add_new1;
+    @FXML
+    private JFXComboBox<String> com_Emp;
+    
+    private ServiceEquipe serv = new ServiceEquipe();
+    private ServiceEmploye ser = new ServiceEmploye();
+    private ServiceAffectation serAff = new ServiceAffectation();
+    @FXML
+    private TableColumn<?, ?> col_emp;
+    @FXML
+    private TableColumn<?, ?> col_eq;
+    @FXML
+    private TableView<Affectation> tblview;
+    ObservableList<Affectation> oblist = FXCollections.observableArrayList();
+    @FXML
+    private JFXTextField fill_recherche;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        comboEquipe();
+        
+        comboEmlpoye();
+        initTable();
     }    
     @FXML
     private void redirectToEmp(ActionEvent event) throws IOException {
@@ -59,4 +85,74 @@ public class EquipeController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+    
+    public void comboEquipe()
+    {
+        ObservableList<String> cmbl=serv.getNomEq();        
+        com_Eq.setItems(cmbl);
+    }
+    
+    public void comboEmlpoye()
+    {
+        ObservableList<String> cmbl=ser.getNomEmp();        
+        com_Emp.setItems(cmbl);
+    }
+    private String Equipe;
+    private String Employe;
+    @FXML
+    private void affectation() throws SQLException{
+        Equipe = com_Eq.getSelectionModel().getSelectedItem();
+        Employe = com_Emp.getSelectionModel().getSelectedItem();
+        Affectation aff;
+        aff = new Affectation(Equipe, Employe);
+        serAff.ajouter(aff);
+        initTable();
+        
+    }
+    
+   private void initTable() {
+            oblist   = serAff.getAllAffectation();
+            col_emp.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            col_eq.setCellValueFactory(new PropertyValueFactory<>("NomEq"));
+            tblview.setItems(oblist);
+	} 
+
+    @FXML
+    private void recherche(KeyEvent event) {
+        // 1. Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Affectation> filteredData = new FilteredList<>(oblist, p -> true);
+        
+        // 2. Set the filter Predicate whenever the filter changes.
+        fill_recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+                
+                if (person.getNomEq().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter by equipes.
+                } else if (person.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter by nom.
+                }
+                return false; // Does not match.
+            });
+        });
+        
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<Affectation> sortedData = new SortedList<>(filteredData);
+        
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(tblview.comparatorProperty());
+        
+        // 5. Add sorted (and filtered) data to the table.
+        tblview.setItems(sortedData);
+    }
+    
+    
+    
+    
 }

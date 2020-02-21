@@ -136,7 +136,7 @@ public class ServiceEmploye implements IService<Employe>{
                String email=res.getString("email");
                String salaire=res.getString("salaire");
                 obList.add(new Employe(idemp,nom,prenom,adresse,tel,email,salaire));
-                System.out.println("dattttt = "+obList);
+               
      }
      st.close();
       } catch (SQLException ex) {
@@ -144,6 +144,20 @@ public class ServiceEmploye implements IService<Employe>{
          return obList;
     }
     
-    
+    public ObservableList<String> getNomEmp() {
+        ObservableList list = FXCollections.observableArrayList();
+        ResultSet rs;//   obList.clear();
+         try {
+	    PreparedStatement st= con.prepareStatement("select nom from employe");
+	    ResultSet res= st.executeQuery();
+     while (res.next()) {        
+               String NomEq=res.getString("nom");
+                list.add(String.valueOf(NomEq));
+     }
+     st.close();
+      } catch (SQLException ex) {
+        }
+         return list;
+    }
     
 }

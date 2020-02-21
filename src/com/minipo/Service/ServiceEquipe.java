@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -89,5 +91,21 @@ public class ServiceEquipe implements IService<Equipe>{
     }
     return equipe;
   }
+    
+    public ObservableList<String> getNomEq() {
+        ObservableList list = FXCollections.observableArrayList();
+        ResultSet rs;//   obList.clear();
+         try {
+	    PreparedStatement st= con.prepareStatement("select NomEq from equipe");
+	    ResultSet res= st.executeQuery();
+     while (res.next()) {        
+               String NomEq=res.getString("NomEq");
+                list.add(String.valueOf(NomEq));
+     }
+     st.close();
+      } catch (SQLException ex) {
+        }
+         return list;
+    }
     
 }

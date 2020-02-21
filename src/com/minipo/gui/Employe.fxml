@@ -35,21 +35,20 @@
             <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="267.0">
                <children>
                   <JFXTextField fx:id="txt_nom" labelFloat="true" layoutX="40.0" layoutY="22.0" prefHeight="26.0" prefWidth="149.0" promptText="Nom" />
-                  <JFXTextField fx:id="txt_prenom" labelFloat="true" layoutX="39.0" layoutY="73.0" prefHeight="26.0" prefWidth="149.0" promptText="Prenom" />
-                  <JFXTextField fx:id="txt_adresse" labelFloat="true" layoutX="39.0" layoutY="121.0" prefHeight="26.0" prefWidth="149.0" promptText="Adresse" />
-                  <JFXTextField fx:id="txt_tel" labelFloat="true" layoutX="41.0" layoutY="166.0" prefHeight="26.0" prefWidth="149.0" promptText="Telephone" />
-                  <JFXTextField fx:id="txt_email" labelFloat="true" layoutX="40.0" layoutY="210.0" prefHeight="26.0" prefWidth="149.0" promptText="Email" />
-                  <JFXTextField fx:id="txt_salaire" labelFloat="true" layoutX="41.0" layoutY="252.0" prefHeight="26.0" prefWidth="149.0" promptText="Salaire" />
-                  <JFXButton id="btn_save" fx:id="btn_save" layoutX="17.0" layoutY="305.0" prefHeight="26.0" prefWidth="98.0" text="Enregistrer" />
-                  <JFXButton id="btn_add_new" fx:id="btn_add_new" layoutX="139.0" layoutY="305.0" prefHeight="26.0" prefWidth="98.0" text="Ajouter" />
-                  <JFXButton id="btn_edit" fx:id="btn_edit" layoutX="17.0" layoutY="349.0" prefHeight="26.0" prefWidth="98.0" text="Modifier" />
-                  <JFXButton id="btn_delete" fx:id="btn_delete" layoutX="140.0" layoutY="349.0" prefHeight="26.0" prefWidth="98.0" text="Supprimer" />
+                  <JFXTextField fx:id="txt_prenom" labelFloat="true" layoutX="39.0" layoutY="78.0" prefHeight="26.0" prefWidth="149.0" promptText="Prenom" />
+                  <JFXTextField fx:id="txt_adresse" labelFloat="true" layoutX="39.0" layoutY="135.0" prefHeight="26.0" prefWidth="149.0" promptText="Adresse" />
+                  <JFXTextField fx:id="txt_tel" labelFloat="true" layoutX="41.0" layoutY="192.0" prefHeight="26.0" prefWidth="149.0" promptText="Telephone" />
+                  <JFXTextField fx:id="txt_email" labelFloat="true" layoutX="40.0" layoutY="247.0" prefHeight="26.0" prefWidth="149.0" promptText="Email" />
+                  <JFXTextField fx:id="txt_salaire" labelFloat="true" layoutX="41.0" layoutY="297.0" prefHeight="26.0" prefWidth="149.0" promptText="Salaire" />
+                  <JFXButton id="btn_edit" fx:id="btn_save" layoutX="27.0" layoutY="396.0" prefHeight="26.0" prefWidth="98.0" text="Modifier" />
+                  <JFXButton id="btn_add_new" fx:id="btn_add_new" layoutX="50.0" layoutY="353.0" prefHeight="26.0" prefWidth="162.0" text="Ajouter" />
+                  <JFXButton id="btn_delete" fx:id="btn_delete" layoutX="140.0" layoutY="396.0" prefHeight="26.0" prefWidth="98.0" text="Supprimer" />
                   <JFXTextField fx:id="idfld" editable="false" layoutX="213.0" layoutY="20.0" prefHeight="26.0" prefWidth="42.0" promptText="ID" visible="false" />
                </children>
             </AnchorPane>
             <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">
                <children>
-                  <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="662.0">
+                  <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" onMouseClicked="#modifiercell" prefHeight="393.0" prefWidth="662.0">
                     <columns>
                       <TableColumn id="col_nom" fx:id="col_nom" prefWidth="100.00006103515625" text="Nom" />
                       <TableColumn id="col_prenom" fx:id="col_prenom" prefWidth="88.00006103515625" text="Prenom" />

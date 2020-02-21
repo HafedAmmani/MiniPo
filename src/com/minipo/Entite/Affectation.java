@@ -11,19 +11,26 @@ package com.minipo.Entite;
  */
 public class Affectation {
     private int idaff;
-    private int ideq;
-    private int idemp;
+    private String NomEq;
+    private String nom;
 
-    public Affectation(int idaff, int ideq, int idemp) {
+    public Affectation(int idaff, String ideq, String idemp) {
         this.idaff = idaff;
-        this.ideq = ideq;
-        this.idemp = idemp;
+        this.NomEq = ideq;
+        this.nom = idemp;
     }
+    public Affectation( String NomEq, String nom) {
+        
+        this.NomEq = NomEq;
+        this.nom = nom;
+    }
+    
 
-    public Affectation(int ideq, int idemp) {
-        this.ideq = ideq;
-        this.idemp = idemp;
+    @Override
+    public String toString() {
+        return "Affectation{" + "idaff=" + idaff + ", NomEq=" + NomEq + ", nom=" + nom + '}';
     }
+    
 
     public int getIdaff() {
         return idaff;
@@ -33,25 +40,23 @@ public class Affectation {
         this.idaff = idaff;
     }
 
-    public int getIdeq() {
-        return ideq;
+    public String getNomEq() {
+        return NomEq;
     }
 
-    public void setIdeq(int ideq) {
-        this.ideq = ideq;
+    public void setNomEq(String NomEq) {
+        this.NomEq = NomEq;
     }
 
-    public int getIdemp() {
-        return idemp;
+    public String getNom() {
+        return nom;
     }
 
-    public void setIdemp(int idemp) {
-        this.idemp = idemp;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    @Override
-    public String toString() {
-        return "Affectation{" + "idaff=" + idaff + ", ideq=" + ideq + ", idemp=" + idemp + '}';
-    }
+
+
     
 }

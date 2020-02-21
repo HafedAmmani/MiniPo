@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.minipo.Entite.Affectation;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -32,9 +34,9 @@ public class ServiceAffectation implements IService<Affectation>{
 
     @Override
     public void ajouter(Affectation a) throws SQLException {
-        PreparedStatement pre= con.prepareStatement("INSERT INTO `minipot`.`affectation` ( `ideq`, `idemp`) VALUES ( ?, ?);");
-        pre.setInt(1, a.getIdeq());
-        pre.setInt(2, a.getIdemp());
+        PreparedStatement pre= con.prepareStatement("INSERT INTO `minipot`.`affectation` ( `NomEq`, `nom`) VALUES ( ?, ?);");
+        pre.setString(1, a.getNomEq());
+        pre.setString(2, a.getNom());
         pre.executeUpdate();
     }
 
@@ -47,10 +49,10 @@ public class ServiceAffectation implements IService<Affectation>{
 
     @Override
     public boolean update(Affectation a) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("UPDATE `equipe` SET idaff = ?, ideq = ?, idemp = ? WHERE idaffect = ?");
+        PreparedStatement pre=con.prepareStatement("UPDATE `equipe` SET idaff = ?, NomEq = ?, nom = ? WHERE idaffect = ?");
         pre.setInt(1, a.getIdaff());
-        pre.setInt(2, a.getIdeq());
-        pre.setInt(3, a.getIdemp());
+        pre.setString(2, a.getNomEq());
+        pre.setString(3, a.getNom());
         int ex=pre.executeUpdate();
         return ex==1;
     }
@@ -62,12 +64,32 @@ public class ServiceAffectation implements IService<Affectation>{
     ResultSet rs=ste.executeQuery("select * from affectation");
      while (rs.next()) {                
                int idaff=rs.getInt("idaffect");
-               int ideq=rs.getInt("ideq");
-               int idemp=rs.getInt("idemp");
+               String ideq=rs.getString("NomEq");
+               String idemp=rs.getString("nom");
                Affectation p=new Affectation(idaff, ideq, idemp);
      arr.add(p);
      }
     return arr;
+    }
+     public ObservableList<Affectation> getAllAffectation() {
+        
+        ObservableList obList = FXCollections.observableArrayList();
+        ResultSet rs;//   obList.clear();
+         try {
+	    PreparedStatement st= con.prepareStatement("select * from affectation");
+	    ResultSet res= st.executeQuery();
+     while (res.next()) {        
+               int idaff=res.getInt("idaffect");
+               String nom=res.getString("nom");
+               String NomEq=res.getString("NomEq");
+               
+                obList.add(new Affectation(NomEq,nom));
+               
+     }
+     st.close();
+      } catch (SQLException ex) {
+        }
+         return obList;
     }
     
 }

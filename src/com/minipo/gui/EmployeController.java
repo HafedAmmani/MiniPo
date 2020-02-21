@@ -38,6 +38,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Cell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -76,7 +77,6 @@ public class EmployeController implements Initializable {
     @FXML
     private JFXButton btn_add_new;
 
-    @FXML
     private JFXButton btn_edit;
 
     @FXML
@@ -125,10 +125,10 @@ public class EmployeController implements Initializable {
                 Logger.getLogger(EmployeController.class.getName()).log(Level.SEVERE, null, ex);
             }
 		});
-        btn_edit.setOnAction(e->{
-            
-            EditEmploye();
-		});
+//        btn_edit.setOnAction(e->{
+//            
+//            EditEmploye();
+//		});
         btn_delete.setOnAction(e->{
             
             try {
@@ -162,7 +162,7 @@ public class EmployeController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }    
-    public void printReport() {
+    public void printReport() { //avec jaspersoft
         ser.printReport();
     }
     private void SaveEmploye() throws SQLException{ //modifier employe
@@ -324,4 +324,11 @@ public class EmployeController implements Initializable {
         }
         alert.showAndWait();
 	}  
+
+    @FXML
+    private void modifiercell(MouseEvent event) {
+        if (event.getClickCount()==2)
+            EditEmploye();
+            
+    }
 }
