@@ -21,6 +21,7 @@ public class ReclamationClient {
     private String  etatr;
     private String firstname;
     private String lastname;
+    private String reponse;
     private Date dateR;
 
     public ReclamationClient(int idR,  String type, String objet, String description, String etatr, String firstname, String lastname, Date dateR) {
@@ -35,6 +36,26 @@ public class ReclamationClient {
         this.dateR = dateR;
     }
 
+    public ReclamationClient(int idR, String type, String objet, String description, String etatr, String firstname, String lastname, String reponse, Date dateR) {
+        this.idR = idR;
+        this.type = type;
+        this.objet = objet;
+        this.description = description;
+        this.etatr = etatr;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.reponse = reponse;
+        this.dateR = dateR;
+    }
+
+    public String getReponse() {
+        return reponse;
+    }
+
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
+    }
+     
     public int getIdR() {
         return idR;
     }

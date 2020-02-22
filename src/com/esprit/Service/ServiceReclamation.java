@@ -95,10 +95,11 @@ public class ServiceReclamation  {
          ps.executeUpdate();
     }
     
-     public void updateAdmin(String etatr,int idr) throws SQLException {
-         PreparedStatement ps=con.prepareStatement("UPDATE `reclamation` set etatr=? where idr=?");
+     public void updateAdmin(String etatr,int idr,String reponse) throws SQLException {
+         PreparedStatement ps=con.prepareStatement("UPDATE `reclamation` set etatr=? ,reponse=? where idr=?");
          ps.setString(1, etatr);
-         ps.setInt(2, idr);
+         ps.setString(2, reponse);
+         ps.setInt(3, idr);
          ps.executeUpdate();
      }
      

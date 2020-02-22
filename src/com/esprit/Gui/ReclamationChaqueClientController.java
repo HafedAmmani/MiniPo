@@ -66,8 +66,10 @@ public class ReclamationChaqueClientController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-        
+       reponse.setPromptText("veuillez entrer votre reponse !");
+       reponse.setPrefColumnCount(50);
+       reponse.setPrefRowCount(5);
+       reponse.setWrapText(true);
     }    
 
     //@FXML
@@ -120,7 +122,7 @@ public class ReclamationChaqueClientController implements Initializable {
         
         ServiceReclamation sr=new ServiceReclamation();
         try {
-            sr.updateAdmin("traiter",Integer.parseInt(idClient.getText()));
+            sr.updateAdmin("traiter",Integer.parseInt(idClient.getText()),reponse.getText());
             //AfficherListeReclamations();
             TrayNotification tray =new TrayNotification();
             tray.setTitle("Valider");

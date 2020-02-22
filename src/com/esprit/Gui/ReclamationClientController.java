@@ -11,7 +11,10 @@ import java.io.FileInputStream;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -27,13 +30,17 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 
 /**
  * FXML Controller class
  *
  * @author darra
  */
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 public class ReclamationClientController implements Initializable {
 
     @FXML
@@ -54,11 +61,28 @@ public class ReclamationClientController implements Initializable {
     private FileInputStream fis;
     @FXML
     private Button btnImg;
-    /**
-     * Initializes the controller class.
-     */
+    String [] words={"java","probleme de compte","probleme de commande","ma commande"};
+    Set<String> possiblewordSet=new HashSet<>();
+    private AutoCompletionBinding<String>autocompletionbinding;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Collections.addAll(possiblewordSet, words);
+        autocompletionbinding=TextFields.bindAutoCompletion(SujetRec, possiblewordSet);
+        SujetRec.setOnKeyPressed((KeyEvent e)->{   
+           switch(e.getCode()){
+                   
+               case ENTER:learnworld(SujetRec.getText());
+                  break;
+               default:
+                   break;
+           }
+        
+        
+        });
+        
+        
         categRec.setItems(oblist);
          btnRec.setOnAction(e->{
          try{
@@ -109,5 +133,14 @@ public class ReclamationClientController implements Initializable {
    /* @FXML
     private void AnnulerReclamation(ActionEvent event) {
     }*/
+
+    private void learnworld(String text) {
+        possiblewordSet.add(text);
+        
+        if(autocompletionbinding!=null){
+            autocompletionbinding.dispose();
+             autocompletionbinding=TextFields.bindAutoCompletion(SujetRec, possiblewordSet);
+        }
+    }
     
 }
