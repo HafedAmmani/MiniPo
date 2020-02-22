@@ -86,7 +86,7 @@ public class ServiceReclamationEmploye {
     return rec;
     }
        
-        public ObservableList<Object> ListertoutesLesReclamations() throws SQLException{
+        /*public ObservableList<Object> ListertoutesLesReclamations() throws SQLException{
              //List<Reclamation> rec=new ArrayList<>();
              ObservableList oblist = FXCollections.observableArrayList();
              ste=con.createStatement();
@@ -101,7 +101,7 @@ public class ServiceReclamationEmploye {
                 /*while (rsu.next()) {
                     nom=rsu.getString("firstname");
                     prenom=rsu.getString("lastname");
-                }*/
+                }
                 
          //Reclamation r=new Reclamation();
              int idr= rs.getInt("idr");
@@ -112,13 +112,13 @@ public class ServiceReclamationEmploye {
              String nom=rs.getString("firstname");
              String prenom=rs.getString("lastname");
              java.sql.Date dateR=rs.getDate("dateRemp");
-             oblist.add(new Reclamation(idr, objet, description, etatr, dateR));
+             oblist.add(new Reclamationemploye(idr, objet, description, etatr, dateR));
   
      }
             
         return oblist;
             
-        }
+        }*/
        
        public List<Reclamationemploye> ChercherReclamationParIdId(int idemp ) throws SQLException {
     List<Reclamationemploye> rec=new ArrayList<>();

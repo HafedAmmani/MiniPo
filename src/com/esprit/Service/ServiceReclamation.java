@@ -95,7 +95,7 @@ public class ServiceReclamation  {
          ps.executeUpdate();
     }
     
-     public void updateAdmin(int idr ,String etatr) throws SQLException {
+     public void updateAdmin(String etatr,int idr) throws SQLException {
          PreparedStatement ps=con.prepareStatement("UPDATE `reclamation` set etatr=? where idr=?");
          ps.setString(1, etatr);
          ps.setInt(2, idr);

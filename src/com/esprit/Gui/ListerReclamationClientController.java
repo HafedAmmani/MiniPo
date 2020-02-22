@@ -37,8 +37,21 @@ import javafx.util.Callback;
 import com.esprit.Entite.Reclamation;
 import com.esprit.Entite.ReclamationClient;
 import com.esprit.Entite.User;
+import java.io.IOException;
 import java.util.function.Predicate;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.TextFieldTreeTableCell;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 /**
  * FXML Controller class
  *
@@ -85,6 +98,12 @@ public class ListerReclamationClientController implements Initializable {
     private ComboBox<String> etat;
     @FXML
     private Button BtnModifier;
+    @FXML
+    private Button btnRetour;
+    @FXML
+    private TextField numeroRec;
+    static Stage stageAffichageUnique;
+    static ReclamationClient ReclamationSelectionne;
     //ObservableList<Reclamation>oblistReclamation=FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
@@ -93,9 +112,11 @@ public class ListerReclamationClientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
           etat.setItems(oblistCombo);
-          oblistClient=TableViewRec.getSelectionModel().getSelectedItems();
-          TableViewRec.setItems(oblistClient);
           
+          TableViewRec.setItems(oblistClient);
+          TableViewRec.setEditable(true);
+          stageAffichageUnique = new Stage();
+        
          // TableColumn Action = new TableColumn("Action");
           //Action.setCellValueFactory(new PropertyValueFactory<>("button"));
           
@@ -141,12 +162,10 @@ public class ListerReclamationClientController implements Initializable {
      }
      
    @FXML
-    private void ModifierEtat(ActionEvent event) {
-        String etatr=oblistClient.get(0).getEtatr();
-     int idr=oblistClient.get(0).getIdR();
-    System.out.println(oblistClient.get(0).getEtatr());
-        
-			
+    private void ModifierEtat(ActionEvent event) throws SQLException {
+        ServiceReclamation sr=new ServiceReclamation();
+        //sr.updateAdmin(Integer.parseInt(numeroRec.getText()),etat.getValue());
+	AfficherListeReclamations();		
             
     }
 
@@ -178,7 +197,7 @@ public class ListerReclamationClientController implements Initializable {
 				} else if (ReclamationClient.getType().toLowerCase().contains(lowerCaseFilter)) {
 					return true; }// Filter matches last name.
 				//else if (Reclamation.getIdR().contains(newValue)){
-				    // return true;}
+				   // return true;}
 				      
 				    	 return false; // Does not match.
 			});
@@ -188,8 +207,78 @@ public class ListerReclamationClientController implements Initializable {
         TableViewRec.setItems(soretedData);
             });
      }
+
+    @FXML
+    private void BoutonRetour(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListesReclamations.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void changerEtat(MouseEvent event)  {
+        
+        oblistClient = TableViewRec.getSelectionModel().getSelectedItems();
+        String objet = oblistClient.get(0).getObjet();
+        String description= oblistClient.get(0).getDescription();
+        String categorie=oblistClient.get(0).getType();
+        String nom=oblistClient.get(0).getFirstname();
+        String prenom=oblistClient.get(0).getLastname();
+        int id=oblistClient.get(0).getIdR();
+        
+         FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("/com/esprit/Gui/ReclamationChaqueClient.fxml"));
+            try {
+                Parent root = loader.load();
+                ReclamationChaqueClientController apc = loader.getController();
+                apc.setObjetTxtField(objet);
+                apc.setDescription(description);
+                apc.setCategorie(categorie);
+                apc.setIdClient(id);
+                apc.setNomPrenom(nom,prenom);
+                TableViewRec.getScene().setRoot(root);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+                }
+       
+        
+        //String objet = oblistClient.get(0).getObjet();
+        //String description= oblistClient.get(0).getDescription();
+        /*Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ReclamationChaqueClient.fxml"));
+            Scene scene = new Scene(root);
+            stageAffichageUnique.setScene(scene);
+            stageAffichageUnique.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ListerReclamationClientController.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+                        
+        //This line gets the Stage information
+        //Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+       // window.setScene(tableViewScene);
+        //window.show();
+      // FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ReclamationChaqueClient.fxml"));
+            
+        /*etat.setValue(oblistClient.get(0).getEtatr());
+        numeroRec.setText(String.valueOf(oblistClient.get(0).getIdR()));
+              TrayNotification tray =new TrayNotification();
+            tray.setTitle("Erreur");
+        tray.setMessage("La réclamation a été déjà traitée");
+        tray.setAnimationType(AnimationType.POPUP);
+        tray.setNotificationType(NotificationType.INFORMATION);
+        tray.showAndWait();*/
+    }
      
-     
+        
+        
     }
     
    
