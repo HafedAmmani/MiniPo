@@ -25,7 +25,7 @@ public class Reclamation {
     private String firstname;
     private String lastname;
     private Date dateR;
-    private Button button;
+    //private Button button;
     //private User client;
 
     public Reclamation(String type, String objet, String description) {

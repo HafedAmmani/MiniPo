@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Reclamationemploye {
     private int idRemp ;
-    private int idemp;
+    private int id;
     private String objet;
     private String description;
     private Date dateRemp;
@@ -31,8 +31,8 @@ public class Reclamationemploye {
         
     }
 
-    public Reclamationemploye(int idemp, String objet, String description, Date dateRemp, String etatRemp) {
-        this.idemp = idemp;
+    public Reclamationemploye(int id, String objet, String description, Date dateRemp, String etatRemp) {
+        this.id= id;
         this.objet = objet;
         this.description = description;
         this.dateRemp = dateRemp;
@@ -43,7 +43,7 @@ public class Reclamationemploye {
 
     public Reclamationemploye(int idRemp,int idemp, String description, Date dateRemp, String etatRemp) {
         this.idRemp = idRemp;
-        this.idemp=idemp;
+        this.id=id;
         this.description = description;
         this.dateRemp = dateRemp;
         this.etatRemp = etatRemp;
@@ -51,20 +51,20 @@ public class Reclamationemploye {
 
     public Reclamationemploye(int idRemp, int idemp, String description, String etatRemp) {
         this.idRemp = idRemp;
-        this.idemp = idemp;
+        this.id= id;
         this.description = description;
         this.etatRemp = etatRemp;
     }
 
     public Reclamationemploye(int idemp,String description, Date dateRemp, String etatRemp) {
-        this.idemp=idemp;
+        this.id=id;
         this.description = description;
         this.dateRemp = dateRemp;
         this.etatRemp = etatRemp;
     }
 
     public Reclamationemploye(int idemp, String objet, String description) {
-        this.idemp = idemp;
+        this.id = id;
         this.objet = objet;
         this.description = description;
     }
@@ -72,11 +72,11 @@ public class Reclamationemploye {
     
 
     public void setIdemp(int idemp) {
-        this.idemp = idemp;
+        this.id = id;
     }
 
     public int getIdemp() {
-        return idemp;
+        return id;
     }
 
     public int getIdRemp() {

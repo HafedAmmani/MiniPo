@@ -5,16 +5,21 @@
         <group>
             <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/ReclamationClientController.java</file>
             <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Service/ServiceReclamation.java</file>
-            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Entite/User.java</file>
-            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/ListerReclamationClientController.java</file>
+            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/ReclamationChaqueClientController.java</file>
             <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Service/ServiceReclamationEmploye.java</file>
             <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/AccueilReclamationAdminController.java</file>
             <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/TestJavaFx.java</file>
-            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/ListerReclamationEmployeController.java</file>
             <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/test/Test.java</file>
             <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Entite/Reclamation.java</file>
             <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Entite/Reclamationemploye.java</file>
+            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/ReclamationChaqueEmployeController.java</file>
+            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Entite/ReclamationsEmploye.java</file>
+            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Entite/User.java</file>
+            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/ListerReclamationClientController.java</file>
+            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/ListerReclamationEmployeController.java</file>
             <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Entite/ReclamationClient.java</file>
+            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/ListesReclamationsController.java</file>
+            <file>file:/C:/Users/darra/OneDrive/Bureau/pidevv/MiniPo/src/com/esprit/Gui/ReclamationChaqueEmploye.fxml</file>
         </group>
     </open-files>
 </project-private>

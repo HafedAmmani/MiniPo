@@ -72,7 +72,7 @@ public class ListerReclamationClientController implements Initializable {
     private TableView<ReclamationClient> TableViewRec;
     //private ObservableList<Reclamation>oblist=FXCollections.observableArrayList();
     private ObservableList<ReclamationClient>oblistClient;
-    private ObservableList<String> oblistCombo=FXCollections.observableArrayList("En cours","traiter");
+    //private ObservableList<String> oblistCombo=FXCollections.observableArrayList("En cours","traiter");
     
     @FXML
     private TableColumn<ReclamationClient, Integer> col_IdRec;
@@ -111,7 +111,7 @@ public class ListerReclamationClientController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          etat.setItems(oblistCombo);
+          //etat.setItems(oblistCombo);
           
           TableViewRec.setItems(oblistClient);
           TableViewRec.setEditable(true);
