@@ -11,17 +11,17 @@ package com.minipo.Entite;
  */
 public class Equipe {
     private int ideq;
-    private String nomeq;
+    private String NomEq;
     private int nombre;
 
     public Equipe(int ideq, String nomeq, int nombre) {
         this.ideq = ideq;
-        this.nomeq = nomeq;
+        this.NomEq = nomeq;
         this.nombre = nombre;
     }
 
     public Equipe(String nomeq, int nombre) {
-        this.nomeq = nomeq;
+        this.NomEq = nomeq;
         this.nombre = nombre;
     }
 
@@ -38,11 +38,11 @@ public class Equipe {
     }
 
     public String getNomeq() {
-        return nomeq;
+        return NomEq;
     }
 
     public void setNomeq(String nomeq) {
-        this.nomeq = nomeq;
+        this.NomEq = nomeq;
     }
 
     public int getNombre() {
@@ -55,7 +55,7 @@ public class Equipe {
 
     @Override
     public String toString() {
-        return "Equipe{" + "ideq=" + ideq + ", nomeq=" + nomeq + ", nombre=" + nombre + '}';
+        return "Equipe{" + "ideq=" + ideq + ", nomeq=" + NomEq + ", nombre=" + nombre + '}';
     }
     
 }

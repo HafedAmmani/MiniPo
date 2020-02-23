@@ -40,3 +40,8 @@
 #btn_position{
 	-fx-text-fill: black;
 }
+#label_Equipe{
+    -fx-background-color:#3a434c;
+    -fx-text-fill: white;
+    -fx-alignment:center;
+}

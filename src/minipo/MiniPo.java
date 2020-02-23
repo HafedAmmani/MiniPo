@@ -23,7 +23,7 @@ public class MiniPo {
      */
     public static void main(String[] args) {
                ServiceEmploye ser = new ServiceEmploye();
-        Employe p1 = new Employe("hafed", "Ammani", "Tunis","2334","hafed.ammani@esprit.tn","2344");
+//        Employe p1 = new Employe("hafed", "Ammani", "Tunis","2334","hafed.ammani@esprit.tn","2344");
           
           //pour l'equipe
           ServiceEquipe sereq = new ServiceEquipe();
@@ -46,7 +46,7 @@ public class MiniPo {
             
             
             //pour Table  Employe
-           ser.ajouter(p1);
+//           ser.ajouter(p1);
 //            List<Employe> list = ser.readAll();
 //            System.out.println(list);
 //            ser.delete(p1);

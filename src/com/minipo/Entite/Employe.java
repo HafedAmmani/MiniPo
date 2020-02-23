@@ -5,6 +5,8 @@
  */
 package com.minipo.Entite;
 
+import java.sql.Date;
+
 /**
  *
  * @author hafed
@@ -17,15 +19,7 @@ public class Employe {
     private String tel;
     private String email;
     private String salaire;
-
-    public Employe(String nom, String prenom, String adresse, String tel, String email, String salaire) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.tel = tel;
-        this.email = email;
-        this.salaire = salaire;
-    }
+    private Date date;
 
     public Employe(int idemp, String nom, String prenom, String adresse, String tel, String email, String salaire) {
         this.idemp = idemp;
@@ -36,6 +30,30 @@ public class Employe {
         this.email = email;
         this.salaire = salaire;
     }
+
+    public Employe(String nom, String prenom, String adresse, String tel, String email, String salaire,Date date) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.email = email;
+        this.salaire = salaire;
+        this.date = date;
+    }
+
+    public Employe(int idemp, String nom, String prenom, String adresse, String tel, String email, String salaire ,Date date) {
+        this.idemp = idemp;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.email = email;
+        this.salaire = salaire;
+        this.date=date;
+    }
+
+  
+    
 
     public int getIdemp() {
         return idemp;
@@ -93,10 +111,20 @@ public class Employe {
         this.salaire = salaire;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
-        return "Employe{" + "idemp=" + idemp + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", tel=" + tel + ", email=" + email + ", salaire=" + salaire + '}';
+        return "Employe{" + "idemp=" + idemp + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", tel=" + tel + ", email=" + email + ", salaire=" + salaire + ", date=" + date + '}';
     }
+
+    
     
 
     

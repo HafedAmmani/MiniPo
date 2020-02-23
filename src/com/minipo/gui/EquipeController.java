@@ -31,6 +31,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -63,6 +64,8 @@ public class EquipeController implements Initializable {
     ObservableList<Affectation> oblist = FXCollections.observableArrayList();
     @FXML
     private JFXTextField fill_recherche;
+    @FXML
+    private JFXButton btn_show;
 
     /**
      * Initializes the controller class.
@@ -73,6 +76,7 @@ public class EquipeController implements Initializable {
         
         comboEmlpoye();
         initTable();
+       
     }    
     @FXML
     private void redirectToEmp(ActionEvent event) throws IOException {
@@ -87,7 +91,8 @@ public class EquipeController implements Initializable {
     }
     
     public void comboEquipe()
-    {
+    {   
+        
         ObservableList<String> cmbl=serv.getNomEq();        
         com_Eq.setItems(cmbl);
     }
@@ -151,7 +156,25 @@ public class EquipeController implements Initializable {
         // 5. Add sorted (and filtered) data to the table.
         tblview.setItems(sortedData);
     }
-    
+    private FXMLLoader loader;
+    @FXML
+    private void showListEquipe() {
+		try {
+			loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("AjoutEquipe.fxml"));
+//			AjoutEquipeController controller = new AjoutEquipeController();
+//			loader.setController(controller);
+			loader.load();
+			Scene scene = new Scene(loader.getRoot());
+			scene.getStylesheets().add(getClass().getResource("employe.css").toExternalForm());
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.show();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
     
     
     

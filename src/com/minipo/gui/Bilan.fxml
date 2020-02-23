@@ -18,11 +18,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.minipo.gui.EquipeController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.minipo.gui.BilanController">
     <stylesheets>
-        <URL value="@employe.css" />
+        <URL value="@employe.css"/>
     </stylesheets>
-   <children>
+    <children>
       <Pane id="pane_top" layoutX="195.0" prefHeight="56.0" prefWidth="986.0">
          <children>
             <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Affectation des equipes">
@@ -36,7 +36,7 @@
          <children>
             <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="254.0">
                <children>
-                  <JFXButton fx:id="btn_add_new" layoutX="38.0" layoutY="232.0" onAction="#affectation" prefHeight="26.0" prefWidth="98.0" text="Affecter" />
+                  <JFXButton fx:id="btn_add_new" layoutX="38.0" layoutY="232.0"  prefHeight="26.0" prefWidth="98.0" text="Affecter" />
                   <JFXTextField fx:id="idfld" editable="false" layoutX="213.0" layoutY="20.0" prefHeight="26.0" prefWidth="42.0" promptText="ID" visible="false" />
                   <Label layoutX="17.0" layoutY="25.0" prefHeight="26.0" prefWidth="171.0" text="Affecter Equipe">
                      <font>
@@ -45,7 +45,7 @@
                   </Label>
                   <JFXComboBox fx:id="com_Emp" labelFloat="true" layoutX="17.0" layoutY="88.0" prefHeight="26.0" prefWidth="171.0" promptText="Nom Employe" />
                   <JFXComboBox fx:id="com_Eq" labelFloat="true" layoutX="14.0" layoutY="168.0" prefHeight="26.0" prefWidth="171.0" promptText="Nom Equipe" />
-                  <JFXButton id="btn_add_eq" fx:id="btn_show" layoutX="205.0" layoutY="170.0" onAction="#showListEquipe" prefHeight="26.0" prefWidth="22.0" style="-fx-background-color: #D9D9D9;" text="+">
+                  <JFXButton id="btn_add_eq" layoutX="205.0" layoutY="170.0" prefHeight="26.0" prefWidth="22.0" style="-fx-background-color: #D9D9D9;" text="+">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -73,7 +73,7 @@
                       <TableColumn fx:id="col_eq" prefWidth="156.0" text="Equipe" />
                     </columns>
                   </TableView>
-                  <JFXTextField fx:id="fill_recherche" layoutX="23.0" layoutY="59.0" onKeyTyped="#recherche" opacity="0.66" prefHeight="26.0" prefWidth="155.0" promptText="Recherche" />
+                  <JFXTextField fx:id="fill_recherche" layoutX="23.0" layoutY="59.0"  opacity="0.66" prefHeight="26.0" prefWidth="155.0" promptText="Recherche" />
                </children>
             </AnchorPane>
          </children>
@@ -90,7 +90,7 @@
                </children>
             </Pane>
             <Pane id="pane_top" prefHeight="14.0" prefWidth="214.0" />
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#redirectToEmp" prefHeight="56.0" prefWidth="216.0" stylesheets="@fullpackstyling.css" text="Ajouter Emlpoye">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"  prefHeight="56.0" prefWidth="216.0" stylesheets="@fullpackstyling.css" text="Ajouter Emlpoye">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -105,7 +105,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#redirectToEmp" prefHeight="56.0" prefWidth="217.0" stylesheets="@fullpackstyling.css" text="Affectation">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="217.0" stylesheets="@fullpackstyling.css" text="Affectation">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

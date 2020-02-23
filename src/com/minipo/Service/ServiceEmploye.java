@@ -11,6 +11,8 @@ import com.minipo.Utils.DataBase;
 import com.minipo.gui.Report;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,13 +42,15 @@ public class ServiceEmploye implements IService<Employe>{
 
     @Override
     public void ajouter(Employe t) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("INSERT INTO `minipot`.`employe` ( `nom`, `prenom`,`adresse`,`tel`,`email`,`salaire`) VALUES ( ?, ?, ?, ?, ?, ?);");
+        PreparedStatement pre=con.prepareStatement("INSERT INTO `minipot`.`employe` ( `nom`, `prenom`,`adresse`,`tel`,`email`,`salaire`,`date`) VALUES ( ?, ?, ?, ?, ?,? , ?);");
         pre.setString(1, t.getNom());
         pre.setString(2, t.getPrenom());
         pre.setString(3, t.getAdresse());
         pre.setString(4, t.getTel());
         pre.setString(5,t.getEmail());
         pre.setString(6,t.getSalaire());
+        pre.setDate(7,t.getDate());
+        
         pre.executeUpdate();
     }
 
@@ -60,13 +64,14 @@ public class ServiceEmploye implements IService<Employe>{
 
     @Override
     public boolean update(Employe t) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("UPDATE `employe` SET nom = ?, prenom = ?, adresse = ?, tel = ?, email = ?, salaire = ? WHERE idemp = ?");
+        PreparedStatement pre=con.prepareStatement("UPDATE `employe` SET nom = ?, prenom = ?, adresse = ?, tel = ?, email = ?, salaire = ?  WHERE idemp = ?");
         pre.setString(1, t.getNom());
         pre.setString(2, t.getPrenom());
         pre.setString(3, t.getAdresse());
         pre.setString(4, t.getTel());
         pre.setString(5,t.getEmail());
         pre.setString(6,t.getSalaire());
+//        pre.setDate(7,t.getDate());
         pre.setInt(7, t.getIdemp());
         int ex=pre.executeUpdate();
         return ex==1;
@@ -85,7 +90,8 @@ public class ServiceEmploye implements IService<Employe>{
                String tel=rs.getString("tel");
                String email=rs.getString("email");
                String salaire=rs.getString("salaire");
-               Employe p=new Employe(idemp, nom, prenom, adresse, tel, email, salaire);
+               java.sql.Date date = rs.getDate("Date");
+               Employe p=new Employe(idemp, nom, prenom, adresse, tel, email, salaire,date);
      arr.add(p);
      }
     return arr;
@@ -100,24 +106,7 @@ public class ServiceEmploye implements IService<Employe>{
 		Report.createReport(con, map, dao.getReport("Emlpoye_report", "report_jasper"));
 		Report.showReport();
 	}
-//    private ResultSet rs;
-//    private PreparedStatement pstmt;
-//    public ObservableList<Employe> getAllEmployeData(){
-//                List<Employe> array= new ArrayList<>();
-//		ObservableList obList = FXCollections.observableArrayList();
-//		try {
-//			
-//			ste = con.prepareStatement("select * from employe");
-//			rs = pstmt.executeQuery();
-//			while(rs.next()) {
-//				list.add(new Employe(rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"), rs.getString("email"), rs.getString("salaire")));
-//			}
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return list;
-//	}
+
     
 
     public ObservableList<Employe> getAllEmploye() {
@@ -135,7 +124,8 @@ public class ServiceEmploye implements IService<Employe>{
                String tel=res.getString("tel");
                String email=res.getString("email");
                String salaire=res.getString("salaire");
-                obList.add(new Employe(idemp,nom,prenom,adresse,tel,email,salaire));
+              Date date = res.getDate("date");
+                obList.add(new Employe(idemp,nom,prenom,adresse,tel,email,salaire,date)); 
                
      }
      st.close();
@@ -160,4 +150,32 @@ public class ServiceEmploye implements IService<Employe>{
          return list;
     }
     
+    
+    public List<Employe> getAllEmlpoyeByID(int id) throws SQLException {
+        List<Employe> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from ratings where `idh`="+id+";");
+    
+     while (rs.next()) {                
+                int idemp=rs.getInt(1);
+               String nom=rs.getString("nom");
+               String prenom=rs.getString("prenom");
+               String adresse=rs.getString("adresse");
+               String tel=rs.getString("tel");
+               String email=rs.getString("email");
+               String salaire=rs.getString("salaire");
+               Employe p=new Employe(idemp, nom, prenom, adresse, tel, email, salaire);
+     arr.add(p);
+     }
+  return arr;
+    }
+    
+    
+    
+    public long countRatings(int id) throws SQLException {
+        List<Employe> cont = getAllEmlpoyeByID(id);
+        if(cont.isEmpty()) return -1;
+        else return cont.stream().count();
+        
+    }
 }

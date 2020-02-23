@@ -21,7 +21,7 @@
         <URL value="@employe.css" />
     </stylesheets>
    <children>
-      <Pane id="pane_top" layoutX="195.0" prefHeight="56.0" prefWidth="986.0">
+      <Pane id="pane_top" layoutX="195.0" prefHeight="56.0" prefWidth="1090.0">
          <children>
             <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Ajouter Employe">
                <font>
@@ -48,19 +48,20 @@
             </AnchorPane>
             <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">
                <children>
-                  <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" onMouseClicked="#modifiercell" prefHeight="393.0" prefWidth="662.0">
+                  <TableView id="tblview" fx:id="tblview" layoutX="14.0" layoutY="48.0" onMouseClicked="#modifiercell" prefHeight="394.0" prefWidth="776.0">
                     <columns>
                       <TableColumn id="col_nom" fx:id="col_nom" prefWidth="100.00006103515625" text="Nom" />
                       <TableColumn id="col_prenom" fx:id="col_prenom" prefWidth="88.00006103515625" text="Prenom" />
-                        <TableColumn id="col_adresse" fx:id="col_adresse" prefWidth="131.199951171875" text="Adresse" />
-                        <TableColumn id="col_telephone" fx:id="col_telephone" prefWidth="99.20001220703125" text="Telephone" />
-                        <TableColumn id="col_email" fx:id="col_email" prefWidth="140.00006103515625" text="Email" />
-                        <TableColumn id="col_id" fx:id="id" prefWidth="55.1998291015625" text="ID_hidden" visible="false" />
-                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="103.20004882812498" text="Salaire" />
+                        <TableColumn id="col_adresse" fx:id="col_adresse" prefWidth="147.20001220703125" text="Adresse" />
+                        <TableColumn id="col_telephone" fx:id="col_telephone" prefWidth="100.79998779296875" text="Telephone" />
+                        <TableColumn id="col_email" fx:id="col_email" prefWidth="130.4000244140625" text="Email" />
+                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="91.9998779296875" text="Salaire" />
+                        <TableColumn fx:id="col_date" prefWidth="116.0" text="Date" />
+                        <TableColumn id="col_id" fx:id="id" prefWidth="28.0" text="ID_hidden" visible="false" />
                     </columns>
                   </TableView>
                   <JFXTextField id="fil_recherche" fx:id="fil_recherche" layoutX="26.0" layoutY="14.0" onKeyTyped="#recherche" opacity="0.56" prefHeight="26.0" prefWidth="177.0" promptText="Recherhce" />
-                  <JFXButton id="btn_print_preview" fx:id="btn_print_preview" layoutX="574.0" layoutY="14.0" prefHeight="26.0" prefWidth="98.0" text="Imprimer" />
+                  <JFXButton id="btn_print_preview" fx:id="btn_print_preview" layoutX="679.0" layoutY="14.0" prefHeight="26.0" prefWidth="98.0" text="Imprimer" />
                </children>
             </AnchorPane>
          </children>
@@ -107,7 +108,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="66.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="215.0" stylesheets="@fullpackstyling.css" text="Bilan">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="66.0" mnemonicParsing="false" onAction="#redirectToBilan" prefHeight="56.0" prefWidth="215.0" stylesheets="@fullpackstyling.css" text="Bilan">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

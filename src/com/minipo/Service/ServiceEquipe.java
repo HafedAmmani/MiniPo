@@ -42,18 +42,19 @@ public class ServiceEquipe implements IService<Equipe>{
 
     @Override
     public boolean delete(Equipe e) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`equipe` WHERE nom='equipe1';");
+        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`equipe` WHERE idEq=?;");
+        pre.setInt(1, e.getIdeq());
         int ex=pre.executeUpdate();
         return ex!=0;
     }
 
     @Override
     public boolean update(Equipe e) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("UPDATE `equipe` SET idEq = ?, NomEq = ?, Nombre = ? WHERE NomEq = ?");
-        pre.setInt(1, e.getIdeq());
-        pre.setString(2, e.getNomeq());
-        pre.setInt(3, e.getNombre());
-        pre.setString(4, e.getNomeq());
+        PreparedStatement pre=con.prepareStatement("UPDATE `equipe` SET  NomEq = ?, Nombre = ? WHERE idEq = ?");
+        
+        pre.setString(1, e.getNomeq());
+        pre.setInt(2, e.getNombre());
+        pre.setInt(3, e.getIdeq());
         int ex=pre.executeUpdate();
         return ex==1;
     }
@@ -107,5 +108,24 @@ public class ServiceEquipe implements IService<Equipe>{
         }
          return list;
     }
-    
+    public ObservableList<Equipe> getAllEquipe() {
+        
+        ObservableList obList = FXCollections.observableArrayList();
+        ResultSet rs;//   obList.clear();
+         try {
+	    PreparedStatement st= con.prepareStatement("select * from equipe");
+	    ResultSet res= st.executeQuery();
+     while (res.next()) {        
+               int ideq=res.getInt("idEq");
+               String Nomeq=res.getString("NomEq");
+               int Nombre=res.getInt("Nombre");
+               
+                obList.add(new Equipe(ideq,Nomeq,Nombre));
+               
+     }
+     st.close();
+      } catch (SQLException ex) {
+        }
+         return obList;
+    }
 }

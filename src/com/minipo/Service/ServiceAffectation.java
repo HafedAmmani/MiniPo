@@ -42,7 +42,8 @@ public class ServiceAffectation implements IService<Affectation>{
 
     @Override
     public boolean delete(Affectation a) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`affectation` WHERE idaff='1';");
+        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`affectation` WHERE idaff= ?;");
+        pre.setInt(1, a.getIdaff());
         int ex=pre.executeUpdate();
         return ex!=0;
     }

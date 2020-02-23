@@ -13,7 +13,10 @@ import java.awt.Button;
 import java.awt.TextField;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -113,9 +116,14 @@ public class EmployeController implements Initializable {
     private ServiceEmploye ser = new ServiceEmploye();
     private int ID;
     ObservableList<Employe> oblist = FXCollections.observableArrayList();
+//    @FXML
+//    private TableColumn<Employe, Date> col_date;
+    @FXML
+    private TableColumn<Employe, Date> col_date;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         initTable();
         btn_add_new.setOnAction(e->{
             try {
@@ -125,10 +133,7 @@ public class EmployeController implements Initializable {
                 Logger.getLogger(EmployeController.class.getName()).log(Level.SEVERE, null, ex);
             }
 		});
-//        btn_edit.setOnAction(e->{
-//            
-//            EditEmploye();
-//		});
+
         btn_delete.setOnAction(e->{
             
             try {
@@ -161,7 +166,18 @@ public class EmployeController implements Initializable {
         
         window.setScene(tableViewScene);
         window.show();
-    }    
+    }  
+    @FXML
+    private void redirectToBilan(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("Bilan.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
     public void printReport() { //avec jaspersoft
         ser.printReport();
     }
@@ -169,6 +185,9 @@ public class EmployeController implements Initializable {
                 Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Employe modifier avex sucess !.");
 		alert.setHeaderText(null);
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+
             int id = Integer.parseInt(idfld.getText());
             Employe p1;
             p1 = new Employe(id,txt_nom.getText(), txt_prenom.getText(), txt_adresse.getText(), txt_tel.getText(), txt_email.getText(), txt_salaire.getText());
@@ -185,10 +204,12 @@ public class EmployeController implements Initializable {
 		alert.setHeaderText(null);
 		alert.setContentText("Are you sure you want to delete selected?");
 		Optional<ButtonType> action = alert.showAndWait();
+                java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+
         Employe selected = tblview.getSelectionModel().getSelectedItem();
         ID = selected.getIdemp();
             Employe p1;
-            p1 = new Employe(ID,txt_nom.getText(), txt_prenom.getText(), txt_adresse.getText(), txt_tel.getText(), txt_email.getText(), txt_salaire.getText());
+            p1 = new Employe(ID,txt_nom.getText(), txt_prenom.getText(), txt_adresse.getText(), txt_tel.getText(), txt_email.getText(), txt_salaire.getText(),sqlDate);
             if(action.get() == ButtonType.OK)
             ser.delete(p1);
             initTable();
@@ -209,6 +230,8 @@ public class EmployeController implements Initializable {
                 Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Employe enregistrer avec succes.");
 		alert.setHeaderText(null);
+                java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+
         if(validate("Nom", txt_nom.getText(), "[a-zA-Z]+") && 
              validate("Prenom", txt_prenom.getText(), "[a-zA-Z]+") &&
                validate("Addresse", txt_adresse.getText(), "[a-zA-Z]+") &&
@@ -218,7 +241,7 @@ public class EmployeController implements Initializable {
     	   {
 
         Employe p1;
-        p1 = new Employe(txt_nom.getText(), txt_prenom.getText(), txt_adresse.getText(), txt_tel.getText(), txt_email.getText(), txt_salaire.getText());
+        p1 = new Employe(txt_nom.getText(), txt_prenom.getText(), txt_adresse.getText(), txt_tel.getText(), txt_email.getText(), txt_salaire.getText(),sqlDate);
         ser.ajouter(p1);
             alert.setContentText("Employe "+txt_nom.getText()+" "+txt_prenom.getText() +" est ajouté.");
             alert.showAndWait();
@@ -236,6 +259,7 @@ public class EmployeController implements Initializable {
             col_telephone.setCellValueFactory(new PropertyValueFactory<>("tel"));
             col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
             col_salaire.setCellValueFactory(new PropertyValueFactory<>("salaire"));
+            col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
             id.setCellValueFactory(new PropertyValueFactory<>("idemp"));
             tblview.setItems(oblist);
 	}
