@@ -158,6 +158,7 @@ public class ListerReclamationClientController implements Initializable {
             col_DateRec.setCellValueFactory(new PropertyValueFactory<>("dateR"));
             //Action.setCellValueFactory(new PropertyValueFactory<>("button"));
             TableViewRec.setItems(oblistClient);
+      //helli team teiik , lahdha nara akher haja
       
      }
      
@@ -210,7 +211,7 @@ public class ListerReclamationClientController implements Initializable {
 
     @FXML
     private void BoutonRetour(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListesReclamations.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListesReclamation.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -233,7 +234,7 @@ public class ListerReclamationClientController implements Initializable {
         
          FXMLLoader loader = new FXMLLoader
                         (getClass()
-                         .getResource("/com/esprit/Gui/ReclamationChaqueClient.fxml"));
+                         .getResource("/com/esprit/Gui/ReclamationChaqueClients.fxml"));
             try {
                 Parent root = loader.load();
                 ReclamationChaqueClientController apc = loader.getController();

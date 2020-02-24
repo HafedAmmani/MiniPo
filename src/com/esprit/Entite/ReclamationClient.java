@@ -48,6 +48,9 @@ public class ReclamationClient {
         this.dateR = dateR;
     }
 
+    public ReclamationClient() {
+    }
+
     public String getReponse() {
         return reponse;
     }

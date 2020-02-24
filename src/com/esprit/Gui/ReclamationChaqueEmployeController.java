@@ -98,7 +98,7 @@ public class ReclamationChaqueEmployeController implements Initializable{
         tray.setAnimationType(AnimationType.POPUP);
         tray.setNotificationType(NotificationType.INFORMATION);
         tray.showAndWait();
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationEmplye.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationEmployes.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information

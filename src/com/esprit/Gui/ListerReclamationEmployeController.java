@@ -96,8 +96,7 @@ public class ListerReclamationEmployeController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ListerReclamationEmployeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-          
-                
+              
             col_IdRec.setCellValueFactory(new PropertyValueFactory<>("idRemp"));     
             col_Obj.setCellValueFactory(new PropertyValueFactory<>("objet"));
             col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -148,7 +147,7 @@ public class ListerReclamationEmployeController implements Initializable {
     
     @FXML
     private void BoutonRetour(ActionEvent event) throws IOException {
-          Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListesReclamations.fxml"));
+          Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListesReclamation.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -170,7 +169,7 @@ public class ListerReclamationEmployeController implements Initializable {
         
          FXMLLoader loader = new FXMLLoader
                         (getClass()
-                         .getResource("/com/esprit/Gui/ReclamationChaqueEmploye.fxml"));
+                         .getResource("/com/esprit/Gui/ReclamationChaqueEmployes.fxml"));
             try {
                 Parent root = loader.load();
                 ReclamationChaqueEmployeController rce = loader.getController();

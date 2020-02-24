@@ -13,10 +13,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
+import static java.util.Optional.empty;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,6 +43,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
  */
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
+import sun.invoke.empty.Empty;
 public class ReclamationClientController implements Initializable {
 
     @FXML
@@ -78,7 +81,24 @@ public class ReclamationClientController implements Initializable {
                default:
                    break;
            }
-        
+//           if((SujetRec.getText().isEmpty()) && (DescriptionRec.getText().isEmpty()) && (categRec.getValue().isEmpty()))
+//             {
+//               btnRec.setVisible(false);
+//              
+//             }else {
+//                 btnRec.setVisible(true);
+//                 //ajouterReclamation(); 
+//             }
+           
+           if(!SujetRec.getText().isEmpty()){
+               if (!DescriptionRec.getText().isEmpty()){
+                   if (!categRec.getValue().isEmpty()){
+                       btnRec.setVisible(false);
+                   }
+               }
+           }else{
+               btnRec.setVisible(true);
+           }
         
         });
         
@@ -86,9 +106,8 @@ public class ReclamationClientController implements Initializable {
         categRec.setItems(oblist);
          btnRec.setOnAction(e->{
          try{
-             ajouterReclamation();
-             
-       
+             ajouterReclamation(); 
+            
          }  catch (SQLException ex) {
                 Logger.getLogger(ReclamationClientController.class.getName()).log(Level.SEVERE, null, ex);
             }});

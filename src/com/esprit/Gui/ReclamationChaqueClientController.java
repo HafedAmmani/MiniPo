@@ -38,6 +38,7 @@ import tray.notification.TrayNotification;
  */
 public class ReclamationChaqueClientController implements Initializable {
 
+    @FXML
     private ComboBox<String> categorie;
     @FXML
     private TextArea description;
@@ -48,6 +49,7 @@ public class ReclamationChaqueClientController implements Initializable {
     @FXML
     private TextField objetTxtField;
     String objet;
+    @FXML
     private TextField idClient;
     @FXML
     private AnchorPane titre;
@@ -55,8 +57,6 @@ public class ReclamationChaqueClientController implements Initializable {
     private Label nomPrenom;
     @FXML
     private Label labelrec;
-    @FXML
-    private TextField idREmp;
     
 
     /**

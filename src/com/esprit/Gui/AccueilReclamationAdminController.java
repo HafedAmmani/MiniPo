@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -34,7 +35,6 @@ public class AccueilReclamationAdminController implements Initializable {
    {
     this.prevStage = stage;
    }
-    @FXML
     private AnchorPane AccueilReclamation;
 
     @FXML
@@ -70,10 +70,9 @@ public class AccueilReclamationAdminController implements Initializable {
         ft.play();
     }
 
-    @FXML
     void ListerReclamation(ActionEvent event) throws IOException {
         
-          setNode(FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListesReclamations.fxml")));
+          setNode(FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListesReclamation.fxml")));
           
     }
 
@@ -84,5 +83,16 @@ public class AccueilReclamationAdminController implements Initializable {
           
 
     }
+     @FXML
+    private void redirectToListe(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("ListesReclamation.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    } 
     
 }

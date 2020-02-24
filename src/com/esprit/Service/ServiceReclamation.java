@@ -54,7 +54,7 @@ public class ServiceReclamation  {
     }*/
     public void  ajouterReclamation(Reclamation r) throws SQLException
     {
-       // int st=0;
+       // int st=0; 
     PreparedStatement ps=con.prepareStatement("INSERT INTO `minipot`.`reclamation` ( `type`, `objet`, `description`,`dater`) VALUES ( ?, ?, ?,sysdate());");
     ps.setString(1, r.getType());
     ps.setString(2, r.getObjet());
@@ -149,21 +149,29 @@ public class ServiceReclamation  {
              String lastname=rs.getString("lastname");
              Date dateR=rs.getDate("dater");
              oblist.add(new Reclamation(idr,type, objet, description, etatr, firstname, lastname, dateR));
-  
+  //7elili controlleur ay ija ay 
      }
             
         return oblist;
             
         }
-        public ObservableList<Reclamation> ListerReclamationsById(int id) throws SQLException{
+        public ObservableList<ReclamationClient> ListerReclamationsById(int id) throws SQLException{
              //List<Reclamation> rec=new ArrayList<>();
-             ObservableList oblist = FXCollections.observableArrayList();
+             
              ste=con.createStatement();
-             
-             
+             List<ReclamationClient> listRec = new ArrayList<ReclamationClient>();
              //ResultSet rs=ste.executeQuery("select r.idr,r.type,r.objet,r.description,r.etatr,r.dater,u.Firstname,u.Lastname from reclamation r ,user u where r.id=u.id;");
              ResultSet rs=ste.executeQuery("select type,objet,description,etatr,dater from reclamation where id="+id+" order by dater asc");
              while (rs.next()) {
+                 ReclamationClient rc=new ReclamationClient();
+                 rc.setType(rs.getString("type"));
+                 rc.setObjet(rs.getString("objet"));
+                 rc.setDescription(rs.getString("description"));
+                 rc.setEtatr(rs.getString("etatr"));
+                 rc.setDateR(rs.getDate("dater"));
+                 listRec.add(rc);}
+                ObservableList oblist = FXCollections.observableArrayList(listRec);
+                return oblist;
                 //ResultSet rsu=ste.executeQuery("select * from user where id= "+rs.getInt("id"));
                 //String nom="";
                 //String prenom="";
@@ -174,18 +182,18 @@ public class ServiceReclamation  {
                 
          //Reclamation r=new Reclamation();
              //int idr= rs.getInt("idr");
-             String type= rs.getString("type");
-             String objet= rs.getString("objet");
-             String description= rs.getString("description");
-             String etatr= rs.getString("etatr");
+             //String type= rs.getString("type");
+             //String objet= rs.getString("objet");
+             //String description= rs.getString("description");
+             //String etatr= rs.getString("etatr");
              //String firstname=rs.getString("firstname");
              //String lastname=rs.getString("lastname");
-             Date dateR=rs.getDate("dater");
-             oblist.add(new Reclamation(type, objet, description, etatr,dateR));
+             //Date dateR=rs.getDate("dater");
+            // oblist.add(new Reclamation(type, objet, description, etatr,dateR));
   
-     }
+     //}
             
-        return oblist;
+        //return oblist;
             
         }
           public List<Reclamation> ChercherReclamationParIdId(int idclt ) throws SQLException {
