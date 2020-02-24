@@ -25,7 +25,7 @@ public class test extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
    
-           Parent root = FXMLLoader.load(getClass().getResource("inscription.fxml"));
+           Parent root = FXMLLoader.load(getClass().getResource("GestionUtilisateur.fxml"));
             
             Scene scene = new Scene(root);
            // scene.getStylesheets().add(getClass().getResource("inscription.css").toExternalForm());

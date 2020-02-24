@@ -6,6 +6,7 @@
 package com.esprit.gui;
 
 import com.esprit.Service.ServicePersonne;
+import com.esprit.service.service_bcrypt;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -45,6 +46,9 @@ public class LoginUserController implements Initializable {
     private Hyperlink btnforget;
     @FXML
     private Button btnreg;
+    
+    @FXML
+    private PasswordField tfCpass;
     /**
      * Initializes the controller class.
      */
@@ -67,16 +71,16 @@ public class LoginUserController implements Initializable {
      }
      else{
          while(s.next()){
-             if(name.equals(s.getString("username"))&&password.equals(s.getString("password"))){
-              Alert alert = new Alert(Alert.AlertType.ERROR);
+             if(name.equals(s.getString("username"))&&service_bcrypt.checkpw(password, s.getString(password))){
+         Alert alert = new Alert(Alert.AlertType.WARNING);
          alert.setHeaderText(null);
          alert.setContentText("Successfully logged in");
          alert.showAndWait();
              }
          }
-                   Alert alert = new Alert(Alert.AlertType.ERROR);
+         Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setHeaderText(null);
-alert.setContentText("Error");
+         alert.setContentText("Error");
          alert.showAndWait();
 
      }
@@ -87,6 +91,7 @@ alert.setContentText("Error");
         Matcher m = p.matcher(tfpassword.getText());
         if (m.matches()){
             return true;
+     
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("validate Password");
@@ -95,7 +100,9 @@ alert.setContentText("Error");
             alert.showAndWait();
             return false;
         }
+         
     }
+       
 
     @FXML
     private void connect(ActionEvent event) throws SQLException {

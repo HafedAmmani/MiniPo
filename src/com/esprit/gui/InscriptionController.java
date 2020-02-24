@@ -7,6 +7,7 @@ package com.esprit.gui;
 
 import com.esprit.Entite.User;
 import com.esprit.Service.ServicePersonne;
+import com.esprit.service.service_bcrypt;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -26,6 +27,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
 
 /**
  * FXML Controller class
@@ -74,18 +76,19 @@ public class InscriptionController implements Initializable {
     
    
       private void insertNewUser() throws SQLException{ // for adding new Employe
-        String nom = tfname.getText();
+            String nom = tfname.getText();
             String unom= tfusername.getText();
             String prenom = tflastname.getText();
             String mail = tfemail.getText();
             String pass = tfpassword.getText();
             String Cpass = tfCpass.getText();
             String genre =cbgenre.getValue();
-            
+            String role="client";
+            String pIcrypt = service_bcrypt.hashpw(pass,service_bcrypt.gensalt());
             
       
        User p1;
-        p1 = new User(tfusername.getText(),tfname.getText(), tflastname.getText(), tfemail.getText(), tfpassword.getText(),cbgenre.getValue());
+        p1 = new User(tfusername.getText(), tfemail.getText(), pIcrypt,role,tfname.getText(), tflastname.getText(), cbgenre.getValue());
         sp.ajouter(p1);
         tfusername.setText("");
         tfname.setText("");
@@ -93,6 +96,8 @@ public class InscriptionController implements Initializable {
         tfemail.setText("");
         tfpassword.setText("");
         cbgenre.setValue(genre);
+        String roles="client";
+        
         clear();
         
     }  
@@ -126,10 +131,10 @@ public class InscriptionController implements Initializable {
         String Cpass = tfCpass.getText();
         Pattern p = Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})");
         Matcher m = p.matcher(tfpassword.getText());
-        if (m.matches()){
+        if (m.matches() ){
             return true;
             
-        }else if (!m.equals(Cpass)){
+        }else if (!pass.equals(Cpass)){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
@@ -152,6 +157,7 @@ public class InscriptionController implements Initializable {
         if (validateEmail() & validatePassword() )
         {
                 insertNewUser();
+                
             }
     }
         

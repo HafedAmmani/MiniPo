@@ -80,12 +80,12 @@ public class ForgetpassController implements Initializable {
      else{
          while(s.next()){
              if(!name.equals(s.getString("username"))){
-              Alert alert = new Alert(Alert.AlertType.ERROR);
+         Alert alert = new Alert(Alert.AlertType.WARNING);
          alert.setHeaderText(null);
          alert.setContentText("cet utilisateur n'existe pas");
          alert.showAndWait();
              }else{
-         Alert alert = new Alert(Alert.AlertType.ERROR);
+         Alert alert = new Alert(Alert.AlertType.WARNING);
          alert.setHeaderText(null);
          alert.setContentText("Error");
          alert.showAndWait();
@@ -112,6 +112,7 @@ public class ForgetpassController implements Initializable {
   
     @FXML
     private void changePass(ActionEvent event) throws SQLException {
+        validateusername();
          if(validatePassword()==true)
     {
         update_pass();

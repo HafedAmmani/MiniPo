@@ -38,6 +38,7 @@ public class User {
         this.firstname = firstname;
         this.lastname = lastname;
     }
+    
 
     public User(String username, String email, String password, String firstname, String lastname, String genre) {
         this.username = username;
@@ -75,7 +76,20 @@ public class User {
         this.firstname = firstname;
         this.lastname = lastname;
         this.genre = genre;
+    } 
+
+    public User(int id, String firstname, String lastname, String username, String password, String email, String roles, String genre) {
+         this.id = id;
+         this.firstname = firstname;
+         this.lastname = lastname;
+         this.username = username;
+         this.password = password;
+         this.email = email;
+         this.roles = roles;
+         this.genre = genre;
     }
+
+ 
 
     @Override
     public String toString() {

@@ -14,6 +14,9 @@ import com.esprit.Utils.DataBase;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 /**
  *
@@ -29,36 +32,35 @@ public class ServicePersonne  {
 
     }
 
- 
+
     public void ajouter(User u) throws SQLException
     {
-    PreparedStatement pre=con.prepareStatement("INSERT INTO `user` (`id`,`username`,`email`,`password`, `roles`, `firstname`, `lastname`, `genre`)  VALUES ( NULL, ?, ?, ?, ?, ?, ?, ?);");
-    
-    pre.setString(1, u.getUsername());
-    pre.setString(2, u.getEmail());
-    pre.setString(3, u.getPassword());
-    pre.setString(4, u.getRoles());
-    pre.setString(5, u.getFirstname());
-    pre.setString(6, u.getLastname());
-    pre.setString(7, u.getGenre());
-    
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `user` (`lastname`,`firstname`,`email`,`username`,`password`,  `genre`, `roles`)  VALUES (  ?, ?, ?, ?, ?, ?, ?);");
+
+    pre.setString(1, u.getLastname());
+    pre.setString(2, u.getFirstname());
+    pre.setString(3, u.getEmail());
+    pre.setString(4, u.getUsername());
+    pre.setString(5, u.getPassword());
+    pre.setString(6, u.getGenre());
+    pre.setString(7, u.getRoles());
     pre.executeUpdate();
     }
-            
-    
-    
-        public void Delete(Integer id ) throws SQLException {
-        
+
+
+
+     /*   public void Delete(Integer id ) throws SQLException {
+
          PreparedStatement ps = con.prepareStatement("DELETE FROM `user` where id=?");
          ps.setInt(1,id);
          ps.executeUpdate();
-        
-    }
-  
-    
-  
-    
-    public void listerClt() throws SQLException{
+
+    }*/
+
+
+
+
+    public void listerUser() throws SQLException{
         ste = con.createStatement();
         String requeteList = "SELECT * FROM user";
         ResultSet rs = ste.executeQuery(requeteList);
@@ -67,21 +69,77 @@ public class ServicePersonne  {
             System.out.println(rs.getInt("id"));
             System.out.println(rs.getString("firstname"));
             System.out.println(rs.getString("lastname"));
-            System.out.println(rs.getInt("email"));
-            System.out.println(rs.getInt("role"));
-            System.out.println(rs.getInt("username"));
+            System.out.println(rs.getString("email"));
+            System.out.println(rs.getString("roles"));
+            System.out.println(rs.getString("username"));
             System.out.println(rs.getString("genre"));
-            
-            System.out.println("**************");
-            
 
-            
+            System.out.println("**************");
+
+
+
 
         }
     }
-    
-    
-   public void Modifier(String firstname, String lastname, int id,String genre,String email,String username,String role,String password) throws SQLException
+    public ObservableList<User> listerUserOB(){
+//        ste = con.createStatement();
+         List<User> array= new ArrayList<>();
+        ObservableList obList = FXCollections.observableArrayList();
+         try {
+             PreparedStatement se = con.prepareStatement("SELECT * FROM user");
+             ResultSet rs = se.executeQuery();
+//        String requeteList = "SELECT * FROM user";
+//        ResultSet rs = ste.executeQuery(requeteList);
+        while (rs.next()) {
+           // client c = new client();
+            int id = rs.getInt("id");
+            String Firstname = rs.getString("Firstname");
+            String Lastname = rs.getString("Lastname");
+            String email = rs.getString("email");
+            String roles = rs.getString("roles");
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            String Genre = rs.getString("Genre");
+            obList.add(new User(id, Lastname, Firstname,  email, username, password, roles, Genre));
+            
+
+
+                        }
+     se.close();
+          } catch (SQLException ex) {
+        }
+         return obList;
+    }
+
+    public ResultSet listerUser1(String name) throws SQLException{
+        ste = con.createStatement();
+        String requeteList = "SELECT * FROM user where username='"+name+"'";
+        ResultSet rs = ste.executeQuery(requeteList);
+        User u = new User();
+        while (rs.next())
+        {
+            int id = rs.getInt("id");
+            String Firstname = rs.getString("Firstname");
+            String Lastname = rs.getString("Lastname");
+            String email = rs.getString("email");
+            String roles = rs.getString("roles");
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            String Genre = rs.getString("Genre");
+        }
+        return rs;
+        
+        
+
+    }
+     public ResultSet listerUserpass(String pass) throws SQLException{
+        ste = con.createStatement();
+        String requeteList = "SELECT * FROM user where password='"+pass+"'";
+        ResultSet rs = ste.executeQuery(requeteList);
+        return rs;
+    }
+
+   /* public void Modifier(String firstname, String lastname, int id,String genre,String email,String username,String role,String password) throws SQLException
     {
         ste = con.createStatement();
         //String requeteModify= "UPDATE client SET login="+login+", password="+password+", cin="+cin+", nom="+nom+", prenom="+prenom+", adresse="+adresse+", tel="+tel+", email="+email+" WHERE idclt="+idclt;
@@ -93,29 +151,38 @@ public class ServicePersonne  {
 						+ "lastname='" + lastname +"',"
                                                 + "email='" + email +"',"
                                                 + "role='" + role +"',"
-						+ "genre='" + genre +";"; 
-        
+						+ "genre='" + genre +";";
+
         ste.executeUpdate(requeteModify);
         System.out.println("Données bien modifier");
-    }
-    
-     public ResultSet listerUser1(String name) throws SQLException{
-        ste = con.createStatement();
-        String requeteList = "SELECT * FROM user where username='"+name+"'";
-        ResultSet rs = ste.executeQuery(requeteList);
-        return rs;
+    }*/
 
-    }
-     public ResultSet listerUserpass(String pass) throws SQLException{
+public boolean Modifier(User u) throws SQLException
+    {
         ste = con.createStatement();
-        String requeteList = "SELECT * FROM user where password='"+pass+"'";
-        ResultSet rs = ste.executeQuery(requeteList);
-        return rs;
+             PreparedStatement pre=con.prepareStatement("UPDATE `User` SET username = ?,password = ?, firstname = ?, lastname = ?, email = ?, role = ?, genre= ? WHERE idemp = ?");
+
+        //String requeteModify= "UPDATE client SET login="+login+", password="+password+", cin="+cin+", nom="+nom+", prenom="+prenom+", adresse="+adresse+", tel="+tel+", email="+email+" WHERE idclt="+idclt;
+       /* String requeteModify="UPDATE user SET "
+                                                + "id = '" + id +"',"
+						+ "username = '" + username +"',"
+						+ "password='" + password +"',"
+						+ "firstname='" +  firstname +"',"
+						+ "lastname='" + lastname +"',"
+                                                + "email='" + email +"',"
+                                                + "role='" + role +"',"
+						+ "genre='" + genre +";"; */
+        pre.setString(1, u.getUsername());
+        pre.setString(2, u.getPassword());
+        pre.setString(3, u.getFirstname());
+        pre.setString(4, u.getLastname());
+        pre.setString(5,u.getEmail());
+        pre.setString(6,u.getRoles());
+        pre.setString(7, u.getGenre());
+        int ex=pre.executeUpdate();
+        System.out.println("Données bien modifier");
+        return ex==1;
     }
-    
-    
-    
-    
      public void RechercheById(int id) throws SQLException{
         ste = con.createStatement();
         String requeteList = "SELECT * FROM user WHERE id="+id;
@@ -131,14 +198,23 @@ public class ServicePersonne  {
             System.out.println(rs.getString("lastname"));
             System.out.println(rs.getString("genre"));
             System.out.println("**************");
-            
 
-            
+
+
 
         }
     }
-     public void Updatepass(String pass,String nom ) throws SQLException {
+
+    public void Updatepass(String pass,String nom ) throws SQLException {
         PreparedStatement pre=con.prepareStatement ("UPDATE user  SET password='"+pass+"' where username='"+nom+"';");
         pre.executeUpdate();
     }
+
+    public void Delete(int id) throws SQLException {
+        PreparedStatement ps = con.prepareStatement("DELETE  FROM `user` where id=?");
+         ps.setInt(1,id);
+         int ex=ps.executeUpdate();
+        
+    }
+
 }
