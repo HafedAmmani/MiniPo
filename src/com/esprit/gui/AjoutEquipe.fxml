@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="536.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.AjoutEquipeController">
+    <stylesheets>
+        <URL value="@employe.css" />
+    </stylesheets>
+    <children>
+      <Label id="label_Equipe" prefHeight="58.0" prefWidth="366.0" text="Ajouter equipe">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="fil_nomeq" layoutX="36.0" layoutY="87.0" promptText="Nom d'equipe" />
+      <JFXTextField fx:id="fil_nb" layoutX="36.0" layoutY="136.0" promptText="Nombre" />
+      <JFXButton id="btn_save" fx:id="btn_addEquipe" layoutX="42.0" layoutY="200.0" onAction="#AjouterEquipe" prefHeight="26.0" prefWidth="78.0" text="Enregistrer" />
+      <JFXButton id="btn_edit" fx:id="btn_modifierEquipe" layoutX="132.0" layoutY="200.0" onAction="#SaveEmploye" prefHeight="26.0" prefWidth="78.0" text="Modifier" />
+      <JFXButton id="btn_delete" fx:id="btn_supprimerEquipe" layoutX="228.0" layoutY="200.0" onAction="#DeleteEquipe" prefHeight="26.0" prefWidth="78.0" text="Supprimer" />
+      <TableView fx:id="tblview" layoutX="32.0" layoutY="248.0" onMouseClicked="#modifiercell" prefHeight="266.0" prefWidth="305.0">
+        <columns>
+          <TableColumn fx:id="col_nomeq" prefWidth="140.80004501342773" text="Nom d'equipe" />
+          <TableColumn fx:id="col_nb" prefWidth="71.99993896484375" text="Nombre" />
+            <TableColumn fx:id="ideq" prefWidth="105.60005187988281" text="id_hidden" />
+        </columns>
+      </TableView>
+      <JFXTextField fx:id="fil_ideq" layoutX="251.0" layoutY="87.0" prefHeight="26.0" prefWidth="78.0" />
+   </children>
+</AnchorPane>

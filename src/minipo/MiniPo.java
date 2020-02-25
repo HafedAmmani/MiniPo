@@ -5,10 +5,10 @@
  */
 package minipo;
 
-import com.minipo.Entite.Employe;
-import com.minipo.Entite.Equipe;
-import com.minipo.Service.ServiceEmploye;
-import com.minipo.Service.ServiceEquipe;
+import com.esprit.Entite.Employe;
+import com.esprit.Entite.Equipe;
+import com.esprit.Service.ServiceEmploye;
+import com.esprit.Service.ServiceEquipe;
 import java.sql.SQLException;
 import java.util.List;
 
