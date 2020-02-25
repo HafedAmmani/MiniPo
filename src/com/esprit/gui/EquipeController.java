@@ -10,12 +10,15 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.esprit.Entite.Affectation;
 import com.esprit.Service.ServiceAffectation;
+import com.esprit.Service.ServiceConge;
 import com.esprit.Service.ServiceEmploye;
 import com.esprit.Service.ServiceEquipe;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -27,8 +30,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
@@ -66,6 +71,10 @@ public class EquipeController implements Initializable {
     private JFXTextField fill_recherche;
     @FXML
     private JFXButton btn_show;
+    @FXML
+    private Button btndemandeConge;
+    @FXML
+    private TextField nbrdemande;
 
     /**
      * Initializes the controller class.
@@ -76,6 +85,11 @@ public class EquipeController implements Initializable {
         
         comboEmlpoye();
         initTable();
+        try {
+            calculNombreDemande();
+        } catch (SQLException ex) {
+            Logger.getLogger(EquipeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }    
     @FXML
@@ -89,6 +103,17 @@ public class EquipeController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+    @FXML
+    private void redirectToBilan(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("Bilan.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    } 
     
     public void comboEquipe()
     {   
@@ -175,7 +200,29 @@ public class EquipeController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+    @FXML
+    private void afficherlistedemandeconge() {
+		try {
+			loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("AfficherdemandeConge.fxml"));
+//			AjoutEquipeController controller = new AjoutEquipeController();
+//			loader.setController(controller);
+			loader.load();
+			Scene scene = new Scene(loader.getRoot());
+			scene.getStylesheets().add(getClass().getResource("employe.css").toExternalForm());
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.show();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
     
-    
+    ServiceConge serC = new ServiceConge();
+    private void calculNombreDemande() throws SQLException{
+        long sum = serC.countDemande();
+        nbrdemande.setText(""+sum+"");
+    }
     
 }

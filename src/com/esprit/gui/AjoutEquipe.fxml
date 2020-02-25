@@ -31,6 +31,6 @@
             <TableColumn fx:id="ideq" prefWidth="105.60005187988281" text="id_hidden" />
         </columns>
       </TableView>
-      <JFXTextField fx:id="fil_ideq" layoutX="251.0" layoutY="87.0" prefHeight="26.0" prefWidth="78.0" />
+      <JFXTextField fx:id="fil_ideq" layoutX="251.0" layoutY="87.0" prefHeight="26.0" prefWidth="78.0" visible="false" />
    </children>
 </AnchorPane>

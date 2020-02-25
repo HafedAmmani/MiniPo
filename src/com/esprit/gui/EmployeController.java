@@ -120,11 +120,21 @@ public class EmployeController implements Initializable {
 //    private TableColumn<Employe, Date> col_date;
     @FXML
     private TableColumn<Employe, Date> col_date;
+    @FXML
+    private javafx.scene.control.TextField txtnbemp;
+    @FXML
+    private javafx.scene.control.TextField txtsumsal;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         initTable();
+        calculsalaire();
+        try {
+            calculemploye();
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         btn_add_new.setOnAction(e->{
             try {
                 
@@ -196,6 +206,8 @@ public class EmployeController implements Initializable {
             alert.showAndWait();
             clear();
             initTable();
+            calculemploye();
+            calculsalaire();
         
     }
     private void deleteEmploye() throws SQLException{
@@ -213,6 +225,8 @@ public class EmployeController implements Initializable {
             if(action.get() == ButtonType.OK)
             ser.delete(p1);
             initTable();
+            calculemploye();
+            calculsalaire();
     }
     private void EditEmploye(){
         // for updating existing account
@@ -247,6 +261,8 @@ public class EmployeController implements Initializable {
             alert.showAndWait();
         clear();
         initTable();
+        calculemploye();
+        calculsalaire();
                         
         }
     }
@@ -354,5 +370,14 @@ public class EmployeController implements Initializable {
         if (event.getClickCount()==2)
             EditEmploye();
             
+    }
+    private void calculemploye() throws SQLException{
+        long sum = ser.countEmploye();
+        txtnbemp.setText(""+sum+"");
+    }
+    private void calculsalaire(){
+        int sum = ser.sumSalaire();
+        txtsumsal.setText(""+sum+"");
+        
     }
 }

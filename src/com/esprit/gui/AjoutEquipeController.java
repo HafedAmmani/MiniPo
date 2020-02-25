@@ -103,8 +103,7 @@ public class AjoutEquipeController implements Initializable {
 		Equipe selected = tblview.getSelectionModel().getSelectedItem();
                 fil_ideq.setText(String.valueOf(selected.getIdeq()));
 		fil_nomeq.setText(selected.getNomeq());
-		fil_nb.setText(String.valueOf(selected.getNombre()));
-		
+		fil_nb.setText(String.valueOf(selected.getNombre()));	
     }
      
      

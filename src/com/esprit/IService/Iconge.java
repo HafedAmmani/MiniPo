@@ -14,5 +14,6 @@ import java.util.List;
  */
 public interface Iconge<C> {
     void ajouter(C t) throws SQLException;
+    boolean update(C t) throws SQLException;
     List<C> readAll() throws SQLException;
 }

@@ -20,6 +20,7 @@ public class Conge {
     private int nbrjrs;
     private String description;
     private boolean etat;
+    private String etatc;
 
     public Conge(int idcon, String type, String datedebut, String datefin, int nbrjrs, String description, boolean etat) {
         this.idcon = idcon;
@@ -39,6 +40,28 @@ public class Conge {
         this.description = description;
         this.etat = etat;
     }
+    public Conge(String type, String datedebut, String datefin, int nbrjrs, String description, boolean etat, String etatc) {
+        this.type = type;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.nbrjrs = nbrjrs;
+        this.description = description;
+        this.etat = etat;
+        this.etatc = etatc;
+    }
+
+    public Conge(int idc, String type, String datedebut, String datefin, int nbrjrs, String description, Boolean etat, String etatc) {
+        this.idcon=idc;
+        this.type = type;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.nbrjrs = nbrjrs;
+        this.description = description;
+        this.etat = etat;
+        this.etatc = etatc;
+    }
+
+
 
    
     public int getIdcon() {
@@ -95,6 +118,13 @@ public class Conge {
 
     public void setEtat(boolean etat) {
         this.etat = etat;
+    }
+        public String getEtatc() {
+        return etatc;
+    }
+
+    public void setEtatc(String etatc) {
+        this.etatc = etatc;
     }
 
     @Override

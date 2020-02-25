@@ -128,4 +128,5 @@ public class ServiceEquipe implements IService<Equipe>{
         }
          return obList;
     }
+   
 }

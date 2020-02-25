@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -62,6 +63,10 @@
                   </TableView>
                   <JFXTextField id="fil_recherche" fx:id="fil_recherche" layoutX="26.0" layoutY="14.0" onKeyTyped="#recherche" opacity="0.56" prefHeight="26.0" prefWidth="177.0" promptText="Recherhce" />
                   <JFXButton id="btn_print_preview" fx:id="btn_print_preview" layoutX="679.0" layoutY="14.0" prefHeight="26.0" prefWidth="98.0" text="Imprimer" />
+                  <Label layoutX="222.0" layoutY="19.0" text="Nombre employe" />
+                  <TextField fx:id="txtnbemp" editable="false" layoutX="350.0" layoutY="14.0" prefHeight="26.0" prefWidth="36.0" />
+                  <Label layoutX="461.0" layoutY="18.0" prefHeight="18.0" prefWidth="118.0" text="Somme salaire" />
+                  <TextField fx:id="txtsumsal" editable="false" layoutX="582.0" layoutY="14.0" prefHeight="26.0" prefWidth="86.0" />
                </children>
             </AnchorPane>
          </children>

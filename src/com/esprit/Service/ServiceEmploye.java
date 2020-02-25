@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 
 
 
@@ -170,26 +171,32 @@ public class ServiceEmploye implements IService<Employe>{
     
     
     
-    public long countRatings(int id) throws SQLException {
-        List<Employe> cont = getAllEmlpoyeByID(id);
+    public long countEmploye() throws SQLException {
+        List<Employe> cont = getAllEmploye();
         if(cont.isEmpty()) return -1;
         else return cont.stream().count();
         
     }
-    
-   public int SomSalaire() {
-        int somm = 0;
+    public ObservableList<String> getAllSalaire() {
+        ObservableList list = FXCollections.observableArrayList();
         ResultSet rs;//   obList.clear();
          try {
 	    PreparedStatement st= con.prepareStatement("select salaire from employe");
 	    ResultSet res= st.executeQuery();
      while (res.next()) {        
-               String salaires=res.getString("salaire");
-                somm = Integer.parseInt(salaires) +somm;
+               String sal=res.getString("salaire");
+                list.add(String.valueOf(sal));
      }
      st.close();
       } catch (SQLException ex) {
-        }     
-         return somm;
+        }
+         return list;
     }
+    
+   public int sumSalaire(){
+        List<Employe> sum = getAllEmploye();
+        if(sum.isEmpty()) return -1;
+        else return sum.stream().mapToInt(e->Integer.parseInt(e.getSalaire())).sum();
+   }
+   
 }
