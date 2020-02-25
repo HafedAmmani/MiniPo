@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import static java.util.Optional.empty;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -35,6 +36,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import javafx.scene.control.ButtonType;
 
 /**
  * FXML Controller class
@@ -71,6 +75,7 @@ public class ReclamationClientController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
         Collections.addAll(possiblewordSet, words);
         autocompletionbinding=TextFields.bindAutoCompletion(SujetRec, possiblewordSet);
         SujetRec.setOnKeyPressed((KeyEvent e)->{   
@@ -106,7 +111,15 @@ public class ReclamationClientController implements Initializable {
         categRec.setItems(oblist);
          btnRec.setOnAction(e->{
          try{
-             ajouterReclamation(); 
+             Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Voulez vous envoyer votre reclamation ? ");
+		Optional<ButtonType> action = alert.showAndWait();
+                if(action.get() == ButtonType.OK)
+                 ajouterReclamation(); 
+                //java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+            
             
          }  catch (SQLException ex) {
                 Logger.getLogger(ReclamationClientController.class.getName()).log(Level.SEVERE, null, ex);
@@ -152,7 +165,42 @@ public class ReclamationClientController implements Initializable {
    /* @FXML
     private void AnnulerReclamation(ActionEvent event) {
     }*/
-
+    private boolean validate(String field, String value, String pattern){
+		if(!value.isEmpty()){
+		Pattern p = Pattern.compile(pattern);
+	        Matcher m = p.matcher(value);
+	        if(m.find() && m.group().equals(value)){
+	            return true;
+	        }else{
+	        	validationAlert(field, false);            
+	            return false;            
+	        }
+		}else{
+			validationAlert(field, true);            
+            return false;
+		}        
+    }
+	
+	private boolean emptyValidation(String field, boolean empty){
+        if(!empty){
+            return true;
+        }else{
+        	validationAlert(field, true);            
+            return false;            
+        }
+    }	
+	
+	private void validationAlert(String field, boolean empty){
+	Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Validation Error");
+        alert.setHeaderText(null);
+        if(field.equals("Role")) alert.setContentText("Please Select "+ field);
+        else{
+        	if(empty) alert.setContentText("Please Enter "+ field);
+        	else alert.setContentText("Please Enter Valid "+ field);
+        }
+        alert.showAndWait();
+	}  
     private void learnworld(String text) {
         possiblewordSet.add(text);
         

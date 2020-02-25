@@ -303,6 +303,12 @@ public class ServiceReclamation  {
         return oblist;
             
         }
+    public ResultSet Stat() throws SQLException{
+        
+        ste=con.createStatement();
+        ResultSet rs;
+        return rs=ste.executeQuery("select count(*),count(etatr='nontraité') from reclamation");
+    }
     
          
          

@@ -52,11 +52,11 @@ public class ReclamationChaqueClientController implements Initializable {
     @FXML
     private TextField idClient;
     @FXML
-    private AnchorPane titre;
-    @FXML
     private Label nomPrenom;
     @FXML
     private Label labelrec;
+    @FXML
+    private TextField etat;
     
 
     /**
@@ -96,6 +96,10 @@ public class ReclamationChaqueClientController implements Initializable {
         this.nomPrenom.setText(var);
     }
 
+    public void setEtat(String etat) {
+        this.etat.setText(etat);
+    }
+
    
 
     
@@ -120,6 +124,21 @@ public class ReclamationChaqueClientController implements Initializable {
         
         ServiceReclamation sr=new ServiceReclamation();
         try {
+            if(etat.getText().equals("traiter")){
+                TrayNotification tray =new TrayNotification();
+            tray.setTitle("Valider");
+        tray.setMessage("La réclamation a deja été traité");
+        tray.setAnimationType(AnimationType.POPUP);
+        tray.setNotificationType(NotificationType.INFORMATION);
+        tray.showAndWait();
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationClients.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+            
+            }else{
             sr.updateAdmin("traiter",Integer.parseInt(idClient.getText()),reponse.getText());
             //AfficherListeReclamations();
             TrayNotification tray =new TrayNotification();
@@ -128,14 +147,14 @@ public class ReclamationChaqueClientController implements Initializable {
         tray.setAnimationType(AnimationType.POPUP);
         tray.setNotificationType(NotificationType.INFORMATION);
         tray.showAndWait();
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationClient.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationClients.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(tableViewScene);
-        window.show();
+        window.show();}
         } catch (SQLException ex) {
             Logger.getLogger(ReclamationChaqueClientController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -126,10 +126,10 @@ public class ListerReclamationEmployeController implements Initializable {
 				
 				if (ReclamationsEmploye.getFirstname().toLowerCase().contains(lowerCaseFilter) ) {
 					return true; // Filter matches first name.
-				} else if (ReclamationsEmploye.getLastname().toLowerCase().contains(lowerCaseFilter)) {
-					return true; }// Filter matches last name.
-				//else if (Reclamation.getIdR().contains(newValue)){
-				   // return true;}
+				} else if (ReclamationsEmploye.getLastname().toLowerCase().contains(lowerCaseFilter)) 
+					return true; // Filter matches last name.
+				//else if (ReclamationsEmploye.getIdRemp().contains(newValue))
+				   //return true;
 				      
 				    	 return false; // Does not match.
 			});

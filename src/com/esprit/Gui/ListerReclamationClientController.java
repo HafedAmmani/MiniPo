@@ -231,6 +231,7 @@ public class ListerReclamationClientController implements Initializable {
         String nom=oblistClient.get(0).getFirstname();
         String prenom=oblistClient.get(0).getLastname();
         int id=oblistClient.get(0).getIdR();
+        String etat=oblistClient.get(0).getEtatr();
         
          FXMLLoader loader = new FXMLLoader
                         (getClass()
@@ -243,6 +244,7 @@ public class ListerReclamationClientController implements Initializable {
                 apc.setCategorie(categorie);
                 apc.setIdClient(id);
                 apc.setNomPrenom(nom,prenom);
+                apc.setEtat(etat);
                 TableViewRec.getScene().setRoot(root);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
