@@ -143,13 +143,13 @@ public class GestionUtilisateurController implements Initializable {
      private void initTable() throws SQLException {
             oblist= sp.listerUserOB();
 //            col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-            col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastname"));
-            col_firstname.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+            col_password.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+            col_genre.setCellValueFactory(new PropertyValueFactory<>("firstname"));
             col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-            col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
-            col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
-            col_genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
-            col_role.setCellValueFactory(new PropertyValueFactory<>("roles"));
+            col_role.setCellValueFactory(new PropertyValueFactory<>("username"));
+            col_lastname.setCellValueFactory(new PropertyValueFactory<>("password"));
+            col_firstname.setCellValueFactory(new PropertyValueFactory<>("genre"));
+            col_username.setCellValueFactory(new PropertyValueFactory<>("roles"));
             TbView.setItems(oblist);
 	}
     private boolean validatePassword(){

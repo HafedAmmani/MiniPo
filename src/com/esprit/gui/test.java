@@ -25,8 +25,7 @@ public class test extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
    
-           Parent root = FXMLLoader.load(getClass().getResource("GestionUtilisateur.fxml"));
-            
+           Parent root = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
             Scene scene = new Scene(root);
            // scene.getStylesheets().add(getClass().getResource("inscription.css").toExternalForm());
          //   primaryStage.setTitle("Ajouter User!");

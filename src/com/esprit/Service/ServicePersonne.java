@@ -46,6 +46,18 @@ public class ServicePersonne  {
     pre.setString(7, u.getRoles());
     pre.executeUpdate();
     }
+    public void ajouterBD(User u) throws SQLException
+    {    
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `user` (`lastname`,`firstname`,`email`,`username`,`password`,  `genre`, `roles`)  VALUES (  ?, ?, ?, ?, ?, ?, ?);");
+    pre.setString(1, u.getLastname());
+    pre.setString(2, u.getFirstname());
+    pre.setString(3, u.getEmail());
+    pre.setString(4, u.getUsername());
+    pre.setString(5, u.getPassword());
+    pre.setString(6, u.getGenre());
+    pre.setString(7, u.getRoles());
+    pre.executeUpdate();
+    }
 
 
 
@@ -215,6 +227,21 @@ public boolean Modifier(User u) throws SQLException
          ps.setInt(1,id);
          int ex=ps.executeUpdate();
         
+    }
+    public String getRoleUser(String name) throws SQLException{
+       String role="";
+        ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("select roles from user where username='"+name+"' ;");
+        while (rs.next())
+        {
+            
+           role = rs.getString("roles");
+          
+            
+        }
+        return role;
+       
+
     }
 
 }

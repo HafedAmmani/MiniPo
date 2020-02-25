@@ -69,23 +69,17 @@ public class LoginUserController implements Initializable {
          alert.showAndWait();
          
      }
-     else{
+     else {
          while(s.next()){
-             if(name.equals(s.getString("username"))&&service_bcrypt.checkpw(password, s.getString(password))){
+         if(name.equals(s.getString("username"))&&service_bcrypt.checkpw(password, s.getString(password))){
          Alert alert = new Alert(Alert.AlertType.WARNING);
          alert.setHeaderText(null);
          alert.setContentText("Successfully logged in");
          alert.showAndWait();
              }
          }
-         Alert alert = new Alert(Alert.AlertType.ERROR);
-         alert.setHeaderText(null);
-         alert.setContentText("Error");
-         alert.showAndWait();
-
+         }
      }
-     
-    }
      private boolean validatePassword(){
         Pattern p = Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})");
         Matcher m = p.matcher(tfpassword.getText());
@@ -104,11 +98,44 @@ public class LoginUserController implements Initializable {
     }
        
 
-    @FXML
-    private void connect(ActionEvent event) throws SQLException {
-            if(validatePassword()==true)
+   /* @FXML
+    private void connect(ActionEvent event) throws SQLException, IOException {
+           
+       if(validatePassword()==true )
     {
         validateusername();
+        Parent root = FXMLLoader.load(getClass().getResource("Forgetpass.fxml"));
+         Scene scene = new Scene(root);
+            //scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+            //primaryStage.setTitle("Ajouter User!");
+             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(scene);
+        window.show();
+
+    }
+    }*/
+    private ServicePersonne ser= new ServicePersonne();
+      @FXML
+    private void connect(ActionEvent event) throws SQLException, IOException { //button connecter pour pouvoir rederiger  a une autre interface
+        String username = tfusername.getText();
+        
+        
+            if(validatePassword()==true)
+    {
+        System.out.println("AAAA");
+         validateusername();
+         System.out.println(ser.getRoleUser(username));
+        if (ser.getRoleUser(username).equals("hafedhammani@gmail.com")){
+            System.out.println("BBBB");
+            FXMLLoader fxml = new FXMLLoader(getClass().getResource("Forgetpass.fxml"));
+            Parent root = fxml.load();
+                 tfusername.getScene().setRoot(root);
+                 ForgetpassController rc = fxml.getController();
+                 
+                 
+        
+    }
     }
     }
 
