@@ -89,6 +89,19 @@ public class User {
          this.genre = genre;
     }
 
+    public User(String tid, String lastname, String firstname, String email, String username, String password, String genre, String roles) {
+         this.id = id;
+        
+         this.lastname = lastname;
+         this.firstname = firstname;
+         this.email = email;
+         this.username = username;
+         this.password = password;
+         this.genre = genre;
+         this.roles = roles;
+         
+    }
+
  
 
     @Override
@@ -96,14 +109,26 @@ public class User {
         return "User{" + "id=" + id + ", username=" + username + ", usernameCanonical=" + usernameCanonical + ", email=" + email + ", emailCanonical=" + emailCanonical + ", enabled=" + enabled + ", salt=" + salt + ", password=" + password + ", lastLogin=" + lastLogin + ", confirmationToken=" + confirmationToken + ", passwordRequestedAt=" + passwordRequestedAt + ", roles=" + roles + ", firstname=" + firstname + ", lastname=" + lastname + ", genre=" + genre + '}';
     }
 
-    public User(String username, String email, String password, String roles, String firstname, String lastname, String genre) {
+    /*public User(String username, String email, String password, String roles, String firstname, String lastname, String genre) {
         this.username = username;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.genre = genre;
+        this.email = email;
+        this.password = password;
+         this.genre = genre;
+        this.roles = roles;
+       
+    }*/
+      public User(String username, String email, String password, String roles, String firstname, String lastname, String genre) {
+        
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+         this.genre = genre;
+        this.roles = roles;
+       
     }
 
     public Integer getId() {

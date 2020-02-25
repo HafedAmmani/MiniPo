@@ -136,10 +136,11 @@ public class InscriptionController implements Initializable {
             
         }else if (!pass.equals(Cpass)){
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText(null);
+           alert.setTitle("Warning");
+           alert.setHeaderText(null);
             alert.setContentText("Mot de passe invalide");
-            alert.showAndWait();
+           alert.showAndWait();
+           
             return false;
         }
             else {

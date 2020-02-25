@@ -12,6 +12,7 @@ import java.util.List;
 import java.sql.*;
 import com.esprit.Utils.DataBase;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -34,9 +35,8 @@ public class ServicePersonne  {
 
 
     public void ajouter(User u) throws SQLException
-    {
+    {    
     PreparedStatement pre=con.prepareStatement("INSERT INTO `user` (`lastname`,`firstname`,`email`,`username`,`password`,  `genre`, `roles`)  VALUES (  ?, ?, ?, ?, ?, ?, ?);");
-
     pre.setString(1, u.getLastname());
     pre.setString(2, u.getFirstname());
     pre.setString(3, u.getEmail());

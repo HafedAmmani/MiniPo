@@ -168,6 +168,7 @@ public class GestionUtilisateurController implements Initializable {
     }
     @FXML
     private void insertNewUser() throws SQLException{ // for adding new Employe
+
         String nom = Tfirstname.getText();
             String unom= tusername.getText();
             String prenom = tlastname.getText();
@@ -176,8 +177,8 @@ public class GestionUtilisateurController implements Initializable {
             String role = comborole.getValue();
             String genre =combgenre.getValue();
        User p1;
-       p1 = new User(tusername.getText(),Tfirstname.getText(), tlastname.getText(), temail.getText(), tpassword.getText(),combgenre.getValue(),comborole.getValue());
-     // p1 = new User(tlastname.getText(),Tfirstname.getText(), temail.getText(),tusername.getText(), tpassword.getText(),role, combgenre.getValue(),comborole.getValue());  
+      // p1 = new User(tusername.getText(),Tfirstname.getText(), tlastname.getText(), temail.getText(), tpassword.getText(),combgenre.getValue(),comborole.getValue());
+      p1 = new User(tlastname.getText(),Tfirstname.getText(), temail.getText(),tusername.getText(), tpassword.getText(), combgenre.getValue(),comborole.getValue());  
       sp.ajouter(p1);
         tusername.setText("");
         Tfirstname.setText("");
