@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.minipo.IService;
+package com.esprit.IService;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,9 +12,8 @@ import java.util.List;
  *
  * @author hafed
  */
-public interface IService<T> {
-    void ajouter(T t) throws SQLException;
-    boolean delete(T t) throws SQLException;
-    boolean update(T t) throws SQLException;
-    List<T> readAll() throws SQLException;
+public interface Iconge<C> {
+    void ajouter(C t) throws SQLException;
+    boolean update(C t) throws SQLException;
+    List<C> readAll() throws SQLException;
 }

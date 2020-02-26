@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ReclamationObjetController">
+   <children>
+      <Label layoutX="53.0" layoutY="68.0" prefHeight="17.0" prefWidth="58.0" text="Type" />
+      <Label layoutX="53.0" layoutY="116.0" text="Objet" />
+      <TextField fx:id="objet" layoutX="96.0" layoutY="112.0" />
+      <Label layoutX="54.0" layoutY="164.0" text="Etat" />
+      <TextField fx:id="etat" layoutX="96.0" layoutY="160.0" />
+      <TextField fx:id="type" layoutX="96.0" layoutY="64.0" />
+   </children>
+</AnchorPane>
