@@ -16,26 +16,30 @@ public class Commande {
     private float total;
     private Date datec;
     private String etatc;
-    private int idfact;
+    private int idclt;
+    private String refC;
 
-    public Commande(int idcmd, float total, Date datec, String etatc, int idfact) {
+    public Commande(int idcmd, float total, Date datec, String etatc, int idclt, String refC) {
         this.idcmd = idcmd;
         this.total = total;
         this.datec = datec;
         this.etatc = etatc;
-        this.idfact = idfact;
+        this.idclt = idclt;
+        this.refC = refC;
     }
 
-    public Commande(float total, Date datec, String etatc, int idfact) {
+    public Commande(float total, Date datec, String etatc, int idclt, String refC) {
         this.total = total;
         this.datec = datec;
         this.etatc = etatc;
-        this.idfact = idfact;
+        this.idclt = idclt;
+        this.refC = refC;
     }
 
-    public Commande(Integer idc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Commande(int idcmd) {
+        this.idcmd = idcmd;
     }
+    
 
     public int getIdcmd() {
         return idcmd;
@@ -69,18 +73,28 @@ public class Commande {
         this.etatc = etatc;
     }
 
-    public int getIdfact() {
-        return idfact;
+    public int getIdclt() {
+        return idclt;
     }
 
-    public void setIdfact(int idfact) {
-        this.idfact = idfact;
+    public void setIdclt(int idclt) {
+        this.idclt = idclt;
+    }
+
+    public String getRefC() {
+        return refC;
+    }
+
+    public void setRefC(String refC) {
+        this.refC = refC;
     }
 
     @Override
     public String toString() {
-        return "Commande{" + "idcmd=" + idcmd + ", total=" + total + ", datec=" + datec + ", etatc=" + etatc + ", idfact=" + idfact + '}';
+        return "Commande{" + "idcmd=" + idcmd + ", total=" + total + ", datec=" + datec + ", etatc=" + etatc + ", idclt=" + idclt + ", refC=" + refC + '}';
     }
+
+    
 
 
     

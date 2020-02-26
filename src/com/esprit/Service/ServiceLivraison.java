@@ -33,13 +33,34 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
 
     }
 
-    @Override
-    public void ajouterLivraison(Livraison liv) throws SQLException {
+    
+  /*  public void ajouterLivraison(Livraison liv) throws SQLException {
         ste = con.createStatement();
         String requeteInsert = "INSERT INTO `minipot`.`livraison` (`destination`,`etatl`, `idc`, `idl`) VALUES ( '" + liv.getDestination() + "', '" + liv.getEtatl() + "', '" + liv.getIdc() + "', '" + liv.getIdl() +"');";
         ste.executeUpdate(requeteInsert);
+    }*/
+    @Override
+    public void ajouterLivraison(Livraison liv) throws SQLException
+    {
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `minipot`.`livraison` (`destination`,`etatl`, `idc`, `idl`,`dateliv`, `matriculeL`) VALUES ( ?, ?, ?, ?, ?, ?);",Statement.RETURN_GENERATED_KEYS);
+    pre.setString(1, liv.getDestination());
+    pre.setString(2, liv.getEtatl());
+    pre.setInt(3, liv.getIdc());
+    pre.setInt(4, liv.getIdl());
+    pre.setString(5, liv.getDateliv());
+    pre.setString(6, "X"+liv.getIdliv());
+    pre.executeUpdate();
+     try (ResultSet generatedKeys = pre.getGeneratedKeys()){
+         if (generatedKeys.next()){
+             PreparedStatement stmt=con.prepareStatement("UPDATE `minipot`.`livraison` SET `matriculeL` =? WHERE `idliv`=?");
+             stmt.setString(1,"X"+ generatedKeys.getLong(1));
+             stmt.setInt(2, (int) generatedKeys.getLong(1));
+             stmt.executeUpdate();
+         } else {
+         throw new SQLException("Creating user failed, no ID obtained");
+         }
+     }
     }
-
     @Override
     public boolean deleteLivraison(Livraison liv) throws SQLException {
         PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`livraison` WHERE `idl` = ? ");
@@ -115,16 +136,37 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
         ObservableList list = FXCollections.observableArrayList();
         ResultSet rs;//   obList.clear();
          try {
-	    PreparedStatement st= con.prepareStatement("select idliv from livraison");
+	    PreparedStatement st= con.prepareStatement("select idl from livreur");
 	    ResultSet res= st.executeQuery();
      while (res.next()) {        
-               int idliv=res.getInt("idliv");
-                list.add(String.valueOf(idliv));
+               int idl=res.getInt("idl");
+                list.add(String.valueOf(idl));
      }
      st.close();
       } catch (SQLException ex) {
         }
          return list;
     }
-    
+      public ObservableList<Livraison> getLiv() {
+        
+        ObservableList obList = FXCollections.observableArrayList();
+        
+         try {
+             PreparedStatement st=con.prepareStatement("select * from livraison ORDER BY idliv");
+//	    PreparedStatement st= con.prepareStatement("select * from livraison liv,commande c WHERE c.idcmd=liv.idc ORDER BY c.datec ASC");
+	    ResultSet res= st.executeQuery();
+     while (res.next()) {        
+               String matriculeL=res.getString("matriculeL");
+               System.out.println(matriculeL);
+               String destination=res.getString("destination");
+               String etatl=res.getString("etatl");
+               Integer idc=res.getInt("idc");
+               Integer idl=res.getInt("idl");
+                obList.add(new Livraison(destination, etatl, idc, idl, matriculeL));      
+     }
+     st.close();
+      } catch (SQLException ex) {
+        }
+         return obList;
+    }
 }

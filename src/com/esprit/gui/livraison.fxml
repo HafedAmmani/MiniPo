@@ -43,11 +43,11 @@
                <children>
                   <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="662.0">
                     <columns>
-                      <TableColumn id="col_nom" fx:id="col_idliv" prefWidth="100.00006103515625" text="Id livraison" />
-                      <TableColumn id="col_prenom" fx:id="col_dest" prefWidth="137.0" text="Destination" />
-                        <TableColumn id="col_adresse" fx:id="col_etatl" prefWidth="153.0" text="Etat livraison" />
-                        <TableColumn id="col_email" fx:id="col_idc" prefWidth="122.0" text="Id commande" />
-                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="148.0" text="Id livreur" />
+                      <TableColumn id="col_nom" fx:id="col_idliv" prefWidth="147.0" text="Matricule livraison" />
+                      <TableColumn id="col_prenom" fx:id="col_dest" prefWidth="121.0" text="Destination" />
+                        <TableColumn id="col_adresse" fx:id="col_etatl" prefWidth="123.0" text="Etat livraison" />
+                        <TableColumn id="col_email" fx:id="col_idc" prefWidth="131.0" text="Id commande" />
+                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="139.0" text="Id livreur" />
                     </columns>
                   </TableView>
                   

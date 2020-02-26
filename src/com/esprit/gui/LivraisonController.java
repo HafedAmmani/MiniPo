@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import com.esprit.Entite.Livraison;
+import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -86,8 +87,9 @@ public class LivraisonController implements Initializable {
         id_liv.setItems(cmbl);
     }
     private void initTable() {
-            obList = serv.getAllLivraison();
-            col_idliv.setCellValueFactory(new PropertyValueFactory<>("idliv"));
+            obList = serv.getLiv();
+            System.out.println(obList);
+            col_idliv.setCellValueFactory(new PropertyValueFactory<>("matriculeL"));
             col_dest.setCellValueFactory(new PropertyValueFactory<>("destination"));
             col_etatl.setCellValueFactory(new PropertyValueFactory<>("etatl"));
             col_idc.setCellValueFactory(new PropertyValueFactory<>("idc"));
@@ -97,11 +99,11 @@ public class LivraisonController implements Initializable {
     @FXML
     private void AjouterLivraison() throws SQLException{
         Livraison p1;
-        int idcom1=1;
-        int idLiv=1;
-        idcom1 += id_cmd.getSelectionModel().getSelectedIndex();
-        idLiv += id_liv.getSelectionModel().getSelectedIndex();
-        p1 = new Livraison(destinantion.getText(),"non livrée",idcom1,idLiv);
+        String ld= id_date.getValue().toString();
+        System.out.println(ld);
+        int idcom1 = Integer.valueOf(id_cmd.getSelectionModel().getSelectedItem());
+        int idl = Integer.valueOf(id_liv.getSelectionModel().getSelectedItem());
+        p1 = new Livraison(destinantion.getText(),"non livrée",idcom1,idl,ld,null);
         serv.ajouterLivraison(p1);
         initTable();
     }
@@ -111,7 +113,7 @@ public class LivraisonController implements Initializable {
         Livraison p1;
         Livraison selected = tblview.getSelectionModel().getSelectedItem();
         ID = selected.getIdliv();
-        p1 = new Livraison(ID,selected.getDestination(),selected.getEtatl(),selected.getIdc(),selected.getIdl());
+        p1 = new Livraison(ID,selected.getDestination(),selected.getEtatl(),selected.getIdc(),selected.getIdl(),selected.getDateliv(),selected.getMatriculeL());
         serv.deleteLivraison(p1);
         initTable();
     }

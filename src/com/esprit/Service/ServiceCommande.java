@@ -36,7 +36,7 @@ public class ServiceCommande implements IServiceCommande<Commande> {
     @Override
     public void ajouterCommande(Commande c) throws SQLException {
         ste = con.createStatement();
-        String requeteInsert = "INSERT INTO `minipot`.`commande` (`total`,`datec`, `etatc`, `idfact`) VALUES ( '" + c.getTotal() + "', '" + c.getDatec() + "', '" + c.getEtatc() + "', '" + c.getIdfact() +"');";
+        String requeteInsert = "INSERT INTO `minipot`.`commande` (`total`,`datec`, `etatc`, `idfact`) VALUES ( '" + c.getTotal() + "', '" + c.getDatec() + "', '" + c.getEtatc() + "', '" + c.getIdclt() +"','" + c.getRefC() +"');";
         ste.executeUpdate(requeteInsert);
     }
 
@@ -64,8 +64,9 @@ public class ServiceCommande implements IServiceCommande<Commande> {
                Float total=rs.getFloat("total");
                Date datec=rs.getDate("datec");
                String etatc=rs.getString("etatc");
-               Integer idfact=rs.getInt("idfact");
-               Commande p=new Commande(idc, total, datec, etatc, idfact);
+               Integer idclt=rs.getInt("idclt");
+               String refC=rs.getString("refC");
+               Commande p=new Commande(idc, total, datec, etatc, idclt, refC);
      arr.add(p);
      }
     return arr;
