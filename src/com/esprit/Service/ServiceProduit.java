@@ -45,10 +45,9 @@ public class ServiceProduit {
             ServiceCategorie sc=new ServiceCategorie();
             Categorie c=sc.getCategorie(rsp.getInt("idcateg"));
             
-            ServiceFournisseur sf=new ServiceFournisseur();
-            Fournisseur f=sf.getFournisseur(rsp.getInt("idf"));
+            
                
-            pp=new Produit(rsp.getInt("idprod"),rsp.getString("designation"),rsp.getFloat("prix"),rsp.getInt("qtestock"),c,f);  
+            pp=new Produit(rsp.getInt("idprod"),rsp.getString("designation"),rsp.getFloat("prix"),rsp.getInt("qtestock"),c);  
             return pp;
         }
         

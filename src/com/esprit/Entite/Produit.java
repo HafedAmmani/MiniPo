@@ -17,17 +17,15 @@ public class Produit {
     private String designation;
     private float prix;
     private int qtestock;
-    private ArrayList<LigneCommande> ligneCommandes=new ArrayList<>();
     private Categorie categorie ;
     private Fournisseur fournisseur ;
 
-    public Produit(int idprod, String designation, float prix, int qtestock, Categorie categorie, Fournisseur fournisseur) {
+    public Produit(int idprod, String designation, float prix, int qtestock, Categorie categorie) {
         this.idprod = idprod;
         this.designation = designation;
         this.prix = prix;
         this.qtestock = qtestock;
         this.categorie = categorie;
-        this.fournisseur = fournisseur;
     }
 
      public Produit(String designation, float prix, int qtestock, Categorie categorie, Fournisseur fournisseur) {
@@ -74,14 +72,6 @@ public class Produit {
         this.qtestock = qtestock;
     }
 
-    public ArrayList<LigneCommande> getLigneCommandes() {
-        return ligneCommandes;
-    }
-
-    public void setLigneCommandes(ArrayList<LigneCommande> ligneCommandes) {
-        this.ligneCommandes = ligneCommandes;
-    }
-
     public Categorie getCategorie() {
         return categorie;
     }
@@ -119,8 +109,7 @@ public class Produit {
         return "id Produit= "  + idprod + 
                 "\tdesignation=" + designation + 
                 "\tprix=" + prix +
-                "\tquentité en stock=" + qtestock+
-                "\tligneCommandes=" + ligneCommandes ;
+                "\tquentité en stock=" + qtestock;
     }
     
     

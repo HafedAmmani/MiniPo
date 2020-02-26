@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ListeFactureController">
+    <stylesheets>
+        <URL value="@employe.css" />
+    </stylesheets>
+   <children>
+      <Pane id="pane_top" layoutX="195.0" prefHeight="56.0" prefWidth="986.0">
+         <children>
+            <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Liste des commandes">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <AnchorPane id="anchorpane_center" layoutX="204.0" layoutY="70.0" prefHeight="482.0" prefWidth="965.0">
+         <children>
+            <AnchorPane id="anchorpane_left" layoutX="274.0" layoutY="16.0" prefHeight="90.0" prefWidth="684.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="26.0" prefHeight="39.0" prefWidth="106.0" text="Recherche :" />
+                  <TextField fx:id="tfRech" layoutX="84.0" layoutY="33.0" onKeyTyped="#RechercheAction" prefHeight="25.0" prefWidth="458.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane id="anchorpane_right" layoutX="283.0" layoutY="128.0" prefHeight="351.0" prefWidth="666.0">
+               <children>
+                  <TableView fx:id="tabcom" layoutX="-7.0" layoutY="-6.0" onMouseClicked="#ListCmdOnClickAction" prefHeight="357.0" prefWidth="676.0">
+                    <columns>
+                      <TableColumn fx:id="col_idfact" prefWidth="106.0" text="Id Facture" visible="false" />
+                      <TableColumn fx:id="col_nom" prefWidth="123.0" text="Nom" />
+                        <TableColumn fx:id="col_pre" prefWidth="142.0" text="Prenom" />
+                        <TableColumn fx:id="col_dat" prefWidth="149.0" text="Date Facture" />
+                        <TableColumn fx:id="col_et" prefWidth="114.0" text=" Etat Facture" />
+                        <TableColumn fx:id="col_idClt" prefWidth="127.0" text=" id Client" visible="false" />
+                        <TableColumn fx:id="col_idcmd" prefWidth="75.0" text="id Commande" visible="false" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="20.0" layoutY="21.0" prefHeight="448.0" prefWidth="242.0">
+               <children>
+                  <Label layoutX="18.0" layoutY="98.0" text="Non Client" />
+                  <ComboBox fx:id="cbxEtat" layoutX="63.0" layoutY="135.0" prefHeight="25.0" prefWidth="116.0" />
+                  <Button fx:id="btnMod" layoutX="36.0" layoutY="224.0" mnemonicParsing="false" onAction="#btnModifierAction" text="Modifier" />
+                  <Button fx:id="btnSupp" layoutX="131.0" layoutY="224.0" mnemonicParsing="false" onAction="#btnSupprimerAction" text="Supprimer" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <VBox prefHeight="570.0" prefWidth="194.0" style="-fx-background-color: E5E5E5;">
+         <children>
+            <Pane prefHeight="106.0" prefWidth="194.0">
+               <children>
+                  <Text layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MiniPo" textAlignment="CENTER" wrappingWidth="194.40000000000003">
+                     <font>
+                        <Font name="Monotype Corsiva" size="36.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane id="pane_top" prefHeight="14.0" prefWidth="214.0" />
+            <Button fx:id="Acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="56.0" prefWidth="216.0" stylesheets="@fullpackstyling.css" text="Acceuil">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_add_user_group_man_man_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnListCmd" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="66.0" mnemonicParsing="false" onAction="#BtnListClickAction" prefHeight="56.0" prefWidth="215.0" stylesheets="@fullpackstyling.css" text="Commandes">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/4105931-add-to-cart-buy-cart-sell-shop-shopping-cart_113919.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -7,13 +7,9 @@ package com.esprit.Gui;
 
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -44,7 +40,15 @@ public class NewFXMain extends Application {
         primaryStage.show();*/
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ListeProduit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
+            
+            //Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
+            
+            //Parent root = FXMLLoader.load(getClass().getResource("AdminEspace.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("EspaceAdministrateur.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("ListeFacture.fxml"));
+            
+            //Parent root = FXMLLoader.load(getClass().getResource("ListeCmdClient.fxml"));
             
             Scene scene = new Scene(root);
             

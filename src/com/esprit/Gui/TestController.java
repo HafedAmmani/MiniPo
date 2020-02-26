@@ -11,11 +11,13 @@ import com.esprit.Entite.Commande;
 import com.esprit.Entite.Fournisseur;
 import com.esprit.Entite.LigneCommande;
 import com.esprit.Entite.Produit;
-import static com.esprit.Gui.ListeProduitController.prod;
+//import static com.esprit.Gui.ListeProduitController.prod;
 import com.esprit.Service.ServiceLigneCommande;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,18 +75,18 @@ public class TestController implements Initializable {
         
         
         ServiceLigneCommande slc=new ServiceLigneCommande();
-        LigneCommande lc=new LigneCommande(ListeProduitController.prod,Integer.parseInt(qte.getText()));
+        LigneCommande lc=new LigneCommande(AcceuilController.prod,Integer.parseInt(qte.getText()));
         slc.ajouterLigneCommande(lc);
         
         try{
         FXMLLoader loader = new FXMLLoader
                         (getClass()
-                         .getResource("BoitteDialogue.fxml"));
+                         .getResource("Interface1.fxml"));
         
         Parent root = loader.load();
-        BoitteDialogueController bc = loader.getController();
-        bc.setTxtDiag(prod.getDesignation());
-        tfcateg.getScene().setRoot(root);
+        InfoProdController bc = loader.getController();
+        //bc.setTxtDiag(prod.getDesignation());
+        img.getScene().setRoot(root);
        
         }catch(IOException e){
         
@@ -115,7 +117,17 @@ public class TestController implements Initializable {
 
 
    
-   
+   @FXML
+    private void PanierAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Interface1.fxml"));
+            
+            Parent root = loader.load();
+            qte.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
            
     
 }

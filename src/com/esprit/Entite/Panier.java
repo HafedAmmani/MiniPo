@@ -11,21 +11,36 @@ package com.esprit.Entite;
  */
 public class Panier {
     
+    private int idLc;
     private String designation;
     private float prix;
     private String nom;
     private int qte;
+    private int idcmd;
 
-    public Panier(String designation, float prix, String nom, int qte) {
+    public Panier(int idLc, String designation, float prix, String nom, int qte, int idcmd) {
+        this.idLc = idLc;
         this.designation = designation;
         this.prix = prix;
         this.nom = nom;
         this.qte = qte;
+        this.idcmd = idcmd;
     }
+
+    
     
     public Panier() {
         
     }
+
+    public int getId() {
+        return idLc;
+    }
+
+    public void setId(int id) {
+        this.idLc = id;
+    }
+    
 
     public String getDesignation() {
         return designation;
@@ -59,10 +74,30 @@ public class Panier {
         this.qte = qte;
     }
 
+    public int getIdLc() {
+        return idLc;
+    }
+
+    public void setIdLc(int idLc) {
+        this.idLc = idLc;
+    }
+
+    public int getIdcmd() {
+        return idcmd;
+    }
+
+    public void setIdcmd(int idcmd) {
+        this.idcmd = idcmd;
+    }
+
+    
+    
     @Override
     public String toString() {
-        return "Panier{" + "designation=" + designation + ", prix=" + prix + ", nom=" + nom + ", qte=" + qte + "}\n";
+        return "Panier{" + "id=" + idLc + ", designation=" + designation + ", prix=" + prix + ", nom=" + nom + ", qte=" + qte + "}\n";
     }
+
+   
     
     
     

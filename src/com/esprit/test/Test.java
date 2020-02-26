@@ -10,7 +10,7 @@ import com.esprit.Entite.Commande;
 import com.esprit.Entite.Facture;
 import com.esprit.Entite.LigneCommande;
 import com.esprit.Entite.Produit;
-import com.esprit.Gui.ListeProduitController;
+import com.esprit.Gui.AcceuilController;
 import com.esprit.Service.ServiceCategorie;
 import com.esprit.Service.ServiceClient;
 import com.esprit.Service.ServiceCommande;
@@ -124,10 +124,11 @@ public class Test {
         
         //Produit p=sp.getProduit(1);
         //Client clt=ListeProduitController.clt;
-        /*ListeProduitController.setProd();
-        LigneCommande lc=new LigneCommande(ListeProduitController.prod,1);
-        slc.ajouterLigneCommande(lc);*/
+        //ListeProduitController.setProd();
         
+        /*LigneCommande lc=new LigneCommande(AcceuilController.prod,50);
+        slc.ajouterLigneCommande(lc);
+        */
         
         
      
@@ -139,7 +140,8 @@ public class Test {
         //Date d=new Date(12, 15, 12);
 
          ObservableList oblist = FXCollections.observableArrayList();
-         oblist=slc.ListerPannier();
+         oblist=sc.CommandesValider();
+         //oblist=slc.ListerPannier();
          System.out.println(oblist);
         
     }

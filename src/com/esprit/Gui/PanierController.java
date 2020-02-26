@@ -5,17 +5,20 @@
  */
 package com.esprit.Gui;
 
-import com.esprit.Entite.Commande;
-import com.esprit.Entite.LigneCommande;
 import com.esprit.Entite.Panier;
-import com.esprit.Entite.Produit;
 import com.esprit.Service.ServiceLigneCommande;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -59,6 +62,17 @@ public class PanierController implements Initializable {
             tabpan.setItems(oblist);
       
      }
+    @FXML
+    private void PanierAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Interface1.fxml"));
+            
+            Parent root = loader.load();
+            tabpan.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     
  

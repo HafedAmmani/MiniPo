@@ -8,16 +8,27 @@ package com.esprit.Service;
 
 import com.esprit.Entite.Client;
 import com.esprit.Entite.Commande;
+import com.esprit.Entite.Commandes;
+import com.esprit.Gui.AcceuilController;
 import com.esprit.Utils.DataBase;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  *
@@ -66,6 +77,18 @@ public class ServiceCommande {
             pre.setDate(2, c.getDatec());
             pre.setString(3, c.getEtatc());
             pre.setInt(4, c.getClient().getId());
+            pre.executeUpdate();
+        System.out.println("Commande Modifier avec succes");
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+    public void modifierEtatCommande(int id) {
+        try {
+            PreparedStatement pre=con.prepareStatement("UPDATE commande SET etatc='valide' where idcmd="
+                +id+";");
             pre.executeUpdate();
         System.out.println("Commande Modifier avec succes");
         } catch (SQLException ex) {
@@ -195,6 +218,119 @@ public class ServiceCommande {
         }
    
    }
+   
+   
+   public ObservableList<Commande>getCommandesValider(){
+       ObservableList oblist = FXCollections.observableArrayList();
+        try {
+            
+            ste=con.createStatement();
+            
+            ResultSet rs;
+            rs = ste.executeQuery("SELECT * FROM commande WHERE etatc='valide';");
+            while (rs.next()) {
+                oblist.add(new Commande(rs.getInt("idcmd"),rs.getDate("datec"),rs.getFloat("total"),
+                        rs.getString("idcmd"),AcceuilController.clt));
+  
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceLigneCommande.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return oblist;
+            
+   }
+   
+   
+   public ObservableList<Commandes> Commandes(){
+       
+        ObservableList oblist = FXCollections.observableArrayList();
+        try { 
+            
+            ste=con.createStatement();
+            ResultSet rs=ste.executeQuery("SELECT cmd.idcmd,cmd.idclt,c.nom,c.prenom,cmd.datec,cmd.etatc,cmd.total from commande cmd "
+                    + "JOIN client c ON c.idclt=cmd.idclt where cmd.etatc='valide' Or cmd.etatc='Accepter' ;");
+            while (rs.next()) {              
+               DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+               String strDate = dateFormat.format(rs.getDate("datec")); 
+               oblist.add(new Commandes(rs.getInt("idcmd"),rs.getString("nom"),rs.getString("prenom"),
+                       strDate,rs.getString("etatc"),rs.getFloat("total")));
+
+            }
+           
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+           
+        }    
+     return oblist;
+   }
+   
+   
+    public void AccepterCommande(Commande c) {
+        try {
+            PreparedStatement pre=con.prepareStatement("UPDATE commande SET etatc=? where idcmd="
+                +c.getIdcmd()+";");
+            pre.setString(1,c.getEtatc());
+            pre.executeUpdate();
+            TrayNotification tray =new TrayNotification();
+            tray.setTitle("Accepter");
+            tray.setMessage("La commande est Acceptée !!!");
+            tray.setAnimationType(AnimationType.POPUP);
+            tray.setNotificationType(NotificationType.INFORMATION);
+            tray.showAndWait();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+            TrayNotification tray =new TrayNotification();
+            tray.setTitle("Accepter");
+            tray.setMessage("Echec de l'acceptation !!!!");
+            tray.setAnimationType(AnimationType.POPUP);
+            tray.setNotificationType(NotificationType.INFORMATION);
+            tray.showAndWait();
+        }
+    
+    }
+    
+    public ObservableList<Commande>CommandesValider(){
+       ObservableList oblist = FXCollections.observableArrayList();
+        try {
+            ste=con.createStatement();
+            ResultSet rs = ste.executeQuery("SELECT cmd.idcmd,cmd.idclt,c.nom,c.prenom,cmd.datec,cmd.etatc,cmd.total from commande cmd JOIN client c ON c.idclt=cmd.idclt where cmd.etatc='valide';");
+            while (rs.next()) {
+                ServiceClient scl=new ServiceClient();
+                Client clt=scl.getClient(rs.getInt("idclt"));
+                oblist.add(new Commande(rs.getInt("idcmd"),rs.getDate("datec"),rs.getFloat("total"),
+                        rs.getString("etatc"),clt));
+  
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceLigneCommande.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return oblist;
+            
+   }
+    
+    /*public Commande findById(int id)
+    {
+         try {
+            ste=con.createStatement();
+            ResultSet rs = ste.executeQuery("SELECT *from commande where idcmd="+id+";");
+            if (rs.next()) {
+             return(new Commande(rs.getInt("idcmd"),rs.getString()))
+            }
+            }catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                    
+                    }
+    
+    
+    }*/
+
            
 }
         

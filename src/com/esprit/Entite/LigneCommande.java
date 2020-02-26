@@ -39,6 +39,11 @@ public class LigneCommande {
         this.qte = qte;
     }
     
+     public LigneCommande(int idlc, int qte) {
+        this.idlc=idlc;
+        this.qte = qte;
+    }
+    
 
     public LigneCommande() {
     }

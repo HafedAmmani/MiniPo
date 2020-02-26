@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ListeCmdClientController">
+    <stylesheets>
+        <URL value="@employe.css" />
+    </stylesheets>
+   <children>
+      <Pane id="pane_top" layoutX="195.0" prefHeight="56.0" prefWidth="986.0">
+         <children>
+            <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Vos Commandes">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <VBox prefHeight="570.0" prefWidth="194.0" style="-fx-background-color: E5E5E5;">
+         <children>
+            <Pane prefHeight="106.0" prefWidth="194.0">
+               <children>
+                  <Text layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MiniPo" textAlignment="CENTER" wrappingWidth="194.40000000000003">
+                     <font>
+                        <Font name="Monotype Corsiva" size="36.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane id="pane_top" prefHeight="14.0" prefWidth="214.0" />
+            <Button fx:id="Acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="56.0" prefWidth="216.0" stylesheets="@fullpackstyling.css" text="Acceuil">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_add_user_group_man_man_50px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="panier" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#PanierAction" prefHeight="56.0" prefWidth="217.0" stylesheets="@fullpackstyling.css" text="Panier">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_checked_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="239.0" layoutY="113.0" prefHeight="421.0" prefWidth="911.0">
+         <children>
+            <TableView fx:id="tabcom" layoutX="56.0" layoutY="72.0" prefHeight="316.0" prefWidth="719.0">
+              <columns>
+                <TableColumn fx:id="col_non" prefWidth="129.99996948242188" text="Non " />
+                <TableColumn fx:id="col_pre" prefWidth="134.00003051757812" text="Prenom" />
+                  <TableColumn fx:id="col_dat" prefWidth="138.0" text="Date Commande" />
+                  <TableColumn fx:id="col_et" minWidth="0.0" prefWidth="127.0" text="Etat Commande" />
+                  <TableColumn fx:id="col_tot" prefWidth="107.0" text="Totale" />
+                  <TableColumn fx:id="col_id" prefWidth="75.0" text="id Commande" visible="false" />
+              </columns>
+            </TableView>
+            <Text layoutX="76.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher" />
+            <TextField fx:id="tfrech" layoutX="157.0" layoutY="28.0" prefHeight="26.0" prefWidth="450.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

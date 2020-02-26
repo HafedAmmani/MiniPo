@@ -47,9 +47,12 @@ public class Commande {
         this.total = total;
         this.client = client;
     }
+
+    public Commande(int idcmd, String etatc) {
+        this.idcmd = idcmd;
+        this.etatc = etatc;
+    }
     
-
-
     public Commande() {
     }
 
