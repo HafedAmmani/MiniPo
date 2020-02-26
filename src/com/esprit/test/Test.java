@@ -22,7 +22,10 @@ public class Test {
 
     public static void main(String[] args) throws SQLException {
         ServicePersonne ser = new ServicePersonne();
-        User u=new User( "safabensalah", "safa.bensalah@esprit.com","1234", "client", "safa","ben salah","femme");
+        //User u=new User( "safabensalah", "safa.bensalah@esprit.com","1234", "client", "safa","ben salah","femme");
+         User u=new User( "hiba", "jouini","hibajouini@gmail.com", "hibaj", "Aa1234#","female","agent Rh");
+        // User u =new User
+         ser.ajouter(u);
        // client p2 = new client("4545", "hiba",1, "ben ahmed", "457756", "tunis", "@hiba");
         
         //u.setPassword("ggggggggg");

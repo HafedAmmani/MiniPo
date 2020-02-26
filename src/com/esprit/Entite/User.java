@@ -119,7 +119,7 @@ public class User {
         this.roles = roles;
        
     }*/
-      public User(String username, String email, String password, String roles, String firstname, String lastname, String genre) {
+      public User(String username,String lastname,String firstname,  String email,  String password, String genre, String roles) {
         
         this.lastname = lastname;
         this.firstname = firstname;

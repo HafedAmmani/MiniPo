@@ -36,7 +36,7 @@ public class ServicePersonne  {
 
     public void ajouter(User u) throws SQLException
     {    
-    PreparedStatement pre=con.prepareStatement("INSERT INTO `user` (`lastname`,`firstname`,`email`,`username`,`password`,  `genre`, `roles`)  VALUES (  ?, ?, ?, ?, ?, ?, ?);");
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `minipot`.`user` (`lastname`,`firstname`,`email`,`username`,`password`,  `genre`, `roles`)  VALUES (  ?, ?, ?, ?, ?, ?, ?);");
     pre.setString(1, u.getLastname());
     pre.setString(2, u.getFirstname());
     pre.setString(3, u.getEmail());
@@ -112,7 +112,7 @@ public class ServicePersonne  {
             String username = rs.getString("username");
             String password = rs.getString("password");
             String Genre = rs.getString("Genre");
-            obList.add(new User(id, Lastname, Firstname,  email, username, password, roles, Genre));
+            obList.add(new User( username, Lastname, Firstname,   email,   password,  Genre,  roles));
             
 
 
@@ -169,10 +169,10 @@ public class ServicePersonne  {
         System.out.println("Données bien modifier");
     }*/
 
-public boolean Modifier(User u) throws SQLException
+public boolean Modifier(User u ) throws SQLException
     {
         ste = con.createStatement();
-             PreparedStatement pre=con.prepareStatement("UPDATE `User` SET username = ?,password = ?, firstname = ?, lastname = ?, email = ?, role = ?, genre= ? WHERE idemp = ?");
+             PreparedStatement pre=con.prepareStatement("UPDATE `User` SET username = ?,password = ?, firstname = ?, lastname = ?, email = ?, roles = ?, genre= ? where username = ?;");
 
         //String requeteModify= "UPDATE client SET login="+login+", password="+password+", cin="+cin+", nom="+nom+", prenom="+prenom+", adresse="+adresse+", tel="+tel+", email="+email+" WHERE idclt="+idclt;
        /* String requeteModify="UPDATE user SET "
@@ -191,8 +191,10 @@ public boolean Modifier(User u) throws SQLException
         pre.setString(5,u.getEmail());
         pre.setString(6,u.getRoles());
         pre.setString(7, u.getGenre());
-        int ex=pre.executeUpdate();
+        pre.setString(8, u.getUsername());
+        pre.executeUpdate();
         System.out.println("Données bien modifier");
+        int ex=pre.executeUpdate();
         return ex==1;
     }
      public void RechercheById(int id) throws SQLException{
@@ -225,6 +227,12 @@ public boolean Modifier(User u) throws SQLException
     public void Delete(int id) throws SQLException {
         PreparedStatement ps = con.prepareStatement("DELETE  FROM `user` where id=?");
          ps.setInt(1,id);
+         int ex=ps.executeUpdate();
+        
+    }
+     public void Delete(String username) throws SQLException {
+        PreparedStatement ps = con.prepareStatement("DELETE  FROM `user` where username ='"+username+"';");
+         //ps.setString(1, username);
          int ex=ps.executeUpdate();
         
     }

@@ -4,50 +4,40 @@
  * and open the template in the editor.
  */
 package com.esprit.gui;
-import com.esprit.Service.ServicePersonne;
-import com.esprit.Utils.DataBase;
+
 import com.esprit.Entite.User;
 import com.esprit.Service.ServicePersonne;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author ASUS
  */
-public class GestionUtilisateurController implements Initializable {
-    private Connection con;
-    private Statement ste;
+public class TestingUserController implements Initializable {
 
-   @FXML
+    @FXML
     private TextField username;
     @FXML
     private TextField firstname;
@@ -83,53 +73,27 @@ public class GestionUtilisateurController implements Initializable {
     private TableView<User> tbview;
     private ObservableList<String> list = FXCollections.observableArrayList("Male","female");
     private ObservableList<String> list1 = FXCollections.observableArrayList("agent RH","emplyé","livreur","fournisseur");
+    @FXML
+    private Button supprimer;
+    @FXML
+    private Button modifier;
 
-
-   
     /**
      * Initializes the controller class.
      */
-    
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         genre.setItems(list);
         role.setItems(list1);
         try {
             initTable();
+            
         } catch (SQLException ex) {
             Logger.getLogger(GestionUtilisateurController.class.getName()).log(Level.SEVERE, null, ex);
         } 
-//       btn_sauvegarde.setOnAction(e->{
-//            try {
-//                
-//                insertNewUser();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(GestionUtilisateurController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//		});
-       /* btn_mod.setOnAction(e->{
-            
-            try {
-                UpdateUser();
-            } catch (SQLException ex) {
-                Logger.getLogger(GestionUtilisateurController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-		});*/
-     /*   btn_supp.setOnAction(e->{
-            
-            try {
-                Delete();
-            } catch (SQLException ex) {
-                Logger.getLogger(GestionUtilisateurController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-		});*/
-    }
-       
-       
-       
-        
-    
-   
-      private void initTable() throws SQLException {
+        // TODO
+    }    
+     private void initTable() throws SQLException {
             oblist= sp.listerUserOB();
 //            col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
             col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -141,20 +105,7 @@ public class GestionUtilisateurController implements Initializable {
             col_role.setCellValueFactory(new PropertyValueFactory<>("roles"));
             tbview.setItems(oblist);
 	}
-    private boolean validatePassword(){
-        Pattern p = Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})");
-        Matcher m = p.matcher(password.getText());
-        if (m.matches()){
-            return true;
-        }else{
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("validate Password");
-            alert.setHeaderText(null);
-            alert.setContentText("Password must contain at least one(Digit,Lowercase,Uppercase and special characteres");
-            alert.showAndWait();
-            return false;
-        }
-    }
+
     @FXML
     private void AjouterUser(ActionEvent event) throws SQLException {
         String nom = firstname.getText();
@@ -175,37 +126,12 @@ public class GestionUtilisateurController implements Initializable {
         tpassword.setText("");
         combgenre.setValue(genre);
         comborole.setValue(role);*/
-        clear();
+        //clear();
         initTable();
     }  
-
-        
-    private void clear(){
-            username.clear();
-            lastname.clear();
-            firstname.clear();
-            email.clear();
-            password.clear();
-            
-            
-            
-    }
-      
-    
-    /*  void addNewUser(ActionEvent event) throws SQLException {
-        insertNewUser();
-
-    }*/
-//       @FXML
-//    void delete(ActionEvent event) {
-//           Delete();
-//    }
-    /*    void modifier_user(ActionEvent event) {
      
-    }*/
-
-    private void Delete() throws SQLException {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+     private void Delete() throws SQLException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText(null);
 		alert.setContentText("Are you sure you want to delete selected?");
@@ -215,24 +141,10 @@ public class GestionUtilisateurController implements Initializable {
            // User p1;
             //p1 = new User(id,Tfirstname.getText(), tlastname.getText(), temail.getText(), tpassword.getText(), tusername.getText(),combgenre.getValue(),comborole.getValue());
            // if(action.get() == ButtonType.OK)
-            sp.Delete(oblist.get(0).getId());
+            sp.Delete(oblist.get(0).getUsername());
             initTable();
     }
-   /* private void UpdateUser() throws SQLException{ //modifier employe
-            Alert alert = new Alert(AlertType.INFORMATION);
-	    alert.setTitle("Employe modifier avex sucess !.");
-	    alert.setHeaderText(null);
-            int id = Integer.parseInt(tid.getText());
-            User p1;
-            p1 = new User(id,Tfirstname.getText(),tlastname.getText(), temail.getText(), tpassword.getText(), tusername.getText(), combgenre.getValue(),comborole.getValue());
-            sp.Modifier(p1);
-            alert.setContentText("le personnel "+Tfirstname.getText()+" "+tlastname.getText() +" est bien modifié.");
-            alert.showAndWait();
-            clear();
-            initTable();
-        
-    }*/
-    private void EditUser(){
+      private void EditUser() throws SQLException{
         // for updating existing account
 		User selected = tbview.getSelectionModel().getSelectedItem();
                 username.setText(String.valueOf(selected.getUsername()));
@@ -241,18 +153,48 @@ public class GestionUtilisateurController implements Initializable {
 		email.setText(selected.getEmail());
 		password.setText(selected.getPassword());
                 genre.setValue(selected.getGenre());
-                role.setValue(selected.getGenre());
+                role.setValue(selected.getRoles());
+                
 		
     }
 
-    private void SelectionLigne(MouseEvent event) {
+   /* private void SelectionLigne(MouseEvent event) throws SQLException {
         oblist=tbview.getSelectionModel().getSelectedItems();
+        EditUser();
     
-    }
+    }*/
     @FXML
-        private void modifiercell(MouseEvent event) {
+        private void modifiercell(MouseEvent event) throws SQLException {
         if (event.getClickCount()==2)
+            oblist=tbview.getSelectionModel().getSelectedItems();
             EditUser();
             
     }
-}
+
+    @FXML
+    private void supprimer(ActionEvent event) throws SQLException {
+        Delete();
+    }
+
+    @FXML
+    private void modifier(ActionEvent event) throws SQLException {
+        //EditUser();
+        String username=oblist.get(0).getUsername() ;
+        User p=new User(username, lastname.getText(), firstname.getText(), email.getText(), password.getText(), genre.getValue(), role.getValue());
+        sp.Modifier(p);
+        initTable();
+        clear();
+    }
+     private void clear(){
+            username.clear();
+            lastname.clear();
+            firstname.clear();
+            email.clear();
+            password.clear();
+            
+            
+            
+    }
+    }
+    
+
