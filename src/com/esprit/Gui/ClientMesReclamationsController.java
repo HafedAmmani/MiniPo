@@ -6,6 +6,7 @@
 package com.esprit.Gui;
 
 import com.esprit.Entite.Reclamation;
+import com.esprit.Entite.ReclamationClient;
 import com.esprit.Service.ServiceReclamation;
 import java.net.URL;
 import java.sql.Date;
@@ -29,20 +30,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class ClientMesReclamationsController implements Initializable {
 
     @FXML
-    private TableView<Reclamation> tableView;
-    private ObservableList<Reclamation>oblist;
+    private TableView<ReclamationClient> tableView;
+    private ObservableList<ReclamationClient>oblist;
     @FXML
-    private TableColumn<Reclamation, String> type;
+    private TableColumn<ReclamationClient, String> type;
     @FXML
-    private TableColumn<Reclamation, String> objet;
+    private TableColumn<ReclamationClient, String> objet;
     @FXML
-    private TableColumn<Reclamation, String> description;
+    private TableColumn<ReclamationClient, String> description;
     @FXML
-    private TableColumn<Reclamation, String> etat;
+    private TableColumn<ReclamationClient, String> etat;
     private ServiceReclamation reclamation=new ServiceReclamation();
-    ObservableList<Reclamation>oblistReclamation=FXCollections.observableArrayList();
+    //ObservableList<Reclamation>oblistReclamation=FXCollections.observableArrayList();
     @FXML
     private TableColumn<Reclamation, Date> col_date;
+    @FXML
+    private TableColumn<ReclamationClient, String> col_reponse;
     /**
      * Initializes the controller class.
      */
@@ -63,7 +66,9 @@ public class ClientMesReclamationsController implements Initializable {
             type.setCellValueFactory(new PropertyValueFactory<>("type"));
             objet.setCellValueFactory(new PropertyValueFactory<>("objet"));
             description.setCellValueFactory(new PropertyValueFactory<>("description"));
+            etat.setCellValueFactory(new PropertyValueFactory<>("etatr"));
             col_date.setCellValueFactory(new PropertyValueFactory<>("dateR"));
+            col_reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
             //col_image.setCellValueFactory(new PropertyValueFactory<>("image"));
             
             tableView.setItems(oblist);

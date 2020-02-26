@@ -21,6 +21,7 @@ public class ReclamationsEmploye {
     private String etatRemp;
     private String firstname;
     private String lastname ;
+    private String reponse;
 
     public ReclamationsEmploye(int idRemp, int id, String objet, String description, Date dateRemp, String etatRemp, String firstname, String lastname) {
         this.idRemp = idRemp;
@@ -31,6 +32,14 @@ public class ReclamationsEmploye {
         this.etatRemp = etatRemp;
         this.firstname = firstname;
         this.lastname = lastname;
+    }
+
+    public ReclamationsEmploye(String objet, String description,  String etatRemp, Date dateRemp,String reponse) {
+        this.objet = objet;
+        this.description = description;
+        this.dateRemp = dateRemp;
+        this.etatRemp = etatRemp;
+        this.reponse = reponse;
     }
 
     public ReclamationsEmploye(int idRemp, String objet, String description, Date dateRemp, String etatRemp, String firstname, String lastname) {
@@ -60,6 +69,18 @@ public class ReclamationsEmploye {
         this.firstname = firstname;
         this.lastname = lastname;
         this.dateRemp = dateRemp;
+    }
+
+    public ReclamationsEmploye() {
+        
+    }
+
+    public String getReponse() {
+        return reponse;
+    }
+
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
     }
 
     public int getIdRemp() {

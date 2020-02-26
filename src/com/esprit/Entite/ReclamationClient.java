@@ -51,6 +51,15 @@ public class ReclamationClient {
     public ReclamationClient() {
     }
 
+    public ReclamationClient(String type, String objet, String description, String etatr, Date dateR, String reponse) {
+         this.type = type;
+        this.objet = objet;
+        this.description = description;
+        this.etatr = etatr;
+        this.dateR = dateR;
+        this.reponse = reponse;
+    }
+
     public String getReponse() {
         return reponse;
     }

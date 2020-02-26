@@ -52,8 +52,9 @@ public class TestJavaFx extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
           //Parent root=FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListeMesReclamationsClient.fxml"));
-        Parent root=FXMLLoader.load(getClass().getResource("/com/esprit/Gui/AccueilReclamationAd.fxml"));
+        //Parent root=FXMLLoader.load(getClass().getResource("/com/esprit/Gui/AccueilReclamationAd.fxml"));
         //Parent root=FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ClientMesReclamations.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("/com/esprit/Gui/EmployeMesReclamations.fxml"));
         //Parent root=FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationClient.fxml"));
           //Parent root=FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ReclamationClient.fxml"));
           //Parent root=FXMLLoader.load(getClass().getResource("/com/esprit/Gui/Piechart.fxml"));
