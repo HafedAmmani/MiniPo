@@ -25,6 +25,7 @@ import com.esprit.Entite.Livraison;
 import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -117,5 +118,16 @@ public class LivraisonController implements Initializable {
         serv.deleteLivraison(p1);
         initTable();
     }
+
+    @FXML
+    private void getAdresseAction(ActionEvent event) {
+        
+        int id=Integer.valueOf(id_cmd.getSelectionModel().getSelectedItem());
+        ServiceCommande sc=new ServiceCommande();
+        String adr=sc.getAdr(id);
+        destinantion.setText(adr);
+        
+    }
+    
 
 }

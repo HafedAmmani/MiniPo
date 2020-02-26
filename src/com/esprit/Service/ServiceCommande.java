@@ -14,6 +14,8 @@ import java.sql.*;
 import com.minipo.Utils.DataBase;
 import java.util.ArrayList;
 import com.esprit.IService.IServiceCommande;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -87,7 +89,7 @@ public class ServiceCommande implements IServiceCommande<Commande> {
     
     public ObservableList<String> getIdCommande() {
         ObservableList list = FXCollections.observableArrayList();
-        ResultSet rs;//   obList.clear();
+        //   obList.clear();
          try {
 	    PreparedStatement st= con.prepareStatement("select idcmd from commande");
 	    ResultSet res= st.executeQuery();
@@ -100,4 +102,20 @@ public class ServiceCommande implements IServiceCommande<Commande> {
         }
          return list;
     }
+    public String getAdr(int id){
+        String adr="";
+        try {
+            PreparedStatement st= con.prepareStatement("select u.adresse from user u ,commande c where u.id=c.idclt and c.idcmd="+id);
+            ResultSet res= st.executeQuery();
+            while(res.next()){
+                adr=res.getString("adresse");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("error");
+        return adr;
+    }
+    
 }

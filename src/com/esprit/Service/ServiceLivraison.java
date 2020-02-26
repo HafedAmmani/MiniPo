@@ -119,12 +119,12 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
 //	    PreparedStatement st= con.prepareStatement("select * from livraison liv,commande c WHERE c.idcmd=liv.idc ORDER BY c.datec ASC");
 	    ResultSet res= st.executeQuery();
      while (res.next()) {        
-               Integer idliv=res.getInt("idliv");
                String destination=res.getString("destination");
                String etatl=res.getString("etatl");
                Integer idc=res.getInt("idc");
                Integer idl=res.getInt("idl");
-                obList.add(new Livraison(idliv, destination, etatl, idc, idl));
+               String matriculeL=res.getString("matriculeL");
+                obList.add(new Livraison(destination, etatl, idc, idl,matriculeL));
                 
      }
      st.close();
@@ -152,7 +152,7 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
         ObservableList obList = FXCollections.observableArrayList();
         
          try {
-             PreparedStatement st=con.prepareStatement("select * from livraison ORDER BY idliv");
+             PreparedStatement st=con.prepareStatement("select *, c.refC from livraison l , commande c WHERE l.idc=c.idcmd ORDER BY idliv");
 //	    PreparedStatement st= con.prepareStatement("select * from livraison liv,commande c WHERE c.idcmd=liv.idc ORDER BY c.datec ASC");
 	    ResultSet res= st.executeQuery();
      while (res.next()) {        

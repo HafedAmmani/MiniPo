@@ -55,8 +55,11 @@ public class JavaEmailUtil {
             Statement ste;
             con = DataBase.getInstance().getConnection();
             ste=con.createStatement();
-            ResultSet rs=ste.executeQuery("select * from livreur");
-            
+            ResultSet rs1=ste.executeQuery("SELECT user.username, user.adresse, livreur.nom,livreur.prenom, livraison.matriculeL, commande.refC, user.email FROM user, livreur, livraison,commande WHERE roles=\"client\" AND user.id=commande.idclt AND user.id=livreur.idl AND commande.idcmd=livraison.idc;");
+          //  ResultSet rs2=ste.executeQuery("SELECT livreur.nom, livreur.prenom FROM livreur, user WHERE user.id=livreur.idl;");
+           // ResultSet rs3=ste.executeQuery("SELECT livreur.matriculeL, commande.refC FROM livraison, commande WHERE commande.idcmd=livraison.idc;");
+           // SELECT user.username, user.adresse, livreur.nom,livreur.prenom, livraison.matriculeL, commande.refC FROM user, livreur, livraison,commande WHERE roles="client" AND user.id=livreur.idl AND commande.idcmd=livraison.idc;
+            ResultSet rs4=ste.executeQuery("SELECT produit.designation, produit.prix, lignecommande.qte FROM produit, lignecommande, commande WHERE produit.idprod = lignecommande.idprod AND lignecommande.idcmd=commande.idcmd;");
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(MyAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));

@@ -32,7 +32,7 @@
             <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="275.0">
                <children>
                   <TextField fx:id="destinantion" layoutX="25.0" layoutY="138.0" promptText="Destination" />
-                  <ComboBox fx:id="id_cmd" layoutX="25.0" layoutY="65.0" prefHeight="31.0" prefWidth="187.0" promptText="Commande" visibleRowCount="20" />
+                  <ComboBox fx:id="id_cmd" layoutX="25.0" layoutY="65.0" onAction="#getAdresseAction" prefHeight="31.0" prefWidth="187.0" promptText="Commande" visibleRowCount="20" />
                   <ComboBox fx:id="id_liv" layoutX="26.0" layoutY="284.0" prefHeight="31.0" prefWidth="194.0" promptText="Livreur" />
                   <DatePicker fx:id="id_date" layoutX="25.0" layoutY="210.0" prefHeight="31.0" prefWidth="215.0" />
                   <Button id="btn_save" layoutX="73.0" layoutY="344.0" mnemonicParsing="false" onAction="#AjouterLivraison" prefHeight="31.0" prefWidth="103.0" text="Affecter" />
@@ -51,7 +51,7 @@
                     </columns>
                   </TableView>
                   
-               </children>
+                     </children>
             </AnchorPane>
          </children>
       </AnchorPane>

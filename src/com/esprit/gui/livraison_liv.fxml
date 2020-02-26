@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="845.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.LivraisonController">
+<AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="845.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.Livraison_livController">
     <stylesheets>
         <URL value="@employe.css" />
     </stylesheets>
    <children>
       <Pane id="pane_top" prefHeight="56.0" prefWidth="1181.0">
          <children>
-            <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Ajouter une livraison">
+            <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Changer etat livraison">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
@@ -27,28 +27,29 @@
       </Pane>
       <AnchorPane id="anchorpane_center" layoutX="76.0" layoutY="70.0" prefHeight="482.0" prefWidth="1004.0">
          <children>
-            <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="481.0">
-               <children>
-                  <TextField fx:id="destinantion" layoutX="25.0" layoutY="138.0" promptText="Destination" />
-                  <ComboBox fx:id="id_cmd" layoutX="25.0" layoutY="65.0" prefHeight="31.0" prefWidth="187.0" promptText="Commande" />
-                  <ComboBox fx:id="id_liv" layoutX="26.0" layoutY="284.0" prefHeight="31.0" prefWidth="194.0" promptText="Livreur" />
-                  <DatePicker fx:id="id_date" layoutX="25.0" layoutY="210.0" prefHeight="31.0" prefWidth="215.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">
+            <AnchorPane id="anchorpane_right" fx:id="recherche" layoutX="7.0" layoutY="6.0" prefHeight="525.0" prefWidth="623.0">
                <children>
                   <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="662.0">
                     <columns>
-                      <TableColumn id="col_nom" fx:id="col_idliv" prefWidth="100.00006103515625" text="Id livraison" />
-                      <TableColumn id="col_prenom" fx:id="col_dest" prefWidth="137.0" text="Destination" />
-                        <TableColumn id="col_adresse" fx:id="col_etatl" prefWidth="153.0" text="Etat livraison" />
-                        <TableColumn id="col_email" fx:id="col_idc" prefWidth="122.0" text="Id commande" />
-                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="148.0" text="Id livreur" />
+                      <TableColumn id="col_nom" fx:id="col_idliv" prefWidth="207.99996948242188" text="Matricule livraison" />
+                      <TableColumn id="col_prenom" fx:id="col_dest" prefWidth="250.0" text="Destination" />
+                        <TableColumn id="col_adresse" fx:id="col_etatl" prefWidth="202.0" text="Etat livraison" />
+                        <TableColumn id="col_email" fx:id="col_idc" minWidth="0.0" prefWidth="0.0" text="Id commande" visible="false" />
+                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="1.0" text="Id livreur" visible="false" />
                     </columns>
                   </TableView>
+                  <Label layoutX="360.0" layoutY="16.0" prefHeight="30.0" prefWidth="71.0" text="Recherche" wrapText="true">
+                     <font>
+                        <Font name="Arial Narrow" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fil_recherche" layoutX="441.0" layoutY="11.0" onKeyTyped="#Rechercher" />
                   
                </children>
             </AnchorPane>
+            <Label layoutX="720.0" layoutY="63.0" prefHeight="31.0" prefWidth="89.0" text="Etat livraison" wrapText="true" />
+            <ComboBox fx:id="id_etat" layoutX="717.0" layoutY="122.0" prefWidth="150.0" promptText="Changer etat" />
+            <Button id="btn_save" layoutX="729.0" layoutY="208.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="103.0" text="Modifier" />
          </children>
       </AnchorPane>
    </children>
