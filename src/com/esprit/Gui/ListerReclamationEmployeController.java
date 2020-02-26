@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
@@ -165,6 +166,8 @@ public class ListerReclamationEmployeController implements Initializable {
         String description= oblistEmp.get(0).getDescription();
         String nom=oblistEmp.get(0).getFirstname();
         String prenom=oblistEmp.get(0).getLastname();
+        Date date=oblistEmp.get(0).getDateRemp();
+        SimpleDateFormat sdfr = new SimpleDateFormat("dd/MMM/yyyy");
         int id=oblistEmp.get(0).getIdRemp();
         
          FXMLLoader loader = new FXMLLoader
@@ -177,6 +180,7 @@ public class ListerReclamationEmployeController implements Initializable {
                 rce.setDescription(description);
                 rce.setIdREmp(id);
                 rce.setNomPrenom(nom,prenom);
+                rce.setDate(sdfr.format(date));
                 tableViewRecEmp.getScene().setRoot(root);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());

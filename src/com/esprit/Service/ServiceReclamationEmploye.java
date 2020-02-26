@@ -57,11 +57,11 @@ public class ServiceReclamationEmploye {
         
     }
     
-    public void updateEmploye(int idemp,String description  ) throws SQLException {
+    public void updateEmploye(int idRemp,String description  ) throws SQLException {
          PreparedStatement ps=con.prepareStatement("UPDATE `reclamationemploye` set description=? where "
-                 + "idemp=?");
+                 + "idRemp=?");
          ps.setString(1, description);
-         ps.setInt(2, idemp);
+         ps.setInt(2, idRemp);
          ps.executeUpdate();
     }
     
@@ -225,6 +225,12 @@ public class ServiceReclamationEmploye {
                  listRec.add(re);}
                 ObservableList oblist = FXCollections.observableArrayList(listRec);
                 return oblist;}
+     public ResultSet Stat() throws SQLException{
+        
+        ste=con.createStatement();
+        ResultSet rs;
+        return rs=ste.executeQuery("select count(*),count(etatRemp='non traité') from reclamationemploye");
+    }
     
     
 }

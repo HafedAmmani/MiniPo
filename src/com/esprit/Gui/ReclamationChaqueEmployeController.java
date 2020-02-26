@@ -57,6 +57,7 @@ public class ReclamationChaqueEmployeController implements Initializable{
     private Label nomPrenom;
     @FXML
     private TextField nomprenom;
+    private Label date;
 
 
 
@@ -80,6 +81,11 @@ public class ReclamationChaqueEmployeController implements Initializable{
         String var=nom+" "+prenom;
         this.nomprenom.setText(var);
     }
+
+    public void setDate(String date) {
+        this.date.setText(date);
+    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

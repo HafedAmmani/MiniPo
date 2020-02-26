@@ -200,9 +200,9 @@
             </HBox>
             <AnchorPane prefHeight="671.0" prefWidth="1230.0">
                 <children>
-      <TableView fx:id="TableViewRec" editable="true" layoutX="267.0" layoutY="136.0" onMouseClicked="#changerEtat" prefHeight="293.0" prefWidth="695.0">
+      <TableView fx:id="TableViewRec" editable="true" layoutX="267.0" layoutY="136.0" onMouseClicked="#changerEtat" prefHeight="293.0" prefWidth="586.0">
         <columns>
-          <TableColumn fx:id="col_IdRec" prefWidth="108.66668963432312" text="Numero Reclamation" />
+          <TableColumn fx:id="col_IdRec" prefWidth="108.66668963432312" text="Numero Reclamation" visible="false" />
           <TableColumn fx:id="col_Type" prefWidth="41.999961853027344" text="Type" />
             <TableColumn fx:id="col_Obj" prefWidth="75.0" text="Objet " />
             <TableColumn fx:id="col_description" prefWidth="75.0" text="Description" />
@@ -214,7 +214,7 @@
         </columns>
       </TableView>
       <Label layoutX="337.0" layoutY="78.0" prefHeight="17.0" prefWidth="40.0" />
-      <Label layoutX="170.0" layoutY="14.0" prefHeight="35.0" prefWidth="355.0" text="Liste des Reclamations Client ">
+      <Label layoutX="382.0" layoutY="22.0" prefHeight="35.0" prefWidth="321.0" text="Liste des Reclamations Client ">
          <font>
             <Font size="24.0" />
          </font>

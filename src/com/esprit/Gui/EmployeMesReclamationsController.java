@@ -9,17 +9,23 @@ import com.esprit.Entite.ReclamationClient;
 import com.esprit.Entite.ReclamationsEmploye;
 import com.esprit.Service.ServiceReclamation;
 import com.esprit.Service.ServiceReclamationEmploye;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -42,6 +48,8 @@ public class EmployeMesReclamationsController implements Initializable {
     private TableColumn<ReclamationsEmploye, String> col_reponse;
     private ServiceReclamationEmploye reclamation=new ServiceReclamationEmploye();
      private ObservableList<ReclamationsEmploye>oblist;
+    @FXML
+    private TableColumn<ReclamationsEmploye, Integer> idr;
     /**
      * Initializes the controller class.
      */
@@ -64,8 +72,42 @@ public class EmployeMesReclamationsController implements Initializable {
             col_etat.setCellValueFactory(new PropertyValueFactory<>("etatRemp"));
             col_date.setCellValueFactory(new PropertyValueFactory<>("dateRemp"));
             col_reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
+            idr.setCellValueFactory(new PropertyValueFactory<>("idr"));
             //col_image.setCellValueFactory(new PropertyValueFactory<>("image"));
             
             tabviewRec.setItems(oblist);
+    }
+
+    @FXML
+    private void SelectionDonnee(MouseEvent event) {
+          oblist = tabviewRec.getSelectionModel().getSelectedItems();
+        String objet = oblist.get(0).getObjet();
+        String description= oblist.get(0).getDescription();
+        String reponse=oblist.get(0).getReponse();
+        SimpleDateFormat sdfr = new SimpleDateFormat("dd/MMM/yyyy");
+       // String nom=oblist.get(0).getFirstname();
+        //String prenom=oblist.get(0).getLastname();
+        int idr=oblist.get(0).getIdRemp();
+        String etat=oblist.get(0).getEtatRemp();
+        Date date= oblist.get(0).getDateRemp();
+        
+         FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("/com/esprit/Gui/ReclamationEmployeUnique.fxml"));
+            try {
+                Parent root = loader.load();
+                ReclamationEmployeUniqueController apc = loader.getController();
+                apc.setObjet(objet);
+                apc.setDescription(description);
+                apc.setReponse(reponse);
+                apc.setDate(sdfr.format(date));
+                apc.setIdr(idr);
+                
+                //apc.setNomPrenom(nom,prenom);
+                apc.setEtat(etat);
+                tabviewRec.getScene().setRoot(root);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+                }
     }
 }

@@ -79,7 +79,15 @@ public class AccueilReclamationAdminController implements Initializable {
     @FXML
     void ListerStatistiques(ActionEvent event) throws IOException {
          
-         setNode( FXMLLoader.load(getClass().getResource("/com/esprit/Gui/chart.fxml")));
+         //setNode( FXMLLoader.load(getClass().getResource("/com/esprit/Gui/piechart.fxml")));
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("piechart.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
           
 
     }

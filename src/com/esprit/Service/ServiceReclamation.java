@@ -55,7 +55,7 @@ public class ServiceReclamation  {
     public void  ajouterReclamation(Reclamation r) throws SQLException
     {
        // int st=0; 
-    PreparedStatement ps=con.prepareStatement("INSERT INTO `minipot`.`reclamation` ( `type`, `objet`, `description`,`dater`) VALUES ( ?, ?, ?,sysdate());");
+    PreparedStatement ps=con.prepareStatement("INSERT INTO `minipot`.`reclamation` ( `type`, `objet`, `description`,`dater`,`etatr`) VALUES ( ?, ?, ?,sysdate(),'non traité');");
     ps.setString(1, r.getType());
     ps.setString(2, r.getObjet());
     ps.setString(3, r.getDescription());
@@ -87,11 +87,10 @@ public class ServiceReclamation  {
         
     }
 
-    public void updateClient(int idclt,String description  ) throws SQLException {
-         PreparedStatement ps=con.prepareStatement("UPDATE `reclamation` set description=? where "
-                 + "id=?");
+    public void updateClient(int idr,String description  ) throws SQLException {
+         PreparedStatement ps=con.prepareStatement("UPDATE `reclamation` set description=? where idr=?");
          ps.setString(1, description);
-         ps.setInt(2, idclt);
+         ps.setInt(2, idr);
          ps.executeUpdate();
     }
     
@@ -161,7 +160,7 @@ public class ServiceReclamation  {
              ste=con.createStatement();
              List<ReclamationClient> listRec = new ArrayList<ReclamationClient>();
              //ResultSet rs=ste.executeQuery("select r.idr,r.type,r.objet,r.description,r.etatr,r.dater,u.Firstname,u.Lastname from reclamation r ,user u where r.id=u.id;");
-             ResultSet rs=ste.executeQuery("select type,objet,description,etatr,dater,reponse from reclamation where id="+id+" order by dater asc");
+             ResultSet rs=ste.executeQuery("select type,objet,description,etatr,dater,reponse,idr from reclamation where id="+id+" order by dater asc");
              while (rs.next()) {
                  ReclamationClient rc=new ReclamationClient();
                  rc.setType(rs.getString("type"));
@@ -170,6 +169,7 @@ public class ServiceReclamation  {
                  rc.setEtatr(rs.getString("etatr"));
                  rc.setDateR(rs.getDate("dater"));
                  rc.setReponse(rs.getString("reponse"));
+                 rc.setIdR(rs.getInt("idr"));
                  listRec.add(rc);}
                 ObservableList oblist = FXCollections.observableArrayList(listRec);
                 return oblist;

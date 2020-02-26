@@ -57,6 +57,8 @@ public class ReclamationChaqueClientController implements Initializable {
     private Label labelrec;
     @FXML
     private TextField etat;
+    @FXML
+    private Label date;
     
 
     /**
@@ -98,6 +100,10 @@ public class ReclamationChaqueClientController implements Initializable {
 
     public void setEtat(String etat) {
         this.etat.setText(etat);
+    }
+
+    public void setDate(String  date) {
+        this.date.setText(date);
     }
 
    

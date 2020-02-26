@@ -38,6 +38,7 @@ import com.esprit.Entite.Reclamation;
 import com.esprit.Entite.ReclamationClient;
 import com.esprit.Entite.User;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.function.Predicate;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
@@ -48,6 +49,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
@@ -222,9 +224,10 @@ public class ListerReclamationClientController implements Initializable {
     }
 
     @FXML
-    private void changerEtat(MouseEvent event)  {
+    private void changerEtat(MouseEvent event) throws IOException  {
         
         oblistClient = TableViewRec.getSelectionModel().getSelectedItems();
+        SimpleDateFormat sdfr = new SimpleDateFormat("dd/MMM/yyyy");
         String objet = oblistClient.get(0).getObjet();
         String description= oblistClient.get(0).getDescription();
         String categorie=oblistClient.get(0).getType();
@@ -232,7 +235,9 @@ public class ListerReclamationClientController implements Initializable {
         String prenom=oblistClient.get(0).getLastname();
         int id=oblistClient.get(0).getIdR();
         String etat=oblistClient.get(0).getEtatr();
+        Date date= oblistClient.get(0).getDateR(); 
         
+
          FXMLLoader loader = new FXMLLoader
                         (getClass()
                          .getResource("/com/esprit/Gui/ReclamationChaqueClients.fxml"));
@@ -245,10 +250,36 @@ public class ListerReclamationClientController implements Initializable {
                 apc.setIdClient(id);
                 apc.setNomPrenom(nom,prenom);
                 apc.setEtat(etat);
+                apc.setDate(sdfr.format(date));
                 TableViewRec.getScene().setRoot(root);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
                 }
+            /*try {
+			loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/com/esprit/Gui/ReclamationChaqueClients.fxml"));
+                        Parent root = loader.load();
+                          ReclamationChaqueClientController apc = loader.getController();
+                          apc.setObjetTxtField(objet);
+                          apc.setDescription(description);
+                          apc.setCategorie(categorie);
+                          apc.setIdClient(id);
+                          apc.setNomPrenom(nom,prenom);
+                          apc.setEtat(etat);
+                          TableViewRec.getScene().setRoot(root);
+//			AjoutEquipeController controller = new AjoutEquipeController();
+//			loader.setController(controller);
+			loader.load();
+			Scene scene = new Scene(loader.getRoot());
+			//scene.getStylesheets().add(getClass().getResource("employe.css").toExternalForm());
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.show();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}*/
+	}
        
         
         //String objet = oblistClient.get(0).getObjet();
@@ -282,7 +313,7 @@ public class ListerReclamationClientController implements Initializable {
      
         
         
-    }
+    
     
    
   
