@@ -77,6 +77,8 @@ public class TestingUserController implements Initializable {
     private Button supprimer;
     @FXML
     private Button modifier;
+    @FXML
+    private Button clear;
 
     /**
      * Initializes the controller class.
@@ -191,10 +193,18 @@ public class TestingUserController implements Initializable {
             firstname.clear();
             email.clear();
             password.clear();
-            
+            genre.getSelectionModel().select(0);
+            role.getSelectionModel().select(0);
             
             
     }
+
+    @FXML
+    private void clear1(ActionEvent event) {
+        clear();
     }
+     
+    }
+
     
 

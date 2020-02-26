@@ -5,7 +5,6 @@
  */
 package com.esprit.Entite;
 
-import com.esprit.Entite.User;
 import java.sql.Date;
 import java.util.Objects;
 import javafx.scene.control.Button;

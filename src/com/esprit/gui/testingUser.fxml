@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="910.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.esprit.gui.TestingUserController">
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="910.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.TestingUserController">
     <stylesheets>
         <URL value="@testinguser.css" />
     </stylesheets>
@@ -21,7 +21,7 @@
       <TextField fx:id="email" layoutX="39.0" layoutY="199.0" promptText="email" />
       <ComboBox fx:id="genre" layoutX="38.0" layoutY="306.0" prefWidth="150.0" promptText="genre" />
       <ComboBox fx:id="role" layoutX="38.0" layoutY="356.0" prefWidth="150.0" promptText="role" />
-      <Button fx:id="ajouter" layoutX="78.0" layoutY="411.0" mnemonicParsing="false" onAction="#AjouterUser" text="Ajouter" />
+      <Button fx:id="ajouter" layoutX="13.0" layoutY="413.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="26.0" prefWidth="70.0" text="Ajouter" />
       <TableView fx:id="tbview" layoutX="276.0" layoutY="34.0" onMouseClicked="#modifiercell" prefHeight="356.0" prefWidth="619.0">
         <columns>
           <TableColumn fx:id="col_username" prefWidth="75.0" text="username" />
@@ -34,6 +34,7 @@
         </columns>
       </TableView>
       <Button fx:id="supprimer" layoutX="13.0" layoutY="462.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
-      <Button fx:id="modifier" layoutX="162.0" layoutY="462.0" mnemonicParsing="false" onAction="#modifier" text="modifier" />
+      <Button fx:id="modifier" layoutX="127.0" layoutY="462.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="70.0" text="modifier" />
+      <Button fx:id="clear" layoutX="127.0" layoutY="414.0" mnemonicParsing="false" onAction="#clear1" prefHeight="26.0" prefWidth="70.0" text="Clear" />
    </children>
 </AnchorPane>

@@ -251,7 +251,7 @@ public boolean Modifier(User u ) throws SQLException
        
 
     }
-    private int rechercherID(String name) throws SQLException{
+    public int rechercherID(String name) throws SQLException{
         int id = 0 ;
         ste = con.createStatement();
         ResultSet rs = ste.executeQuery("select id from user where username='"+name+"' ;");

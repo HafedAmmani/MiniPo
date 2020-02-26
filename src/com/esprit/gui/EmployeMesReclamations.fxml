@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.EmployeMesReclamationsController">
+   <children>
+      <TableView fx:id="tabviewRec" layoutX="40.0" layoutY="93.0" onMouseClicked="#SelectionDonnee" prefHeight="200.0" prefWidth="492.0">
+        <columns>
+          <TableColumn fx:id="col_objet" prefWidth="75.0" text="Objet" />
+          <TableColumn fx:id="col_descrption" prefWidth="75.0" text="Description" />
+            <TableColumn fx:id="col_etat" prefWidth="75.0" text="Etat" />
+            <TableColumn fx:id="col_date" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="col_reponse" prefWidth="75.0" text="Reponse" />
+            <TableColumn fx:id="idr" prefWidth="75.0" text="idr" visible="false" />
+        </columns>
+      </TableView>
+      <Label layoutX="187.0" layoutY="37.0" prefHeight="17.0" prefWidth="225.0" text="Mes Reclamations">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

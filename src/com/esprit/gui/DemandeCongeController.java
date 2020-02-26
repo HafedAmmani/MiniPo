@@ -78,7 +78,7 @@ public class DemandeCongeController implements Initializable {
     
     @FXML
     private void redirectToRecEmp(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("ReclamationEmploye.fxml"));
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EmployeMesReclamations.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information

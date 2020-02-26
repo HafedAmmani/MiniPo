@@ -7,8 +7,10 @@ package com.esprit.Gui;
 
 
 import com.esprit.Entite.Reclamationemploye;
+import com.esprit.Entite.ReclamationsEmploye;
 
 import com.esprit.Service.ServiceReclamationEmploye;
+import com.esprit.gui.LoginUserController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -46,7 +48,8 @@ public class ReclamationEmployeController implements Initializable {
     private ServiceReclamationEmploye  servRec= new ServiceReclamationEmploye() ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        int id = LoginUserController.NumId;
+        System.out.println(id);
     }    
     @FXML
     private void redirectToDemandeConge(ActionEvent event) throws IOException {
@@ -64,15 +67,17 @@ public class ReclamationEmployeController implements Initializable {
     private void AjouterReclamationEmploye(ActionEvent event) throws SQLException {
         ajouterReclamationEmploye();
     }
-
-
+    
+    
+    
     private void ajouterReclamationEmploye() throws SQLException {
-        int id=1;
+        int id = LoginUserController.NumId;
+        System.out.println(id);
         String sujet=sujetRec.getText();
         String Description=description.getText();
         
         
-        Reclamationemploye rec= new Reclamationemploye(id, sujet, Description);
+        ReclamationsEmploye rec= new ReclamationsEmploye(id, sujet, Description);
         servRec.ajouterReclamationEmploye(rec);
         
         sujetRec.setText("");

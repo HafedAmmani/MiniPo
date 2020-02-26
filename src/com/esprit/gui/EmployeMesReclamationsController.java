@@ -5,9 +5,10 @@
  */
 package com.esprit.Gui;
 
-import com.esprit.Entite.Reclamation;
 import com.esprit.Entite.ReclamationClient;
+import com.esprit.Entite.ReclamationsEmploye;
 import com.esprit.Service.ServiceReclamation;
+import com.esprit.Service.ServiceReclamationEmploye;
 import com.esprit.gui.LoginUserController;
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,89 +33,82 @@ import javafx.scene.input.MouseEvent;
  *
  * @author darra
  */
-public class ClientMesReclamationsController implements Initializable {
+public class EmployeMesReclamationsController implements Initializable {
 
     @FXML
-    private TableView<ReclamationClient> tableView;
-    private ObservableList<ReclamationClient>oblist;
+    private TableView<ReclamationsEmploye> tabviewRec;
     @FXML
-    private TableColumn<ReclamationClient, String> type;
+    private TableColumn<ReclamationsEmploye, String> col_objet;
     @FXML
-    private TableColumn<ReclamationClient, String> objet;
+    private TableColumn<ReclamationsEmploye, String> col_descrption;
     @FXML
-    private TableColumn<ReclamationClient, String> description;
+    private TableColumn<ReclamationsEmploye, String> col_etat;
     @FXML
-    private TableColumn<ReclamationClient, String> etat;
-    private ServiceReclamation reclamation=new ServiceReclamation();
-    //ObservableList<Reclamation>oblistReclamation=FXCollections.observableArrayList();
+    private TableColumn<ReclamationsEmploye, String> col_date;
     @FXML
-    private TableColumn<Reclamation, Date> col_date;
+    private TableColumn<ReclamationsEmploye, String> col_reponse;
+    private ServiceReclamationEmploye reclamation=new ServiceReclamationEmploye();
+     private ObservableList<ReclamationsEmploye>oblist;
     @FXML
-    private TableColumn<ReclamationClient, String> col_reponse;
-    @FXML
-    private TableColumn<ReclamationClient, Integer> idr;
+    private TableColumn<ReclamationsEmploye, Integer> idr;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         try {
             ListerMesReclamation();
         } catch (SQLException ex) {
-            Logger.getLogger(ClientMesReclamationsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmployeMesReclamationsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-
-    private void ListerMesReclamation() throws SQLException {
+     private void ListerMesReclamation() throws SQLException {
          int id = LoginUserController.NumId;
         
         oblist=reclamation.ListerReclamationsById(id);
          
-            type.setCellValueFactory(new PropertyValueFactory<>("type"));
-            objet.setCellValueFactory(new PropertyValueFactory<>("objet"));
-            description.setCellValueFactory(new PropertyValueFactory<>("description"));
-            etat.setCellValueFactory(new PropertyValueFactory<>("etatr"));
-            col_date.setCellValueFactory(new PropertyValueFactory<>("dateR"));
+            col_objet.setCellValueFactory(new PropertyValueFactory<>("objet"));
+            col_descrption.setCellValueFactory(new PropertyValueFactory<>("description"));
+            col_etat.setCellValueFactory(new PropertyValueFactory<>("etatRemp"));
+            col_date.setCellValueFactory(new PropertyValueFactory<>("dateRemp"));
             col_reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
-             idr.setCellValueFactory(new PropertyValueFactory<>("idr"));
+            idr.setCellValueFactory(new PropertyValueFactory<>("idRemp"));
             //col_image.setCellValueFactory(new PropertyValueFactory<>("image"));
             
-            tableView.setItems(oblist);
+            tabviewRec.setItems(oblist);
     }
 
     @FXML
-    private void selectionDonnee(MouseEvent event) {
-        oblist = tableView.getSelectionModel().getSelectedItems();
+    private void SelectionDonnee(MouseEvent event) {
+          oblist = tabviewRec.getSelectionModel().getSelectedItems();
         String objet = oblist.get(0).getObjet();
         String description= oblist.get(0).getDescription();
-        String type=oblist.get(0).getType();
         String reponse=oblist.get(0).getReponse();
         SimpleDateFormat sdfr = new SimpleDateFormat("dd/MMM/yyyy");
        // String nom=oblist.get(0).getFirstname();
         //String prenom=oblist.get(0).getLastname();
-        int idr=oblist.get(0).getIdR();
-        String etat=oblist.get(0).getEtatr();
-        Date date= oblist.get(0).getDateR();
+        int idr=oblist.get(0).getIdRemp();
+        String etat=oblist.get(0).getEtatRemp();
+        Date date= oblist.get(0).getDateRemp();
         
          FXMLLoader loader = new FXMLLoader
                         (getClass()
-                         .getResource("/com/esprit/Gui/ReclamationClientUnique.fxml"));
+                         .getResource("/com/esprit/Gui/ReclamationEmployeUnique.fxml"));
             try {
                 Parent root = loader.load();
-                ReclamationClientUniqueController apc = loader.getController();
+                ReclamationEmployeUniqueController apc = loader.getController();
                 apc.setObjet(objet);
                 apc.setDescription(description);
-                apc.setType(type);
                 apc.setReponse(reponse);
                 apc.setDate(sdfr.format(date));
                 apc.setIdr(idr);
                 
                 //apc.setNomPrenom(nom,prenom);
                 apc.setEtat(etat);
-                tableView.getScene().setRoot(root);
+                tabviewRec.getScene().setRoot(root);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
                 }
     }
-    
 }

@@ -37,11 +37,11 @@ public class ServiceReclamationEmploye {
         con = DataBase.getInstance().getConnection();
 
     }
-    public void ajouterReclamationEmploye(Reclamationemploye r) throws SQLException
+    public void ajouterReclamationEmploye(ReclamationsEmploye r) throws SQLException
     {
     PreparedStatement ps=con.prepareStatement("INSERT INTO `minipot`.`reclamationemploye` ( `id`, `objet`, `description`,`dateRemp`) VALUES ( ?,?,?,sysdate());");
     //ps.setInt(1, r.getIdRemp());
-    ps.setInt(1, r.getIdemp());
+    ps.setInt(1, r.getId());
     ps.setString(2,r.getObjet());
     ps.setString(3,r.getDescription());
     //ps.setDate(5, r.getDateRemp());
@@ -57,11 +57,11 @@ public class ServiceReclamationEmploye {
         
     }
     
-    public void updateEmploye(int idemp,String description  ) throws SQLException {
+    public void updateEmploye(int idRemp,String description  ) throws SQLException {
          PreparedStatement ps=con.prepareStatement("UPDATE `reclamationemploye` set description=? where "
-                 + "idemp=?");
+                 + "idRemp=?");
          ps.setString(1, description);
-         ps.setInt(2, idemp);
+         ps.setInt(2, idRemp);
          ps.executeUpdate();
     }
     
@@ -208,6 +208,30 @@ public class ServiceReclamationEmploye {
         return oblist;
             
         }
+     public ObservableList<ReclamationsEmploye> ListerReclamationsById(int id) throws SQLException{
+             //List<Reclamation> rec=new ArrayList<>();
+             
+             ste=con.createStatement();
+             List<ReclamationsEmploye> listRec = new ArrayList<ReclamationsEmploye>();
+             //ResultSet rs=ste.executeQuery("select r.idr,r.type,r.objet,r.description,r.etatr,r.dater,u.Firstname,u.Lastname from reclamation r ,user u where r.id=u.id;");
+             ResultSet rs=ste.executeQuery("select objet,description,etatRemp,dateRemp,reponse,idRemp from reclamationemploye where id="+id+" order by dateRemp asc");
+             while (rs.next()) {
+                 ReclamationsEmploye re=new ReclamationsEmploye();
+                 re.setObjet(rs.getString("objet"));
+                 re.setDescription(rs.getString("description"));
+                 re.setEtatRemp(rs.getString("etatRemp"));
+                 re.setDateRemp(rs.getDate("dateRemp"));
+                 re.setReponse(rs.getString("reponse"));
+                 re.setIdRemp(rs.getInt("idRemp"));
+                 listRec.add(re);}
+                ObservableList oblist = FXCollections.observableArrayList(listRec);
+                return oblist;}
+     public ResultSet Stat() throws SQLException{
+        
+        ste=con.createStatement();
+        ResultSet rs;
+        return rs=ste.executeQuery("select count(*),count(etatRemp='non traité') from reclamationemploye");
+    }
     
     
 }

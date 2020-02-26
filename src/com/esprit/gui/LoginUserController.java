@@ -49,7 +49,10 @@ public class LoginUserController implements Initializable {
     
     @FXML
     private PasswordField tfCpass;
-    private static int NumId;
+    ServicePersonne ser = new ServicePersonne();
+    public static int NumId ;
+   // NumId = ser.rechercherID(0);
+    
     /**
      * Initializes the controller class.
      */
@@ -116,7 +119,7 @@ public class LoginUserController implements Initializable {
 
     }
     }*/
-    private ServicePersonne ser= new ServicePersonne();
+    
       @FXML
     private void connect(ActionEvent event) throws SQLException, IOException { //button connecter pour pouvoir rederiger  a une autre interface
         String username = tfusername.getText();
@@ -160,7 +163,8 @@ public class LoginUserController implements Initializable {
           }
         if (ser.getRoleUser(username).equals("emplyé")){ //login tant que Employe
             
-                 
+                 NumId = ser.rechercherID(tfusername.getText());
+                 System.out.println(NumId);
                  Parent tableViewParent = FXMLLoader.load(getClass().getResource("DemandeConge.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         tableViewScene.getStylesheets().add(getClass().getResource("employe.css").toExternalForm());
@@ -171,8 +175,27 @@ public class LoginUserController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
         
+        
           }
+        
+        if (ser.getRoleUser(username).equals("client")){ //login tant que Employe
+            
+                 NumId = ser.rechercherID(tfusername.getText());
+                 System.out.println(NumId);
+                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("ReclamationClient.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+//        tableViewScene.getStylesheets().add(getClass().getResource("fullpackstyling.css").toExternalForm());
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+        
+        
         }
+    }
+             
     }
 
     @FXML

@@ -30,6 +30,7 @@ public class User {
 
     public User() {
     }
+    
 
     public User(String username, String email, String password, String firstname, String lastname) {
         this.username = username;
@@ -119,7 +120,7 @@ public class User {
         this.roles = roles;
        
     }*/
-      public User(String username,String lastname,String firstname,  String email,  String password, String genre, String roles) {
+      public User(String username,  String email,String password, String roles,String firstname,String lastname,   String genre) {
         
         this.lastname = lastname;
         this.firstname = firstname;

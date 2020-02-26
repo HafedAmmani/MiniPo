@@ -202,11 +202,11 @@
             <AnchorPane prefHeight="673.0" prefWidth="1230.0">
                <children>
       <ComboBox fx:id="categorie" layoutX="51.0" layoutY="92.0" prefWidth="150.0" />
-      <TextArea fx:id="description" editable="false" layoutX="52.0" layoutY="184.0" prefHeight="143.0" prefWidth="200.0" />
+      <TextArea fx:id="description" editable="false" layoutX="52.0" layoutY="184.0" prefHeight="143.0" prefWidth="200.0" promptText="Description" />
       <ImageView fitHeight="123.0" fitWidth="129.0" layoutX="58.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
-      <TextArea fx:id="reponse" layoutX="308.0" layoutY="119.0" prefHeight="209.0" prefWidth="178.0" />
-      <Button fx:id="btnTraiter" layoutX="517.0" layoutY="347.0" mnemonicParsing="false" onAction="#Traiter" text="Traiter" />
-      <TextField fx:id="objetTxtField" editable="false" layoutX="52.0" layoutY="138.0" />
+      <TextArea fx:id="reponse" layoutX="309.0" layoutY="118.0" prefHeight="209.0" prefWidth="178.0" promptText="Reponse" />
+      <Button fx:id="btnTraiter" layoutX="437.0" layoutY="351.0" mnemonicParsing="false" onAction="#Traiter" text="Traiter" />
+      <TextField fx:id="objetTxtField" editable="false" layoutX="52.0" layoutY="138.0" promptText="objet" />
       <TextField fx:id="idClient" cache="true" disable="true" layoutX="412.0" layoutY="67.0" prefHeight="25.0" prefWidth="69.0" visible="false" />
       <Label fx:id="labelrec" layoutX="52.0" layoutY="29.0" prefHeight="27.0" prefWidth="242.0" text="Reclamation de Mr/Madame ">
          <font>
@@ -220,6 +220,7 @@
       </Label>
       <Label layoutX="308.0" layoutY="84.0" prefHeight="17.0" prefWidth="107.0" text="Reponse :" />
                   <TextField fx:id="etat" layoutX="397.0" layoutY="30.0" visible="false" />
+                  <Label fx:id="date" layoutY="5.0" prefHeight="17.0" prefWidth="72.0" />
    </children>
             </AnchorPane>
          </children>

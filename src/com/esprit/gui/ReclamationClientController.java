@@ -6,7 +6,9 @@
 package com.esprit.Gui;
 
 import com.esprit.Entite.Reclamation;
+import com.esprit.Entite.ReclamationClient;
 import com.esprit.Service.ServiceReclamation;
+import com.esprit.gui.LoginUserController;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -66,6 +68,8 @@ public class ReclamationClientController implements Initializable {
     private ObservableList<String> oblist=FXCollections.observableArrayList("Probleme de compte","probleme de commande","autre");
     private ServiceReclamation  servRec= new ServiceReclamation();
     private FileInputStream fis;
+    //int id = LoginUserController.NumId;
+    //int id = 3;
     @FXML
     private Button btnImg;
     String [] words={"java","probleme de compte","probleme de commande","ma commande"};
@@ -75,7 +79,7 @@ public class ReclamationClientController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        System.out.println(LoginUserController.NumId);
         Collections.addAll(possiblewordSet, words);
         autocompletionbinding=TextFields.bindAutoCompletion(SujetRec, possiblewordSet);
         SujetRec.setOnKeyPressed((KeyEvent e)->{   
@@ -127,11 +131,12 @@ public class ReclamationClientController implements Initializable {
     }    
 
     private void ajouterReclamation() throws SQLException{
+        int id = LoginUserController.NumId;
         String sujet=SujetRec.getText();
         String description=DescriptionRec.getText();
         String combo=categRec.getValue();
-        Reclamation rec;
-        rec= new Reclamation(categRec.getValue(),SujetRec.getText(),DescriptionRec.getText());
+        ReclamationClient rec;
+        rec= new ReclamationClient(id,combo,sujet,description);
         servRec.ajouterReclamation(rec);
         categRec.setValue(combo);
         SujetRec.setText("");

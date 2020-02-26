@@ -1,11 +1,9 @@
-package com.esprit.Entite;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package com.esprit.Entite;
 
 import java.sql.Date;
 
@@ -16,7 +14,7 @@ import java.sql.Date;
 public class ReclamationClient {
      private int idR;
     //private int idcmd;
-   // private int id;
+   private int id;
     private String type;
     private String objet;
     private String description;
@@ -52,6 +50,35 @@ public class ReclamationClient {
 
     public ReclamationClient() {
     }
+
+    public ReclamationClient(String type, String objet, String description, String etatr, Date dateR, String reponse) {
+         this.type = type;
+        this.objet = objet;
+        this.description = description;
+        this.etatr = etatr;
+        this.dateR = dateR;
+        this.reponse = reponse;
+    }
+
+    public ReclamationClient(int id, String type, String text, String description) {
+       this.id=id;
+       this.type = type;
+       this.objet = text;
+       this.description = description;
+       
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+   
+
+
 
     public String getReponse() {
         return reponse;

@@ -6,6 +6,7 @@
 package com.esprit.Gui;
 
 import com.esprit.Service.ServiceReclamation;
+import com.esprit.Service.ServiceReclamationEmploye;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +27,9 @@ public class PiechartController implements Initializable {
     @FXML
     private PieChart piechart;
      ServiceReclamation sr=new ServiceReclamation();
+     ServiceReclamationEmploye sre=new ServiceReclamationEmploye();
+    @FXML
+    private PieChart piechartemp;
     /**
      * Initializes the controller class.
      */
@@ -33,6 +37,7 @@ public class PiechartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             statistique() ;
+            statistiqueEmploye();
             
             // TODO
         } catch (SQLException ex) {
@@ -46,6 +51,14 @@ public class PiechartController implements Initializable {
         piechart.getData().clear();
         while(rs.next()){
          piechart.getData().add(new PieChart.Data(rs.getString(1),rs.getDouble(2)));
+        }}
+        public void statistiqueEmploye() throws SQLException{
+        
+        ResultSet rs=null;
+        rs=sre.Stat();
+        piechartemp.getData().clear();
+        while(rs.next()){
+         piechartemp.getData().add(new PieChart.Data(rs.getString(1),rs.getDouble(2)));
         }
         
     }
