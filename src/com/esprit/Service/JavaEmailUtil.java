@@ -101,7 +101,7 @@ public class JavaEmailUtil {
             total=rs2.getFloat("total");
            // System.out.println(designation);
             x = x + "<div class=\"products\"> <img src=\"{{ line.product.featured_image | product_img_url: 'small' }}\" /> <span>";
-            x = x + qte + "x  " + designation + " / " + prix + "</span> </div> <hr> <div style=\"clear:both;\"></div>";          
+            x = x + qte + " x  " + designation + " / " + prix + "</span> </div> <hr> <div style=\"clear:both;\"></div>";          
             }
             x = x + "<br/> <br/> <h4><b>Total:" + total;
             x = x + "</b></h4> <!-- /Totals --> <br/> <!-- address detals --> <table class=\"columns\" width=\"100%\"> <tr> <td> <!--- column 1 --> <table align=\"left\" class=\"column\"> <tr> <td> <h5 class=\"\">Shipping address</h5> <p class=\"\">";
