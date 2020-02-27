@@ -116,7 +116,7 @@ public class ServiceCommande {
             ResultSet rs=ste.executeQuery("select * from commande");
             while (rs.next()) {              
             
-                ServiceUser sc=new ServiceUser();
+                ServicePersonne sc=new ServicePersonne();
                 User clt=sc.getUser(rs.getInt("id"));
                
                 Commande c=new Commande(rs.getInt("idcmd"),rs.getDate("datec"),rs.getFloat("total"),rs.getString("etatc"),clt);
@@ -139,7 +139,7 @@ public class ServiceCommande {
         ResultSet rs=ste.executeQuery("select * from commande where idcmd="+idcmd);
         while (rs.next()) { 
             
-            ServiceUser sc=new ServiceUser();
+            ServicePersonne sc=new ServicePersonne();
             User clt=sc.getUser(rs.getInt("id"));
             
             cc=new Commande(rs.getInt("idcmd"),rs.getDate("datec"),rs.getFloat("total"),rs.getString("etatc"),clt);  
@@ -177,7 +177,7 @@ public class ServiceCommande {
    
    public Commande RechercherPanierParClient(int idclt){
         Commande c=null;
-        ServiceUser sc=new ServiceUser();
+        ServicePersonne sc=new ServicePersonne();
         User clt=sc.getUser(idclt);
         try {
             ste=con.createStatement();
@@ -299,7 +299,7 @@ public class ServiceCommande {
             ste=con.createStatement();
             ResultSet rs = ste.executeQuery("SELECT cmd.idcmd,cmd.id,u.firstname,u.Lastname,cmd.datec,cmd.etatc,cmd.total from commande cmd JOIN user u ON u.id=cmd.id where cmd.etatc='valide';");
             while (rs.next()) {
-                ServiceUser scl=new ServiceUser();
+                ServicePersonne scl=new ServicePersonne();
                 User clt=scl.getUser(rs.getInt("id"));
                 oblist.add(new Commande(rs.getInt("idcmd"),rs.getDate("datec"),rs.getFloat("total"),
                         rs.getString("etatc"),clt));

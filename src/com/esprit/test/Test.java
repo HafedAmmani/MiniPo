@@ -12,7 +12,7 @@ import com.esprit.Entite.LigneCommande;
 import com.esprit.Entite.Produit;
 import com.esprit.Gui.AcceuilController;
 import com.esprit.Service.ServiceCategorie;
-import com.esprit.Service.ServiceUser;
+import com.esprit.Service.ServicePersonne;
 import com.esprit.Service.ServiceCommande;
 import com.esprit.Service.ServiceFacture;
 import com.esprit.Service.ServiceFournisseur;
@@ -41,7 +41,7 @@ public class Test {
         ServiceCommande sc=new ServiceCommande();
         ServiceLigneCommande slc= new ServiceLigneCommande();
         ServiceFacture sfact=new ServiceFacture();
-        ServiceUser sclt=new ServiceUser();
+        ServicePersonne sclt=new ServicePersonne();
         ServiceProduit sp=new ServiceProduit();
         ServiceCategorie scateg=new ServiceCategorie();
         ServiceFournisseur sf=new ServiceFournisseur();
