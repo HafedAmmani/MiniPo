@@ -33,7 +33,7 @@ public class MAIN {
             List<Livraison> listliv = serliv.readAllLivraison();
             System.out.println(list);
             //Email
-            JavaEmailUtil.sendEmail("projetminipo@gmail.com");
+          //  JavaEmailUtil.sendEmail("projetminipo@gmail.com");
         } catch (SQLException ex) {
             System.out.println(ex);
         }

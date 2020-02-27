@@ -114,7 +114,7 @@ public class ServiceCommande implements IServiceCommande<Commande> {
         } catch (SQLException ex) {
             Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("error");
+      //  System.out.println("error");
         return adr;
     }
     

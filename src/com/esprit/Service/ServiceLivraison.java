@@ -56,9 +56,15 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
              stmt.setString(1,"X"+ generatedKeys.getLong(1));
              stmt.setInt(2, (int) generatedKeys.getLong(1));
              stmt.executeUpdate();
+             try {
+                 JavaEmailUtil.sendEmail("projetminipo@gmail.com", generatedKeys.getInt(1));
+             } catch (Exception ex) {
+                 Logger.getLogger(ServiceLivraison.class.getName()).log(Level.SEVERE, null, ex);
+             }
          } else {
          throw new SQLException("Creating user failed, no ID obtained");
          }
+         
      }
     }
     @Override
@@ -157,7 +163,6 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
 	    ResultSet res= st.executeQuery();
      while (res.next()) {        
                String matriculeL=res.getString("matriculeL");
-               System.out.println(matriculeL);
                String destination=res.getString("destination");
                String etatl=res.getString("etatl");
                Integer idc=res.getInt("idc");

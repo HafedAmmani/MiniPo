@@ -101,7 +101,7 @@ public class LivraisonController implements Initializable {
     private void AjouterLivraison() throws SQLException{
         Livraison p1;
         String ld= id_date.getValue().toString();
-        System.out.println(ld);
+       // System.out.println(ld);
         int idcom1 = Integer.valueOf(id_cmd.getSelectionModel().getSelectedItem());
         int idl = Integer.valueOf(id_liv.getSelectionModel().getSelectedItem());
         p1 = new Livraison(destinantion.getText(),"non livrée",idcom1,idl,ld,null);
