@@ -41,13 +41,13 @@
             </AnchorPane>
             <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">
                <children>
-                  <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="662.0">
+                  <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="710.0">
                     <columns>
                       <TableColumn id="col_nom" fx:id="col_idliv" prefWidth="147.0" text="Matricule livraison" />
                       <TableColumn id="col_prenom" fx:id="col_dest" prefWidth="121.0" text="Destination" />
                         <TableColumn id="col_adresse" fx:id="col_etatl" prefWidth="123.0" text="Etat livraison" />
-                        <TableColumn id="col_email" fx:id="col_idc" prefWidth="131.0" text="Id commande" />
-                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="139.0" text="Id livreur" />
+                        <TableColumn id="col_email" fx:id="col_idc" prefWidth="175.0" text="Référence commande" />
+                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="143.0" text="Matricule livreur" />
                     </columns>
                   </TableView>
                   
