@@ -16,11 +16,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.esprit.Entite.Livraison;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -56,12 +59,14 @@ public class Livraison_livController implements Initializable {
     
     @FXML
     private AnchorPane recherche;
+    @FXML
+    private Button modifier;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTable();
         //recherche();
           id_etat.setItems(listcmbx);
-
+          
     }  
      private void initTable() {
             obList = serv.getAllLivraison();
@@ -71,6 +76,7 @@ public class Livraison_livController implements Initializable {
             col_idc.setCellValueFactory(new PropertyValueFactory<>("idc"));
             col_salaire.setCellValueFactory(new PropertyValueFactory<>("idl"));
             tblview.setItems(obList);
+            
 	}
      /*@FXML
       private void recherche(){
@@ -196,6 +202,15 @@ public class Livraison_livController implements Initializable {
         tblview.setItems(soretedData);
 
             }); 
+    }
+
+    @FXML
+    private void updateEtat(ActionEvent event) throws SQLException {
+        Livraison selected = tblview.getSelectionModel().getSelectedItem();
+         int id = selected.getIdliv();
+        String etat = id_etat.getSelectionModel().getSelectedItem();
+        serv.updateLiv(etat,id);
+        initTable();
     }
     
 }

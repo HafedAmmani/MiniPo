@@ -163,6 +163,7 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
 	    ResultSet res= st.executeQuery();
      while (res.next()) {        
                String matriculeL=res.getString("matriculeL");
+               
                String destination=res.getString("destination");
                String etatl=res.getString("etatl");
                Integer idc=res.getInt("idc");
@@ -173,5 +174,10 @@ public class ServiceLivraison implements IServiceLivraison<Livraison> {
       } catch (SQLException ex) {
         }
          return obList;
+    }
+       public boolean updateLiv( String etat, int id) throws SQLException {
+        PreparedStatement pre=con.prepareStatement("UPDATE livraison SET destination ='"+etat+"' WHERE idliv='"+id+"';");
+        pre.executeUpdate();
+        return true;
     }
 }

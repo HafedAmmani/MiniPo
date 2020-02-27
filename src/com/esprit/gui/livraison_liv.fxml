@@ -49,7 +49,7 @@
             </AnchorPane>
             <Label layoutX="720.0" layoutY="63.0" prefHeight="31.0" prefWidth="89.0" text="Etat livraison" wrapText="true" />
             <ComboBox fx:id="id_etat" layoutX="717.0" layoutY="122.0" prefWidth="150.0" promptText="Changer etat" />
-            <Button id="btn_save" layoutX="729.0" layoutY="208.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="103.0" text="Modifier" />
+            <Button id="btn_save" fx:id="modifier" layoutX="729.0" layoutY="208.0" mnemonicParsing="false" onAction="#updateEtat" prefHeight="31.0" prefWidth="103.0" text="Modifier" />
          </children>
       </AnchorPane>
    </children>

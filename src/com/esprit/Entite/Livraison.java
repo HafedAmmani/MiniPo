@@ -44,6 +44,12 @@ public class Livraison {
         this.matriculeL = matriculeL;
     }
 
+    public Livraison(int idliv, String destination, String etatl) {
+        this.idliv = idliv;
+        this.destination = destination;
+        this.etatl = etatl;
+    }
+
     public Livraison(String destination, String etatl, int idc, int idl) {
         this.destination = destination;
         this.etatl = etatl;
