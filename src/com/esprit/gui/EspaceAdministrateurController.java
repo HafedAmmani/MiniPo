@@ -22,7 +22,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -32,6 +34,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -62,10 +65,6 @@ public class EspaceAdministrateurController implements Initializable {
     private Button btnMod;
     @FXML
     private Button btnSupp;
-    @FXML
-    private Text Acceuil;
-    @FXML
-    private Text btnListCmd;
     
     private ObservableList<Commandes> oblist=FXCollections.observableArrayList();
     private ObservableList<String> lcbx=FXCollections.observableArrayList("Accepter");
@@ -73,7 +72,61 @@ public class EspaceAdministrateurController implements Initializable {
     private TextField tfRech;
     @FXML
     private TableColumn<?, ?> col_tot;
-    
+    @FXML
+    private void redirectToAcceuilReclamation(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToCommande(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceAdministrateur.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectTofacture(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("ListeFacture.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToProduit(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToUtilisateur(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("testingUser.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
 
     /**
      * Initializes the controller class.
@@ -219,13 +272,6 @@ public class EspaceAdministrateurController implements Initializable {
             });
      }
 
-    @FXML
-    private void BtnListClickAction(MouseEvent event) {
-    }
-
-    @FXML
-    private void AcceuilAction(MouseEvent event) {
-    }
     
     
 }

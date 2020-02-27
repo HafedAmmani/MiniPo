@@ -69,9 +69,51 @@ public class AccueilReclamationAdminController implements Initializable {
         ft.setAutoReverse(true);
         ft.play();
     }
+    private void redirectToAcceuilReclamation(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToCommande(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceAdministrateur.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectTofacture(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("ListeFacture.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
     @FXML
     private void redirectToProduit(ActionEvent event) throws IOException {
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    private void redirectToUtilisateur(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("testingUser.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information

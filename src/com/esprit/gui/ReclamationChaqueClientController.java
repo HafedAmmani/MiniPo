@@ -128,7 +128,9 @@ public class ReclamationChaqueClientController implements Initializable {
     }
 
    
-
+     public void setReponse(String reponse) {
+        this.reponse.setText(reponse);
+    }
     
    
 

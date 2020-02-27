@@ -67,6 +67,19 @@ public class ReclamationClient {
        this.description = description;
        
     }
+     public ReclamationClient(int idr, String type, String objet, String description, String etatr, String firstname, String lastname, Date dateR, String reponse) {
+        this.idR = idR;
+        this.type = type;
+        this.objet = objet;
+        this.description = description;
+        this.etatr = etatr;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.dateR = dateR;
+        this.reponse = reponse;
+    }
+ 
+
 
     public int getId() {
         return id;

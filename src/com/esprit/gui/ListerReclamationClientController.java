@@ -92,6 +92,8 @@ public class ListerReclamationClientController implements Initializable {
     private TableColumn<ReclamationClient, String> col_prenom;
     @FXML
     private TableColumn<ReclamationClient, Date> col_DateRec;
+    @FXML
+    private TableColumn<ReclamationClient, String> reponse;
     
     private ServiceReclamation reclamation=new ServiceReclamation();
     @FXML
@@ -171,6 +173,7 @@ public class ListerReclamationClientController implements Initializable {
             col_nom.setCellValueFactory(new PropertyValueFactory<>("firstname"));
             col_prenom.setCellValueFactory(new PropertyValueFactory<>("lastname"));
             col_DateRec.setCellValueFactory(new PropertyValueFactory<>("dateR"));
+            reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
             //Action.setCellValueFactory(new PropertyValueFactory<>("button"));
             TableViewRec.setItems(oblistClient);
       //helli team teiik , lahdha nara akher haja
@@ -247,7 +250,8 @@ public class ListerReclamationClientController implements Initializable {
         String prenom=oblistClient.get(0).getLastname();
         int id=oblistClient.get(0).getIdR();
         String etat=oblistClient.get(0).getEtatr();
-        Date date= oblistClient.get(0).getDateR(); 
+        Date date= oblistClient.get(0).getDateR();
+        String reponse=oblistClient.get(0).getReponse();
         
 
          FXMLLoader loader = new FXMLLoader
@@ -263,6 +267,7 @@ public class ListerReclamationClientController implements Initializable {
                 apc.setNomPrenom(nom,prenom);
                 apc.setEtat(etat);
                 apc.setDate(sdfr.format(date));
+                apc.setReponse(reponse);
                 TableViewRec.getScene().setRoot(root);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());

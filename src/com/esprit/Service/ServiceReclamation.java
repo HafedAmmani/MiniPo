@@ -277,7 +277,7 @@ public class ServiceReclamation  {
              
              
              //ResultSet rs=ste.executeQuery("select r.idr,r.type,r.objet,r.description,r.etatr,r.dater,u.Firstname,u.Lastname from reclamation r ,user u where r.id=u.id;");
-             ResultSet rs=ste.executeQuery("select r.idr,r.type,r.objet,r.description,r.etatr,r.dater,u.firstname,u.lastname from reclamation r inner join user u on  (r.id=u.id) order by dater asc;");
+             ResultSet rs=ste.executeQuery("select r.idr,r.type,r.objet,r.description,r.etatr,r.dater,u.firstname,u.lastname,r.reponse, from reclamation r inner join user u on  (r.id=u.id) order by dater asc;");
              while (rs.next()) {
                 //ResultSet rsu=ste.executeQuery("select * from user where id= "+rs.getInt("id"));
                 //String nom="";
@@ -298,7 +298,8 @@ public class ServiceReclamation  {
              String firstname=rs.getString("firstname");
              String lastname=rs.getString("lastname");
              Date dateR=rs.getDate("dater");
-             oblist.add(new ReclamationClient( idr, type, objet, description, etatr, firstname, lastname, dateR));
+             String reponse=rs.getString("reponse");
+             oblist.add(new ReclamationClient( idr, type, objet, description, etatr, firstname, lastname, dateR,reponse));
   
      }
             
