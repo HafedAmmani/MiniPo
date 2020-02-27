@@ -55,8 +55,9 @@ public class Livraison_livController implements Initializable {
     private TextField fil_recherche;
     @FXML
     private ComboBox<String> id_etat;//= new ComboBox<>("livrée", "non livrée","en cours");
-    ObservableList<String> listcmbx = FXCollections.observableArrayList("livrée", "non livrée","en cours");
     
+    private int id;
+    private String etat;
     @FXML
     private AnchorPane recherche;
     @FXML
@@ -65,7 +66,7 @@ public class Livraison_livController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         initTable();
         //recherche();
-          id_etat.setItems(listcmbx);
+         combo(); 
           
     }  
      private void initTable() {
@@ -78,6 +79,13 @@ public class Livraison_livController implements Initializable {
             tblview.setItems(obList);
             
 	}
+     public void combo()
+    {
+        ObservableList<String> listcmbx = FXCollections.observableArrayList("livrée", "non livrée","en cours");
+//        id_cmd.setCellFactory(new PropertyValueFactory<>("idcmd"));
+        
+        id_etat.setItems(listcmbx);
+    }
      /*@FXML
       private void recherche(){
       
@@ -206,9 +214,11 @@ public class Livraison_livController implements Initializable {
 
     @FXML
     private void updateEtat(ActionEvent event) throws SQLException {
+        Livraison l;
         Livraison selected = tblview.getSelectionModel().getSelectedItem();
-         int id = selected.getIdliv();
-        String etat = id_etat.getSelectionModel().getSelectedItem();
+         id = selected.getIdliv();
+        etat = id_etat.getSelectionModel().getSelectedItem();
+        l = new Livraison(id,selected.getDestination(),etat,selected.getIdc(),selected.getIdl(),selected.getDateliv(),selected.getMatriculeL());
         serv.updateLiv(etat,id);
         initTable();
     }
