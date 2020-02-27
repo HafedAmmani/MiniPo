@@ -26,6 +26,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -57,14 +59,16 @@ public class ListeFactureController implements Initializable {
     @FXML
     private Button btnSupp;
     @FXML
-    private Button Acceuil;
+    private HBox Acceuil;
     @FXML
-    private Button btnListCmd;
+    private Text btnListCmd;
     
     private ObservableList<ListeFact> oblist=FXCollections.observableArrayList();
     private ObservableList<String> lcbx=FXCollections.observableArrayList("Payée");
     @FXML
     private TableColumn<Object, ?> col_idcmd;
+    @FXML
+    private Text AcceuilAction;
 
     /**
      * Initializes the controller class.
@@ -95,13 +99,6 @@ public class ListeFactureController implements Initializable {
     private void btnSupprimerAction(ActionEvent event) {
     }
 
-    @FXML
-    private void AcceuilAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void BtnListClickAction(ActionEvent event) {
-    }
     
     private void AfficherFactures(){
         
@@ -160,6 +157,14 @@ public class ListeFactureController implements Initializable {
         tabcom.setItems(soretedData);
             });
      }
+
+    @FXML
+    private void BtnListClickAction(MouseEvent event) {
+    }
+
+    @FXML
+    private void AcceuilAction(MouseEvent event) {
+    }
     
     
 }

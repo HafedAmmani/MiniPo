@@ -23,9 +23,9 @@ public class Commande {
     private float total;
     //private EtatCommande etatc;
     private String etatc;
-    private Client client;
+    private User client;
 
-    public Commande(int idcmd, Date datec, float total, String etatc, Client client) {
+    public Commande(int idcmd, Date datec, float total, String etatc, User client) {
         this.idcmd = idcmd;
         this.datec = datec;
         this.total = total;
@@ -35,14 +35,14 @@ public class Commande {
     
     
   
-    public Commande(Date datec, float total, String etatc, Client client) {
+    public Commande(Date datec, float total, String etatc, User client) {
         this.datec = datec;
         this.total = total;
         this.etatc = etatc;
         this.client = client;
     }
 
-    public Commande(Date datec, float total, Client client) {
+    public Commande(Date datec, float total, User client) {
         this.datec = datec;
         this.total = total;
         this.client = client;
@@ -89,11 +89,11 @@ public class Commande {
         this.etatc = etatcmd;
     }
 
-    public Client getClient() {
+    public User getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(User client) {
         this.client = client;
     }
     
@@ -121,6 +121,10 @@ public class Commande {
                 "\tetat du commande=" + etatc +
                 "\nClient=" + client ;
                 
+    }
+
+    public Object getUser() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

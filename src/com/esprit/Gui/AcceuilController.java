@@ -5,7 +5,7 @@
  */
 package com.esprit.Gui;
 
-import com.esprit.Entite.Client;
+import com.esprit.Entite.User;
 import com.esprit.Entite.Produit;
 import com.esprit.Service.ServiceProduit;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import javafx.scene.control.TableView;
  */
 public class AcceuilController implements Initializable {
     
-    public static Client clt= new Client(2,"test","test","07818586","Saadi", "meiem", "tunis","99652033","test@gmail.com"); 
+    public static User clt= new User(2,"test","test","Saadi", "meiem", "tunis","test@gmail.com"); 
 
     public static Produit prod=new Produit();
     

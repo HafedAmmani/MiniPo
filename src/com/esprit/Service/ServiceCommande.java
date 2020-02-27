@@ -6,7 +6,7 @@
 
 package com.esprit.Service;
 
-import com.esprit.Entite.Client;
+import com.esprit.Entite.User;
 import com.esprit.Entite.Commande;
 import com.esprit.Entite.Commandes;
 import com.esprit.Gui.AcceuilController;
@@ -49,7 +49,7 @@ public class ServiceCommande {
         try {
             
             if (c.getEtatc().equals("valideé")){
-            PreparedStatement pre=con.prepareStatement("INSERT INTO commande (`total`, `datec`,`etatc`,idclt) VALUES "
+            PreparedStatement pre=con.prepareStatement("INSERT INTO commande (`total`, `datec`,`etatc`,id) VALUES "
                     + "(?, ?, ?, ?);");
             pre.setFloat(1, c.getTotal());
             pre.setDate(2, c.getDatec());
@@ -70,7 +70,7 @@ public class ServiceCommande {
     
     public void modifierCommande(Commande c) {
         try {
-            PreparedStatement pre=con.prepareStatement("UPDATE commande SET total=?,datec=?,etatc=?,idclt=? where idcmd="
+            PreparedStatement pre=con.prepareStatement("UPDATE commande SET total=?,datec=?,etatc=?,id=? where idcmd="
                 +c.getIdcmd()+";");
         
             pre.setFloat(1, c.getTotal());
@@ -116,8 +116,8 @@ public class ServiceCommande {
             ResultSet rs=ste.executeQuery("select * from commande");
             while (rs.next()) {              
             
-                ServiceClient sc=new ServiceClient();
-                Client clt=sc.getClient(rs.getInt("idclt"));
+                ServiceUser sc=new ServiceUser();
+                User clt=sc.getUser(rs.getInt("id"));
                
                 Commande c=new Commande(rs.getInt("idcmd"),rs.getDate("datec"),rs.getFloat("total"),rs.getString("etatc"),clt);
                
@@ -139,8 +139,8 @@ public class ServiceCommande {
         ResultSet rs=ste.executeQuery("select * from commande where idcmd="+idcmd);
         while (rs.next()) { 
             
-            ServiceClient sc=new ServiceClient();
-            Client clt=sc.getClient(rs.getInt("idclt"));
+            ServiceUser sc=new ServiceUser();
+            User clt=sc.getUser(rs.getInt("id"));
             
             cc=new Commande(rs.getInt("idcmd"),rs.getDate("datec"),rs.getFloat("total"),rs.getString("etatc"),clt);  
             return cc;
@@ -160,7 +160,7 @@ public class ServiceCommande {
    public void ajouterPanier(Commande c) {
         try {
 
-            PreparedStatement pre=con.prepareStatement("INSERT INTO commande (`total`, `datec`,`etatc`,`idclt`)"
+            PreparedStatement pre=con.prepareStatement("INSERT INTO commande (`total`, `datec`,`etatc`,`id`)"
                     + " VALUES (?, ?, ?, ?);");
             pre.setFloat(1, c.getTotal());
             pre.setDate(2, c.getDatec());
@@ -177,11 +177,11 @@ public class ServiceCommande {
    
    public Commande RechercherPanierParClient(int idclt){
         Commande c=null;
-        ServiceClient sc=new ServiceClient();
-        Client clt=sc.getClient(idclt);
+        ServiceUser sc=new ServiceUser();
+        User clt=sc.getUser(idclt);
         try {
             ste=con.createStatement();
-            ResultSet rscmd=ste.executeQuery("select * from commande where etatc='non valide' and idclt="+idclt);
+            ResultSet rscmd=ste.executeQuery("select * from commande where etatc='non valide' and id="+idclt);
             while((rscmd.next())){
                 c=new Commande(rscmd.getInt("idcmd"), rscmd.getDate("datec"),rscmd.getFloat("total"),rscmd.getString("etatc")
                     ,clt );
@@ -230,7 +230,7 @@ public class ServiceCommande {
             rs = ste.executeQuery("SELECT * FROM commande WHERE etatc='valide';");
             while (rs.next()) {
                 oblist.add(new Commande(rs.getInt("idcmd"),rs.getDate("datec"),rs.getFloat("total"),
-                        rs.getString("idcmd"),AcceuilController.clt));
+                        rs.getString("etatc"),AcceuilController.clt));
   
             }
             
@@ -250,12 +250,12 @@ public class ServiceCommande {
         try { 
             
             ste=con.createStatement();
-            ResultSet rs=ste.executeQuery("SELECT cmd.idcmd,cmd.idclt,c.nom,c.prenom,cmd.datec,cmd.etatc,cmd.total from commande cmd "
-                    + "JOIN client c ON c.idclt=cmd.idclt where cmd.etatc='valide' Or cmd.etatc='Accepter' ;");
+            ResultSet rs=ste.executeQuery("SELECT cmd.idcmd,cmd.id,u.Firstname,u.Lastname,cmd.datec,cmd.etatc,cmd.total from commande cmd "
+                    + "JOIN user u ON u.id=cmd.id where cmd.etatc='valide' Or cmd.etatc='Accepter' ;");
             while (rs.next()) {              
                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
                String strDate = dateFormat.format(rs.getDate("datec")); 
-               oblist.add(new Commandes(rs.getInt("idcmd"),rs.getString("nom"),rs.getString("prenom"),
+               oblist.add(new Commandes(rs.getInt("idcmd"),rs.getString("Firstname"),rs.getString("Lastname"),
                        strDate,rs.getString("etatc"),rs.getFloat("total")));
 
             }
@@ -297,10 +297,10 @@ public class ServiceCommande {
        ObservableList oblist = FXCollections.observableArrayList();
         try {
             ste=con.createStatement();
-            ResultSet rs = ste.executeQuery("SELECT cmd.idcmd,cmd.idclt,c.nom,c.prenom,cmd.datec,cmd.etatc,cmd.total from commande cmd JOIN client c ON c.idclt=cmd.idclt where cmd.etatc='valide';");
+            ResultSet rs = ste.executeQuery("SELECT cmd.idcmd,cmd.id,u.firstname,u.Lastname,cmd.datec,cmd.etatc,cmd.total from commande cmd JOIN user u ON u.id=cmd.id where cmd.etatc='valide';");
             while (rs.next()) {
-                ServiceClient scl=new ServiceClient();
-                Client clt=scl.getClient(rs.getInt("idclt"));
+                ServiceUser scl=new ServiceUser();
+                User clt=scl.getUser(rs.getInt("id"));
                 oblist.add(new Commande(rs.getInt("idcmd"),rs.getDate("datec"),rs.getFloat("total"),
                         rs.getString("etatc"),clt));
   

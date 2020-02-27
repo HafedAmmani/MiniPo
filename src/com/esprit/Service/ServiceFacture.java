@@ -119,11 +119,11 @@ public class ServiceFacture {
         try { 
             
             ste=con.createStatement();
-            ResultSet rs=ste.executeQuery("SELECT f.idfact,f.datef,f.etatf,cmd.idcmd,c.idclt,c.nom,c.prenom from facture f join commande cmd ON f.idcmd=cmd.idcmd JOIN client c ON c.idclt= cmd.idclt");
+            ResultSet rs=ste.executeQuery("SELECT f.idfact,f.datef,f.etatf,cmd.idcmd,c.id,c.Firstname,c.Lastname from facture f ,commande cmd,user c where cmd.id=c.id ;");
             while (rs.next()) {              
                 
                oblist.add(new ListeFact(rs.getInt("idfact"),rs.getDate("datef"),rs.getString("etatf"),
-                       rs.getString("nom"),rs.getString("prenom"),rs.getInt("idcmd"),rs.getInt("idclt")));                      
+                       rs.getString("Firstname"),rs.getString("Lastname"),rs.getInt("idcmd"),rs.getInt("id")));                      
 
             }
            
@@ -131,7 +131,9 @@ public class ServiceFacture {
         } catch (SQLException ex) {
             Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
            
-        }    
+        }   
+        
+        System.out.println(oblist);
      return oblist;
     }
     

@@ -7,9 +7,7 @@ package com.esprit.Gui;
 
 import com.esprit.Entite.Commande;
 import com.esprit.Entite.Commandes;
-import com.esprit.Entite.LigneCommande;
 import com.esprit.Service.ServiceCommande;
-import com.esprit.Service.ServiceLigneCommande;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -64,9 +63,9 @@ public class EspaceAdministrateurController implements Initializable {
     @FXML
     private Button btnSupp;
     @FXML
-    private Button Acceuil;
+    private Text Acceuil;
     @FXML
-    private Button btnListCmd;
+    private Text btnListCmd;
     
     private ObservableList<Commandes> oblist=FXCollections.observableArrayList();
     private ObservableList<String> lcbx=FXCollections.observableArrayList("Accepter");
@@ -115,7 +114,6 @@ public class EspaceAdministrateurController implements Initializable {
         AfficherCommandes();
     }
 
-    @FXML
     private void AcceuilAction(ActionEvent event) {
         
          try {
@@ -129,7 +127,6 @@ public class EspaceAdministrateurController implements Initializable {
         
     }
 
-    @FXML
     private void BtnListClickAction(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EspaceAdministrateur.fxml"));
@@ -221,6 +218,14 @@ public class EspaceAdministrateurController implements Initializable {
         tabcom.setItems(soretedData);
             });
      }
+
+    @FXML
+    private void BtnListClickAction(MouseEvent event) {
+    }
+
+    @FXML
+    private void AcceuilAction(MouseEvent event) {
+    }
     
     
 }

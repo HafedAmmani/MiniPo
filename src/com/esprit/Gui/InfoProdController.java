@@ -42,10 +42,6 @@ public class InfoProdController implements Initializable {
     private Text tfprix;
     @FXML
     private Button btnAjouter;
-    @FXML
-    private Button Acceuil;
-    @FXML
-    private Button panier;
 
     /**
      * Initializes the controller class.
@@ -115,7 +111,6 @@ public class InfoProdController implements Initializable {
         }
     }
 
-    @FXML
     private void AcceuilAction(ActionEvent event) {
          try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
@@ -127,11 +122,7 @@ public class InfoProdController implements Initializable {
         }
     }
 
-    @FXML
-    private void getAcceuilAction(ActionEvent event) {
-    }
     
-    @FXML
     private void PanierAction(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Interface1.fxml"));

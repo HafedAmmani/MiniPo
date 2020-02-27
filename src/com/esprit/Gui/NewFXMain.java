@@ -42,10 +42,8 @@ public class NewFXMain extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
             
-            //Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
             
-            //Parent root = FXMLLoader.load(getClass().getResource("AdminEspace.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("EspaceAdministrateur.fxml"));
+//           Parent root = FXMLLoader.load(getClass().getResource("EspaceAdministrateur.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("ListeFacture.fxml"));
             
             //Parent root = FXMLLoader.load(getClass().getResource("ListeCmdClient.fxml"));

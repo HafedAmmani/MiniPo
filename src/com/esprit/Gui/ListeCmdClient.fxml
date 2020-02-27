@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,79 +14,122 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ListeCmdClientController">
-    <stylesheets>
-        <URL value="@employe.css" />
-    </stylesheets>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ListeCmdClientController">
    <children>
-      <Pane id="pane_top" layoutX="195.0" prefHeight="56.0" prefWidth="986.0">
+      <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #005c96;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="207.0" text="Vos Commandes">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <VBox prefHeight="570.0" prefWidth="194.0" style="-fx-background-color: E5E5E5;">
-         <children>
-            <Pane prefHeight="106.0" prefWidth="194.0">
+            <VBox layoutY="160.0" prefHeight="356.0" prefWidth="262.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="160.0">
                <children>
-                  <Text layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MiniPo" textAlignment="CENTER" wrappingWidth="194.40000000000003">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/home_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Profil" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/customer_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding></Button>
+                  <Button fx:id="Acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="159.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Produit" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/product_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="panier" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="208.0" mnemonicParsing="false" onAction="#PanierAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mon panier" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/basket_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Livraison" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/truck_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/paste_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+            <Pane layoutY="86.0" prefHeight="61.0" prefWidth="262.0" style="-fx-background-color: #f0c300; -fx-background-radius: 5;">
+               <children>
+                  <Label layoutX="25.0" layoutY="17.0" text="Home Space" textFill="WHITE">
                      <font>
-                        <Font name="Monotype Corsiva" size="36.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
-                  </Text>
+                  </Label>
                </children>
             </Pane>
-            <Pane id="pane_top" prefHeight="14.0" prefWidth="214.0" />
-            <Button fx:id="Acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="56.0" prefWidth="216.0" stylesheets="@fullpackstyling.css" text="Acceuil">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/icons8_add_user_group_man_man_50px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="panier" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#PanierAction" prefHeight="56.0" prefWidth="217.0" stylesheets="@fullpackstyling.css" text="Panier">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/icons8_checked_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </VBox>
-      <AnchorPane layoutX="239.0" layoutY="113.0" prefHeight="421.0" prefWidth="911.0">
+         </children></AnchorPane>
+      <Pane layoutX="262.0" prefHeight="649.0" prefWidth="631.0" style="-fx-background-color: #e5e5e5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="tabcom" layoutX="56.0" layoutY="72.0" prefHeight="316.0" prefWidth="719.0">
-              <columns>
-                <TableColumn fx:id="col_non" prefWidth="129.99996948242188" text="Non " />
-                <TableColumn fx:id="col_pre" prefWidth="134.00003051757812" text="Prenom" />
-                  <TableColumn fx:id="col_dat" prefWidth="138.0" text="Date Commande" />
-                  <TableColumn fx:id="col_et" minWidth="0.0" prefWidth="127.0" text="Etat Commande" />
-                  <TableColumn fx:id="col_tot" prefWidth="107.0" text="Totale" />
-                  <TableColumn fx:id="col_id" prefWidth="75.0" text="id Commande" visible="false" />
-              </columns>
-            </TableView>
-            <Text layoutX="76.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher" />
-            <TextField fx:id="tfrech" layoutX="157.0" layoutY="28.0" prefHeight="26.0" prefWidth="450.0" />
-         </children>
-      </AnchorPane>
+            <AnchorPane layoutX="6.0" prefHeight="649.0" prefWidth="822.0">
+               <children>
+      <Label id="label_title" layoutX="13.0" layoutY="27.0" prefHeight="30.0" prefWidth="207.0" text="Vos Commandes">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabcom" layoutX="89.0" layoutY="226.0" prefHeight="316.0" prefWidth="719.0">
+        <columns>
+          <TableColumn fx:id="col_non" prefWidth="129.99996948242188" text="Non " />
+          <TableColumn fx:id="col_pre" prefWidth="134.00003051757812" text="Prenom" />
+            <TableColumn fx:id="col_dat" prefWidth="138.0" text="Date Commande" />
+            <TableColumn fx:id="col_et" minWidth="0.0" prefWidth="127.0" text="Etat Commande" />
+            <TableColumn fx:id="col_tot" prefWidth="107.0" text="Totale" />
+            <TableColumn fx:id="col_id" prefWidth="75.0" text="id Commande" visible="false" />
+        </columns>
+      </TableView>
+      <Text layoutX="133.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher" wrappingWidth="86.0703125" />
+      <TextField fx:id="tfrech" layoutX="246.0" layoutY="176.0" prefHeight="26.0" prefWidth="450.0" />
    </children>
-</fx:root>
+            </AnchorPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

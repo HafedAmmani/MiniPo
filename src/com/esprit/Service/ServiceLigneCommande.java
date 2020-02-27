@@ -6,7 +6,7 @@
 
 package com.esprit.Service;
 
-import com.esprit.Entite.Client;
+import com.esprit.Entite.User;
 import com.esprit.Entite.Commande;
 import com.esprit.Entite.LigneCommande;
 import com.esprit.Entite.Panier;
@@ -42,7 +42,7 @@ public class ServiceLigneCommande {
     }
     
      public void ajouterLigneCommande(LigneCommande lc) {
-            Client client=AcceuilController.clt;
+            User client=AcceuilController.clt;
             
         try{
             ServiceProduit sp=new ServiceProduit();
@@ -92,17 +92,7 @@ public class ServiceLigneCommande {
                           System.out.println("Total Commande Modifier avec succes");
                   //qte stock   
                   qeff=qeff-lc.getQte();
-                  /*ste=con.createStatement();
-                  ResultSet rstok=ste.executeQuery("Select * from Produit where idprod="+p.getIdprod());
-                  while (rstok.next()){
-                         PreparedStatement px=con.prepareStatement("UPDATE produit SET qtestock=? where idprod=?");
-                                
-                                
-                                px.setInt(1,lc.getQte());
-                                px.setInt(2,rstok.getInt("idprod") );
-                                 px.executeUpdate();
-                                    System.out.println("qteStock Modifier avec succes");
-                  }*/
+             
           }
                   
                   //prod non existe creation nouvelle lc update qtestock et totale commande
@@ -133,15 +123,7 @@ public class ServiceLigneCommande {
                 //qte en stock  
                 
                 qeff=qeff-lc.getQte();
-                 /* ste=con.createStatement();
-                  ResultSet rstok=ste.executeQuery("Select * from produit where idprod="+p.getIdprod());
-                  while (rstok.next()){
-                         PreparedStatement px=con.prepareStatement("UPDATE produit SET qtestock=? where idprod=?");
-                                px.setInt(1,(lc.getQte()));
-                                px.setInt(2, rstok.getInt("idprod"));
-                                 px.executeUpdate();
-                                 System.out.println("qteStock Modifier avec succes");
-                  }*/
+           
                  
                 
                 }
@@ -265,7 +247,7 @@ public class ServiceLigneCommande {
             ste=con.createStatement();
             
             ResultSet rs;
-            rs = ste.executeQuery("select p.designation,p.prix,c.nom,l.qte,l.idlc,l.idcmd FROM lignecommande l,produit p,categorie c,commande cmd,client clt WHERE l.idprod=p.idprod AND p.idcateg=c.idcateg AND l.idcmd=cmd.idcmd AND cmd.etatc='non valide' AND cmd.idclt=clt.idclt AND clt.idclt=2");
+            rs = ste.executeQuery("select p.designation,p.prix,c.nom,l.qte,l.idlc,l.idcmd FROM lignecommande l,produit p,categorie c,commande cmd,user clt WHERE l.idprod=p.idprod AND p.idcateg=c.idcateg AND l.idcmd=cmd.idcmd AND cmd.etatc='non valide' AND cmd.id=clt.id AND clt.id=2");
             while (rs.next()) {
                 
                 int id=rs.getInt("idlc");
@@ -296,7 +278,7 @@ public class ServiceLigneCommande {
             ste=con.createStatement();
             
             ResultSet rs;
-            rs = ste.executeQuery("SELECT l.idlc,l.idprod,l.idcmd,l.qte FROM lignecommande l,produit p,categorie c,commande cmd,client clt WHERE l.idprod=p.idprod AND p.idcateg=c.idcateg AND l.idcmd=cmd.idcmd AND cmd.etatc='non valide' AND cmd.idclt=clt.idclt AND clt.idclt=1");
+            rs = ste.executeQuery("SELECT l.idlc,l.idprod,l.idcmd,l.qte FROM lignecommande l,produit p,categorie c,commande cmd,user clt WHERE l.idprod=p.idprod AND p.idcateg=c.idcateg AND l.idcmd=cmd.idcmd AND cmd.etatc='non valide' AND cmd.id=clt.id AND clt.id=1");
             while (rs.next()) {
                 ServiceCommande sc=new ServiceCommande();
                 Commande c=sc.getCommande(rs.getInt("idcmd"));
@@ -322,39 +304,45 @@ public class ServiceLigneCommande {
     public void modifierQte(int id,int qte,LigneCommande lc){
     
         try{
+            
+            
+            
+            ServiceProduit sp=new ServiceProduit();
+            Produit p=sp.getProduit(id);
             ste=con.createStatement();
-            ResultSet rsp=ste.executeQuery("select * from produit where idprod="+id);
-            
-            int q=lc.getQte();
-                while (rsp.next()){
-            
-                    if (rsp.getInt("qtestock")>=lc.getQte()){
+            ResultSet rslc=ste.executeQuery("select qte from lignecommande where idprod="+id);
+            int qeff=0;
+            while (rslc.next()) {                
+
+                qeff=qeff+rslc.getInt("qte");
                 
-                        if(lc.getQte()<qte){
-            
-                            q= rsp.getInt("qtestock")+lc.getQte();
-                        }
-                         
-                        if(lc.getQte()>qte){
-                                q= rsp.getInt("qtestock")-lc.getQte();
-                        }
-                 
-                        if(lc.getQte()==qte){
-                                     q=lc.getQte();
-                    }             
+              
+            }
+             qeff=qeff+lc.getQte();
              
-                    PreparedStatement pre=con.prepareStatement("UPDATE lignecommande SET qte=? where idlc="
-                        +lc.getIdlc()+";");
-                    pre.setInt(1,q);
+             
+            ste=con.createStatement();
+            ResultSet r=ste.executeQuery("select * from produit where idprod="+id);
+            int qtestock=0;
+            while(r.next()){
+                qtestock=r.getInt("qtestock");
+            }
+            System.out.println(qtestock);
+            if (qtestock-qeff<0){
+                
+                    System.out.println("qte insufisante !!!!!");
+                }
+                
+            else
+            {
+                    PreparedStatement pre=con.prepareStatement("UPDATE lignecommande SET qte=? where idlc=?");
+                    pre.setInt(1,lc.getQte());
+                    pre.setInt(2,lc.getIdlc());
                     pre.executeUpdate();
                     System.out.println("Ligne Commande Modifier avec succes");
             
                     }
-                    else{
                 
-                         System.out.println("la quentité en stock est insuffisante");
-                    }
-                }
             
             
         }catch (SQLException ex) {

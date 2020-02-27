@@ -5,14 +5,14 @@
  */
 package com.esprit.test;
 
-import com.esprit.Entite.Client;
+import com.esprit.Entite.User;
 import com.esprit.Entite.Commande;
 import com.esprit.Entite.Facture;
 import com.esprit.Entite.LigneCommande;
 import com.esprit.Entite.Produit;
 import com.esprit.Gui.AcceuilController;
 import com.esprit.Service.ServiceCategorie;
-import com.esprit.Service.ServiceClient;
+import com.esprit.Service.ServiceUser;
 import com.esprit.Service.ServiceCommande;
 import com.esprit.Service.ServiceFacture;
 import com.esprit.Service.ServiceFournisseur;
@@ -41,7 +41,7 @@ public class Test {
         ServiceCommande sc=new ServiceCommande();
         ServiceLigneCommande slc= new ServiceLigneCommande();
         ServiceFacture sfact=new ServiceFacture();
-        ServiceClient sclt=new ServiceClient();
+        ServiceUser sclt=new ServiceUser();
         ServiceProduit sp=new ServiceProduit();
         ServiceCategorie scateg=new ServiceCategorie();
         ServiceFournisseur sf=new ServiceFournisseur();
@@ -49,7 +49,7 @@ public class Test {
         /* 
         **********Ajout/Suppression/Modificatio********
             ************Commande*************
-        Client clt = sclt.getClient(1);
+        User clt = sclt.getClient(1);
         Commande c=sc.getCommande(1);
         c.setClient(clt);
         sc.modifierCommande(c);
@@ -133,7 +133,7 @@ public class Test {
         
      
         
-       // Client clt = sclt.getClient(1);
+       // User clt = sclt.getClient(1);
         //Date d=new Date(2020, 02, 20);
         //Commande c=new Commande(3,d,(float) 22,"non valide",1,clt);
       
