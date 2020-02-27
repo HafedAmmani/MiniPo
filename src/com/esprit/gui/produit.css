@@ -1,0 +1,32 @@
+#pane_top{
+	-fx-background-color: #4d5463;
+}
+#label_title{
+	-fx-text-fill: white;
+}
+#anchorpane_center, #anchorpane_left, #anchorpane_right{
+	-fx-border-style: dotted;
+}
+.jfx-button{
+	-fx-opacity: 0.9;
+	-fx-text-fill: white;
+}
+.jfx-button:hover{
+	-fx-opacity: 1;
+}
+#btn_ajouter{
+	-fx-background-color: #0b824e;
+}
+#btn_print_preview{
+	-fx-background-color: rgb(45, 190,240);
+}
+#btn_categorie, #btn_fournisseur{
+	-fx-background-color: rgb(45, 190,240);
+	-fx-text-fill: black;
+}
+#btn_delete {
+	-fx-background-color: red;
+}
+#btn_modifier {
+	-fx-background-color: orange;
+}

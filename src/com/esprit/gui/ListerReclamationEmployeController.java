@@ -65,8 +65,6 @@ public class ListerReclamationEmployeController implements Initializable {
     @FXML
     private Button btnRetour;
     @FXML
-    private AnchorPane RecEmp;
-    @FXML
     private TableView<ReclamationsEmploye> tableViewRecEmp;
     private ObservableList<ReclamationsEmploye>oblistEmp;
     private ServiceReclamationEmploye reclamationEmploye=new ServiceReclamationEmploye();
@@ -88,6 +86,28 @@ public class ListerReclamationEmployeController implements Initializable {
         
           
         }
+    @FXML
+    private void redirectToProduit(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToReclamation(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("AcceuilReclamationAd.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
 
     private void AfficherListeReclamationsEmploye(){
         

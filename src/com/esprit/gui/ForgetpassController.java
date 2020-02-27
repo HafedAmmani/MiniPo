@@ -60,7 +60,7 @@ public class ForgetpassController implements Initializable {
         if(name.isEmpty()||pass.isEmpty()){
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setHeaderText(null);
-         alert.setContentText("Please fill all required");
+         alert.setContentText("s'il vous plait remplir les champs vides");
          alert.showAndWait();
           }
     }
@@ -101,9 +101,9 @@ public class ForgetpassController implements Initializable {
             return true;
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("validate Password");
+            alert.setTitle("Validation du mot de passe");
             alert.setHeaderText(null);
-            alert.setContentText("Password must contain at least one(Digit,Lowercase,Uppercase and special characteres");
+            alert.setContentText("Mot de passe doit contenirau moins un entier, un miniscule,majuscule characteres speciaux");
             alert.showAndWait();
             return false;
         }

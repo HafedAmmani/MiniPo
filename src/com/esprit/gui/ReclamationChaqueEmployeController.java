@@ -56,10 +56,32 @@ public class ReclamationChaqueEmployeController implements Initializable{
 
     private Label nomPrenom;
     @FXML
-    private TextField nomprenom;
+    private Label nomprenom;
+    @FXML
     private Label date;
 
-
+    @FXML
+    private void redirectToProduit(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToReclamation(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("AcceuilReclamationAd.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
 
     public void setDescription(String  description) {
         this.description.setText(description);

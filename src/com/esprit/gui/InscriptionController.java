@@ -52,7 +52,7 @@ public class InscriptionController implements Initializable {
         private Button btnsign;
         @FXML
         private ComboBox<String> cbgenre;
-        private ObservableList<String> list = FXCollections.observableArrayList("Male","female");
+        private ObservableList<String> list = FXCollections.observableArrayList("sexe","Male","female");
 
          
   
@@ -108,12 +108,12 @@ public class InscriptionController implements Initializable {
             tfemail.clear();
             tfpassword.clear();
             tfCpass.clear();
-            
+            cbgenre.getSelectionModel().select(0);
             
     }
         private boolean validateEmail(){
        // Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9]+([@])+([.][a-zA-Z]+)+");
-       Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*[@][a-zA-Z0-9]+([.][a-zA-Z]+)+");
+        Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*[@][a-zA-Z0-9]+([.][a-zA-Z]+)+");
         Matcher m = p.matcher(tfemail.getText());
         if (m.find()&& m.group().equals(tfemail.getText())){
             return true;
@@ -126,40 +126,59 @@ public class InscriptionController implements Initializable {
             return false;
         }
     }
-            private boolean validatePassword(){
+        public boolean validatePassword(){
         String pass = tfpassword.getText();
         String Cpass = tfCpass.getText();
+        System.out.println("First :"+pass+" Confirm:"+Cpass);
         Pattern p = Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})");
-        Matcher m = p.matcher(tfpassword.getText());
-        if (m.matches() ){
-            return true;
-            
-        }else if (!pass.equals(Cpass)){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+        Matcher m = p.matcher(pass);
+        System.out.println(p.matcher(pass).matches());
+        if (!m.matches() ){
+           Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("Warning");
            alert.setHeaderText(null);
-            alert.setContentText("Mot de passe invalide");
+           alert.setContentText("Mot de passe invalide");
+           alert.showAndWait();
+            return false;
+            
+        }
+        if (!(pass.equals(Cpass))){
+           Alert alert = new Alert(Alert.AlertType.WARNING);
+           alert.setTitle("Warning");
+           alert.setHeaderText(null);
+           alert.setContentText("Mot de passe invalide");
            alert.showAndWait();
            
             return false;
         }
-            else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("mot de passe valide");
-            alert.setHeaderText(null);
-            alert.setContentText("le mot de passe doit contenir entier un majiscule ,miniscule et des caractere specifique");
-            alert.showAndWait();
-            return false;
-        }
+        else
+        
+            return true;
+
     }
 
     @FXML
     private void connect(ActionEvent event) throws SQLException {
-        if (validateEmail() & validatePassword() )
-        {
-                insertNewUser();
-                
+        String name = tfname.getText();
+            String username= tfusername.getText();
+            String lastname = tflastname.getText();
+            String email = tfemail.getText();
+            String pass = tfpassword.getText();
+            String Cpass = tfCpass.getText();
+            String genre =cbgenre.getValue();
+           {
+            if(!pass.isEmpty() & !username.isEmpty() & !email.isEmpty() & !name.isEmpty()& !lastname.isEmpty() & !genre.isEmpty() && validateEmail() && validatePassword()){
+               insertNewUser();  
             }
+//            }else{
+//               Alert alert = new Alert(Alert.AlertType.WARNING);
+//               alert.setTitle("Verifier champs");
+//               alert.setHeaderText(null);
+//               alert.setContentText("Remplir les champs vides");
+//               alert.showAndWait(); 
+//           }
+                   
+        }
     }
         
     }

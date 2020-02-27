@@ -2,7 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" stylesheets="@../Documents/NetBeansProjects/MiniPo/src/com/minipo/gui/css/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ListerReclamationEmployeController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" stylesheets="@../Documents/NetBeansProjects/MiniPo/src/com/minipo/gui/css/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.TestingUserController">
    <children>
       <VBox id="side_nav" style="-fx-background-color: #005c96;">
          <children>
@@ -65,20 +66,19 @@
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
-               <children>
-                  
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-size: 1.3em;" text="Gestion vente/achat" wrappingWidth="100.0">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#redirectToCommande" style="-fx-background-color: #005c96;" text="Gestion des commandes" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
                <children>
@@ -104,7 +104,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <children>
-                  <Button mnemonicParsing="false" onAction="#redirectToReclamation" style="-fx-background-color: #005c96;" text="Gestion Reclamation" textFill="WHITE" wrapText="true">
+                  <Button mnemonicParsing="false" onAction="#redirectToAcceuilReclamation" style="-fx-background-color: #005c96;" text="Gestion Reclamation" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -196,27 +196,30 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <AnchorPane prefHeight="673.0" prefWidth="1230.0">
-               <children>
-      <Label layoutX="214.0" layoutY="120.0" prefHeight="17.0" prefWidth="75.0" text="Recherche" />
-      <TextField fx:id="TextField" layoutX="310.0" layoutY="116.0" />
-      <TableView fx:id="tableViewRecEmp" layoutX="199.0" layoutY="152.0" onMouseClicked="#AfficherRecUnique" prefHeight="200.0" prefWidth="626.0">
+            <AnchorPane prefHeight="691.0" prefWidth="1230.0">
+              <children>
+      <TextField fx:id="username" layoutX="39.0" layoutY="44.0" promptText="username" />
+      <TextField fx:id="firstname" layoutX="39.0" layoutY="96.0" promptText="firstname" />
+      <TextField fx:id="lastname" layoutX="39.0" layoutY="148.0" promptText="lastname" />
+      <PasswordField fx:id="password" layoutX="39.0" layoutY="255.0" promptText="password" />
+      <TextField fx:id="email" layoutX="39.0" layoutY="199.0" promptText="email" />
+      <ComboBox fx:id="genre" layoutX="38.0" layoutY="306.0" prefWidth="150.0" promptText="genre" />
+      <ComboBox fx:id="role" layoutX="38.0" layoutY="356.0" prefWidth="150.0" promptText="role" />
+      <Button fx:id="ajouter" layoutX="13.0" layoutY="413.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="26.0" prefWidth="70.0" text="Ajouter" />
+      <TableView fx:id="tbview" layoutX="276.0" layoutY="34.0" onMouseClicked="#modifiercell" prefHeight="356.0" prefWidth="619.0">
         <columns>
-          <TableColumn fx:id="col_IdRec" prefWidth="75.0" text="Numero " visible="false" />
-          <TableColumn fx:id="col_Obj" prefWidth="94.0" text="objet" />
-            <TableColumn fx:id="col_description" prefWidth="122.00006103515625" text="description" />
-            <TableColumn fx:id="col_etat" prefWidth="70.0" text="Etat" />
-            <TableColumn fx:id="col_nom" prefWidth="101.33331298828125" text="Nom" />
-            <TableColumn fx:id="col_prenom" prefWidth="108.6666259765625" text="Prenom" />
-            <TableColumn fx:id="col_DateRec" prefWidth="129.3333740234375" text="Date" />
+          <TableColumn fx:id="col_username" prefWidth="75.0" text="username" />
+          <TableColumn fx:id="col_firstname" prefWidth="75.0" text="firstname" />
+            <TableColumn fx:id="col_lastname" prefWidth="75.0" text="lastname" />
+            <TableColumn fx:id="col_email" prefWidth="137.60003662109375" text="email" />
+            <TableColumn fx:id="col_password" prefWidth="52.0" text="password" />
+            <TableColumn fx:id="col_genre" prefWidth="90.4000244140625" text="genre" />
+            <TableColumn fx:id="col_role" prefWidth="63.2000732421875" text="role" />
         </columns>
       </TableView>
-      <Label layoutX="267.0" layoutY="31.0" prefHeight="35.0" prefWidth="384.0" text="Liste des Reclamations Employe ">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnRetour" layoutX="199.0" layoutY="369.0" mnemonicParsing="false" onAction="#BoutonRetour" text="Retour" />
+      <Button fx:id="supprimer" layoutX="13.0" layoutY="462.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+      <Button fx:id="modifier" layoutX="127.0" layoutY="462.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="70.0" text="modifier" />
+      <Button fx:id="clear" layoutX="127.0" layoutY="414.0" mnemonicParsing="false" onAction="#clear1" prefHeight="26.0" prefWidth="70.0" text="Clear" />
    </children>
             </AnchorPane>
          </children>

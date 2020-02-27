@@ -69,8 +69,6 @@ public class ListerReclamationClientController implements Initializable {
     @FXML
     private TextField TextField;
     @FXML
-    private HBox Hbox;
-    @FXML
     private TableView<ReclamationClient> TableViewRec;
     //private ObservableList<Reclamation>oblist=FXCollections.observableArrayList();
     private ObservableList<ReclamationClient>oblistClient;
@@ -97,13 +95,7 @@ public class ListerReclamationClientController implements Initializable {
     
     private ServiceReclamation reclamation=new ServiceReclamation();
     @FXML
-    private ComboBox<String> etat;
-    @FXML
-    private Button BtnModifier;
-    @FXML
     private Button btnRetour;
-    @FXML
-    private TextField numeroRec;
     static Stage stageAffichageUnique;
     static ReclamationClient ReclamationSelectionne;
     //ObservableList<Reclamation>oblistReclamation=FXCollections.observableArrayList();
@@ -135,7 +127,28 @@ public class ListerReclamationClientController implements Initializable {
         
           
         }
-   
+       @FXML
+    private void redirectToProduit(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToReclamation(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("AcceuilReclamationAd.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
     
     
     
@@ -164,7 +177,6 @@ public class ListerReclamationClientController implements Initializable {
       
      }
      
-   @FXML
     private void ModifierEtat(ActionEvent event) throws SQLException {
         ServiceReclamation sr=new ServiceReclamation();
         //sr.updateAdmin(Integer.parseInt(numeroRec.getText()),etat.getValue());

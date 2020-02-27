@@ -264,5 +264,31 @@ public boolean Modifier(User u ) throws SQLException
         }
         return id;
     }
+    
+
+    User getUser(int idclt) {
+        User clt=null;
+        try {
+        ste=con.createStatement();
+        ResultSet rs=ste.executeQuery("select * from user where id="+idclt);
+        
+        while (rs.next()) {  
+  
+            clt=new User(rs.getInt("id"),rs.getString("username"),rs.getString("password"),
+                    rs.getString("nom"),rs.getString("prenom"),rs.getString("adresse"),
+                    rs.getString("email"));  
+            return clt;
+        }
+        
+        
+    
+    }  catch (SQLException ex) {
+            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+            clt=null;
+        }
+        
+        return clt;
+    
+    }
 
 }

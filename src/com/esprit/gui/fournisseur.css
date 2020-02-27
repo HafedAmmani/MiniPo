@@ -1,0 +1,31 @@
+.jfx-button{
+	-fx-opacity: 0.9;
+	-fx-text-fill: white;
+}
+.jfx-button:hover{
+	-fx-opacity: 1;
+}
+#pane_top{
+	-fx-background-color: #4d5463;
+}
+#label_title{
+	-fx-text-fill: white;
+}
+#pane_left, #pane_visualiser, #pane_table{
+		-fx-border-style: dotted;
+}
+#btn_visual_valeur, #btn_visual_nbre {
+		-fx-background-color: rgb(45, 190,240);
+}
+#btn_delete{
+		-fx-background-color: red;
+}
+#btn_modifier{
+		-fx-background-color: orange;
+}
+#btn_ajouter{
+	-fx-background-color: #0b824e;
+}
+#btn_clear{
+	-fx-background-color: blue;
+}

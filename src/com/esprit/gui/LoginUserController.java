@@ -69,7 +69,7 @@ public class LoginUserController implements Initializable {
      if(name.isEmpty()||password.isEmpty()){
          Alert alert = new Alert(Alert.AlertType.ERROR);
          alert.setHeaderText(null);
-         alert.setContentText("Please fill all required");
+         alert.setContentText("s'il vous plait remplir les champs vides");
          alert.showAndWait();
          
      }
@@ -78,13 +78,13 @@ public class LoginUserController implements Initializable {
          if(name.equals(s.getString("username"))&&service_bcrypt.checkpw(password, s.getString(password))){
          Alert alert = new Alert(Alert.AlertType.WARNING);
          alert.setHeaderText(null);
-         alert.setContentText("Successfully logged in");
+         alert.setContentText("Connecté avec succées");
          alert.showAndWait();
              }
          }
          }
      }
-     private boolean validatePassword(){
+   /*  private boolean validatePassword(){
         Pattern p = Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})");
         Matcher m = p.matcher(tfpassword.getText());
         if (m.matches()){
@@ -99,7 +99,7 @@ public class LoginUserController implements Initializable {
             return false;
         }
          
-    }
+    }*/
        
 
    /* @FXML
@@ -119,13 +119,12 @@ public class LoginUserController implements Initializable {
 
     }
     }*/
-    
       @FXML
     private void connect(ActionEvent event) throws SQLException, IOException { //button connecter pour pouvoir rederiger  a une autre interface
         String username = tfusername.getText();
         
         
-            if(validatePassword()==true)
+            //if(validatePassword()==true)
     {
        
          validateusername();
@@ -136,8 +135,8 @@ public class LoginUserController implements Initializable {
 //            Parent root = fxml.load();
 //                 tfusername.getScene().setRoot(root);
 //                 ForgetpassController rc = fxml.getController();
-                 
-                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
+// EspaceProduit
+                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("testUser.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -182,7 +181,8 @@ public class LoginUserController implements Initializable {
             
                  NumId = ser.rechercherID(tfusername.getText());
                  System.out.println(NumId);
-                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("ReclamationClient.fxml"));
+//                 ReclamationClient.fxml ListeCmdClient
+                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("InfoProd.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 //        tableViewScene.getStylesheets().add(getClass().getResource("fullpackstyling.css").toExternalForm());
         

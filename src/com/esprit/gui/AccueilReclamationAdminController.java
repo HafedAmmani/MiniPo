@@ -69,7 +69,18 @@ public class AccueilReclamationAdminController implements Initializable {
         ft.setAutoReverse(true);
         ft.play();
     }
-
+    @FXML
+    private void redirectToProduit(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+                 
     void ListerReclamation(ActionEvent event) throws IOException {
         
           setNode(FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListesReclamation.fxml")));

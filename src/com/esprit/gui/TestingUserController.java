@@ -7,6 +7,7 @@ package com.esprit.gui;
 
 import com.esprit.Entite.User;
 import com.esprit.Service.ServicePersonne;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -17,7 +18,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -29,6 +34,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -71,14 +77,49 @@ public class TestingUserController implements Initializable {
     ServicePersonne sp = new ServicePersonne();
     @FXML
     private TableView<User> tbview;
-    private ObservableList<String> list = FXCollections.observableArrayList("Male","female");
-    private ObservableList<String> list1 = FXCollections.observableArrayList("agent RH","emplyé","livreur","fournisseur");
+    private ObservableList<String> list = FXCollections.observableArrayList("Genre","Male","female");
+    private ObservableList<String> list1 = FXCollections.observableArrayList("Role","agent RH","emplyé","livreur","fournisseur");
     @FXML
     private Button supprimer;
     @FXML
     private Button modifier;
     @FXML
     private Button clear;
+    @FXML
+    private void redirectToAcceuilReclamation(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToCommande(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceAdministrateur.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToProduit(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    
 
     /**
      * Initializes the controller class.
@@ -91,7 +132,7 @@ public class TestingUserController implements Initializable {
             initTable();
             
         } catch (SQLException ex) {
-            Logger.getLogger(GestionUtilisateurController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestingUserController.class.getName()).log(Level.SEVERE, null, ex);
         } 
         // TODO
     }    
@@ -110,6 +151,28 @@ public class TestingUserController implements Initializable {
 
     @FXML
     private void AjouterUser(ActionEvent event) throws SQLException {
+            String nom = firstname.getText();
+            String unom= username.getText();
+            String prenom = lastname.getText();
+            String mail = email.getText();
+            String pass = password.getText();
+            String rol = role.getValue();
+            String genr =genre.getValue();
+           
+     
+          if(!nom.isEmpty() & !unom.isEmpty() & !prenom.isEmpty() & !mail.isEmpty() & !pass.isEmpty() & !rol.isEmpty() & !genr.isEmpty())
+          {
+              ADD();
+             
+           }else{
+               Alert alert = new Alert(Alert.AlertType.WARNING);
+               alert.setTitle("Verifier champs");
+               alert.setHeaderText(null);
+               alert.setContentText("Remplir les champs vides");
+               alert.showAndWait(); 
+           }
+    }  
+    private void ADD() throws SQLException{
         String nom = firstname.getText();
             String unom= username.getText();
             String prenom = lastname.getText();
@@ -117,32 +180,19 @@ public class TestingUserController implements Initializable {
             String pass = password.getText();
             String rol = role.getValue();
             String genr =genre.getValue();
+           
        User p1;
-      // p1 = new User(tusername.getText(),Tfirstname.getText(), tlastname.getText(), temail.getText(), tpassword.getText(),combgenre.getValue(),comborole.getValue());
-      p1 = new User(username.getText(),lastname.getText(),firstname.getText(), email.getText(), password.getText(),genre.getValue(),role.getValue());  
-      sp.ajouter(p1);
-        /*tusername.setText("");
-        Tfirstname.setText("");
-        tlastname.setText("");
-        temail.setText("");
-        tpassword.setText("");
-        combgenre.setValue(genre);
-        comborole.setValue(role);*/
-        //clear();
-        initTable();
-    }  
+        p1 = new User(username.getText(),lastname.getText(),firstname.getText(), email.getText(), password.getText(),genre.getValue(),role.getValue()); 
+         initTable();
+         sp.ajouter(p1);
+    }
      
      private void Delete() throws SQLException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog");
+		alert.setTitle("Dialogue de Confirmation ");
 		alert.setHeaderText(null);
-		alert.setContentText("Are you sure you want to delete selected?");
+		alert.setContentText("etes-vous sur de vouloir supprimer l'element selectionné");
 		Optional<ButtonType> action = alert.showAndWait();
-        //User selected = TbView.getSelectionModel().getSelectedItem();
-        //Username = selected.getUsername();
-           // User p1;
-            //p1 = new User(id,Tfirstname.getText(), tlastname.getText(), temail.getText(), tpassword.getText(), tusername.getText(),combgenre.getValue(),comborole.getValue());
-           // if(action.get() == ButtonType.OK)
             sp.Delete(oblist.get(0).getUsername());
             initTable();
     }

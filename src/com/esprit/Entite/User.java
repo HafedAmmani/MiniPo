@@ -27,11 +27,20 @@ public class User {
     private String firstname;
     private String lastname;
     private String genre;
+    private String adresse;
 
     public User() {
     }
     
-
+    public User(int id, String login, String password, String nom, String prenom, String adresse, String email) {
+        this.id = id;
+        this.username = login;
+        this.password = password;
+        this.firstname = nom;
+        this.lastname = prenom;
+        this.adresse = adresse;
+        this.email = email;
+    }
     public User(String username, String email, String password, String firstname, String lastname) {
         this.username = username;
         this.email = email;
@@ -130,6 +139,14 @@ public class User {
          this.genre = genre;
         this.roles = roles;
        
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public Integer getId() {
