@@ -186,7 +186,7 @@ public class EspaceProduitController implements Initializable {
     }
     @FXML
     private void redirectToUtilisateur(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("testingUser.fxml"));
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("testUser.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information

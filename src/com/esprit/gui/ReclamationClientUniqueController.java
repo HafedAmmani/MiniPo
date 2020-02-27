@@ -104,6 +104,12 @@ public class ReclamationClientUniqueController implements Initializable {
         tray.setAnimationType(AnimationType.POPUP);
         tray.setNotificationType(NotificationType.INFORMATION);
         tray.showAndWait();
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/CllientMesReclamations.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
         }
         else {
              TrayNotification tray =new TrayNotification();
@@ -112,7 +118,7 @@ public class ReclamationClientUniqueController implements Initializable {
         tray.setAnimationType(AnimationType.POPUP);
         tray.setNotificationType(NotificationType.INFORMATION);
         tray.showAndWait();
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ClientMesReclamations.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/CllientMesReclamations.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         

@@ -173,7 +173,7 @@ public class ListerReclamationClientController implements Initializable {
             col_nom.setCellValueFactory(new PropertyValueFactory<>("firstname"));
             col_prenom.setCellValueFactory(new PropertyValueFactory<>("lastname"));
             col_DateRec.setCellValueFactory(new PropertyValueFactory<>("dateR"));
-            reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
+           // reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
             //Action.setCellValueFactory(new PropertyValueFactory<>("button"));
             TableViewRec.setItems(oblistClient);
       //helli team teiik , lahdha nara akher haja

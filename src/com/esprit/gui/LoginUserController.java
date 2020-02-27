@@ -177,12 +177,13 @@ public class LoginUserController implements Initializable {
         
           }
         
+
         if (ser.getRoleUser(username).equals("client")){ //login tant que Employe
             
                  NumId = ser.rechercherID(tfusername.getText());
                  System.out.println(NumId);
 //                 ReclamationClient.fxml ListeCmdClient
-                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("InfoProd.fxml"));
+                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("CllientMesReclamations.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 //        tableViewScene.getStylesheets().add(getClass().getResource("fullpackstyling.css").toExternalForm());
         

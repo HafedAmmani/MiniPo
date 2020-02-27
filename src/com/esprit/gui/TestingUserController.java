@@ -78,7 +78,7 @@ public class TestingUserController implements Initializable {
     @FXML
     private TableView<User> tbview;
     private ObservableList<String> list = FXCollections.observableArrayList("Genre","Male","female");
-    private ObservableList<String> list1 = FXCollections.observableArrayList("Role","agent RH","emplyé","livreur","fournisseur");
+    private ObservableList<String> list1 = FXCollections.observableArrayList("Role","admin","agent RH","emplyé","livreur","fournisseur");
     @FXML
     private Button supprimer;
     @FXML
@@ -109,6 +109,16 @@ public class TestingUserController implements Initializable {
     }
     @FXML
     private void redirectToProduit(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    private void redirectToLivraison(ActionEvent event) throws IOException {
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
@@ -182,7 +192,7 @@ public class TestingUserController implements Initializable {
             String genr =genre.getValue();
            
        User p1;
-        p1 = new User(username.getText(),lastname.getText(),firstname.getText(), email.getText(), password.getText(),genre.getValue(),role.getValue()); 
+        p1 = new User(username.getText(),email.getText(), password.getText(),role.getValue(),firstname.getText(),lastname.getText(), email.getText(),genre.getValue()); 
          initTable();
          sp.ajouter(p1);
     }

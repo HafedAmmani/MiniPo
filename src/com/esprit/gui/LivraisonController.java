@@ -23,6 +23,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import com.esprit.Entite.Livraison;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -64,7 +66,11 @@ public class LivraisonController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        initTable();
-       combo();
+        try {
+            combo();
+        } catch (SQLException ex) {
+            Logger.getLogger(LivraisonController.class.getName()).log(Level.SEVERE, null, ex);
+        }
        comboliv();
     }
 //    @FXML
@@ -73,7 +79,7 @@ public class LivraisonController implements Initializable {
 //        list = (ObservableList<Commande>) ser.readIdCommande();
 //        id_cmd.setItems(list);
 //    }
-    public void combo()
+    public void combo() throws SQLException
     {
         ObservableList<String> cmbl=ser.getIdCommande();
 //        id_cmd.setCellFactory(new PropertyValueFactory<>("idcmd"));

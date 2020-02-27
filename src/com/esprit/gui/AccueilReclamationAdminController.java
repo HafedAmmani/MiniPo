@@ -133,7 +133,7 @@ public class AccueilReclamationAdminController implements Initializable {
     void ListerStatistiques(ActionEvent event) throws IOException {
          
          //setNode( FXMLLoader.load(getClass().getResource("/com/esprit/Gui/piechart.fxml")));
-         Parent tableViewParent = FXMLLoader.load(getClass().getResource("piechart.fxml"));
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("piecharte.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information

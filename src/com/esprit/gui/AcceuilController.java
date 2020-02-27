@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -39,22 +42,23 @@ public class AcceuilController implements Initializable {
     
     public static void setProd() {
         ServiceProduit sp=new ServiceProduit();
-        AcceuilController.prod = sp.getProduit(6);
+        AcceuilController.prod = sp.getProduit(2);
     }
 
 
     @FXML
     private TableView<Produit> tblview;
-    @FXML
-    private TableColumn<Produit, Integer> id;
+//    @FXML
+//    private TableColumn<Produit, Integer> id;
     @FXML
     private TableColumn<Produit, Integer> col_id;
     @FXML
     private TableColumn<Produit, String> col_des;
-    @FXML
-    private TableColumn<Produit, String> col_categ;
+//    @FXML
+//    private TableColumn<Produit, String> col_categ;
     @FXML
     private TableColumn<Produit, Float> col_prix;
+    ObservableList<Produit>oblist=FXCollections.observableArrayList();
     @FXML
     private Button ach;
     @FXML
@@ -67,7 +71,16 @@ public class AcceuilController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ObservableList<Produit>oblist=FXCollections.observableArrayList();
+    	
+
+                oblist.add(prod);
+                col_id.setCellValueFactory(new PropertyValueFactory<>("idprod"));
+		col_des.setCellValueFactory(new PropertyValueFactory<>("designation"));
+		col_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+		
+		
+		tblview.setItems(oblist);
     }    
 
 
@@ -120,6 +133,10 @@ public class AcceuilController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    
+  
+  
+    
 
+    }
 }

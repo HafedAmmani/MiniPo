@@ -331,6 +331,34 @@ public class ServiceCommande {
     
     }*/
 
+    public ObservableList<String> getIdCommande() throws SQLException {
+        ObservableList list = FXCollections.observableArrayList();
+        PreparedStatement st = con.prepareStatement("select idcmd from commande");
+        ResultSet res = st.executeQuery();
+        while(res.next()){
+        
+            int idcmd=res.getInt("idcmd");
+            list.add(String.valueOf(idcmd));
+        }
+        st.close();
+        return list;
+    }
+
+    public String getAdr(int id){
+        String adr="";
+        try {
+            PreparedStatement st= con.prepareStatement("select u.adresse from user u ,commande c where u.id=c.idclt and c.idcmd="+id);
+            ResultSet res= st.executeQuery();
+            while(res.next()){
+                adr=res.getString("adresse");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      //  System.out.println("error");
+        return adr;
+    }
            
 }
         

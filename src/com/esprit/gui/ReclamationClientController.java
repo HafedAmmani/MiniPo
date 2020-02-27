@@ -10,6 +10,7 @@ import com.esprit.Entite.ReclamationClient;
 import com.esprit.Service.ServiceReclamation;
 import com.esprit.gui.LoginUserController;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -40,22 +41,24 @@ import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author darra
  */
+
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import sun.invoke.empty.Empty;
 public class ReclamationClientController implements Initializable {
 
-    @FXML
-    private AnchorPane ReclamationClient;
-    @FXML
-    private ImageView imageRec;
     private Image image;
     @FXML
     private Button btnRec;
@@ -68,15 +71,32 @@ public class ReclamationClientController implements Initializable {
     private ObservableList<String> oblist=FXCollections.observableArrayList("Probleme de compte","probleme de commande","autre");
     private ServiceReclamation  servRec= new ServiceReclamation();
     private FileInputStream fis;
-    //int id = LoginUserController.NumId;
-    //int id = 3;
-    @FXML
-    private Button btnImg;
     String [] words={"java","probleme de compte","probleme de commande","ma commande"};
     Set<String> possiblewordSet=new HashSet<>();
     private AutoCompletionBinding<String>autocompletionbinding;
     
-    
+    @FXML
+    private void redirectToClientmerecl(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("CllientMesReclamations.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    private void redirectToRecClient(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("ReclamationClient.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println(LoginUserController.NumId);

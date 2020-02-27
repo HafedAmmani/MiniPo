@@ -227,9 +227,9 @@
                         <Font size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="btn_ajouter" fx:id="btn_ajouter" buttonType="RAISED" layoutX="42.0" layoutY="299.0" onAction="#ajouterProduit" prefHeight="25.0" prefWidth="105.0" text="Ajouter" />
-                  <JFXButton id="btn_delete" fx:id="btn_delete" buttonType="RAISED" layoutX="42.0" layoutY="380.0" onAction="#deleteProduit" prefHeight="25.0" prefWidth="105.0" text="Supprimer" />
-                  <JFXButton id="btn_modifier" fx:id="btn_modifier" buttonType="RAISED" layoutX="42.0" layoutY="338.0" onAction="#update" prefHeight="25.0" prefWidth="105.0" text="Modifier" />
+                  <JFXButton id="btn_ajouter" fx:id="btn_ajouter" buttonType="RAISED" layoutX="42.0" layoutY="299.0" onAction="#ajouterProduit" prefHeight="25.0" prefWidth="105.0" stylesheets="@produit.css" text="Ajouter" />
+                  <JFXButton id="btn_delete" fx:id="btn_delete" buttonType="RAISED" layoutX="42.0" layoutY="380.0" onAction="#deleteProduit" prefHeight="25.0" prefWidth="105.0" stylesheets="@produit.css" text="Supprimer" />
+                  <JFXButton id="btn_modifier" fx:id="btn_modifier" buttonType="RAISED" layoutX="42.0" layoutY="338.0" onAction="#update" prefHeight="25.0" prefWidth="105.0" stylesheets="@produit.css" text="Modifier" />
                   <TextField fx:id="txt_idproooo" editable="false" layoutX="144.0" layoutY="351.0" prefWidth="38.0" visible="false" />
                </children>
             </AnchorPane>
