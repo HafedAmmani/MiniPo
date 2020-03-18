@@ -41,7 +41,7 @@ public class ServiceEmploye implements IService<Employe>{
 
     @Override
     public void ajouter(Employe t) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("INSERT INTO `minipot`.`employe` ( `nom`, `prenom`,`adresse`,`tel`,`email`,`salaire`,`date`) VALUES ( ?, ?, ?, ?, ?,? , ?);");
+        PreparedStatement pre=con.prepareStatement("INSERT INTO `minipot`.`user` ( `Lastname`, `Firstname`,`adresse`,`tel`,`email`,`salaire`,`date`,`roles`) VALUES ( ?, ?, ?, ?, ?,? , ?,'employe');");
         pre.setString(1, t.getNom());
         pre.setString(2, t.getPrenom());
         pre.setString(3, t.getAdresse());
@@ -55,7 +55,7 @@ public class ServiceEmploye implements IService<Employe>{
 
     @Override
     public boolean delete(Employe t) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`employe` WHERE idemp=?;");
+        PreparedStatement pre=con.prepareStatement("DELETE FROM `minipot`.`user` WHERE id=?;");
         pre.setInt(1, t.getIdemp());
         int ex=pre.executeUpdate();
         return ex!=0;
@@ -63,7 +63,7 @@ public class ServiceEmploye implements IService<Employe>{
 
     @Override
     public boolean update(Employe t) throws SQLException {
-        PreparedStatement pre=con.prepareStatement("UPDATE `employe` SET nom = ?, prenom = ?, adresse = ?, tel = ?, email = ?, salaire = ?  WHERE idemp = ?");
+        PreparedStatement pre=con.prepareStatement("UPDATE `user` SET Lastname = ?, Firstname = ?, adresse = ?, tel = ?, email = ?, salaire = ?  WHERE id = ?");
         pre.setString(1, t.getNom());
         pre.setString(2, t.getPrenom());
         pre.setString(3, t.getAdresse());
@@ -80,16 +80,16 @@ public class ServiceEmploye implements IService<Employe>{
     public List<Employe> readAll() throws SQLException {
         List<Employe> arr=new ArrayList<>();
     ste=con.createStatement();
-    ResultSet rs=ste.executeQuery("select * from employe");
+    ResultSet rs=ste.executeQuery("select * from user where roles = 'employe'");
      while (rs.next()) {                
                int idemp=rs.getInt(1);
-               String nom=rs.getString("nom");
-               String prenom=rs.getString("prenom");
+               String nom=rs.getString("Lastname");
+               String prenom=rs.getString("Firstname");
                String adresse=rs.getString("adresse");
                String tel=rs.getString("tel");
                String email=rs.getString("email");
                String salaire=rs.getString("salaire");
-               java.sql.Date date = rs.getDate("Date");
+               java.sql.Date date = rs.getDate("date");
                Employe p=new Employe(idemp, nom, prenom, adresse, tel, email, salaire,date);
      arr.add(p);
      }
@@ -113,12 +113,12 @@ public class ServiceEmploye implements IService<Employe>{
         ObservableList obList = FXCollections.observableArrayList();
         ResultSet rs;//   obList.clear();
          try {
-	    PreparedStatement st= con.prepareStatement("select * from employe");
+	    PreparedStatement st= con.prepareStatement("select * from user where roles='employe'");
 	    ResultSet res= st.executeQuery();
      while (res.next()) {        
-               int idemp=res.getInt("idemp");
-               String nom=res.getString("nom");
-               String prenom=res.getString("prenom");
+               int idemp=res.getInt("id");
+               String nom=res.getString("Lastname");
+               String prenom=res.getString("Firstname");
                String adresse=res.getString("adresse");
                String tel=res.getString("tel");
                String email=res.getString("email");
@@ -137,10 +137,10 @@ public class ServiceEmploye implements IService<Employe>{
         ObservableList list = FXCollections.observableArrayList();
         ResultSet rs;//   obList.clear();
          try {
-	    PreparedStatement st= con.prepareStatement("select nom from employe");
+	    PreparedStatement st= con.prepareStatement("select Lastname from user where roles ='employe'");
 	    ResultSet res= st.executeQuery();
      while (res.next()) {        
-               String NomEq=res.getString("nom");
+               String NomEq=res.getString("Lastname");
                 list.add(String.valueOf(NomEq));
      }
      st.close();
@@ -181,7 +181,7 @@ public class ServiceEmploye implements IService<Employe>{
         ObservableList list = FXCollections.observableArrayList();
         ResultSet rs;//   obList.clear();
          try {
-	    PreparedStatement st= con.prepareStatement("select salaire from employe");
+	    PreparedStatement st= con.prepareStatement("select salaire from user where roles ='employe'");
 	    ResultSet res= st.executeQuery();
      while (res.next()) {        
                String sal=res.getString("salaire");

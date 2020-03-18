@@ -16,21 +16,21 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.DemandeCongeController">
    <children>
-      <AnchorPane prefHeight="616.0" prefWidth="993.0" style="-fx-background-color: #030307; -fx-background-radius: 15;">
+      <AnchorPane prefHeight="616.0" prefWidth="993.0" style="-fx-background-color: #005c96; -fx-background-radius: 15;">
          <children>
-            <VBox prefHeight="544.0" prefWidth="74.0" style="-fx-background-color: #131022; -fx-background-radius: 15 0 0 15;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox prefHeight="544.0" prefWidth="74.0" style="-fx-background-color: #005c96; -fx-background-radius: 15 0 0 15;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Pane prefHeight="79.0" prefWidth="74.0" style="-fx-background-radius: 15 0 15 15;" />
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" styleClass="button3" text="Profile" textFill="#a868a0">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #005c96;" styleClass="button3" text="Profile" textFill="#a868a0">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/resources/cat.png" />
+                              <Image url="@img/resources/user_50px.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" styleClass="button3" text="Congé" textFill="#a868a0">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #005c96;" styleClass="button3" text="Congé" textFill="#a868a0">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -39,7 +39,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" styleClass="button3" text="Goals" textFill="#a868a0">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#redirectToRecEmp" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #005c96;" text="Goals" textFill="#a868a0">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -48,7 +48,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" styleClass="button3" text="Mentors" textFill="#a868a0">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #1310 #005c9622;" text="Mentors" textFill="#a868a0">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -59,40 +59,40 @@
                   </Button>
                </children>
             </VBox>
-            <AnchorPane layoutX="91.0" layoutY="69.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;">
+            <AnchorPane layoutX="91.0" layoutY="69.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #ededed; -fx-background-radius: 10;">
                <children>
                   <Line endX="100.0" layoutX="605.0" layoutY="51.0" startX="100.0" startY="442.4000244140625" stroke="#b9b1b1" strokeDashOffset="2.0" />
                   <ComboBox fx:id="type" layoutX="190.0" layoutY="59.0" prefHeight="27.0" prefWidth="475.0" />
-                  <Text fill="WHITE" layoutX="37.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type de Congé" wrappingWidth="152.53680419921875">
+                  <Text fill="#0a5c8c" layoutX="37.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type de Congé" wrappingWidth="152.53680419921875">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="37.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de début">
+                  <Text fill="#0a5c8c" layoutX="37.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de début">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                   <DatePicker fx:id="datedebut" layoutX="200.0" layoutY="134.0" prefHeight="26.0" prefWidth="378.0" style="-fx-background-color: #d6d6d6;" />
-                  <Text fill="WHITE" layoutX="37.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Fin">
+                  <Text fill="#0a5c8c" layoutX="37.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Fin">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                   <DatePicker fx:id="fil_datefin" layoutX="200.0" layoutY="223.0" prefHeight="26.0" prefWidth="378.0" style="-fx-background-color: #d6d6d6;" />
-                  <Text fill="WHITE" layoutX="14.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de jours posé">
+                  <Text fill="#0a5c8c" layoutX="14.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de jours posé">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                   <TextField fx:id="nbjrs" layoutX="200.0" layoutY="313.0" prefHeight="26.0" prefWidth="378.0" />
-                  <Text fill="WHITE" layoutX="22.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Information complimentaire" wrappingWidth="178.71014404296875">
+                  <Text fill="#0a5c8c" layoutX="22.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Information complimentaire" wrappingWidth="178.71014404296875">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                   <TextArea fx:id="desc" layoutX="200.0" layoutY="382.0" prefHeight="111.0" prefWidth="475.0" />
-                  <Button fx:id="btn_envoyer" layoutX="732.0" layoutY="455.0" mnemonicParsing="false" onAction="#ajouterconge" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #9768a5;" text="Envouyer" />
+                  <Button fx:id="btn_envoyer" layoutX="732.0" layoutY="455.0" mnemonicParsing="false" onAction="#ajouterconge" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #0a5c8c;" text="Envouyer" textFill="#ffffff" />
                </children>
             </AnchorPane>
             <ImageView fitHeight="38.0" fitWidth="34.0" layoutX="91.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
@@ -100,6 +100,11 @@
                   <Image url="@img/resources/logo.png" />
                </image>
             </ImageView>
+            <Text fill="WHITE" layoutX="142.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Demande Conge" wrappingWidth="272.53680419921875">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
