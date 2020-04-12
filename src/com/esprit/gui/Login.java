@@ -20,17 +20,17 @@ import javafx.stage.Stage;
  *
  * @author sinda
  */
-public class Livreur extends Application {
+public class Login extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-       try {
+        try {
             Parent root = FXMLLoader
-        .load(getClass().getResource("livraison_liv.fxml"));
+        .load(getClass().getResource("LoginUser.fxml"));
              //Parent root = FXMLLoader.load(getClass().getResource("livraison.fxml"));
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("employe.css").toExternalForm());
-            primaryStage.setTitle("Modifier etat");
+            scene.getStylesheets().add(getClass().getResource("loginuser.css").toExternalForm());
+            primaryStage.setTitle("Login");
             primaryStage.setScene(scene);
             primaryStage.show();
             

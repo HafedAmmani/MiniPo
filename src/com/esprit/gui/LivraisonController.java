@@ -5,9 +5,7 @@
  */
 package com.esprit.gui;
 
-
 import com.esprit.Entite.Commande;
-import com.esprit.Service.ServiceCommande;
 import com.esprit.Service.ServiceLivraison;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import com.esprit.Entite.Livraison;
+import com.esprit.Entite.User;
 import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -36,7 +35,6 @@ public class LivraisonController implements Initializable {
 
     @FXML
     public ComboBox<String> id_cmd;
-    ServiceCommande serc=new ServiceCommande();
     @FXML
     private TextField destinantion;
     @FXML
@@ -55,17 +53,18 @@ public class LivraisonController implements Initializable {
     private TableColumn<Livraison, String> col_idc;
     @FXML
     private TableColumn<Livraison, String> col_salaire;
-  
-    ObservableList<String> list= FXCollections.observableArrayList();
-    private ServiceCommande ser = new ServiceCommande();
+
+    ObservableList<String> list = FXCollections.observableArrayList();
+    
     private ServiceLivraison serv = new ServiceLivraison();
     private int ID;
     ObservableList<Livraison> obList = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       initTable();
-       combo();
-       comboliv();
+        initTable();
+        combo();
+        comboliv();
     }
 //    @FXML
 //    private void ComBo() throws SQLException{
@@ -73,61 +72,75 @@ public class LivraisonController implements Initializable {
 //        list = (ObservableList<Commande>) ser.readIdCommande();
 //        id_cmd.setItems(list);
 //    }
-    public void combo()
-    {
-        ObservableList<String> cmbl=ser.getIdCommande();
+
+    public void combo() {
+        ObservableList<String> cmbl = serv.getListRefCommande();
 //        id_cmd.setCellFactory(new PropertyValueFactory<>("idcmd"));
-        
+
         id_cmd.setItems(cmbl);
     }
-    public void comboliv()
-    {
-        ObservableList<String> cmbl=serv.getIdLivreur();
+
+    public void comboliv() {
+        ObservableList<String> cmbl = serv.getListLivreur();
 //        id_cmd.setCellFactory(new PropertyValueFactory<>("idcmd"));
-        
+
         id_liv.setItems(cmbl);
     }
+
     private void initTable() {
-            obList = serv.getLiv();
-            System.out.println(obList);
-            col_idliv.setCellValueFactory(new PropertyValueFactory<>("matriculeL"));
-            col_dest.setCellValueFactory(new PropertyValueFactory<>("destination"));
-            col_etatl.setCellValueFactory(new PropertyValueFactory<>("etatl"));
-            col_idc.setCellValueFactory(new PropertyValueFactory<>("idc"));
-            col_salaire.setCellValueFactory(new PropertyValueFactory<>("idl"));
-            tblview.setItems(obList);
-	}
+        obList = serv.getLiv();
+        System.out.println(obList);
+        col_idliv.setCellValueFactory(new PropertyValueFactory<>("matriculeL"));
+        col_dest.setCellValueFactory(new PropertyValueFactory<>("destination"));
+        col_etatl.setCellValueFactory(new PropertyValueFactory<>("etatl"));
+        col_idc.setCellValueFactory(new PropertyValueFactory<>("commandeRefC"));
+        col_salaire.setCellValueFactory(new PropertyValueFactory<>("livreur"));
+        tblview.setItems(obList);
+    }
+
     @FXML
-    private void AjouterLivraison() throws SQLException{
+    private void AjouterLivraison() throws SQLException {
         Livraison p1;
-        String ld= id_date.getValue().toString();
-       // System.out.println(ld);
-        int idcom1 = Integer.valueOf(id_cmd.getSelectionModel().getSelectedItem());
-        int idl = Integer.valueOf(id_liv.getSelectionModel().getSelectedItem());
-        p1 = new Livraison(destinantion.getText(),"non livrée",idcom1,idl,ld,null);
+        String ld = id_date.getValue().toString();
+        // System.out.println(ld);
+        Commande commande = serv.getComandeFromReference(id_cmd.getSelectionModel().getSelectedItem());
+        User livreur = serv.getLivreurFromUsername(id_liv.getSelectionModel().getSelectedItem());
+        p1 = new Livraison(destinantion.getText(), "non livree", ld, livreur, commande);
         serv.ajouterLivraison(p1);
         initTable();
     }
+
     @FXML
-    private void deleteLiv() throws SQLException{
-        
+    private void deleteLiv() throws SQLException {
+
         Livraison p1;
         Livraison selected = tblview.getSelectionModel().getSelectedItem();
         ID = selected.getIdliv();
-        p1 = new Livraison(ID,selected.getDestination(),selected.getEtatl(),selected.getIdc(),selected.getIdl(),selected.getDateliv(),selected.getMatriculeL());
+        p1 = new Livraison(ID);
         serv.deleteLivraison(p1);
         initTable();
     }
 
     @FXML
-    private void getAdresseAction(ActionEvent event) {
-        
-        int id=Integer.valueOf(id_cmd.getSelectionModel().getSelectedItem());
-        ServiceCommande sc=new ServiceCommande();
-        String adr=sc.getAdr(id);
-        destinantion.setText(adr);
-        
+    private void redirectToUtilisateur(ActionEvent event) {
     }
-    
+
+    @FXML
+    private void redirectToProduit(ActionEvent event) {
+    }
+
+    @FXML
+    private void redirectToCommande(ActionEvent event) {
+    }
+
+    @FXML
+    private void redirectTofacture(ActionEvent event) {
+    }
+
+    @FXML
+    private void redirectToAcceuilReclamation(ActionEvent event) {
+    }
+
+  
 
 }

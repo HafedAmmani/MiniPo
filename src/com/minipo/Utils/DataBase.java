@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 
 public class DataBase {
-     String url = "jdbc:mysql://localhost:3306/minipot";
+     String url = "jdbc:mysql://localhost:3306/minipott";
      String login = "root";
      String pwd = "";
     public  static DataBase db;

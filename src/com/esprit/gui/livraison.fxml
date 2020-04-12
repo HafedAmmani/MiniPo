@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -8,53 +9,229 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.LivraisonController">
-    <stylesheets>
-        <URL value="@employe.css" />
-    </stylesheets>
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" stylesheets="@common.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.LivraisonController">
    <children>
-      <Pane id="pane_top" prefHeight="56.0" prefWidth="1181.0">
+      <VBox id="side_nav" style="-fx-background-color: #005c96;">
          <children>
-            <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="335.0" text="Ajouter une livraison">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <AnchorPane id="anchorpane_center" layoutX="94.0" layoutY="74.0" prefHeight="482.0" prefWidth="1048.0">
-         <children>
-            <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="275.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" style="-fx-background-color: white;">
                <children>
-                  <TextField fx:id="destinantion" layoutX="25.0" layoutY="138.0" promptText="Destination" />
-                  <ComboBox fx:id="id_cmd" layoutX="25.0" layoutY="65.0" onAction="#getAdresseAction" prefHeight="31.0" prefWidth="187.0" promptText="Commande" visibleRowCount="20" />
-                  <ComboBox fx:id="id_liv" layoutX="26.0" layoutY="284.0" prefHeight="31.0" prefWidth="194.0" promptText="Livreur" />
-                  <DatePicker fx:id="id_date" layoutX="25.0" layoutY="210.0" prefHeight="31.0" prefWidth="215.0" />
-                  <Button id="btn_save" layoutX="73.0" layoutY="344.0" mnemonicParsing="false" onAction="#AjouterLivraison" prefHeight="31.0" prefWidth="103.0" text="Affecter" />
-                  <Button id="btn_delete" layoutX="72.0" layoutY="386.0" mnemonicParsing="false" onAction="#deleteLiv" prefHeight="31.0" prefWidth="103.0" text="Supprimer" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #f0c300; -fx-font-size: 1.5em; -fx-font-weight: bold;" text="MiniPo" textAlignment="CENTER" wrappingWidth="71.60723853111267">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="23.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#redirectToUtilisateur" style="-fx-background-color: #005c96;" text="Gestion Utilisateur" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#redirectToProduit" style="-fx-background-color: #005c96;" text="Gestion produit" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#redirectToCommande" style="-fx-background-color: #005c96;" text="Gestion commandes" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#redirectTofacture" style="-fx-background-color: #005c96;" text="Gestion Facture" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-size: 1.3em;" text="Gestion livraison" wrappingWidth="100.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#redirectToAcceuilReclamation" style="-fx-background-color: #005c96;" text="Gestion Reclamation" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-size: 1.3em;" text="Calendar" wrappingWidth="100.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-size: 1.3em;" text="Pages" wrappingWidth="100.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox style="-fx-background-color: #e5e5e5;" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" style="-fx-background-color: #005c96;">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0" style="-fx-background-color: white; -fx-background-radius: 100%;">
+                     <effect>
+                        <DropShadow height="20.0" radius="9.5" width="20.0" />
+                     </effect>
+                  </Button>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14px; -fx-fill: #ffffff;" text="Dashboard">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox style="-fx-background-color: white;">
+                           <children>
+                              <TextField prefWidth="150.0" promptText="search" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0" style="-fx-background-color: transparent;" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass">
+               <stylesheets>
+                  <URL value="@employe.css" />
+               </stylesheets>
+               <children>
+                  <Pane id="pane_top" prefHeight="56.0" prefWidth="1181.0">
+                     <children>
+                        <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="335.0" text="Ajouter une livraison">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <AnchorPane id="anchorpane_center" layoutX="94.0" layoutY="74.0" prefHeight="482.0" prefWidth="1048.0">
+                     <children>
+                        <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="275.0">
+                           <children>
+                              <TextField fx:id="destinantion" layoutX="25.0" layoutY="138.0" promptText="Destination" />
+                              <ComboBox fx:id="id_cmd" layoutX="25.0" layoutY="65.0" prefHeight="31.0" prefWidth="187.0" promptText="Commande" visibleRowCount="20" />
+                              <ComboBox fx:id="id_liv" layoutX="26.0" layoutY="284.0" prefHeight="31.0" prefWidth="194.0" promptText="Livreur" />
+                              <DatePicker fx:id="id_date" layoutX="25.0" layoutY="210.0" prefHeight="31.0" prefWidth="215.0" />
+                              <Button id="btn_save" layoutX="73.0" layoutY="344.0" mnemonicParsing="false" onAction="#AjouterLivraison" prefHeight="31.0" prefWidth="103.0" text="Affecter" />
+                              <Button id="btn_delete" layoutX="72.0" layoutY="386.0" mnemonicParsing="false" onAction="#deleteLiv" prefHeight="31.0" prefWidth="103.0" text="Supprimer" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">
+                           <children>
+                              <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="710.0">
+                                 <columns>
+                                    <TableColumn id="col_nom" fx:id="col_idliv" prefWidth="147.0" text="Matricule livraison" />
+                                    <TableColumn id="col_prenom" fx:id="col_dest" prefWidth="121.0" text="Destination" />
+                                    <TableColumn id="col_adresse" fx:id="col_etatl" prefWidth="123.0" text="Etat livraison" />
+                                    <TableColumn id="col_email" fx:id="col_idc" prefWidth="175.0" text="Référence commande" />
+                                    <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="143.0" text="Matricule livreur" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <VBox prefHeight="570.0" prefWidth="0.0" style="-fx-background-color: E5E5E5;" />
                </children>
             </AnchorPane>
-            <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">
-               <children>
-                  <TableView id="tblview" fx:id="tblview" layoutX="13.0" layoutY="50.0" prefHeight="393.0" prefWidth="710.0">
-                    <columns>
-                      <TableColumn id="col_nom" fx:id="col_idliv" prefWidth="147.0" text="Matricule livraison" />
-                      <TableColumn id="col_prenom" fx:id="col_dest" prefWidth="121.0" text="Destination" />
-                        <TableColumn id="col_adresse" fx:id="col_etatl" prefWidth="123.0" text="Etat livraison" />
-                        <TableColumn id="col_email" fx:id="col_idc" prefWidth="175.0" text="Référence commande" />
-                        <TableColumn id="col_salaire" fx:id="col_salaire" minWidth="0.0" prefWidth="143.0" text="Matricule livreur" />
-                    </columns>
-                  </TableView>
-                  
-                     </children>
-            </AnchorPane>
          </children>
-      </AnchorPane>
-      <VBox prefHeight="570.0" prefWidth="0.0" style="-fx-background-color: E5E5E5;" />
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>
