@@ -28,6 +28,7 @@ public class User {
     private String lastname;
     private String genre;
     private String adresse;
+    private String Tel ;
 
     public User() {
     }
@@ -49,6 +50,13 @@ public class User {
         this.lastname = lastname;
     }
     
+    public User(Integer id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+     public User(Integer id) {
+        this.id = id;
+    }
 
     public User(String username, String email, String password, String firstname, String lastname, String genre) {
         this.username = username;
@@ -99,9 +107,8 @@ public class User {
          this.genre = genre;
     }
 
-    public User(String tid, String lastname, String firstname, String email, String username, String password, String genre, String roles) {
+    /*public User(String tid, String lastname, String firstname, String email, String username, String password, String genre, String roles) {
          this.id = id;
-        
          this.lastname = lastname;
          this.firstname = firstname;
          this.email = email;
@@ -110,7 +117,21 @@ public class User {
          this.genre = genre;
          this.roles = roles;
          
+    }*/
+
+    public User( String username, String email, String password, String roles, String firstname, String lastname, String genre, String Tel) {
+
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.genre = genre;
+        this.Tel = Tel;
     }
+    
+    
 
  
 

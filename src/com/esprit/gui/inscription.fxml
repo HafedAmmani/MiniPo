@@ -41,13 +41,14 @@
             </Text>
          </children>
       </AnchorPane>
-      <TextField fx:id="tfusername" layoutX="339.0" layoutY="83.0" prefHeight="26.0" prefWidth="214.0" promptText="Username" />
-      <TextField fx:id="tfname" layoutX="339.0" layoutY="129.0" prefHeight="26.0" prefWidth="214.0" promptText="Firstname" />
-      <TextField fx:id="tflastname" layoutX="339.0" layoutY="177.0" prefWidth="214.0" promptText="Lastname" />
-      <TextField fx:id="tfemail" layoutX="339.0" layoutY="224.0" prefHeight="26.0" prefWidth="214.0" promptText="E-mail" />
+      <TextField fx:id="tfusername" layoutX="339.0" layoutY="59.0" prefHeight="26.0" prefWidth="214.0" promptText="Username" />
+      <TextField fx:id="tfname" layoutX="339.0" layoutY="103.0" prefHeight="26.0" prefWidth="214.0" promptText="Firstname" />
+      <TextField fx:id="tflastname" layoutX="339.0" layoutY="150.0" prefWidth="214.0" promptText="Lastname" />
+      <TextField fx:id="tfemail" layoutX="339.0" layoutY="199.0" prefHeight="26.0" prefWidth="214.0" promptText="E-mail" />
       <PasswordField fx:id="tfpassword" layoutX="339.0" layoutY="274.0" prefHeight="26.0" prefWidth="214.0" promptText="Password" />
       <PasswordField fx:id="tfCpass" layoutX="339.0" layoutY="324.0" prefHeight="26.0" prefWidth="214.0" promptText="Confirm Password" />
       <ComboBox fx:id="cbgenre" layoutX="339.0" layoutY="377.0" prefHeight="26.0" prefWidth="214.0" promptText="                         sexe" />
       <Button fx:id="btnsign" layoutX="393.0" layoutY="429.0" mnemonicParsing="false" onAction="#connect" prefHeight="30.0" prefWidth="106.0" text="Sign In" textFill="#8b9ba4" />
+      <TextField fx:id="tfnum" layoutX="339.0" layoutY="238.0" prefHeight="26.0" prefWidth="214.0" promptText="Telephone" />
    </children>
 </AnchorPane>

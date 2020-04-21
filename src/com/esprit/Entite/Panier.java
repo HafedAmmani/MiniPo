@@ -17,14 +17,18 @@ public class Panier {
     private String nom;
     private int qte;
     private int idcmd;
+    private float subtotal;
 
-    public Panier(int idLc, String designation, float prix, String nom, int qte, int idcmd) {
+
+    
+    public Panier(int idLc, String designation, float prix, String nom, int qte, int idcmd,float tot) {
         this.idLc = idLc;
         this.designation = designation;
         this.prix = prix;
         this.nom = nom;
         this.qte = qte;
         this.idcmd = idcmd;
+        this.subtotal=tot;
     }
 
     
@@ -88,6 +92,14 @@ public class Panier {
 
     public void setIdcmd(int idcmd) {
         this.idcmd = idcmd;
+    }
+
+    public float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
     }
 
     

@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -75,6 +77,22 @@ public class DemandeCongeController implements Initializable {
 		type.setItems(obList);
 
 	}
+     @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @FXML
     private void redirectToRecEmp(ActionEvent event) throws IOException {
@@ -89,6 +107,18 @@ public class DemandeCongeController implements Initializable {
         window.show();
     }
     
+      @FXML
+    void redirectToMesRec(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("EmployeMesReclamations.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+
+    }
     @FXML
     private void ajouterconge() throws SQLException{
         

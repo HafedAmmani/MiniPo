@@ -19,14 +19,19 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -34,9 +39,13 @@ import javafx.scene.input.MouseEvent;
  * @author darra
  */
 public class EmployeMesReclamationsController implements Initializable {
+    @FXML
+    private Button actualiser;
 
     @FXML
     private TableView<ReclamationsEmploye> tabviewRec;
+    @FXML
+    private TableColumn<ReclamationsEmploye, String> col_categorie;
     @FXML
     private TableColumn<ReclamationsEmploye, String> col_objet;
     @FXML
@@ -62,12 +71,63 @@ public class EmployeMesReclamationsController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(EmployeMesReclamationsController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
+     @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     @FXML
+    private void redirectToDemandeConge(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("DemandeConge.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }  
+     @FXML
+    private void redirectToRecEmp(ActionEvent event) throws IOException {
+        //EmployeMeReclamation
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("ReclamationEmploye.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML
+    void BoutonActualiser(ActionEvent event) throws IOException {
+             Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/EmployeMesReclamations.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
      private void ListerMesReclamation() throws SQLException {
          int id = LoginUserController.NumId;
         
         oblist=reclamation.ListerReclamationsById(id);
-         
+            col_categorie.setCellValueFactory(new PropertyValueFactory<>("nom"));
             col_objet.setCellValueFactory(new PropertyValueFactory<>("objet"));
             col_descrption.setCellValueFactory(new PropertyValueFactory<>("description"));
             col_etat.setCellValueFactory(new PropertyValueFactory<>("etatRemp"));
@@ -82,6 +142,7 @@ public class EmployeMesReclamationsController implements Initializable {
     @FXML
     private void SelectionDonnee(MouseEvent event) {
           oblist = tabviewRec.getSelectionModel().getSelectedItems();
+        String categorie = oblist.get(0).getNom();
         String objet = oblist.get(0).getObjet();
         String description= oblist.get(0).getDescription();
         String reponse=oblist.get(0).getReponse();
@@ -98,6 +159,7 @@ public class EmployeMesReclamationsController implements Initializable {
             try {
                 Parent root = loader.load();
                 ReclamationEmployeUniqueController apc = loader.getController();
+                apc.setCategorie(categorie);
                 apc.setObjet(objet);
                 apc.setDescription(description);
                 apc.setReponse(reponse);

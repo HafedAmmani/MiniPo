@@ -5,24 +5,20 @@
  */
 package com.esprit.Gui;
 
-import com.esprit.Entite.Reclamation;
 import com.esprit.Entite.ReclamationClient;
 import com.esprit.Service.ServiceReclamation;
 import com.esprit.gui.LoginUserController;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
-import static java.util.Optional.empty;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,10 +31,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import javafx.fxml.FXMLLoader;
@@ -46,6 +39,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -56,7 +50,7 @@ import javafx.stage.Stage;
 
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
-import sun.invoke.empty.Empty;
+//import sun.invoke.empty.Empty;
 public class ReclamationClientController implements Initializable {
 
     private Image image;
@@ -74,6 +68,23 @@ public class ReclamationClientController implements Initializable {
     String [] words={"java","probleme de compte","probleme de commande","ma commande"};
     Set<String> possiblewordSet=new HashSet<>();
     private AutoCompletionBinding<String>autocompletionbinding;
+    
+     @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @FXML
     private void redirectToClientmerecl(ActionEvent event) throws IOException {
@@ -133,32 +144,24 @@ public class ReclamationClientController implements Initializable {
         
         
         categRec.setItems(oblist);
-         btnRec.setOnAction(e->{
-         try{
-             Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog");
-		alert.setHeaderText(null);
-		alert.setContentText("Voulez vous envoyer votre reclamation ? ");
-		Optional<ButtonType> action = alert.showAndWait();
-                if(action.get() == ButtonType.OK)
-                 ajouterReclamation(); 
-                //java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-            
-            
-         }  catch (SQLException ex) {
-                Logger.getLogger(ReclamationClientController.class.getName()).log(Level.SEVERE, null, ex);
-            }});
+         
     }    
 
     private void ajouterReclamation() throws SQLException{
         int id = LoginUserController.NumId;
         String sujet=SujetRec.getText();
         String description=DescriptionRec.getText();
-        String combo=categRec.getValue();
+        int combo=0;
+        if(categRec.getValue()=="Probleme de compte"){
+        combo=1;}
+        if(categRec.getValue()=="Probleme de commande"){
+        combo=2;}
+        if(categRec.getValue()=="autre"){
+        combo=3;}
         ReclamationClient rec;
-        rec= new ReclamationClient(id,combo,sujet,description);
+        rec= new ReclamationClient(combo,SujetRec.getText(),DescriptionRec.getText(),id);
         servRec.ajouterReclamation(rec);
-        categRec.setValue(combo);
+        //categRec.setValue(combo);
         SujetRec.setText("");
         DescriptionRec.setText("");
         if(categRec.getValue()=="probleme de commande"){
@@ -172,6 +175,23 @@ public class ReclamationClientController implements Initializable {
         
         
         
+    }
+    @FXML
+    void Reclamer(ActionEvent event) throws SQLException, IOException {
+       Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Voulez vous envoyer votre reclamation ? ");
+		Optional<ButtonType> action = alert.showAndWait();
+                if(action.get() == ButtonType.OK)
+                 ajouterReclamation(); 
+                Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/CllientMesReclamations.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+
     }
        /*public void  ajouterReclamationAvecImage(Reclamation r) throws SQLException
     {
@@ -233,6 +253,86 @@ public class ReclamationClientController implements Initializable {
             autocompletionbinding.dispose();
              autocompletionbinding=TextFields.bindAutoCompletion(SujetRec, possiblewordSet);
         }
+    }
+
+    @FXML
+    private void AcceuilAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+            
+            Parent root = loader.load();
+            btnRec.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void ProduitAction(ActionEvent event) {
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+            
+            Parent root = loader.load();
+            btnRec.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void PanierAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("Interface1.fxml"));
+        Parent root = loader.load();
+        btnRec.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void CommandeAction(ActionEvent event) {
+        try{
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("ListeCmdClient.fxml"));
+        Parent root = loader.load();
+        btnRec.getScene().setRoot(root);
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        }
+    }
+
+    private void FactureAction(ActionEvent event) {
+        try{
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("FacturesClt.fxml"));
+        Parent root = loader.load();
+        btnRec.getScene().setRoot(root);
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        } 
+    }
+
+    @FXML
+    private void FacturesAction(ActionEvent event) {
+        try{
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("FacturesClt.fxml"));
+        Parent root = loader.load();
+        btnRec.getScene().setRoot(root);
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        } 
     }
     
 }

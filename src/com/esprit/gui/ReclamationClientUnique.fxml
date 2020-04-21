@@ -18,7 +18,7 @@
          <children>
             <VBox layoutY="160.0" prefHeight="356.0" prefWidth="262.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="160.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,7 +44,7 @@
                      <padding>
                         <Insets left="40.0" />
                      </padding></Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="159.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Produit" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="159.0" mnemonicParsing="false" onAction="#ProduitAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Produit" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -56,7 +56,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="208.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mon panier" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="208.0" mnemonicParsing="false" onAction="#PanierAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mon panier" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -68,7 +68,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Livraison" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#CommandeAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Commandes" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -80,7 +80,31 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#FactureAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Factures" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/truck_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/paste_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#MesReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mes Reclamation" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -138,8 +162,11 @@
          </font>
       </Label>
       <Button fx:id="btn_modifier" layoutX="214.0" layoutY="351.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
-      <Label fx:id="idr" layoutX="480.0" layoutY="20.0" prefHeight="17.0" prefWidth="61.0" />
-      <Label fx:id="etat" layoutX="541.0" layoutY="20.0" />
+      <Label fx:id="idr" layoutX="480.0" layoutY="20.0" prefHeight="17.0" prefWidth="61.0" visible="false" />
+      <Label fx:id="etat" layoutX="578.0" layoutY="20.0" prefHeight="17.0" prefWidth="61.0" />
+                  <Button fx:id="retour" layoutX="139.0" layoutY="351.0" mnemonicParsing="false" onAction="#BoutonRetour" text="Retour" />
+                  <Label layoutX="541.0" layoutY="20.0" text="Etat : " />
+                  <Button layoutX="758.0" layoutY="16.0" mnemonicParsing="false" onAction="#LogoutAction" text="logout" />
    </children>
             </AnchorPane>
          </children>

@@ -70,7 +70,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Livraison" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ToListeCmdAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Commandes" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -82,7 +82,31 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
+                  <Button fx:id="btnFact" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#FacturesAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Factures" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/paste_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/paste_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#MesReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mes Reclamation" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -108,38 +132,50 @@
          </children></AnchorPane>
       <Pane layoutX="262.0" prefHeight="649.0" prefWidth="631.0" style="-fx-background-color: #e5e5e5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="649.0" prefWidth="829.0">
+            <AnchorPane layoutY="1.0" prefHeight="649.0" prefWidth="829.0">
                <children>
-      <AnchorPane id="anchorpane_center" layoutX="-65.0" layoutY="148.0" prefHeight="412.0" prefWidth="805.0">
+      <AnchorPane id="anchorpane_center" layoutY="179.0" prefHeight="459.0" prefWidth="780.0">
          <children>
-            <AnchorPane id="anchorpane_left" layoutX="68.0" layoutY="-69.0" prefHeight="450.0" prefWidth="267.0">
+            <AnchorPane id="anchorpane_left" layoutX="38.0" layoutY="-83.0" prefHeight="68.0" prefWidth="702.0">
                <children>
-                  <Text layoutX="22.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité" wrappingWidth="83.0">
+                  <Text layoutX="38.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité :" wrappingWidth="72.0">
                      <font>
                         <Font size="14.0" />
-                     </font></Text>
-                  <TextField fx:id="tfqte" layoutX="74.0" layoutY="138.0" />
-                  <Button id="btn_edit" fx:id="btnmod" layoutX="166.0" layoutY="192.0" mnemonicParsing="false" onAction="#ModifierAction" text="Modifier" textFill="#141414" />
-                  <Button fx:id="retour" layoutX="59.0" layoutY="326.0" mnemonicParsing="false" onAction="#btnRetourAction" prefHeight="39.0" prefWidth="165.0" style="-fx-background-color: #0fc300;" text="POURSUIVRE VOS ACHATS" />
-                  <Button id="btn_save" fx:id="valider" layoutX="62.0" layoutY="383.0" mnemonicParsing="false" onAction="#btnValiderCmdAction" prefHeight="39.0" prefWidth="165.0" text="Valider Commande" />
-                  <Button id="btn_delete" fx:id="supp" layoutX="74.0" layoutY="192.0" mnemonicParsing="false" onAction="#SuppessionAction" text="Supprimer" />
+                     </font>
+                              </Text>
+                  <TextField fx:id="tfqte" layoutX="135.0" layoutY="24.0" prefHeight="27.0" prefWidth="72.0" />
+                  <Button id="btn_edit" fx:id="btnmod" layoutX="507.0" layoutY="22.0" mnemonicParsing="false" onAction="#ModifierAction" prefHeight="30.0" prefWidth="72.0" text="Modifier" textFill="#141414" />
+                  <Button id="btn_delete" fx:id="supp" layoutX="594.0" layoutY="21.0" mnemonicParsing="false" onAction="#SuppessionAction" prefHeight="30.0" prefWidth="72.0" text="Supprimer" />
                </children>
             </AnchorPane>
-            <AnchorPane id="anchorpane_right" layoutX="281.0" layoutY="-10.0" prefHeight="482.0" prefWidth="687.0">
-               <children>
-                  <TableView id="tblview" fx:id="tabpan" layoutX="60.0" layoutY="30.0" onMouseClicked="#OnCliqAction" prefHeight="321.0" prefWidth="528.0">
+            <AnchorPane id="anchorpane_right" layoutX="123.0" layoutY="14.0" prefHeight="328.0" prefWidth="657.0" />
+            <Button fx:id="retour" layoutX="582.0" layoutY="411.0" mnemonicParsing="false" onAction="#btnRetourAction" prefHeight="39.0" prefWidth="165.0" style="-fx-background-color: #0fc300;" text="POURSUIVRE VOS ACHATS" />
+            <Button id="btn_save" fx:id="valider" layoutX="382.0" layoutY="411.0" mnemonicParsing="false" onAction="#btnValiderCmdAction" prefHeight="39.0" prefWidth="165.0" text="Valider Commande" />
+            <TableView fx:id="tabpan" layoutX="43.0" layoutY="17.0" onMouseClicked="#OnCliqueAction" prefHeight="308.0" prefWidth="702.0">
                     <columns>
-                      <TableColumn id="col_nom" fx:id="col_desc" prefWidth="168.0" text="Descriprion" />
-                      <TableColumn id="col_prenom" fx:id="col_categ" minWidth="0.0" prefWidth="114.0" text="Categorie" />
-                        <TableColumn id="col_adresse" fx:id="col_prix" prefWidth="64.0" text="Prix" />
-                        <TableColumn id="col_telephone" fx:id="col_qte" prefWidth="76.0" text="Quentité" />
-                        <TableColumn id="col_id" fx:id="id" prefWidth="55.1998291015625" text="ID_hidden" visible="false" />
-                        <TableColumn fx:id="col_id" prefWidth="75.0" text="id" visible="false" />
-                        <TableColumn fx:id="col_idcmd" prefWidth="75.0" text="id Commande" visible="false" />
+                      <TableColumn fx:id="col_idlc" minWidth="0.0" prefWidth="151.0" text="id Lc" visible="false" />
+                      <TableColumn fx:id="col_idcmd" prefWidth="166.0" text="id Commande" visible="false" />
+                        <TableColumn fx:id="col_des" prefWidth="188.0" text="Designation" />
+                        <TableColumn fx:id="col_categ" prefWidth="140.0" text="Categorie" />
+                        <TableColumn fx:id="col_px" minWidth="5.0" prefWidth="146.0" text="Prix Unitaire" />
+                        <TableColumn fx:id="col_qte" prefWidth="111.0" text="Quantité" />
+                        <TableColumn fx:id="col_tot" prefWidth="116.0" text="SubTotal" />
                     </columns>
                   </TableView>
-                  </children>
-            </AnchorPane>
+                        <AnchorPane layoutX="43.0" layoutY="335.0" prefHeight="61.0" prefWidth="702.0">
+                           <children>
+                              <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:" wrappingWidth="72.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="txt_total" layoutX="590.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" wrappingWidth="105.30175781249997">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
          </children>
       </AnchorPane>
       <Label id="label_title" layoutX="44.0" layoutY="28.0" prefHeight="30.0" prefWidth="207.0" text="Panier">
@@ -147,6 +183,7 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
+                  <Button layoutX="749.0" layoutY="16.0" mnemonicParsing="false" onAction="#LogoutAction" text="logout" />
    </children>
             </AnchorPane>
          </children>

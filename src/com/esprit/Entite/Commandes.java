@@ -14,23 +14,24 @@ import javafx.beans.property.SimpleStringProperty;
 public class Commandes {
     
     private SimpleStringProperty idCmd;
+    private SimpleStringProperty refC;
     private SimpleStringProperty nomClt;
     private SimpleStringProperty prenomClt;
     private SimpleStringProperty datec;
     private SimpleStringProperty etatc;
     private SimpleStringProperty total;
-    
 
-    public Commandes(int idCmd, String nomClt, String prenomClt, String datec, String etatc,float total) {
-        
+    public Commandes(int idCmd, String nomClt, String prenomClt, String datec, String etatc,float total,String refC) {
+
         this.idCmd = new SimpleStringProperty(String.valueOf(idCmd));
         this.nomClt = new SimpleStringProperty(nomClt);
         this.prenomClt = new SimpleStringProperty(prenomClt);
         this.datec = new SimpleStringProperty(datec);
         this.etatc = new SimpleStringProperty(etatc);
         this.total = new SimpleStringProperty(String.valueOf(total));
-
+        this.refC = new SimpleStringProperty(refC);
     }
+    
 
     public String getIdCmd() {
         return idCmd.get();
@@ -82,6 +83,12 @@ public class Commandes {
         this.total.set(this.total.get());
     }
     
-
+    public String getRefC() {
+        return refC.get();
+    }
+    
+    public void setRefC(String refC) {
+        this.refC.set(refC);
+    }
 
 }

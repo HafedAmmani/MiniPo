@@ -13,9 +13,10 @@ import java.sql.Date;
  */
 public class ReclamationClient {
      private int idR;
-    //private int idcmd;
-   private int id;
-    private String type;
+    private int idcmd;
+    private int id;
+    private int idcatrec;
+    private String nom;
     private String objet;
     private String description;
     private String  etatr;
@@ -24,10 +25,10 @@ public class ReclamationClient {
     private String reponse;
     private Date dateR;
 
-    public ReclamationClient(int idR,  String type, String objet, String description, String etatr, String firstname, String lastname, Date dateR) {
+    public ReclamationClient(int idR,  String nom, String objet, String description, String etatr, String firstname, String lastname, Date dateR) {
         this.idR = idR;
        // this.idcmd = idcmd;
-        this.type = type;
+        this.nom = nom;
         this.objet = objet;
         this.description = description;
         this.etatr = etatr;
@@ -36,9 +37,9 @@ public class ReclamationClient {
         this.dateR = dateR;
     }
 
-    public ReclamationClient(int idR, String type, String objet, String description, String etatr, String firstname, String lastname, String reponse, Date dateR) {
+    public ReclamationClient(int idR, String nom, String objet, String description, String etatr, String firstname, String lastname, String reponse, Date dateR) {
         this.idR = idR;
-        this.type = type;
+        this.nom = nom;
         this.objet = objet;
         this.description = description;
         this.etatr = etatr;
@@ -50,9 +51,22 @@ public class ReclamationClient {
 
     public ReclamationClient() {
     }
-
-    public ReclamationClient(String type, String objet, String description, String etatr, Date dateR, String reponse) {
-         this.type = type;
+ public ReclamationClient(int idcatrec, String objet, String description, int id) {
+        this.idcatrec =idcatrec;
+        this.objet = objet;
+        this.description = description;
+        this.id=id;
+        
+    }
+  public ReclamationClient( String objet, String description,int idcmd, int id) {
+        this.idcmd =idcmd;
+        this.objet = objet;
+        this.description = description;
+        this.id=id;
+        
+    }
+    public ReclamationClient(String nom, String objet, String description, String etatr, Date dateR, String reponse) {
+         this.nom = nom;
         this.objet = objet;
         this.description = description;
         this.etatr = etatr;
@@ -60,23 +74,23 @@ public class ReclamationClient {
         this.reponse = reponse;
     }
 
-    public ReclamationClient(int id, String type, String text, String description) {
+    public ReclamationClient(int id, String nom, String text, String description) {
        this.id=id;
-       this.type = type;
+       this.nom = nom;
        this.objet = text;
        this.description = description;
        
     }
-     public ReclamationClient(int idr, String type, String objet, String description, String etatr, String firstname, String lastname, Date dateR, String reponse) {
-        this.idR = idR;
-        this.type = type;
-        this.objet = objet;
-        this.description = description;
-        this.etatr = etatr;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.dateR = dateR;
-        this.reponse = reponse;
+       public ReclamationClient(int idr,String nom, String objet, String description, String etatr, String firstname, String lastname, Date dateR, String reponse) {
+                 this.idR=idr;
+                 this.nom=nom;
+                 this.objet=objet;
+                 this.description=description;
+                 this.etatr=etatr;
+                 this.firstname=firstname;
+                 this.lastname=lastname;
+                 this.dateR=dateR;
+                 this.reponse=reponse;
     }
  
 
@@ -109,15 +123,25 @@ public class ReclamationClient {
         this.idR = idR;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public int getIdcmd() {
+        return idcmd;
+    }
+
+    public void setIdcmd(int idcmd) {
+        this.idcmd = idcmd;
+    }
+
    
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+   
 
     public String getObjet() {
         return objet;
@@ -167,9 +191,18 @@ public class ReclamationClient {
         this.dateR = dateR;
     }
 
+    public int getIdcatrec() {
+        return idcatrec;
+    }
+
+    public void setIdcatrec(int idcatrec) {
+        this.idcatrec = idcatrec;
+    }
+    
+
     @Override
     public String toString() {
-        return "ReclamationClient{" + "idR=" + idR +  ", type=" + type + ", objet=" + objet + ", description=" + description + ", etatr=" + etatr + ", firstname=" + firstname + ", lastname=" + lastname + ", dateR=" + dateR + '}';
+        return "ReclamationClient{" + "idR=" + idR +  ", categorie=" + nom + ", objet=" + objet + ", description=" + description + ", etatr=" + etatr + ", firstname=" + firstname + ", lastname=" + lastname + ", dateR=" + dateR + '}';
     }
     
     

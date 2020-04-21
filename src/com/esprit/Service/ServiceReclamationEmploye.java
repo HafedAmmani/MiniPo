@@ -37,17 +37,19 @@ public class ServiceReclamationEmploye {
         con = DataBase.getInstance().getConnection();
 
     }
-    public void ajouterReclamationEmploye(ReclamationsEmploye r) throws SQLException
+    public void ajouterReclamationEmploye(Reclamationemploye r) throws SQLException
     {
-    PreparedStatement ps=con.prepareStatement("INSERT INTO `minipot`.`reclamationemploye` ( `id`, `objet`, `description`,`dateRemp`) VALUES ( ?,?,?,sysdate());");
-    //ps.setInt(1, r.getIdRemp());
-    ps.setInt(1, r.getId());
+    PreparedStatement ps=con.prepareStatement("INSERT INTO `minipot`.`reclamationemploye` (`idcatrecemp`, `objet`, `description`,`dateRemp`,`etatRemp`, `id`) VALUES ( ?,?,?,sysdate(),'non traiter',?);");
+    ps.setInt(1, r.getIdcatrecemp());
+    
     ps.setString(2,r.getObjet());
     ps.setString(3,r.getDescription());
+    ps.setInt(4, r.getIdemp());
     //ps.setDate(5, r.getDateRemp());
     //ps.setString(6, r.getEtatRemp());
     ps.executeUpdate();
     }
+   
     
     public void Delete(int idemp ) throws SQLException {
         
@@ -66,10 +68,10 @@ public class ServiceReclamationEmploye {
     }
     
      public void updateAdmin(int idRemp ,String etatRemp,String reponse) throws SQLException {
-         PreparedStatement ps=con.prepareStatement("UPDATE `reclamationemploye` set etatRemp=?,reponse=? where idRemp=?"+idRemp);
+         PreparedStatement ps=con.prepareStatement("UPDATE `reclamationemploye` set etatRemp=?,reponse=? where idRemp="+idRemp);
          ps.setString(1, etatRemp);
          ps.setString(2, reponse);
-         ps.setInt(3, idRemp);
+        // ps.setInt(3, idRemp);
          ps.executeUpdate();
      }
        
@@ -174,14 +176,14 @@ public class ServiceReclamationEmploye {
     return rec;
     }
     
-    public ObservableList<ReclamationsEmploye> ListerEmploye() throws SQLException{
+   public ObservableList<ReclamationsEmploye> ListerEmploye() throws SQLException{
              //List<Reclamation> rec=new ArrayList<>();
              ObservableList oblist = FXCollections.observableArrayList();
              ste=con.createStatement();
              
              
              //ResultSet rs=ste.executeQuery("select r.idr,r.type,r.objet,r.description,r.etatr,r.dater,u.Firstname,u.Lastname from reclamation r ,user u where r.id=u.id;");
-             ResultSet rs=ste.executeQuery("select r.idRemp,r.objet,r.description,r.etatRemp,r.dateRemp,u.firstname,u.lastname from reclamationemploye r inner join user u on  (r.id=u.id) order by dateRemp asc;");
+             ResultSet rs=ste.executeQuery("select r.idRemp,c.nom,r.objet,r.description,r.etatRemp,r.dateRemp,u.firstname,u.lastname,r.reponse from reclamationemploye r join user u on  (r.id=u.id) join categorie_reclamationemp c on (r.idcatrecemp=c.idcatrecemp) order by dateRemp asc;");
              while (rs.next()) {
                 //ResultSet rsu=ste.executeQuery("select * from user where id= "+rs.getInt("id"));
                 //String nom="";
@@ -195,13 +197,15 @@ public class ServiceReclamationEmploye {
                 
          //Reclamation r=new Reclamation();
              int idRemp= rs.getInt("idRemp");
+             String nom= rs.getString("nom");
              String objet= rs.getString("objet");
              String description= rs.getString("description");
              String etatr= rs.getString("etatRemp");
              String firstname=rs.getString("firstname");
              String lastname=rs.getString("lastname");
+             String reponse= rs.getString("reponse");
              Date dateRemp=rs.getDate("dateRemp");
-             oblist.add(new ReclamationsEmploye( idRemp, objet, description, etatr, firstname, lastname, dateRemp));
+             oblist.add(new ReclamationsEmploye( idRemp,nom, objet, description, etatr, firstname, lastname,reponse,dateRemp));
   
      }
             
@@ -214,9 +218,10 @@ public class ServiceReclamationEmploye {
              ste=con.createStatement();
              List<ReclamationsEmploye> listRec = new ArrayList<ReclamationsEmploye>();
              //ResultSet rs=ste.executeQuery("select r.idr,r.type,r.objet,r.description,r.etatr,r.dater,u.Firstname,u.Lastname from reclamation r ,user u where r.id=u.id;");
-             ResultSet rs=ste.executeQuery("select objet,description,etatRemp,dateRemp,reponse,idRemp from reclamationemploye where id="+id+" order by dateRemp asc");
+             ResultSet rs=ste.executeQuery("select c.nom,r.objet,r.description,r.etatRemp,r.dateRemp,r.reponse,r.idRemp from reclamationemploye r join categorie_reclamationemp c on (r.idcatrecemp=c.idcatrecemp) where id="+id+" order by dateRemp asc");
              while (rs.next()) {
                  ReclamationsEmploye re=new ReclamationsEmploye();
+                 re.setNom(rs.getString("nom"));
                  re.setObjet(rs.getString("objet"));
                  re.setDescription(rs.getString("description"));
                  re.setEtatRemp(rs.getString("etatRemp"));

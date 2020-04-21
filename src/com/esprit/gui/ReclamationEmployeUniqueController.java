@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,13 +38,14 @@ public class ReclamationEmployeUniqueController implements Initializable {
     @FXML
     private Label date;
     @FXML
+    private Label categorie;
+    @FXML
     private TextField objet;
     @FXML
     private TextArea description;
     @FXML
     private TextArea reponse;
-    @FXML
-    private Label type;
+    
     @FXML
     private Button btn_modifier;
     @FXML
@@ -60,11 +63,10 @@ public class ReclamationEmployeUniqueController implements Initializable {
     public void setObjet(String objet) {
         this.objet.setText(objet);
     }
-
-    public void setType(String type) {
-        this.type.setText(type);
+    public void setCategorie(String categorie) {
+        this.categorie.setText(categorie);
     }
-
+   
     public void setDescription(String description) {
         this.description.setText(description);
     }
@@ -83,11 +85,50 @@ public class ReclamationEmployeUniqueController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+ @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
-
+ @FXML
+    private void redirectToDemandeConge(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("DemandeConge.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }  
+     @FXML
+    private void redirectToRecEmp(ActionEvent event) throws IOException {
+        //EmployeMeReclamation
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("ReclamationEmploye.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+   
     @FXML
     private void modifier(ActionEvent event) throws SQLException, IOException {
-        if(etat.getText().equals("non traité")){
+        if(etat.getText().equals("non traiter")){
             sr.updateEmploye(Integer.parseInt(idr.getText()), description.getText());
             TrayNotification tray =new TrayNotification();
             tray.setTitle(" Reclamation Valider");
@@ -95,6 +136,12 @@ public class ReclamationEmployeUniqueController implements Initializable {
         tray.setAnimationType(AnimationType.POPUP);
         tray.setNotificationType(NotificationType.INFORMATION);
         tray.showAndWait();
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/EmployeMesReclamations.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
         }
         else {
              TrayNotification tray =new TrayNotification();
@@ -112,8 +159,16 @@ public class ReclamationEmployeUniqueController implements Initializable {
         }
     }
 
-    @FXML
-    private void retour(ActionEvent event) {
+   @FXML
+    private void BoutonRetour(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/EmployeMesReclamations.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
     }
     
 }

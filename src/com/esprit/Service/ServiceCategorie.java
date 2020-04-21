@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
 public class ServiceCategorie implements IService<Categorie> {
 
 	private Connection con;
-    private Statement ste;
+        private Statement ste;
 	private PreparedStatement pste;
     
     public ServiceCategorie(){

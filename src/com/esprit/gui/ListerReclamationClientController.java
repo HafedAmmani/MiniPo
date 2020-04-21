@@ -83,7 +83,7 @@ public class ListerReclamationClientController implements Initializable {
     @FXML
     private TableColumn<ReclamationClient, String> col_description;
     @FXML
-    private TableColumn<ReclamationClient, ?> col_image;
+    private TableColumn<ReclamationClient, String> col_image;
     @FXML
     private TableColumn<ReclamationClient , String> col_etat;
     @FXML
@@ -98,6 +98,8 @@ public class ListerReclamationClientController implements Initializable {
     private ServiceReclamation reclamation=new ServiceReclamation();
     @FXML
     private Button btnRetour;
+    @FXML
+    private Button Actualiser;
     static Stage stageAffichageUnique;
     static ReclamationClient ReclamationSelectionne;
     //ObservableList<Reclamation>oblistReclamation=FXCollections.observableArrayList();
@@ -129,6 +131,22 @@ public class ListerReclamationClientController implements Initializable {
         
           
         }
+     @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
        @FXML
     private void redirectToProduit(ActionEvent event) throws IOException {
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
@@ -165,7 +183,7 @@ public class ListerReclamationClientController implements Initializable {
           
                 
             col_IdRec.setCellValueFactory(new PropertyValueFactory<>("idR"));     
-            col_Type.setCellValueFactory(new PropertyValueFactory<>("type"));
+            col_Type.setCellValueFactory(new PropertyValueFactory<>("nom"));
             col_Obj.setCellValueFactory(new PropertyValueFactory<>("objet"));
             col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
             //col_image.setCellValueFactory(new PropertyValueFactory<>("image"));
@@ -173,7 +191,7 @@ public class ListerReclamationClientController implements Initializable {
             col_nom.setCellValueFactory(new PropertyValueFactory<>("firstname"));
             col_prenom.setCellValueFactory(new PropertyValueFactory<>("lastname"));
             col_DateRec.setCellValueFactory(new PropertyValueFactory<>("dateR"));
-           // reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
+             reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
             //Action.setCellValueFactory(new PropertyValueFactory<>("button"));
             TableViewRec.setItems(oblistClient);
       //helli team teiik , lahdha nara akher haja
@@ -212,7 +230,7 @@ public class ListerReclamationClientController implements Initializable {
 				
 				if (ReclamationClient.getEtatr().toLowerCase().contains(lowerCaseFilter) ) {
 					return true; // Filter matches first name.
-				} else if (ReclamationClient.getType().toLowerCase().contains(lowerCaseFilter)) {
+				} else if (ReclamationClient.getNom().toLowerCase().contains(lowerCaseFilter)) {
 					return true; }// Filter matches last name.
 				//else if (Reclamation.getIdR().contains(newValue)){
 				   // return true;}
@@ -237,6 +255,17 @@ public class ListerReclamationClientController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+     @FXML
+    private void BoutonActualiser(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationClients.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
 
     @FXML
     private void changerEtat(MouseEvent event) throws IOException  {
@@ -245,7 +274,7 @@ public class ListerReclamationClientController implements Initializable {
         SimpleDateFormat sdfr = new SimpleDateFormat("dd/MMM/yyyy");
         String objet = oblistClient.get(0).getObjet();
         String description= oblistClient.get(0).getDescription();
-        String categorie=oblistClient.get(0).getType();
+        String categorie=oblistClient.get(0).getNom();
         String nom=oblistClient.get(0).getFirstname();
         String prenom=oblistClient.get(0).getLastname();
         int id=oblistClient.get(0).getIdR();

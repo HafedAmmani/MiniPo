@@ -20,7 +20,7 @@
          <children>
             <VBox layoutY="160.0" prefHeight="356.0" prefWidth="262.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="160.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#redirectToAcceuilProduit" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -46,7 +46,7 @@
                      <padding>
                         <Insets left="40.0" />
                      </padding></Button>
-                  <Button fx:id="Acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="159.0" mnemonicParsing="false" onAction="#redirectToProdr" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Produit" textFill="WHITE">
+                  <Button fx:id="Acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="159.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Produit" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -58,7 +58,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="panier" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="208.0" mnemonicParsing="false" onAction="#redirectToPanier" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mon panier" textFill="WHITE">
+                  <Button fx:id="panier" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="208.0" mnemonicParsing="false" onAction="#PanierAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mon panier" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -70,7 +70,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Livraison" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Commandes" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -82,7 +82,31 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#redirectToReclamation" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
+                  <Button fx:id="btnFact" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#FacturesAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Factures" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/paste_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/paste_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#MesReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mes Reclamation" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -110,23 +134,32 @@
          <children>
             <AnchorPane layoutX="6.0" prefHeight="649.0" prefWidth="822.0">
                <children>
-      <Label id="label_title" layoutX="13.0" layoutY="27.0" prefHeight="30.0" prefWidth="207.0" text="Vos Commandes">
+      <Label id="label_title" layoutX="13.0" layoutY="27.0" prefHeight="30.0" prefWidth="207.0" text="Mes Commandes">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="tabcom" layoutX="89.0" layoutY="226.0" prefHeight="316.0" prefWidth="719.0">
+      <TableView fx:id="tabcom" layoutX="34.0" layoutY="203.0" prefHeight="317.0" prefWidth="735.0">
         <columns>
-          <TableColumn fx:id="col_non" prefWidth="129.99996948242188" text="Non " />
-          <TableColumn fx:id="col_pre" prefWidth="134.00003051757812" text="Prenom" />
-            <TableColumn fx:id="col_dat" prefWidth="138.0" text="Date Commande" />
-            <TableColumn fx:id="col_et" minWidth="0.0" prefWidth="127.0" text="Etat Commande" />
-            <TableColumn fx:id="col_tot" prefWidth="107.0" text="Totale" />
+          <TableColumn fx:id="col_ref" prefWidth="128.0" text="Commande Ref" />
+          <TableColumn fx:id="col_non" prefWidth="137.0" text="Nom" />
+            <TableColumn fx:id="col_pre" prefWidth="138.0" text="Prenom" />
+            <TableColumn fx:id="col_dat" minWidth="0.0" prefWidth="112.0" text="Date Commande" />
+            <TableColumn fx:id="col_et" prefWidth="122.0" text="Etat Commande" />
             <TableColumn fx:id="col_id" prefWidth="75.0" text="id Commande" visible="false" />
+                        <TableColumn fx:id="col_tot" prefWidth="102.0" text="Total" />
         </columns>
       </TableView>
-      <Text layoutX="133.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher" wrappingWidth="86.0703125" />
-      <TextField fx:id="tfrech" layoutX="246.0" layoutY="176.0" prefHeight="26.0" prefWidth="450.0" />
+      <Text layoutX="84.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher" wrappingWidth="86.0703125" />
+      <TextField fx:id="tfrech" layoutX="201.0" layoutY="136.0" prefHeight="26.0" prefWidth="450.0" />
+                  <AnchorPane layoutX="34.0" layoutY="538.0" prefHeight="49.0" prefWidth="735.0">
+                     <children>
+                        <Button fx:id="btnRec" layoutX="616.0" layoutY="2.0" mnemonicParsing="false" onAction="#ReclamerAction" prefHeight="32.0" prefWidth="105.0" text="Reclamer" />
+                        <Button fx:id="btnDet" layoutX="362.0" layoutY="3.0" mnemonicParsing="false" onAction="#DetailAction" prefHeight="32.0" prefWidth="105.0" text="Detail" />
+                        <Button fx:id="btnSupp" layoutX="489.0" layoutY="3.0" mnemonicParsing="false" onAction="#SupprimerAction" prefHeight="32.0" prefWidth="105.0" text="Supprimer" />
+                     </children>
+                  </AnchorPane>
+                  <Button layoutX="750.0" layoutY="15.0" mnemonicParsing="false" onAction="#LogoutAction" text="logout" />
    </children>
             </AnchorPane>
          </children>

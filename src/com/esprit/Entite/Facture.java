@@ -19,21 +19,20 @@ enum EtatFacture {Payée, NonPayée} ;
 public class Facture {
     
     private int idFact;
-    private Date dateFact;
-    //private EtatFacture etatFact;
-    private String etatFact;
+    private Date datef;
+    private String etatf;
     private Commande commande;
 
     public Facture(int idfact, Date dateFact, String etatFact, Commande commande) {
         this.idFact = idfact;
-        this.dateFact = dateFact;
-        this.etatFact = etatFact;
+        this.datef = dateFact;
+        this.etatf = etatFact;
         this.commande = commande;
     }
 
     public Facture(Date dateFact, String etatFact, Commande commande) {
-        this.dateFact = dateFact;
-        this.etatFact = etatFact;
+        this.datef = dateFact;
+        this.etatf = etatFact;
         this.commande = commande;
     }
 
@@ -49,19 +48,19 @@ public class Facture {
     }
 
     public Date getDateFact() {
-        return dateFact;
+        return datef;
     }
 
     public void setDateFact(Date dateFact) {
-        this.dateFact = dateFact;
+        this.datef = dateFact;
     }
 
     public String getEtatFact() {
-        return etatFact;
+        return etatf;
     }
 
     public void setEtatFact(String etatFact) {
-        this.etatFact = etatFact;
+        this.etatf = etatFact;
     }
 
     public Commande getCommande() {
@@ -96,8 +95,8 @@ public class Facture {
     @Override
     public String toString() {
         return "idfact=" + idFact +
-               "\tdateFact=" + dateFact + 
-               "\tetatFact=" + etatFact + 
+               "\tdateFact=" + datef + 
+               "\tetatFact=" + etatf + 
                "\tcommande=" + commande ;
     }
     

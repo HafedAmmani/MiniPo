@@ -5,12 +5,17 @@
  */
 package com.esprit.Gui;
 
+import com.esprit.Entite.Commande;
 import com.esprit.Entite.Commandes;
 import com.esprit.Service.ServiceCommande;
+import com.esprit.gui.LoginUserController;
+import com.esprit.gui.ReclamationClientCmdController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -37,15 +42,21 @@ import javafx.stage.Stage;
  */
 public class ListeCmdClientController implements Initializable {
 
+    int idUser = LoginUserController.NumId;
+    
     private AnchorPane ligne;
     
+
     private ObservableList<Commandes> oblist=FXCollections.observableArrayList();
+
     @FXML
     private Button Acceuil;
     @FXML
     private Button panier;
     @FXML
     private TableView tabcom;
+     @FXML
+    private TableColumn<Object, ?> col_ref;
     @FXML
     private TableColumn<Object, ?> col_non;
     @FXML
@@ -61,71 +72,51 @@ public class ListeCmdClientController implements Initializable {
     @FXML
     private TextField tfrech;
     
+    @FXML
+    private Button btnDet;
+    @FXML
+    private Button btnSupp;
+    @FXML
+    private Button btnRec;
+    @FXML
+    private Button btnFact;
     
-    
-            @FXML
-        private void redirectToReclamation(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("ReclamationClientfxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
-
-        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       /* 
-        ServiceLigneCommande slc=new ServiceLigneCommande();
-         oblist = slc.ListerPannier();
-         VBox vg=new VBox();
-         for(int i=0;i<oblist.size();i++){
-             
-             ImageView img=new ImageView("D:\\Esprit\\3A7\\Semestre_2\\PI\\Sprint_JAVA\\load.png");
-             Text pp=new Text("Prix: ");
-             Text qq=new Text("Quantité: ");
-             Text d=new Text(oblist.get(i).getDesignation());
-             Text c=new Text(oblist.get(i).getNom());
-             Text p=new Text(String.valueOf(oblist.get(i).getPrix()));
-             Spinner<Integer> q=new Spinner<>();
-             Button btn=new Button("Ajouter");
-             VBox vb1=new VBox(d,c);
-             VBox vb2=new VBox(pp,qq);
-             VBox vb3=new VBox(p,q);
-             HBox hb=new HBox();
-             List <Node> chld=new ArrayList<Node>();
-             chld.add(img);
-             chld.add(vb1);
-             chld.add(vb2);
-             chld.add(vb3);
-             chld.add(btn);
-             hb.getChildren().addAll(oblist.get(i).getIdLc(),chld);
-             vg.getChildren().add(i,hb);
-             
-         }
-         tab.getChildren().add(vg);
-         tab.isVisible(); */
-        AfficherCommandes();
+       
+      AfficherCommandes();
+      RechercherCommandes();
+        
+    }
+ @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 private void AfficherCommandes(){
         
         try{
-        
-        
-        
+
         ServiceCommande sc=new ServiceCommande();
-        oblist = sc.Commandes();
-        
+        oblist = sc.Commandes(idUser);
+        col_ref.setCellValueFactory(new PropertyValueFactory("refC"));
         col_id.setCellValueFactory(new PropertyValueFactory ("idCmd"));
         col_non.setCellValueFactory(new PropertyValueFactory("nomClt"));
         col_pre.setCellValueFactory(new PropertyValueFactory("prenomClt"));
         col_dat.setCellValueFactory(new PropertyValueFactory("datec"));
         col_et.setCellValueFactory(new PropertyValueFactory("etatc"));
         col_tot.setCellValueFactory(new PropertyValueFactory("total"));
-       
        
         tabcom.setItems(oblist);
 
@@ -154,8 +145,7 @@ private void AfficherCommandes(){
 					return true; // Filter matches first name.
 				} else if (Commande.getDatec().toString().toLowerCase().contains(lowerCaseFilter)) {
 					return true; }// Filter matches last name.
-				//else if (Reclamation.getIdR().contains(newValue)){
-				   // return true;}
+				
 				      
 				    	 return false; // Does not match.
 			});
@@ -166,7 +156,145 @@ private void AfficherCommandes(){
             });
      }
 
+    @FXML
+    private void AcceuilAction(ActionEvent event) {
+        
+        try{
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("Acceuil.fxml"));
+        Parent root = loader.load();
+        tfrech.getScene().setRoot(root);
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        }
+    }
 
-    
+    @FXML
+    private void PanierAction(ActionEvent event) {
+        
+        try{
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("Interface1.fxml"));
+        Parent root = loader.load();
+        tfrech.getScene().setRoot(root);
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void SupprimerAction(ActionEvent event) {
+        
+        oblist=tabcom.getSelectionModel().getSelectedItems();
+        ServiceCommande sc=new ServiceCommande();
+        Commande c=new Commande(Integer.parseInt(oblist.get(0).getIdCmd()));
+        sc.deleteCmdClt(c);
+        AfficherCommandes();  
+    }
+
+    @FXML
+    private void DetailAction(ActionEvent event) {
+        
+        oblist=tabcom.getSelectionModel().getSelectedItems();
+        ServiceCommande sc=new ServiceCommande();
+        Commande c=sc.getCommande(Integer.parseInt(oblist.get(0).getIdCmd()));
+        
+        try{
+            
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("InfoCmd.fxml"));
+        
+        Parent root = loader.load();
+        InfoCmdController tc = loader.getController();
+        
+        tc.setLab_dat(oblist.get(0).getDatec());
+        tc.setLab_et(oblist.get(0).getEtatc());
+        tc.setLab_ref(oblist.get(0).getRefC());
+        tc.setLab_tot(oblist.get(0).getTotal()); 
+        tc.setTab(sc.detailCmdClt(c));
+
+        btnDet.getScene().setRoot(root);
+        
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        }
+    }   
+
+    @FXML
+    private void ReclamerAction(ActionEvent event) throws IOException {
+         oblist=tabcom.getSelectionModel().getSelectedItems();
+        
+           
+      
+            
+            FXMLLoader loader = new FXMLLoader
+                                (getClass()
+                                .getResource("/com/esprit/gui/ReclamationClientCmd.fxml"));
+            
+            Parent root = loader.load();
+            ReclamationClientCmdController tc = loader.getController();
+            
+            tc.setIdcmd(Integer.parseInt(oblist.get(0).getIdCmd()));
+            tc.setRefcmd(oblist.get(0).getRefC());
+                    
+            btnRec.getScene().setRoot(root); 
+  
+    }
+
+    @FXML
+    private void FacturesAction(ActionEvent event) {
+        
+        try{
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("FacturesClt.fxml"));
+        Parent root = loader.load();
+        btnDet.getScene().setRoot(root);
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        } 
+        
+    }
+
+    @FXML
+    private void ReclamationAction(ActionEvent event) {
+        
+         try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("ReclamationClient.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void MesReclamationAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("CllientMesReclamations.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

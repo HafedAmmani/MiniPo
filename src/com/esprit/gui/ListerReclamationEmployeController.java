@@ -50,6 +50,10 @@ public class ListerReclamationEmployeController implements Initializable {
 
     @FXML
     private TableColumn<ReclamationsEmploye, Integer> col_IdRec;
+     @FXML
+    private TableColumn<ReclamationsEmploye, String> col_categorie;
+     @FXML
+    private TableColumn<ReclamationsEmploye, String> col_reponse;
     @FXML
     private TableColumn<ReclamationsEmploye, String> col_Obj;
     @FXML
@@ -64,6 +68,8 @@ public class ListerReclamationEmployeController implements Initializable {
     private TableColumn<ReclamationsEmploye, Date> col_DateRec;
     @FXML
     private Button btnRetour;
+    @FXML
+    private Button Actualiser;
     @FXML
     private TableView<ReclamationsEmploye> tableViewRecEmp;
     private ObservableList<ReclamationsEmploye>oblistEmp;
@@ -86,7 +92,22 @@ public class ListerReclamationEmployeController implements Initializable {
         
           
         }
-    @FXML
+     @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void redirectToProduit(ActionEvent event) throws IOException {
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -97,7 +118,6 @@ public class ListerReclamationEmployeController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-    @FXML
     private void redirectToReclamation(ActionEvent event) throws IOException {
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("AcceuilReclamationAd.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -118,13 +138,15 @@ public class ListerReclamationEmployeController implements Initializable {
             Logger.getLogger(ListerReclamationEmployeController.class.getName()).log(Level.SEVERE, null, ex);
         }
               
-            col_IdRec.setCellValueFactory(new PropertyValueFactory<>("idRemp"));     
+            col_IdRec.setCellValueFactory(new PropertyValueFactory<>("idRemp"));  
+            col_categorie.setCellValueFactory(new PropertyValueFactory<>("nom"));
             col_Obj.setCellValueFactory(new PropertyValueFactory<>("objet"));
             col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
             //col_image.setCellValueFactory(new PropertyValueFactory<>("image"));
             col_etat.setCellValueFactory(new PropertyValueFactory<>("etatRemp"));
             col_nom.setCellValueFactory(new PropertyValueFactory<>("firstname"));
             col_prenom.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+            col_reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
             col_DateRec.setCellValueFactory(new PropertyValueFactory<>("dateRemp"));
             //Action.setCellValueFactory(new PropertyValueFactory<>("button"));
             tableViewRecEmp.setItems(oblistEmp);
@@ -145,10 +167,10 @@ public class ListerReclamationEmployeController implements Initializable {
 				// Compare first name and last name of every person with filter text.
 				String lowerCaseFilter = newValue.toLowerCase();
 				
-				if (ReclamationsEmploye.getFirstname().toLowerCase().contains(lowerCaseFilter) ) {
+				if (ReclamationsEmploye.getEtatRemp().toLowerCase().contains(lowerCaseFilter) ) {
 					return true; // Filter matches first name.
-				} else if (ReclamationsEmploye.getLastname().toLowerCase().contains(lowerCaseFilter)) 
-					return true; // Filter matches last name.
+				} else if (ReclamationsEmploye.getNom().toLowerCase().contains(lowerCaseFilter)) 
+					return true;  // Filter matches last name.
 				//else if (ReclamationsEmploye.getIdRemp().contains(newValue))
 				   //return true;
 				      
@@ -178,14 +200,27 @@ public class ListerReclamationEmployeController implements Initializable {
         window.show();
         
     }
-
+@FXML
+    private void BoutonActualiser(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/ListerReclamationEmployes.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
     @FXML
     private void AfficherRecUnique(MouseEvent event) {
           oblistEmp = tableViewRecEmp.getSelectionModel().getSelectedItems();
+        String categorie = oblistEmp.get(0).getNom();
         String objet = oblistEmp.get(0).getObjet();
         String description= oblistEmp.get(0).getDescription();
         String nom=oblistEmp.get(0).getFirstname();
         String prenom=oblistEmp.get(0).getLastname();
+        String reponse=oblistEmp.get(0).getReponse();
+        String etat=oblistEmp.get(0).getEtatRemp();
         Date date=oblistEmp.get(0).getDateRemp();
         SimpleDateFormat sdfr = new SimpleDateFormat("dd/MMM/yyyy");
         int id=oblistEmp.get(0).getIdRemp();
@@ -196,15 +231,94 @@ public class ListerReclamationEmployeController implements Initializable {
             try {
                 Parent root = loader.load();
                 ReclamationChaqueEmployeController rce = loader.getController();
+                rce.setCategorie(categorie);
                 rce.setObjetTxtField(objet);
                 rce.setDescription(description);
                 rce.setIdREmp(id);
                 rce.setNomPrenom(nom,prenom);
+                rce.setEtat(etat);
+                rce.setReponse(reponse);
                 rce.setDate(sdfr.format(date));
                 tableViewRecEmp.getScene().setRoot(root);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
                 }
     }
-    
+
+   
+  @FXML
+    private void GestionUserAction(ActionEvent event) throws IOException {
+        
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("testUser.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionProdAction(ActionEvent event) throws IOException {
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionVAAction(ActionEvent event) throws IOException {
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("GestionVA.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionReclamAction(ActionEvent event) throws IOException {
+
+   Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionLivAction(ActionEvent event) throws IOException {
+        
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("livraison.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void chartsAction(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void calendarAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void PageAction(ActionEvent event) {
+    }    
 }

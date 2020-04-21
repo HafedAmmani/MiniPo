@@ -18,17 +18,22 @@ public class ListeFact {
     private String etatFact;
     private String nom;
     private String prenom;
+    private String refc;
+    private float total;
     private int idclt;
     private int idcmd;
 
-    public ListeFact(int idFact, Date dateFact, String etatFact, String nom, String prenom, int idclt,int idcmd) {
+    public ListeFact(int idFact, Date dateFact, String etatFact, String nom, String prenom, 
+            String refc, float total, int idclt, int idcmd) {
         this.idFact = idFact;
         this.dateFact = dateFact;
         this.etatFact = etatFact;
         this.nom = nom;
         this.prenom = prenom;
+        this.refc = refc;
+        this.total = total;
         this.idclt = idclt;
-        this.idcmd=idcmd;
+        this.idcmd = idcmd;
     }
 
     public int getIdFact() {
@@ -71,6 +76,22 @@ public class ListeFact {
         this.prenom = prenom;
     }
 
+    public String getRefc() {
+        return refc;
+    }
+
+    public void setRefc(String refc) {
+        this.refc = refc;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
     public int getIdclt() {
         return idclt;
     }
@@ -86,6 +107,10 @@ public class ListeFact {
     public void setIdcmd(int idcmd) {
         this.idcmd = idcmd;
     }
+
+    
+
+    
 
     @Override
     public String toString() {

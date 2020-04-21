@@ -26,7 +26,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,9 +34,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import tray.animations.AnimationType;
-import tray.notification.NotificationType;
-import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -46,87 +42,36 @@ import tray.notification.TrayNotification;
  */
 public class EspaceAdministrateurController implements Initializable {
 
-    @FXML
-    private TableView tabcom;
-    @FXML
-    private TableColumn <Object,?>  col_id;
-    @FXML
-    private TableColumn<Object,?>  col_nom;
-    @FXML
-    private TableColumn <Object,?> col_pre;
-    @FXML
-    private TableColumn <Object,?>  col_dat;
-    @FXML
-    private TableColumn <Object,?>  col_et;
-    private TextField tfId;
-    @FXML
-    private ComboBox<String> cbxEtat;
-    @FXML
-    private Button btnMod;
-    @FXML
-    private Button btnSupp;
+ 
     
     private ObservableList<Commandes> oblist=FXCollections.observableArrayList();
-    private ObservableList<String> lcbx=FXCollections.observableArrayList("Accepter");
     @FXML
     private TextField tfRech;
     @FXML
-    private TableColumn<?, ?> col_tot;
+    private TableView<Commandes> tabcom;
     @FXML
-    private void redirectToAcceuilReclamation(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
+    private TableColumn<Object, ?> col_id;
     @FXML
-    private void redirectToCommande(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceAdministrateur.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
+    private TableColumn<Object, ?> col_ref;
     @FXML
-    private void redirectTofacture(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("ListeFacture.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
+    private TableColumn<Object, ?> col_nom;
     @FXML
-    private void redirectToProduit(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
+    private TableColumn<Object, ?> col_pre;
     @FXML
-    private void redirectToUtilisateur(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("testingUser.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
+    private TableColumn<Object, ?> col_dat;
+    @FXML
+    private TableColumn<Object, ?> col_et;
+    @FXML
+    private TableColumn<Object, ?> col_tot;
+    @FXML
+    private Button btnDet;
+    @FXML
+    private Button btnRef;
+    @FXML
+    private Button btnAcpt;
+    private Text btnGestVA;
+ 
+    
 
     /**
      * Initializes the controller class.
@@ -135,94 +80,31 @@ public class EspaceAdministrateurController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        AfficherCommandes();
        RechercherCommandes();
-       cbxEtat.setItems(lcbx);
+    }
+ @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
-    @FXML
-    private void ListCmdOnClickAction(MouseEvent event) {
-        
-        oblist=tabcom.getSelectionModel().getSelectedItems();
-        //tfId.setText(String.valueOf(oblist.get(0).getIdCmd()));
-        //tfId.anchorProperty();
-        cbxEtat.setValue(oblist.get(0).getEtatc());
-        
-    }
-
-    @FXML
-    private void btnModifierAction(ActionEvent event) {
-
-        oblist=tabcom.getSelectionModel().getSelectedItems();
-        ServiceCommande slc=new ServiceCommande();
-        Commande c=new Commande(Integer.parseInt(oblist.get(0).getIdCmd()),cbxEtat.getSelectionModel().getSelectedItem());
-        slc.AccepterCommande(c);
-        AfficherCommandes();
-    }
-
-    @FXML
-    private void btnSupprimerAction(ActionEvent event) {
-        
-        ServiceCommande slc=new ServiceCommande();
-        Commande c=new Commande(Integer.parseInt(tfId.getText()),cbxEtat.getSelectionModel().getSelectedItem());
-        slc.supprimerCommande(c);
-        AfficherCommandes();
-    }
-
-    private void AcceuilAction(ActionEvent event) {
-        
-         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EspaceAdministrateur.fxml"));
-            
-            Parent root = loader.load();
-            tfId.getScene().setRoot(root);
-        } catch (IOException ex) {
-           System.out.println(ex.getMessage());
-        }
-        
-    }
-
-    private void BtnListClickAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EspaceAdministrateur.fxml"));
-            
-            Parent root = loader.load();
-            tfId.getScene().setRoot(root);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
-   /* private void AfficherCommandes(){
-        
-        try{
-        
-        
-        
-        ServiceCommande sc=new ServiceCommande();
-        oblist = sc.CommandesValider();
-        
-        col_id.setCellValueFactory(new PropertyValueFactory ("idCmd"));
-        col_nom.setCellValueFactory(new PropertyValueFactory("nomClt"));
-        col_pre.setCellValueFactory(new PropertyValueFactory("prenomClt"));
-        col_dat.setCellValueFactory(new PropertyValueFactory("datec"));
-        col_et.setCellValueFactory(new PropertyValueFactory("etatc"));
-       
-        tabcom.setItems(oblist);
-
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    
-    }*/
-    
    private void AfficherCommandes(){
         
-        try{
-        
-        
-        
+       try{
+
         ServiceCommande sc=new ServiceCommande();
-        oblist = sc.Commandes();
-        
+        oblist = sc.AllCommandes();
+        col_ref.setCellValueFactory(new PropertyValueFactory("refC"));
         col_id.setCellValueFactory(new PropertyValueFactory ("idCmd"));
         col_nom.setCellValueFactory(new PropertyValueFactory("nomClt"));
         col_pre.setCellValueFactory(new PropertyValueFactory("prenomClt"));
@@ -235,6 +117,7 @@ public class EspaceAdministrateurController implements Initializable {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+    
     
     } 
 
@@ -271,7 +154,159 @@ public class EspaceAdministrateurController implements Initializable {
         tabcom.setItems(soretedData);
             });
      }
+     
+    private void BtnListClickAction(MouseEvent event) {
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EspaceAdministrateur.fxml"));
+            
+            Parent root = loader.load();
+            tfRech.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-    
+    private void AcceuilAction(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EspaceAdministrateur.fxml"));
+            
+            Parent root = loader.load();
+            tfRech.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void DetailAction(ActionEvent event) {
+        
+        oblist=tabcom.getSelectionModel().getSelectedItems();
+        ServiceCommande sc=new ServiceCommande();
+        
+        try{
+            
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("DetailCmdAdmin.fxml"));
+        
+        Parent root = loader.load();
+        DetailCmdAdminController tc = loader.getController();
+        
+        tc.setLab_dat(oblist.get(0).getDatec());
+        tc.setLab_et(oblist.get(0).getEtatc());
+        tc.setLab_ref(oblist.get(0).getRefC());
+        tc.setLab_tot(oblist.get(0).getTotal()); 
+        tc.setTab(sc.detailCmdClt(new Commande(Integer.parseInt(oblist.get(0).getIdCmd()))));
+        
+        
+        
+        
+        btnDet.getScene().setRoot(root);
+        
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void RefuserAction(ActionEvent event) {
+        
+        oblist=tabcom.getSelectionModel().getSelectedItems();
+        ServiceCommande sc=new ServiceCommande();
+        Commande c =sc.getCommande(Integer.parseInt(oblist.get(0).getIdCmd()));
+        sc.refuserCommande(c);
+        AfficherCommandes();  
+    }
+
+    @FXML
+    private void AccepterAction(ActionEvent event) {
+        
+        oblist=tabcom.getSelectionModel().getSelectedItems();
+        ServiceCommande sc=new ServiceCommande();
+        Commande c =sc.getCommande(Integer.parseInt(oblist.get(0).getIdCmd()));
+        sc.AccepterCommande(c);
+        AfficherCommandes();  
+    }
+
+//*******************Espace Admin****************
+
+  @FXML
+    private void GestionUserAction(ActionEvent event) throws IOException {
+        
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("testUser.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionProdAction(ActionEvent event) throws IOException {
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionVAAction(ActionEvent event) throws IOException {
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("GestionVA.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionReclamAction(ActionEvent event) throws IOException {
+
+   Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionLivAction(ActionEvent event) throws IOException {
+        
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("livraison.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void chartsAction(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void calendarAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void PageAction(ActionEvent event) {
+    }
+
     
 }

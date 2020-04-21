@@ -267,28 +267,24 @@ public boolean Modifier(User u ) throws SQLException
     
 
     User getUser(int idclt) {
-        User clt=null;
+        User clt = null;
         try {
-        ste=con.createStatement();
-        ResultSet rs=ste.executeQuery("select * from user where id="+idclt);
-        
-        while (rs.next()) {  
-  
-            clt=new User(rs.getInt("id"),rs.getString("username"),rs.getString("password"),
-                    rs.getString("nom"),rs.getString("prenom"),rs.getString("adresse"),
-                    rs.getString("email"));  
-            return clt;
+            ste = con.createStatement();
+            ResultSet rs = ste.executeQuery("select * from user where id=" + idclt);
+
+            while (rs.next()) {
+
+                clt = new User(rs.getInt("id"), rs.getString("Lastname"), rs.getString("Firstname"), rs.getString("adresse"), rs.getString("username"), rs.getString("email"), rs.getString("password"));
+                return clt;
+            }
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+            clt = null;
         }
-        
-        
-    
-    }  catch (SQLException ex) {
-            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
-            clt=null;
-        }
-        
+
         return clt;
-    
+
     }
 
 }

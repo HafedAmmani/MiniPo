@@ -21,9 +21,29 @@ public class Commande {
     private int idcmd;
     private Date datec ;
     private float total;
-    //private EtatCommande etatc;
     private String etatc;
     private User client;
+    private String refC;
+    
+    
+
+    public Commande(int idcmd, Date datec, float total, String etatc, User client, String refC) {
+        this.idcmd = idcmd;
+        this.datec = datec;
+        this.total = total;
+        this.etatc = etatc;
+        this.client = client;
+        this.refC = refC;
+    }
+    
+    public Commande(Date datec, float total, String etatc, User client, String refC) {
+        
+        this.datec = datec;
+        this.total = total;
+        this.etatc = etatc;
+        this.client = client;
+        this.refC = refC;
+    }
 
     public Commande(int idcmd, Date datec, float total, String etatc, User client) {
         this.idcmd = idcmd;
@@ -33,7 +53,11 @@ public class Commande {
         this.client = client;
     }
     
-    
+     public Commande(Integer idcmd, String refC) {
+        this.idcmd = idcmd;
+        this.refC = refC;
+    }
+
   
     public Commande(Date datec, float total, String etatc, User client) {
         this.datec = datec;
@@ -53,6 +77,10 @@ public class Commande {
         this.etatc = etatc;
     }
     
+    public Commande(int idcmd) {
+        this.idcmd = idcmd;
+    }
+    
     public Commande() {
     }
 
@@ -61,7 +89,7 @@ public class Commande {
         return idcmd;
     }
 
-    public void setIdc(int idc) {
+    public void setIdcmd(int idc) {
         this.idcmd = idc;
     }
 
@@ -96,8 +124,16 @@ public class Commande {
     public void setClient(User client) {
         this.client = client;
     }
-    
 
+    public String getRefC() {
+        return refC;
+    }
+
+    public void setRefC(String refC) {
+        this.refC = refC;
+    }
+   
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

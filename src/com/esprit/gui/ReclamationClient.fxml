@@ -106,7 +106,7 @@
             </Pane>
             <VBox layoutX="10.0" layoutY="170.0" prefHeight="356.0" prefWidth="262.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -133,7 +133,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="159.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Produit" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="159.0" mnemonicParsing="false" onAction="#ProduitAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Produit" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -145,7 +145,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="208.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mon panier" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="208.0" mnemonicParsing="false" onAction="#PanierAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mon panier" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -157,7 +157,19 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Livraison" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#CommandeAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Commandes" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/resources/basket_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#FacturesAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Factures" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -198,7 +210,7 @@
          </children></AnchorPane>
       <Pane layoutX="262.0" prefHeight="649.0" prefWidth="631.0" style="-fx-background-color: #e5e5e5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
          <children>
-      <Button id="reclamer" fx:id="btnRec" layoutX="209.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #005c96;" stylesheets="@img/css/fullpackstyling.css" text="Reclamer" textFill="WHITE" />
+      <Button id="reclamer" fx:id="btnRec" layoutX="209.0" layoutY="343.0" mnemonicParsing="false" onAction="#Reclamer" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #005c96;" stylesheets="@img/css/fullpackstyling.css" text="Reclamer" textFill="WHITE" />
       <TextField fx:id="SujetRec" layoutX="199.0" layoutY="86.0" promptText="Objet" />
       <TextArea fx:id="DescriptionRec" layoutX="199.0" layoutY="125.0" prefHeight="200.0" prefWidth="283.0" promptText="Description" />
       <ComboBox fx:id="categRec" layoutX="368.0" layoutY="86.0" prefHeight="25.0" prefWidth="113.0" promptText="Categorie" />
@@ -207,6 +219,7 @@
             <Font size="24.0" />
          </font>
       </Label>
+            <Button layoutX="754.0" layoutY="9.0" mnemonicParsing="false" onAction="#LogoutAction" text="logout" />
    </children>
       </Pane>
    </children>

@@ -198,17 +198,18 @@
             </HBox>
             <AnchorPane prefHeight="671.0" prefWidth="1230.0">
                 <children>
-      <TableView fx:id="TableViewRec" editable="true" layoutX="267.0" layoutY="136.0" onMouseClicked="#changerEtat" prefHeight="293.0" prefWidth="586.0">
+      <TableView fx:id="TableViewRec" editable="true" layoutX="187.0" layoutY="136.0" onMouseClicked="#changerEtat" prefHeight="312.0" prefWidth="742.0">
         <columns>
           <TableColumn fx:id="col_IdRec" prefWidth="108.66668963432312" text="Numero Reclamation" visible="false" />
-          <TableColumn fx:id="col_Type" prefWidth="41.999961853027344" text="Type" />
-            <TableColumn fx:id="col_Obj" prefWidth="75.0" text="Objet " />
-            <TableColumn fx:id="col_description" prefWidth="75.0" text="Description" />
-            <TableColumn fx:id="col_image" prefWidth="75.0" text="Image" />
-            <TableColumn fx:id="col_etat" prefWidth="58.66668701171875" text="Etat" />
-            <TableColumn fx:id="col_nom" prefWidth="62.0" text="Nom" />
-            <TableColumn fx:id="col_prenom" prefWidth="75.0" text="Prenom" />
-            <TableColumn fx:id="col_DateRec" prefWidth="119.99995930989587" text="Date Reclamation" />
+          <TableColumn fx:id="col_Type" prefWidth="101.33334350585938" text="Categorie" />
+            <TableColumn fx:id="col_Obj" prefWidth="64.66668701171875" text="Objet " />
+            <TableColumn fx:id="col_description" prefWidth="120.66671752929688" text="Description" />
+            <TableColumn fx:id="col_image" prefWidth="49.3333740234375" text="Image" />
+            <TableColumn fx:id="col_etat" prefWidth="77.99993896484375" text="Etat" />
+            <TableColumn fx:id="col_nom" prefWidth="88.66668701171875" text="Nom" />
+            <TableColumn fx:id="col_prenom" prefWidth="87.33331298828125" text="Prenom" />
+                        <TableColumn fx:id="reponse" prefWidth="75.33331298828125" text="Reponse" />
+            <TableColumn fx:id="col_DateRec" prefWidth="77.3333740234375" text="Date " />
         </columns>
       </TableView>
       <Label layoutX="337.0" layoutY="78.0" prefHeight="17.0" prefWidth="40.0" />
@@ -217,9 +218,11 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnRetour" layoutX="273.0" layoutY="446.0" mnemonicParsing="false" onAction="#BoutonRetour" text="Retour" />
+      <Button fx:id="btnRetour" layoutX="187.0" layoutY="482.0" mnemonicParsing="false" onAction="#BoutonRetour" text="Retour" />
       <TextField fx:id="TextField" alignment="TOP_RIGHT" layoutX="401.0" layoutY="95.0" prefHeight="25.0" prefWidth="173.0" />
       <Label layoutX="293.0" layoutY="91.0" prefHeight="33.0" prefWidth="87.0" text="      Recherche" />
+                  <Button fx:id="Actualiser" layoutX="877.0" layoutY="469.0" mnemonicParsing="false" onAction="#BoutonActualiser" text="Actualiser" />
+                  <Button layoutX="1158.0" layoutY="22.0" mnemonicParsing="false" onAction="#LogoutAction" text="logout" />
    </children>
             </AnchorPane>
          </children>

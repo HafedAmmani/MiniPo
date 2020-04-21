@@ -15,6 +15,8 @@ public class ReclamationsEmploye {
     
      private int idRemp ;
     private int id;
+   private int idcatrecemp;
+    private String nom;
     private String objet;
     private String description;
     private Date dateRemp;
@@ -74,11 +76,40 @@ public class ReclamationsEmploye {
     public ReclamationsEmploye() {
         
     }
+ public ReclamationsEmploye(int idRemp, String nom, String objet, String description, String etatr, String firstname, String lastname,String reponse, Date dateRemp) {
 
+            this.idRemp=idRemp;
+            this.nom=nom;
+            this.objet=objet;
+            this.description=description;
+            this.etatRemp=etatr;
+            this.firstname=firstname;
+            this.lastname=lastname;
+            this.reponse=reponse;
+            this.dateRemp=dateRemp;
+
+
+    }
     public ReclamationsEmploye(int id, String sujet, String Description) {
         this.id = id;
         this.objet = sujet;
         this.description= Description;
+    }
+
+    public int getIdcatrecemp() {
+        return idcatrecemp;
+    }
+
+    public void setIdcatrecemp(int idcatrecemp) {
+        this.idcatrecemp = idcatrecemp;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
 

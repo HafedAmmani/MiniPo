@@ -12,8 +12,6 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,6 +48,7 @@ public class LoginUserController implements Initializable {
     @FXML
     private PasswordField tfCpass;
     ServicePersonne ser = new ServicePersonne();
+    
     public static int NumId ;
    // NumId = ser.rechercherID(0);
     
@@ -120,7 +119,8 @@ public class LoginUserController implements Initializable {
     }
     }*/
       @FXML
-    private void connect(ActionEvent event) throws SQLException, IOException { //button connecter pour pouvoir rederiger  a une autre interface
+    private void connect(ActionEvent event) throws SQLException, IOException {
+        //button connecter pour pouvoir rederiger  a une autre interface
         String username = tfusername.getText();
         
         
@@ -129,24 +129,42 @@ public class LoginUserController implements Initializable {
        
          validateusername();
          System.out.println(ser.getRoleUser(username));
-        if (ser.getRoleUser(username).equals("admin")){ // login tant que Administrateur
-            
+      if (ser.getRoleUser(username).contains("ROLE_ADMIN")) { // login tant que Administrateur
+
 //            FXMLLoader fxml = new FXMLLoader(getClass().getResource("AccueilReclamationAd.fxml"));
 //            Parent root = fxml.load();
 //                 tfusername.getScene().setRoot(root);
 //                 ForgetpassController rc = fxml.getController();
 // EspaceProduit
-                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("testUser.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-        
-          }
-        if (ser.getRoleUser(username).equals("agent RH")){ //login tant que Responsable RH
+                Parent tableViewParent = FXMLLoader.load(getClass().getResource("testUser.fxml"));
+                Scene tableViewScene = new Scene(tableViewParent);
+
+                //This line gets the Stage information
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window.setScene(tableViewScene);
+                window.show();
+
+            }
+            if (ser.getRoleUser(username).contains("ROLE_LIVREUR")) { // login tant que Administrateur
+
+//            FXMLLoader fxml = new FXMLLoader(getClass().getResource("AccueilReclamationAd.fxml"));
+//            Parent root = fxml.load();
+//                 tfusername.getScene().setRoot(root);
+//                 ForgetpassController rc = fxml.getController();
+// EspaceProduit
+                NumId = ser.rechercherID(tfusername.getText());
+                Parent tableViewParent = FXMLLoader.load(getClass().getResource("livraison_liv.fxml"));
+                Scene tableViewScene = new Scene(tableViewParent);
+
+                //This line gets the Stage information
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window.setScene(tableViewScene);
+                window.show();
+
+            }
+        if (ser.getRoleUser(username).contains("ROLE_RH")){ //login tant que Responsable RH
             
                  
                  Parent tableViewParent = FXMLLoader.load(getClass().getResource("Employe.fxml"));
@@ -160,7 +178,7 @@ public class LoginUserController implements Initializable {
         window.show();
         
           }
-        if (ser.getRoleUser(username).equals("emplyé")){ //login tant que Employe
+        if (ser.getRoleUser(username).contains("ROLE_EMPLOYE")){ //login tant que Employe
             
                  NumId = ser.rechercherID(tfusername.getText());
                  System.out.println(NumId);
@@ -178,12 +196,12 @@ public class LoginUserController implements Initializable {
           }
         
 
-        if (ser.getRoleUser(username).equals("client")){ //login tant que Employe
+        if (ser.getRoleUser(username).contains("ROLE_CLIENT")){ //login tant que Employe
             
                  NumId = ser.rechercherID(tfusername.getText());
                  System.out.println(NumId);
 //                 ReclamationClient.fxml ListeCmdClient
-                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("CllientMesReclamations.fxml"));
+                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 //        tableViewScene.getStylesheets().add(getClass().getResource("fullpackstyling.css").toExternalForm());
         
@@ -212,7 +230,6 @@ public class LoginUserController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
                        
-      
         }
 
     @FXML

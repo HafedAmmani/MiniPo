@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -58,6 +58,10 @@ public class ClientMesReclamationsController implements Initializable {
     private TableColumn<ReclamationClient, String> col_reponse;
     @FXML
     private TableColumn<ReclamationClient, Integer> idr;
+      @FXML
+    private Button actualiser;
+    @FXML
+    private Button logout;
      @FXML
     private void redirectToClientmerecl(ActionEvent event) throws IOException {
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("CllientMesReclamations.fxml"));
@@ -97,7 +101,7 @@ public class ClientMesReclamationsController implements Initializable {
         
         oblist=reclamation.ListerReclamationsById(id);
          
-            type.setCellValueFactory(new PropertyValueFactory<>("type"));
+            type.setCellValueFactory(new PropertyValueFactory<>("nom"));
             objet.setCellValueFactory(new PropertyValueFactory<>("objet"));
             description.setCellValueFactory(new PropertyValueFactory<>("description"));
             etat.setCellValueFactory(new PropertyValueFactory<>("etatr"));
@@ -114,7 +118,7 @@ public class ClientMesReclamationsController implements Initializable {
         oblist = tableView.getSelectionModel().getSelectedItems();
         String objet = oblist.get(0).getObjet();
         String description= oblist.get(0).getDescription();
-        String type=oblist.get(0).getType();
+        String type=oblist.get(0).getNom();
         String reponse=oblist.get(0).getReponse();
         SimpleDateFormat sdfr = new SimpleDateFormat("dd/MMM/yyyy");
        // String nom=oblist.get(0).getFirstname();
@@ -143,5 +147,100 @@ public class ClientMesReclamationsController implements Initializable {
                 System.out.println(ex.getMessage());
                 }
     }
-    
+    @FXML
+    void ButtonActualiser(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/com/esprit/Gui/CllientMesReclamations.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+
+    }
+
+    @FXML
+    private void AcceuilAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+            
+            Parent root = loader.load();
+            actualiser.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void ProduitAction(ActionEvent event) {
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+            
+            Parent root = loader.load();
+            actualiser.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void PanierAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("Interface1.fxml"));
+        Parent root = loader.load();
+        actualiser.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void CommandeAction(ActionEvent event) {
+        try{
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("ListeCmdClient.fxml"));
+        Parent root = loader.load();
+        actualiser.getScene().setRoot(root);
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void FactureAction(ActionEvent event) {
+        try{
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("FacturesClt.fxml"));
+        Parent root = loader.load();
+        actualiser.getScene().setRoot(root);
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        } 
+    }
+
+    @FXML
+    private void btn_Logout(ActionEvent event) {
+     try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

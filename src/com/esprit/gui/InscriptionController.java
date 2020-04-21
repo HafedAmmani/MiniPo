@@ -65,6 +65,8 @@ public class InscriptionController implements Initializable {
         
         
     private ServicePersonne sp = new ServicePersonne();
+    @FXML
+    private TextField tfnum;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,20 +85,24 @@ public class InscriptionController implements Initializable {
             String pass = tfpassword.getText();
             String Cpass = tfCpass.getText();
             String genre =cbgenre.getValue();
-            String role="client";
+            String nimtel= tfnum.getText();
+            String role="a:1:{i:0;s:11:\"ROLE_CLIENT\";}";
             String pIcrypt = service_bcrypt.hashpw(pass,service_bcrypt.gensalt());
             
       
        User p1;
-        p1 = new User(tfusername.getText(), tfemail.getText(), pIcrypt,role,tfname.getText(), tflastname.getText(), cbgenre.getValue());
+        //p1 = new User(tfusername.getText(), tfemail.getText(), pIcrypt,role,tfname.getText(), tflastname.getText(), cbgenre.getValue(), tfnum.getText());
+        p1=new User( unom,mail, pass, role, prenom,nom, genre,nimtel);
+        
         sp.ajouter(p1);
         tfusername.setText("");
         tfname.setText("");
         tflastname.setText("");
         tfemail.setText("");
         tfpassword.setText("");
+        tfnum.setText("");
         cbgenre.setValue(genre);
-        String roles="client";
+        String roles="a:1:{i:0;s:11:\"ROLE_CLIENT\";}";
         
         clear();
         

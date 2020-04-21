@@ -34,9 +34,9 @@ public class ServiceProduit implements IService<Produit> {
 
 		pre.setString(1, t.getDesignation());
 		pre.setInt(2, t.getQtestock());
-		pre.setInt(3, t.getPrix());
-		pre.setInt(4, t.getIdcateg());
-		pre.setInt(5, t.getIdf());
+		pre.setInt(3, (int)t.getPrix());
+		pre.setInt(4, t.getCategorie().getIdcateg());
+		pre.setInt(5, t.getFournisseur().getIdf());
 		System.out.println("before execute update");
 		pre.executeUpdate();
 		System.out.println("after execute update");
@@ -65,12 +65,10 @@ public class ServiceProduit implements IService<Produit> {
 		System.out.println(t.getDesignation());
 		pre.setInt(2, t.getQtestock());
 		System.out.println(t.getQtestock());
-		pre.setInt(3, t.getPrix());
+		pre.setInt(3, (int)t.getPrix());
 		System.out.println(t.getPrix());
-		pre.setInt(4, t.getIdcateg());
-		System.out.println(t.getIdcateg());
-		pre.setInt(5, t.getIdf());
-		System.out.println(t.getIdf());
+		pre.setInt(4, t.getCategorie().getIdcateg());
+		pre.setInt(5, t.getFournisseur().getIdf());
 		pre.setInt(6, t.getIdprod());
 		System.out.println(t.getIdprod());
 		int ex=pre.executeUpdate();
@@ -93,13 +91,18 @@ public class ServiceProduit implements IService<Produit> {
 				int idprod=res.getInt("p.idprod");
 				String designation=res.getString("p.designation");
 				int qtestock=res.getInt("p.qtestock");
-				int prix=res.getInt("p.prix");
+				int prix=res.getInt("p.prix"); 
 				int idcateg=res.getInt("c.idcateg");
 				String nomcateg=res.getString("c.nom");
 				int idf=res.getInt("f.idf");
 				String nomfour=res.getString("f.nom");
+                                
+                                ServiceCategorie sc=new ServiceCategorie();
+                                Categorie c=sc.getCategorie(idcateg);
+                                
 				
-				oblist.add(new Produit(idprod, designation, qtestock, prix, idcateg, nomcateg, idf, nomfour));
+				//oblist.add(new Produit(idprod, designation, qtestock, prix, idcateg, nomcateg, idf, nomfour));
+                                oblist.add(new Produit(idprod,designation, prix, qtestock, c));
 				
 			}
 			st.close();
@@ -125,7 +128,10 @@ public Produit getProduit(int idprod) {
             
             
                
-            pp=new Produit(rsp.getInt("idprod"),rsp.getString("designation"),rsp.getFloat("prix"),rsp.getInt("qtestock"),c);  
+            //pp=new Produit(rsp.getInt("idprod"),rsp.getString("designation"),rsp.getFloat("prix"),rsp.getInt("qtestock"),c); 
+            
+            pp=new Produit(rsp.getInt("idprod"), rsp.getString("designation"),(int)rsp.getFloat("prix"),rsp.getInt("qtestock") ,rsp.getString("photo") ,rsp.getString("description") , c);
+            
             return pp;
         }
         

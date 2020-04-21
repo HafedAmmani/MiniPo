@@ -6,6 +6,7 @@
 package com.esprit.gui;
 
 import com.esprit.Entite.User;
+import com.esprit.Gui.AcceuilController;
 import com.esprit.Service.ServicePersonne;
 import java.io.IOException;
 import java.net.URL;
@@ -32,8 +33,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -85,9 +88,8 @@ public class TestingUserController implements Initializable {
     private Button modifier;
     @FXML
     private Button clear;
-    @FXML
     private void redirectToAcceuilReclamation(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -96,7 +98,6 @@ public class TestingUserController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-    @FXML
     private void redirectToCommande(ActionEvent event) throws IOException {
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceAdministrateur.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -107,7 +108,6 @@ public class TestingUserController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-    @FXML
     private void redirectToProduit(ActionEvent event) throws IOException {
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -119,7 +119,8 @@ public class TestingUserController implements Initializable {
         window.show();
     }
     private void redirectToLivraison(ActionEvent event) throws IOException {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("livraison.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         
         //This line gets the Stage information
@@ -263,8 +264,119 @@ public class TestingUserController implements Initializable {
     private void clear1(ActionEvent event) {
         clear();
     }
-     
+
+
+    private void GestionLivAction(MouseEvent event) {
+        
+         try{
+        FXMLLoader loader = new FXMLLoader
+                        (getClass()
+                         .getResource("livraison.fxml"));
+        Parent root = loader.load();
+        ajouter.getScene().setRoot(root);
+        }catch(Exception e){
+        
+        System.out.println(e.getMessage());
+        }
+         
     }
 
+
+    @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+//*******************Espace Admin****************
+
+  @FXML
+    private void GestionUserAction(ActionEvent event) throws IOException {
+        
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("testUser.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionProdAction(ActionEvent event) throws IOException {
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceProduit.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionVAAction(ActionEvent event) throws IOException {
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("GestionVA.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionReclamAction(ActionEvent event) throws IOException {
+
+   Parent tableViewParent = FXMLLoader.load(getClass().getResource("AccueilReclamationAd.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void GestionLivAction(ActionEvent event) throws IOException {
+        
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("livraison.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void chartsAction(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void calendarAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void PageAction(ActionEvent event) {
+    }
+
+}
     
 

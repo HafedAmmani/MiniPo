@@ -18,7 +18,7 @@
          <children>
             <VBox layoutY="160.0" prefHeight="356.0" prefWidth="262.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="160.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -68,7 +68,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Livraison" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#CommandeAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Commandes" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -80,7 +80,31 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
+                  <Button fx:id="btnFact" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#FacturesAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="  Factures" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/paste_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/paste_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#MesReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mes Reclamation" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -108,25 +132,28 @@
          <children>
             <AnchorPane layoutY="6.0" prefHeight="641.0" prefWidth="829.0">
                <children>
-      <Label id="label_title" layoutX="34.0" layoutY="22.0" prefHeight="30.0" prefWidth="207.0" text="Acceuil">
+      <Label id="label_title" layoutX="34.0" layoutY="22.0" prefHeight="30.0" prefWidth="207.0" text="Produits">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
-      <TableView id="tblview" fx:id="tblview" layoutX="77.0" layoutY="121.0" prefHeight="289.0" prefWidth="599.0">
+      <TableView id="tblview" fx:id="tabProd" layoutX="34.0" layoutY="122.0" prefHeight="425.0" prefWidth="739.0">
         <columns>
-          <TableColumn id="col_nom" fx:id="col_id" prefWidth="96.0" text="Id Produit" />
-          <TableColumn id="col_prenom" fx:id="col_des" minWidth="0.0" prefWidth="94.0" text="Description" />
-            <TableColumn id="col_adresse" fx:id="col_categ" prefWidth="131.199951171875" text="Categorie" />
-            <TableColumn id="col_telephone" fx:id="col_prix" prefWidth="99.20001220703125" text="Prix" />
+          <TableColumn id="col_nom" fx:id="col_id" prefWidth="98.0" text="Id Produit" visible="false" />
+          <TableColumn id="col_prenom" fx:id="col_img" minWidth="0.0" prefWidth="178.0" text="Photo" />
             <TableColumn id="col_id" fx:id="id" prefWidth="55.1998291015625" text="ID_hidden" visible="false" />
+                        <TableColumn fx:id="col_des" prefWidth="196.0" text="Designation" />
+                        <TableColumn fx:id="col_prix" prefWidth="125.0" text="Prix" />
+                        <TableColumn fx:id="col_qte" prefWidth="118.0" text="Quantité" />
+                        <TableColumn fx:id="col_categ" prefWidth="121.0" text="Categorie" />
         </columns>
       </TableView>
-      <Button fx:id="ach" layoutX="573.0" layoutY="472.0" mnemonicParsing="false" onAction="#acheterAction" prefHeight="29.0" prefWidth="103.0" style="-fx-background-color: #f0c300;" text="Acheter">
+      <Button fx:id="btnach" layoutX="645.0" layoutY="580.0" mnemonicParsing="false" onAction="#acheterAction" prefHeight="29.0" prefWidth="103.0" style="-fx-background-color: #f0c300;" text="Acheter">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
+                  <Button layoutX="736.0" layoutY="25.0" mnemonicParsing="false" onAction="#LogoutAction" text="logout" />
    </children>
             </AnchorPane>
          </children>

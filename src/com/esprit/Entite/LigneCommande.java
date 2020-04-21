@@ -20,6 +20,15 @@ public class LigneCommande {
     private Commande commande;
     private Produit produit;
     private int qte;
+    private float subtotal;
+
+    public LigneCommande(int idlc, Commande commande, Produit produit, int qte, float subtotal) {
+        this.idlc = idlc;
+        this.commande = commande;
+        this.produit = produit;
+        this.qte = qte;
+        this.subtotal = subtotal;
+    }
 
     public LigneCommande(int idlc,Commande commande, Produit produit, int qte) {
         this.idlc=idlc;
@@ -33,17 +42,39 @@ public class LigneCommande {
         this.produit = produit;
         this.qte = qte;
     }
+
+    public LigneCommande(Commande commande, Produit produit, int qte, float subtotal) {
+        this.commande = commande;
+        this.produit = produit;
+        this.qte = qte;
+        this.subtotal = subtotal;
+    }
+    
+    
    
     public LigneCommande(Produit produit, int qte) {
         this.produit = produit;
         this.qte = qte;
     }
+
+    public LigneCommande(Produit produit, int qte, float subtotal) {
+        this.produit = produit;
+        this.qte = qte;
+        this.subtotal = subtotal;
+    }
+    
+    
     
      public LigneCommande(int idlc, int qte) {
         this.idlc=idlc;
         this.qte = qte;
     }
-    
+
+    public LigneCommande(int idlc, int qte, float subtotal) {
+        this.idlc = idlc;
+        this.qte = qte;
+        this.subtotal = subtotal;
+    }
 
     public LigneCommande() {
     }
@@ -80,6 +111,14 @@ public class LigneCommande {
         this.qte = qte;
     }
 
+    public float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;

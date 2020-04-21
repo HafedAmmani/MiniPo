@@ -9,6 +9,8 @@ package com.esprit.Service;
 import com.esprit.Entite.Commande;
 import com.esprit.Entite.Facture;
 import com.esprit.Entite.ListeFact;
+import com.esprit.Entite.Panier;
+import com.esprit.Entite.User;
 import com.esprit.Utils.DataBase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +23,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  *
@@ -112,18 +117,33 @@ public class ServiceFacture {
     
     }
     
-    
-    public ObservableList<ListeFact> Factures(){
+ //*******************************************************************************************************************   
+    public ObservableList<ListeFact> AllFactures(){
        
+        
         ObservableList oblist = FXCollections.observableArrayList();
         try { 
             
             ste=con.createStatement();
-            ResultSet rs=ste.executeQuery("SELECT f.idfact,f.datef,f.etatf,cmd.idcmd,c.id,c.Firstname,c.Lastname from facture f ,commande cmd,user c where cmd.id=c.id ;");
+            /*ResultSet rs=ste.executeQuery("SELECT f.idfact,f.datef,f.etatf,cmd.idcmd,c.id,c.Firstname,c.Lastname,"
+                                          + "cmd.total,cmd.refc "
+                                          + "from facture f ,commande cmd,user c "
+                                          + "where f.idcmd=cmd.idcmd "
+                                          + "And cmd.id=c.id;"
+                                          + "And c.id="+clt.getId()
+                                          + ";");*/
+            
+            ResultSet rs=ste.executeQuery("SELECT f.idfact,f.datef,f.etatf,cmd.idcmd,c.id,c.Firstname,c.Lastname,"
+                    + "cmd.total,cmd.refc " 
+                    +  "from facture f ,commande cmd,user c " 
+                    +  "where f.idcmd=cmd.idcmd " 
+                    +  "And cmd.id=c.id;");
             while (rs.next()) {              
                 
-               oblist.add(new ListeFact(rs.getInt("idfact"),rs.getDate("datef"),rs.getString("etatf"),
-                       rs.getString("Firstname"),rs.getString("Lastname"),rs.getInt("idcmd"),rs.getInt("id")));                      
+               
+               oblist.add(new ListeFact(rs.getInt("idfact"), rs.getDate("datef"), rs.getString("etatf"), 
+                       rs.getString("firstname"), rs.getString("lastname"), rs.getString("refc"),
+                       rs.getFloat("total"),rs.getInt("id"), rs.getInt("idcmd")));
 
             }
            
@@ -136,5 +156,117 @@ public class ServiceFacture {
         System.out.println(oblist);
      return oblist;
     }
+    
+     public ObservableList<ListeFact> FacturesClt(int idUser){
+       
+        
+        ObservableList oblist = FXCollections.observableArrayList();
+        try { 
+            
+            ste=con.createStatement();
+            ResultSet rs=ste.executeQuery("SELECT f.idfact,f.datef,f.etatf,cmd.idcmd,c.id,c.Firstname,c.Lastname,"
+                                        + "cmd.total,cmd.refc " 
+                                        + "from facture f ,commande cmd,user c " 
+                                        + "where f.idcmd=cmd.idcmd " 
+                                        + "And cmd.id=c.id " 
+                                        + "And c.id="+idUser
+                                        + " ;");
+            
+          
+            while (rs.next()) {              
+                
+               
+               oblist.add(new ListeFact(rs.getInt("idfact"), rs.getDate("datef"), rs.getString("etatf"), 
+                       rs.getString("firstname"), rs.getString("lastname"), rs.getString("refc"),
+                       rs.getFloat("total"),rs.getInt("id"), rs.getInt("idcmd")));
+
+            }
+           
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+           
+        }   
+        
+        System.out.println(oblist);
+     return oblist;
+    }
+    
+    public Facture getFacture(int idFact) {
+        Facture ff;
+        ff = null;
+        try {
+        ste=con.createStatement();
+        ResultSet rs=ste.executeQuery("select * from Facture where idfact="+idFact);
+        while (rs.next()) { 
+            
+            ServiceCommande sc=new ServiceCommande();
+            Commande c=sc.getCommande(rs.getInt("idcmd"));
+            
+            ff=new Facture(rs.getInt("idFact"),rs.getDate("datef"),rs.getString("etatf"),c);  
+            return ff;
+        }
+        
+        
+    
+        }catch (SQLException ex) {
+            Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+            ff=null;
+        }
+        
+        return ff;
+    
+    }
+    
+    public ObservableList<Panier> detailFact(Facture f)
+    {
+        
+        
+        ObservableList oblist = FXCollections.observableArrayList();
+                
+        try {
+         
+            ste=con.createStatement();
+            ResultSet rs=ste.executeQuery("select p.designation,p.prix,c.nom,l.qte,l.idlc,l.idcmd,l.subtotal " +
+                                   "FROM lignecommande l " +
+                                   "join produit p on l.idprod=p.idprod " +
+                                   "JOIN categorie c oN p.idcateg=c.idcateg " +
+                                   "join commande cmd on l.idcmd=cmd.idcmd " +
+                                   "WHERE cmd.idcmd="+f.getCommande().getIdcmd()+";");
+            
+            while (rs.next()) {
+                
+                int id=rs.getInt("idlc");
+                String des= rs.getString("designation");
+                float p= rs.getFloat("prix");
+                String n= rs.getString("nom");
+                int q= rs.getInt("qte");
+                int idcmd= rs.getInt("idcmd");
+                float tot=rs.getFloat("subtotal");
+                
+                
+                oblist.add(new Panier(id,des,p,n,q,idcmd,tot));
+ 
+            }
+            
+            
+            
+            //return oblist;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceLigneCommande.class.getName()).log(Level.SEVERE, null, ex);
+            TrayNotification tray =new TrayNotification();
+            tray.setTitle("Erreur");
+            tray.setMessage(ex.getMessage());
+            tray.setAnimationType(AnimationType.POPUP);
+            tray.setNotificationType(NotificationType.INFORMATION);
+            tray.showAndWait();
+           
+        }
+        
+        System.out.println("obliste:**************\n"+oblist);
+        return oblist;
+           
+}
     
 }

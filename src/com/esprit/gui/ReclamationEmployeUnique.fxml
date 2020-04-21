@@ -4,24 +4,81 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ReclamationEmployeUniqueController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ReclamationEmployeUniqueController">
    <children>
+      <AnchorPane prefHeight="616.0" prefWidth="993.0" style="-fx-background-color: #030307; -fx-background-radius: 15;">
+         <children>
+            <VBox prefHeight="544.0" prefWidth="74.0" style="-fx-background-color: #131022; -fx-background-radius: 15 0 0 15;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane prefHeight="79.0" prefWidth="74.0" style="-fx-background-radius: 15 0 15 15;" />
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#redirectToDemandeConge" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #131022;" styleClass="button3" text="Congé" textFill="#a868a0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/resources/time.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#redirectToRecEmp" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #131022;" text="Reclamation" textFill="#a868a0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/resources/flag.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #131022;" text="Mes Reclamations" textFill="#a868a0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/resources/flag.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <AnchorPane layoutX="91.0" layoutY="69.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;">
+                <children>
       <Label fx:id="date" layoutX="36.0" layoutY="20.0" prefHeight="17.0" prefWidth="95.0" />
       <TextField fx:id="objet" layoutX="65.0" layoutY="98.0" />
       <TextArea fx:id="description" layoutX="65.0" layoutY="137.0" prefHeight="200.0" prefWidth="200.0" />
       <TextArea fx:id="reponse" layoutX="300.0" layoutY="137.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="300.0" layoutY="102.0" text="Reponse" />
-      <Label fx:id="type" layoutX="138.0" layoutY="29.0" prefHeight="17.0" prefWidth="251.0">
+      <Label layoutX="300.0" layoutY="102.0" text="Reponse" textFill="#fffcfc" />
+      <Button fx:id="btn_modifier" layoutX="438.0" layoutY="350.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <Label fx:id="idr" layoutX="310.0" layoutY="11.0" prefHeight="17.0" prefWidth="61.0" textFill="WHITE" visible="false" />
+      <Label fx:id="etat" layoutX="541.0" layoutY="20.0" textFill="#fffefe" />
+      <Button fx:id="btnretour" layoutX="346.0" layoutY="350.0" mnemonicParsing="false" onAction="#BoutonRetour" text="Retour" />
+      <Label fx:id="categorie" layoutX="186.0" layoutY="29.0" prefHeight="17.0" prefWidth="229.0" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btn_modifier" layoutX="214.0" layoutY="351.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-      <Label fx:id="idr" layoutX="480.0" layoutY="20.0" prefHeight="17.0" prefWidth="61.0" />
-      <Label fx:id="etat" layoutX="541.0" layoutY="20.0" />
-      <Button fx:id="btnretour" layoutX="14.0" layoutY="363.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+      <Label layoutX="486.0" layoutY="20.0" text="Etat : " textFill="WHITE" />
+   </children>
+            </AnchorPane>
+            <ImageView fitHeight="38.0" fitWidth="34.0" layoutX="91.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/resources/logo.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="142.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reclamation Employe" wrappingWidth="330.1368408203125">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Text>
+            <Button layoutX="896.0" layoutY="29.0" mnemonicParsing="false" onAction="#LogoutAction" text="logout" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
