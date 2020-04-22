@@ -83,4 +83,20 @@ public class BilanController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+    @FXML
+    private void LogoutAction(ActionEvent event) {
+        
+        try {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            window.setScene(tableViewScene);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

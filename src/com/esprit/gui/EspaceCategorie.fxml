@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="393.0" prefWidth="421.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.EspaceCategorieController">
+<AnchorPane prefHeight="393.0" prefWidth="421.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.EspaceCategorieController">
    <children>
       <Pane layoutY="91.0" prefHeight="301.0" prefWidth="421.0">
          <children>
@@ -30,7 +30,7 @@
             </Pane>
          </children>
       </Pane>
-      <Pane id="pane_top" layoutY="-1.0" prefHeight="51.0" prefWidth="421.0">
+      <Pane id="pane_top" layoutY="-1.0" prefHeight="51.0" prefWidth="421.0" style="-fx-background-color: #005c96;">
          <children>
             <Label id="label_title" layoutX="14.0" layoutY="12.0" text="Espace Categorie">
                <font>

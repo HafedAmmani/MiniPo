@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.EquipeController">
     <stylesheets>
@@ -31,6 +30,11 @@
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
+            <JFXButton layoutX="880.0" layoutY="13.0" onAction="#LogoutAction" prefHeight="25.0" prefWidth="78.0" text="Log out">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
       <AnchorPane id="anchorpane_center" layoutX="204.0" layoutY="70.0" prefHeight="482.0" prefWidth="965.0">
@@ -87,11 +91,16 @@
          <children>
             <Pane prefHeight="106.0" prefWidth="194.0">
                <children>
-                  <Text layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MiniPo" textAlignment="CENTER" wrappingWidth="194.40000000000003">
-                     <font>
-                        <Font name="Monotype Corsiva" size="36.0" />
-                     </font>
-                  </Text>
+                  <ImageView fitHeight="30.0" fitWidth="131.0" layoutX="56.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/minipo-v1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="16.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/logo-M.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
             <Pane id="pane_top" prefHeight="14.0" prefWidth="214.0" />

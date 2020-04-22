@@ -5,33 +5,33 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" stylesheets="@../Documents/NetBeansProjects/MiniPo/src/com/minipo/gui/css/common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.ReclamationChaqueClientController">
    <children>
      <VBox id="side_nav" style="-fx-background-color: #005c96;">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" style="-fx-background-color: white;">
-               <children>
-                 
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #f0c300; -fx-font-size: 1.5em; -fx-font-weight: bold;" text="MiniPo" textAlignment="CENTER" wrappingWidth="71.60723853111267">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="23.0" />
-                     </font>
-                  </Text>
-               </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/logo-M.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="37.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/minipo-v1.png" />
+                     </image>
+                  </ImageView>
+               </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
                <padding>
@@ -108,78 +108,15 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#chartsAction" prefHeight="34.0" prefWidth="126.0" style="-fx-background-color: #005c96;" text="Charts" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-             <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#calendarAction" prefHeight="16.0" prefWidth="126.0" style="-fx-background-color: #005c96;" text="Calendar" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#PageAction" prefHeight="22.0" prefWidth="126.0" style="-fx-background-color: #005c96;" text="Page" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
          </children>
       </VBox>
       <VBox style="-fx-background-color: #e5e5e5;" HBox.hgrow="ALWAYS">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" style="-fx-background-color: #005c96;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0" style="-fx-background-color: white; -fx-background-radius: 100%;">
-                     
-                     <effect>
-                        <DropShadow height="20.0" radius="9.5" width="20.0" />
-                     </effect>
-                  </Button>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14px; -fx-fill: #ffffff;" text="Dashboard">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
                   <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox style="-fx-background-color: white;">
-                           <children>
-                              <TextField prefWidth="150.0" promptText="search" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0" style="-fx-background-color: transparent;">
-                                 
-                              </Button>
-                           </children>
-                        </HBox>
+                        <HBox style="-fx-background-color: white;" />
                        
                         
                         
@@ -192,38 +129,38 @@
             </HBox>
             <AnchorPane prefHeight="673.0" prefWidth="1230.0">
                <children>
-      <TextArea fx:id="description" editable="false" layoutX="52.0" layoutY="184.0" prefHeight="143.0" prefWidth="200.0" promptText="Description" />
-      <ImageView fitHeight="123.0" fitWidth="129.0" layoutX="58.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
-      <TextArea fx:id="reponse" layoutX="309.0" layoutY="118.0" prefHeight="209.0" prefWidth="178.0" promptText="Reponse" />
-      <Button fx:id="btnTraiter" layoutX="437.0" layoutY="351.0" mnemonicParsing="false" onAction="#Traiter" text="Traiter" />
-      <TextField fx:id="objetTxtField" editable="false" layoutX="52.0" layoutY="138.0" promptText="objet" />
-      <TextField fx:id="idClient" cache="true" disable="true" layoutX="412.0" layoutY="67.0" prefHeight="25.0" prefWidth="69.0" visible="false" />
-      <Label fx:id="labelrec" layoutX="52.0" layoutY="29.0" prefHeight="27.0" prefWidth="242.0" text="Reclamation de Mr/Madame ">
+      <TextArea fx:id="description" editable="false" layoutX="217.0" layoutY="258.0" prefHeight="143.0" prefWidth="200.0" promptText="Description" />
+      <ImageView fitHeight="123.0" fitWidth="129.0" layoutX="223.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true" />
+      <TextArea fx:id="reponse" layoutX="474.0" layoutY="192.0" prefHeight="209.0" prefWidth="178.0" promptText="Reponse" />
+      <Button fx:id="btnTraiter" layoutX="602.0" layoutY="425.0" mnemonicParsing="false" onAction="#Traiter" text="Traiter" />
+      <TextField fx:id="objetTxtField" editable="false" layoutX="217.0" layoutY="212.0" promptText="objet" />
+      <TextField fx:id="idClient" cache="true" disable="true" layoutX="577.0" layoutY="141.0" prefHeight="25.0" prefWidth="69.0" visible="false" />
+      <Label fx:id="labelrec" layoutX="217.0" layoutY="103.0" prefHeight="27.0" prefWidth="242.0" text="Reclamation de Mr/Madame ">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="nomPrenom" layoutX="294.0" layoutY="29.0" prefHeight="27.0" prefWidth="149.0">
+      <Label fx:id="nomPrenom" layoutX="459.0" layoutY="103.0" prefHeight="27.0" prefWidth="149.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="308.0" layoutY="84.0" prefHeight="17.0" prefWidth="107.0" text="Reponse :" />
-                  <Label fx:id="date" layoutY="5.0" prefHeight="17.0" prefWidth="72.0" />
-                  <Button fx:id="btnretour" layoutX="362.0" layoutY="351.0" mnemonicParsing="false" onAction="#boutonRetour" text="Retour" />
-                  <Label layoutX="26.0" layoutY="75.0" text="Categorie : ">
+      <Label layoutX="473.0" layoutY="158.0" prefHeight="17.0" prefWidth="107.0" text="Reponse :" />
+                  <Label fx:id="date" layoutX="165.0" layoutY="79.0" prefHeight="17.0" prefWidth="72.0" />
+                  <Button fx:id="btnretour" layoutX="527.0" layoutY="425.0" mnemonicParsing="false" onAction="#boutonRetour" text="Retour" />
+                  <Label layoutX="191.0" layoutY="149.0" text="Categorie : ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="categorie" layoutX="97.0" layoutY="76.0" prefHeight="17.0" prefWidth="171.0" />
-                  <Label layoutX="427.0" layoutY="4.0" text="Etat : ">
+                  <Label fx:id="categorie" layoutX="262.0" layoutY="150.0" prefHeight="17.0" prefWidth="171.0" />
+                  <Label layoutX="592.0" layoutY="78.0" text="Etat : ">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="etat" layoutX="459.0" layoutY="5.0" prefHeight="17.0" prefWidth="149.0" />
-                  <Button layoutX="1155.0" layoutY="17.0" mnemonicParsing="false" onAction="#LogoutAction" text="logout" />
+                  <Label fx:id="etat" layoutX="624.0" layoutY="79.0" prefHeight="17.0" prefWidth="149.0" />
+                  <Button layoutX="1092.0" layoutY="14.0" mnemonicParsing="false" onAction="#LogoutAction" text="logout" />
    </children>
             </AnchorPane>
          </children>

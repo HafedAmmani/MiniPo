@@ -41,6 +41,6 @@
             <TextArea fx:id="txt_descr" editable="false" layoutX="200.0" layoutY="63.0" prefHeight="78.0" prefWidth="330.0" promptText="Description" />
          </children>
       </Pane>
-      <Button fx:id="btn_confirmer" layoutX="597.0" layoutY="360.0" mnemonicParsing="false" onAction="#ConfirmereDemande" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #a5c9ff;" text="Confirmer" />
+      <Button fx:id="btn_confirmer" layoutX="606.0" layoutY="461.0" mnemonicParsing="false" onAction="#ConfirmereDemande" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #a5c9ff;" text="Confirmer" />
    </children>
 </AnchorPane>

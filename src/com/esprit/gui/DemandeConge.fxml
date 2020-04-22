@@ -16,12 +16,24 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.DemandeCongeController">
    <children>
-      <AnchorPane prefHeight="616.0" prefWidth="993.0" style="-fx-background-color: #030307; -fx-background-radius: 15;">
+      <AnchorPane layoutY="-14.0" prefHeight="616.0" prefWidth="993.0" style="-fx-background-color: #005c96; -fx-background-radius: 15;">
          <children>
-            <VBox prefHeight="544.0" prefWidth="74.0" style="-fx-background-color: #131022; -fx-background-radius: 15 0 0 15;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox prefHeight="616.0" prefWidth="141.0" style="-fx-background-color: #005c96; -fx-background-radius: 15 0 0 15;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Pane prefHeight="79.0" prefWidth="74.0" style="-fx-background-radius: 15 0 15 15;" />
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #131022;" styleClass="button3" text="Congé" textFill="#a868a0">
+                  <Pane prefHeight="79.0" prefWidth="74.0" style="-fx-background-radius: 15 0 0 0; -fx-background-color: white;">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="99.0" layoutX="39.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/minipo-v1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="3.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/logo-M.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="143.0" style="-fx-background-color: #005c96;" styleClass="button3" text="Congé" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -30,7 +42,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#redirectToRecEmp" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #131022;" text="Reclamation" textFill="#a868a0">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#redirectToRecEmp" prefHeight="66.0" prefWidth="144.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -39,7 +51,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#redirectToMesRec" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #131022;" text="Mes Reclamations" textFill="#a868a0">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#redirectToMesRec" prefHeight="66.0" prefWidth="160.0" style="-fx-background-color: #005c96;" text="Mes Reclamations" textAlignment="CENTER" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -50,48 +62,43 @@
                   </Button>
                </children>
             </VBox>
-            <AnchorPane layoutX="91.0" layoutY="69.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;">
+            <AnchorPane layoutX="143.0" layoutY="69.0" prefHeight="531.0" prefWidth="825.0" style="-fx-background-color: #e5e5e5; -fx-background-radius: 10;">
                <children>
                   <Line endX="100.0" layoutX="605.0" layoutY="51.0" startX="100.0" startY="442.4000244140625" stroke="#b9b1b1" strokeDashOffset="2.0" />
                   <ComboBox fx:id="type" layoutX="190.0" layoutY="59.0" prefHeight="27.0" prefWidth="475.0" />
-                  <Text fill="WHITE" layoutX="37.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type de Congé" wrappingWidth="152.53680419921875">
+                  <Text layoutX="37.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type de Congé" wrappingWidth="152.53680419921875">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="37.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de début">
+                  <Text layoutX="37.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de début">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                   <DatePicker fx:id="datedebut" layoutX="200.0" layoutY="134.0" prefHeight="26.0" prefWidth="378.0" style="-fx-background-color: #d6d6d6;" />
-                  <Text fill="WHITE" layoutX="37.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Fin">
+                  <Text layoutX="37.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Fin">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                   <DatePicker fx:id="fil_datefin" layoutX="200.0" layoutY="223.0" prefHeight="26.0" prefWidth="378.0" style="-fx-background-color: #d6d6d6;" />
-                  <Text fill="WHITE" layoutX="14.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de jours posé">
+                  <Text layoutX="14.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de jours posé">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                   <TextField fx:id="nbjrs" layoutX="200.0" layoutY="313.0" prefHeight="26.0" prefWidth="378.0" />
-                  <Text fill="WHITE" layoutX="22.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Information complimentaire" wrappingWidth="178.71014404296875">
+                  <Text layoutX="22.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Information complimentaire" wrappingWidth="178.71014404296875">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
                   <TextArea fx:id="desc" layoutX="200.0" layoutY="382.0" prefHeight="111.0" prefWidth="475.0" />
-                  <Button fx:id="btn_envoyer" layoutX="732.0" layoutY="455.0" mnemonicParsing="false" onAction="#ajouterconge" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #9768a5;" text="Envouyer" />
+                  <Button fx:id="btn_envoyer" layoutX="717.0" layoutY="455.0" mnemonicParsing="false" onAction="#ajouterconge" prefHeight="23.0" prefWidth="108.0" style="-fx-background-color: #005c96;" text="Envouyer" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <ImageView fitHeight="38.0" fitWidth="34.0" layoutX="91.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/resources/logo.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" layoutX="142.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Demande Conge" wrappingWidth="272.53680419921875">
+            <Text fill="WHITE" layoutX="189.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Demande Conge" wrappingWidth="272.53680419921875">
                <font>
                   <Font size="31.0" />
                </font>

@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1380.0" stylesheets="@common.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gui.LivraisonController">
    <children>
    <VBox id="side_nav" style="-fx-background-color: #005c96;">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" style="-fx-background-color: white;">
-               <children>
-                 
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #f0c300; -fx-font-size: 1.5em; -fx-font-weight: bold;" text="MiniPo" textAlignment="CENTER" wrappingWidth="71.60723853111267">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="23.0" />
-                     </font>
-                  </Text>
-               </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/logo-M.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="37.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/minipo-v1.png" />
+                     </image>
+                  </ImageView>
+               </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
                <padding>
@@ -111,75 +110,15 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#chartsAction" prefHeight="34.0" prefWidth="126.0" style="-fx-background-color: #005c96;" text="Charts" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-             <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#calendarAction" prefHeight="16.0" prefWidth="126.0" style="-fx-background-color: #005c96;" text="Calendar" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="150.0" style="-fx-border-width: 0 0 0 5px; -fx-border-color: white;">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#PageAction" prefHeight="22.0" prefWidth="126.0" style="-fx-background-color: #005c96;" text="Page" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
          </children>
       </VBox>
       <VBox style="-fx-background-color: #e5e5e5;" HBox.hgrow="ALWAYS">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" style="-fx-background-color: #005c96;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0" style="-fx-background-color: white; -fx-background-radius: 100%;">
-                     <effect>
-                        <DropShadow height="20.0" radius="9.5" width="20.0" />
-                     </effect>
-                  </Button>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14px; -fx-fill: #ffffff;" text="Dashboard">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
                   <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox style="-fx-background-color: white;">
-                           <children>
-                              <TextField prefWidth="150.0" promptText="search" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0" style="-fx-background-color: transparent;" />
-                           </children>
-                        </HBox>
+                        <HBox style="-fx-background-color: white;" />
                      </children>
                   </HBox>
                </children>
@@ -188,13 +127,10 @@
                </padding>
             </HBox>
             <AnchorPane id="anchorpane_parent" prefHeight="570.0" prefWidth="1150.0" styleClass="mainFxmlClass">
-               <stylesheets>
-                  <URL value="@employe.css" />
-               </stylesheets>
                <children>
-                  <Pane id="pane_top" prefHeight="56.0" prefWidth="1181.0">
+                  <Pane prefHeight="56.0" prefWidth="1181.0">
                      <children>
-                        <Label id="label_title" layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="335.0" text="Ajouter une livraison">
+                        <Label layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="335.0" text="Ajouter une livraison">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
@@ -207,8 +143,8 @@
                         <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="16.0" prefHeight="450.0" prefWidth="275.0">
                            <children>
                               <ComboBox fx:id="id_liv" layoutX="29.0" layoutY="90.0" prefHeight="31.0" prefWidth="194.0" promptText="Livreur" />
-                              <Button id="btn_save" layoutX="75.0" layoutY="168.0" mnemonicParsing="false" onAction="#updateLivraison" prefHeight="31.0" prefWidth="103.0" text="Affecter" />
-                              <Button id="btn_delete" layoutX="75.0" layoutY="233.0" mnemonicParsing="false" onAction="#deleteLiv" prefHeight="31.0" prefWidth="103.0" text="Supprimer" />
+                              <Button id="btn_save" layoutX="75.0" layoutY="168.0" mnemonicParsing="false" onAction="#updateLivraison" prefHeight="31.0" prefWidth="103.0" stylesheets="@employe.css" text="Affecter" />
+                              <Button id="btn_delete" layoutX="75.0" layoutY="233.0" mnemonicParsing="false" onAction="#deleteLiv" prefHeight="31.0" prefWidth="103.0" stylesheets="@employe.css" text="Supprimer" />
                            </children>
                         </AnchorPane>
                         <AnchorPane id="anchorpane_right" layoutX="287.0" layoutY="16.0" prefHeight="450.0" prefWidth="687.0">

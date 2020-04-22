@@ -14,119 +14,68 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.Gui.InfoProdController">
    <children>
-      <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #005c96;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox layoutY="160.0" prefHeight="356.0" prefWidth="262.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="160.0">
                <children>
-                  <Button fx:id="btnAcceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Acceuil" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/home_48px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button fx:id="btnAcceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#AcceuilAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: black;" text="Acceuil" textFill="WHITE">
                      <padding>
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Profil" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/customer_48px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: black;" text="Profil" textFill="WHITE">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                      <padding>
                         <Insets left="40.0" />
                      </padding></Button>
-                  <Button fx:id="btnProd" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="159.0" mnemonicParsing="false" onAction="#ProduitAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Produit" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/product_48px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button fx:id="btnProd" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="159.0" mnemonicParsing="false" onAction="#ProduitAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: black;" text="Produit" textFill="WHITE">
                      <padding>
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="btnpanier" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="208.0" mnemonicParsing="false" onAction="#PanierAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mon panier" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/basket_48px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button fx:id="btnpanier" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="208.0" mnemonicParsing="false" onAction="#PanierAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: black;" text="Mon panier" textFill="WHITE">
                      <padding>
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="btnCmd" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#CommandeAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Commandes" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/truck_48px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button fx:id="btnCmd" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#CommandeAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: black;" text="Commandes" textFill="WHITE">
                      <padding>
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="btnFact" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#FacturesAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="   Factures" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/paste_48px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button fx:id="btnFact" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#FacturesAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: black;" text="Factures" textFill="WHITE">
                      <padding>
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="btnReclamation" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Reclamation" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/paste_48px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button fx:id="btnReclamation" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: black;" text="Reclamation" textFill="WHITE">
                      <padding>
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="btnReclamation1" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#MesReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: #005c96;" text="Mes Reclamation" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/paste_48px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button fx:id="btnReclamation1" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#MesReclamationAction" prefHeight="49.0" prefWidth="262.0" style="-fx-background-color: black;" text="Mes Reclamation" textFill="WHITE">
                      <padding>
                         <Insets left="40.0" />
                      </padding>
                   </Button>
                </children>
             </VBox>
-            <Pane layoutY="86.0" prefHeight="61.0" prefWidth="262.0" style="-fx-background-color: #f0c300; -fx-background-radius: 5;">
+            <Pane layoutY="86.0" prefHeight="61.0" prefWidth="262.0" style="-fx-background-color: #e5e5e5; -fx-background-radius: 5;">
                <children>
-                  <Label layoutX="25.0" layoutY="17.0" text="Home Space" textFill="WHITE">
+                  <Label layoutX="25.0" layoutY="17.0" text="Home Space" textFill="#da6804">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
+            <ImageView fitHeight="62.0" fitWidth="186.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../logo-M-client.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
       <Pane layoutX="262.0" prefHeight="649.0" prefWidth="631.0" style="-fx-background-color: #e5e5e5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -166,7 +115,7 @@
                   <Font size="13.0" />
                </font>
             </Text>
-            <Button fx:id="btnAjouter" layoutX="521.0" layoutY="421.0" mnemonicParsing="false" onAction="#btnAjouterAction" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: #f0c300;" text="Ajouter au panier" />
+            <Button fx:id="btnAjouter" layoutX="521.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnAjouterAction" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: #da6804;" text="Ajouter au panier" textFill="WHITE" />
             <Label id="label_title" layoutX="51.0" layoutY="34.0" prefHeight="30.0" prefWidth="207.0" text="Espace Client">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
